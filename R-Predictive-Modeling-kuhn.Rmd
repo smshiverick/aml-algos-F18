@@ -1,0 +1,390 @@
+# APPLIED PREDICTIVE MODELING - Max Kuhn
+* Kuhn M. and Johnson K. (2013). Applied Predictive Modeling. Springer
+* http://www.edii.uclm.es/~useR-2013/Tutorials/kuhn/user_caret_2up.pdf 
+================================
+
+## Modeling in R generally follows the same workflow:
+1. Create the model using the basic function: `fit <- knn(trainingData, outcome, k = 5)`.
+2. Assess the properties of the model using `print`, `plot`, `summary` or other methods.
+3. Predict outcomes for samples using the predict method: `predict(fit, newSamples)`.
+The model can be used for prediction without changing the original model object.
+
+## Image classification
+* Load remove cell identifier
+
+## Split data into train and test sets
+* sample() in base R creates a completely random sample of the data. 
+* createDataPartition() in caret package conducts data splits within groups of the data.
+* For classification, sampling within classes to preserve the distribution of outcome in train and test sets
+```{r}
+library(caret); library(ggplot2); library(rpart); library(rpart.plot)
+
+data(segmentationData)
+segmentationData$Cell <- NULL
+
+training <- subset(segmentationData, Case == "Train")
+testing <- subset(segmentationData, Case == "Test")
+training$Case <- NULL
+testing$Case <- NULL
+str(training[,1:6])
+```
+
+## Estimating Performance For Classification
+
+### Confusion Matrix - cross–tabulation of observed and predicted classes
+* e1071 package (the classAgreement function), caret package (confusionMatrix), mda (confusion).
+* confusionMatrix function 
+
+### ROC Curve functions 
+* ROCR package (performance)
+* verification package (roc.area), 
+* pROC package (roc) and others.
+
+# For 2–class classification models:
+
+## Sensitivity
+* Given that a result is truly an event, what is probability the model will predict an event results?
+
+## Specificity 
+* Given that a result is truly not an event, what is probability the model will predict a negative results? (an“event”is really the event of interest)
+
+## Conditional probabilities 
+* Directly related to the false positive and false negative rate of a method.
+
+
+# PREPROCESSING: Centering and Scaling
+* Input is a matrix or data frame of predictor data. 
+* Once the values are calculated, the predict method can be used to do the actual data transformations.
+
+## First, estimate the standardization parameters:
+* Methods are "BoxCox", "YeoJohnson", center", "scale",
+ "range", "knnImpute", "bagImpute", "pca", "ica", "spatialSign"
+
+```{r}
+ trainX <- training[, names(training) != "Class"]
+
+ preProcValues <- preProcess(trainX, method = c("center", "scale"))
+ preProcValues
+ scaledTrain <- predict(preProcValues, trainX)
+```
+
+## Pre–Processing and Resampling
+* To get honest estimates of performance, all data transformations should be included within the cross–validation loop.
+* Especially true for feature selection as well as pre–processing techniques (e.g. imputation, PCA, etc)
+* train() function can apply preProcess within resampling loops.
+
+## K–Fold Cross–Validation
+* Randomly split the data into K distinct blocks of roughly equal size.
+* Leave out the first block of data and fit a model. This model used to predict held-out block
+* Continue this process until we’ve predicted all K held–out blocks
+* Final performance is based on the hold-out predictions
+
+K is usually taken to be 5 or 10 and leave one out cross–validation has each sample as a block
+Repeated K–fold CV creates multiple versions of the folds and aggregates the results (I prefer this method)
+```caret:::createFolds, caret:::createMultiFolds```
+
+## The Big Picture
+We think that resampling will give us honest estimates of future performance, but there is still the issue of which model to select. One algorithm to select models:
+```
+Define sets of model parameter values to evaluate;
+  for each parameter set do
+    for each resampling iteration do
+      Hold–out specific samples ;
+      Fit the model on the remainder; Predict the hold–out samples;
+   end
+   Calculate the average performance across hold–out predictions
+end
+Determine the optimal parameter set;
+```
+
+# CLASSIFICATION TREE Example
+* Main tree–based packages in R: rpart, RWeka, evtree, C50 and party. 
+* rpart fits the classical“CART”models of Breiman et al (1984).
+* To obtain a shallow tree with rpart:
+```{r}
+library(rpart)
+rpart1 <- rpart(Class ~ ., data = training,
+                   control = rpart.control(maxdepth = 2))
+rpart1
+```
+
+## Visualizing the Tree
+* Use plot.rpart and text.rpart to visualize the final tree.
+* partykit package also has enhanced plotting functions for recursive partitioning.
+* Convert the rpart object to a new class called party and plot it to see more in terminal nodes:
+```{r}
+library(party); library(partykit)
+
+rpart1a <- as.party(rpart1)
+plot(rpart1a)
+```
+
+## Tree Fitting Process
+* Splitting would continue until some criterion for stopping is met, such as the minimum number of observations in a node. 
+* Largest possible tree may over-fit and“pruning”is the process of iteratively removing terminal nodes and watching the changes in resampling performance (usually 10–fold CV)
+* Possible pruning paths: how many possible trees are there with 6 terminal nodes?
+
+Trees can be indexed by their maximum depth and the classical CART methodology uses a cost-complexity parameter (Cp) to determine best tree depth
+
+## “One SE” rule :
+* Estimate the standard error of performance for each tree size and 
+* then choose the simplest tree within one standard error of the absolute best tree size.
+```{r}
+rpartFull <- rpart(Class ~ ., data = training)
+rpartFull
+```
+
+## Test Set Results
+* Requires 2 factor vectors
+
+```{r}
+rpartPred <- predict(rpartFull, testing, type = "class")
+confusionMatrix(rpartPred, testing$Class)
+```
+
+## Manually Tuning the Model
+* CART conducts internal 10-fold CV to tune model to be within one SE of the absolute minimum.
+
+We might want to tune the model ourselves for several reasons:
+* 10-Fold CV can be very noisy for small to moderate sample sizes
+* We might want to risk some over–fitting in exchange for higher performance
+* Using a performance metric other than error may be preferable, esp. with severe class imbalances.
+* We can manually make tradeo↵s between sensitivity and specificity for di↵erent values of Cp
+
+## The TRAIN  Function (caret)
+* Basic syntax for the function is: `train(formula, data, method)`
+* method = "rpart" can be used to tune a tree over Cp, so we can use:
+train(Class ~ ., data = training, method = "rpart")
+
+By default, function will tune over 3 values of the tuning parameter (Cp for this model).
+For rpart, the train function determines the distinct number of values of Cp for the data.
+
+The tuneLength function can be used to evaluate a broader set of models:
+`train(Class ~ ., data = training, method = "rpart", tuneLength = 30)`
+
+EXAMPLE: Default resampling scheme is bootstrap; Let’s use repeated 10–fold CV instead.
+
+## Three repeats of 10–fold cross–validation: 
+* Use control function that handles some of the optional arguments.
+```{r}
+cvCtrl <- trainControl(method = "repeatedcv", repeats = 3)
+train(Class ~ ., data = training, method = "rpart", 
+      tuneLength = 30, trControl = cvCtrl)
+```
+
+## Default CART algorithm uses overall accuracy and one std–error rule to prune the tree.
+* MIGHT WANT TO choose tree complexity based on largest absolute area under ROC curve.
+* A custom performance function can be passed to train. 
+* The package has one that calculates the ROC curve, sensitivity and specificity:
+
+## Make some random example data to show usage of twoClassSummary()
+* Requires a column for class probabilities named after the first level
+```{r} 
+fakeData <- data.frame(pred = testing$Class, obs = sample(testing$Class),
+                       PS = runif(nrow(testing)))
+twoClassSummary(fakeData, lev = levels(fakeData$obs))
+```
+
+Pass the twoClassSummary function in through trainControl.
+To calculate the ROC curve, we need the model to predict the class probabilities: classProbs
+Finally, tell the function to optimize the area under the ROC curve using the metric argument:
+
+```{r}
+cvCtrl <- trainControl(method = "repeatedcv", repeats = 3,
+                       summaryFunction = twoClassSummary,
+                       classProbs = TRUE)
+set.seed(1)
+rpartTune <- train(Class ~ ., data = training, method = "rpart", 
+                   tuneLength = 30, metric = "ROC", trControl = cvCtrl)
+rpartTune
+```
+
+# Methods for working with train Object:
+* plot.train can be used to plot the resampling profiles across the di↵erent models
+* print.train shows a textual description of the results 
+* predict.train can be used to predict new samples 
+
+finalModel is in a sub–object for final model fit (i.e. model with best resampling results)
+
+So in our example, 
+* rpartTune is of class train 
+* object rpartTune$finalModel is of class rpart.
+
+## Look at what the plot method does:
+* Resampled ROC Profile
+```{r}
+plot(rpartTune, scales = list(x = list(log = 10)))
+```
+
+## Predicting New Samples
+Two ways to get predictions from a train object: 
+* predict(rpartTune$finalModel, newdata, type = "class") 
+* predict(rpartTune, newdata)
+
+If there is any extra or non–standard syntax, this must also be specified predict.rpart.
+predict.train does same thing,  but takes care of minutia specific to predict method in question.
+
+##Test Set Results
+```{r}
+rpartPred2 <- predict(rpartTune, testing)
+confusionMatrix(rpartPred2, testing$Class)
+```
+
+## Predicting Class Probabilities
+predict.train has an argument type that can be used to get predicted class probabilities for di↵erent models:
+```{r}
+rpartProbs <- predict(rpartTune, testing, type = "prob")
+head(rpartProbs)
+```
+
+## Creating the ROC Curve
+* pROC package used to create ROC curves.
+* roc function used to capture the data and compute the ROC curve. 
+* plot.roc and auc.roc functions generate plot and area under the curve, respectively.
+```{r}
+library(pROC)
+
+rpartROC <- roc(testing$Class, rpartProbs[, "PS"], levels = rev(testProbs$Class)) > plot(rpartROC, type = "S", print.thres = .5)
+rpartROC
+
+#names(rpartProbs)
+```
+
+
+## BOOSTING Algorithms
+* Method to “boost” weak learning algorithms (e.g. single trees) into strong learning algorithms.
+* Boosted trees try to improve the model fit over different trees by considering past fits (not unlike iteratively reweighted least squares)
+
+## Boosting functions for trees in R: gbm in the gbm package
+* ada in ada
+* blackboost in mboost
+* C50 in C50
+packages for boosting other models (e.g. mboost)
+
+# C5.0 Syntax
+function has standard syntax: C50(x = predictors, y = factorOutcome)
+* trials: the number of boosting iterations
+* rules: a logical to indicate whether the tree(s) should be collapsed into rules.
+* winnow: a logical that enacts a feature selection step prior to model building.
+* costs: a matrix that places unbalanced costs of di↵erent types of errors.
+
+## Tuning the C5.0 Model
+* Use the basic tree model (i.e. no rules) with no additional feature selection.
+* Tune model over the number of boosting iterations (1 . . . 100)
+
+Note: do no have to fit 100 models for each iteration of resampling. 
+* Fit the 100 iteration model and derive the other 99 predictions using just the predict method.
+* “sub–model” trick: train uses whenever possible (including blackboost, C5.0, cubist, earth, enet, gamboost, gbm, glmboost, glmnet, lars, lasso, logitBoost, pam, pcr, pls, rpart and others)
+
+## Using Different Performance Metrics
+train was designed to make syntax changes between models minimal. 
+Here, we specify exactly what values the model should tune over.
+Data frame is used with one row per tuning variable combination and parameters start with periods.
+
+```{r}
+grid <- expand.grid(.model = "tree",
+                    .trials = c(1:100),
+                    .winnow = FALSE)
+c5Tune <- train(trainX, training$Class,
+                method = "C5.0", metric = "ROC",
+                tuneGrid = grid, trControl = cvCtrl)
+c5Tune
+```
+
+```{r}
+plot(c5Tune)
+```
+
+## Test Set Results
+```{r}
+c5Pred <- predict(c5Tune, testing)
+confusionMatrix(c5Pred, testing$Class)
+```
+
+## Test Set ROC Curve
+```{r} 
+c5Probs <- predict(c5Tune, testing, type = "prob")
+head(c5Probs, 3)
+
+library(pROC)
+c5ROC <- roc(predictor = c5Probs$PS, response = testing$Class,
+             levels = rev(levels(testing$Class)))
+c5ROC
+```
+
+## Plot ROC Curve - Test Set
+```{r}
+plot(rpartROC, type = "S")
+plot(c5ROC, add = TRUE, col = "#9E0142")
+```
+
+Test Set Probabilities
+```{r}
+histogram(~c5Probs$PS|testing$Class, xlab = "Probability of Poor Segmentation")
+```
+
+## SUPPORT VECTOR MACHINES (SVM)
+Example: tune SVM model over the cost parameter.
+* Default grid of cost parameters go from 2^-2, 0.5 to 1,
+* Fit 9 values in that sequence via the tuneLength() argument.
+* Can also add options from preProcess here too
+```{r}
+set.seed(1)
+svmTune <- train(x = trainX, y = training$Class, method = "svmRadial", tuneLength = 9,
+                 preProc = c("center", "scale"), metric = "ROC", trControl = cvCtrl)
+svmTune
+```
+
+566 training data points (out of 1009 samples) were used as support vectors.
+
+## SVM Accuracy Profile
+```{r}
+plot(svmTune, metric = "ROC", scales = list(x = list(log = 2)))
+```
+
+Test Set Results
+```{r}
+svmPred <- predict(svmTune, testing[, names(testing) != "Class"])
+confusionMatrix(svmPred, testing$Class)
+```
+
+```{r}
+svmTune$finalModel
+```
+
+## Comparing Models Using Resampling
+* Before each call to train, we set random number seed, used same resamping data sets for boosted tree and support vector machine, effectively providing for paired estimates for performance.
+* Hothorn et al (2005) and Eugster et al (2008) demonstrate techniques for making inferential comparisons using resampling.
+
+# Collecting Results With resamples
+* caret has a function and classes for collating resampling results from 
+objects of class train, rfe and sbf.
+```{r}
+cvValues <- resamples(list(CART = rpartTune, SVM = svmTune, C5.0 = c5Tune))
+summary(cvValues)
+```
+
+## Visualizing the Resamples
+* Number of lattice plot methods display the results: bwplot, dotplot, parallelplot, xyplot, splom.
+```{r}
+splom(cvValues, metric = "ROC")
+```
+
+```{r}
+dotplot(cvValues, metric = "ROC")
+```
+
+# Comparing Models
+* Test differences between the models:
+```{r}
+rocDiffs <- diff(cvValues, metric = "ROC")
+summary(rocDiffs)
+```
+```{r}
+dotplot(rocDiffs, metric = "ROC")
+```
+
+
+
+
+

@@ -26,6 +26,7 @@ labels = c("red", "blue", "green"))
 ```
 
 
+
 # (b) Explore data to examine associations between mpg01 and other features
 # graphically with scatterplots and boxplots; Which features likely predict mpg01? 
 
@@ -41,7 +42,6 @@ boxplot(HEALTH~PRLMISEVR, data=opioids, xlab="Pain Reliever Misuse", ylab="Healt
 boxplot(MENTHLTH~PRLMISEVR, data=opioids, xlab="Pain Reliever Misuse", ylab="Mental Healt")
 boxplot(TRQLZRS~PRLMISEVR, data=opioids, xlab="Pain Reliever Misuse", ylab="Tranquilizer Use")
 ```
-
 # reset plot frame  
 ```{r}
 par(mfrow=c(1,1))
