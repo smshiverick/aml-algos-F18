@@ -544,6 +544,10 @@ with Heroin use were: Prescription Opioid Pain Reliever (PRL) Misuse ever
     \toprule
     Model& & Confusion Matrix & & Accuracy & Sensitivity & Precision & F1-Score \\
     \midrule
+    K-Nearest Neighbors Classifier & & No Misuse & PRL Misuse &  &  &  & \\
+     & No Misuse & 25116 & 318 & 0.895 & 0.900 & 0.870 & 0.0.870 \\
+     & PRL Misuse & 344 & 654 &  &  &  & \\
+    \midrule
     Logistic Regression & & No Misuse & PRL Misuse &  &  &  & \\
      & No Misuse & 25002 & 2509 & 0.900 & 0.986 & 0.909 & 0.946 \\
      & PRL Misuse & 344 & 654 &  &  &  & \\
@@ -552,24 +556,17 @@ with Heroin use were: Prescription Opioid Pain Reliever (PRL) Misuse ever
      & No Misuse & 24667 & 2238 & 0.898 & 0.973 & 0.917 & 0.944 \\
      & PRL Misuse & 679 & 925 &  &  &  & \\
     \midrule
-    Quadratic Discriminant Analysis  & & No Misuse & PRL Misuse &  &  &  & \\
-     & No Misuse & 23386 & 1836 & 0.867 & 0.923 & 0.927 & 0.925 \\
-     & PRL Misuse & 1960 & 1327 &  &  &  & \\
+    Support Vector Classifier  & & No Misuse & PRL Misuse &  &  &  & \\
+     & No Misuse & 25201 & 233 & 0.904 & 0.900 & 0.890 & 0.880 \\
+     & PRL Misuse & 2514 & 562 &  &  &  & \\
     \midrule
-    
-    Support Vector Machines  & & No Misuse & PRL Misuse &  &  &  & \\
-     & No Misuse & 25436 & 0 & 1.0 & 1.0 & 1.0 & 1.0 \\
-     & PRL Misuse & 0 & 3163 &  &  &  & \\
-    \midrule
-    
-    Naive Bayes  & & No Misuse & PRL Misuse &  &  &  & \\
+    Naive Bayes Classifier & & No Misuse & PRL Misuse &  &  &  & \\
      & No Misuse & 25345 & 3133 & 0.890 & 0.999 & 0.890 & 0.941 \\
      & PRL Misuse & 1 & 30 &  &  &  & \\
     \midrule
-    
-    Neural Network & & No Misuse & PRL Misuse &  &  &  & \\
-     & No Misuse &  &  &  &  &  & \\
-     & PRL Misuse &  &  &  &  &  & \\
+    Neural Net (MLP) & & No Misuse & PRL Misuse &  &  &  & \\
+     & No Misuse & 25088 & 346 & 0.905 & 0.900 & 0.890 & 0.880 \\
+     & PRL Misuse & 2366 & 710 &  &  &  & \\
     \midrule
     Decision Trees & & No Misuse & PRL Misuse &  &  &  & \\
      & No Misuse & 25042 & 2572 & 0.899 & 0.988 & 0.907 & 0.946 \\
@@ -580,7 +577,7 @@ with Heroin use were: Prescription Opioid Pain Reliever (PRL) Misuse ever
      & PRL Misuse & 292 & 645 &  &  &  & \\
     \midrule
     Gradient Boosted Trees & & No Misuse & PRL Misuse &  &  &  & \\
-     & No Misuse &  &  &  &  &  & \\
+     & No Misuse & 25168 & 266 & 0.904 & 0.900 & 0.890 & 0.880\\
      & PRL Misuse &  &  &  &  &  & \\
     \bottomrule
   \end{tabular}
