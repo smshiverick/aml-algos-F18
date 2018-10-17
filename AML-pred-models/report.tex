@@ -15,18 +15,19 @@
 \begin{abstract}
 
 The misuse and abuse of prescription opioids (MUPO) has become a major health 
-crisis in the U.S. \cite{nida18}. Despite efforts to regulate legitimate pain 
-medications, the availability of illicit and synthetic opioids has increased. 
-Predictive modeling be used to identify factors that contribute to the opioid
-misuse and identify individuals at risk for addiction. A central task in 
-applying predictive analytic methods is selecting the best model for a given
-question and the available data. This paper compares several linear and non-
-linear classification models of pain reliever misuse and abuse using a sample 
-of N=114,038 respondents from a large national survey (NSDUH 2015-2016). 
-Classification models vary in terms of complexity, accuracy, and 
-interpretability. Simple models provide interpretable solutions but often at
-the cost of low accuracy, whereas complex models can provide higher accuracy 
-but are often more difficult to interpret.   
+crisis in the U.S. The rise of opioid overdose deaths in recent years is also 
+correlated with the increased availability of illicit and synthetic opioids
+\cite{nida18}. Predictive models can be used to identify demographic factors 
+related to MUPO and may help predict individuals at risk for opioid addiction.
+The present study compares several linear and non-linear classification models 
+of pain reliever misuse and abuse to identify the models that best fit the data. 
+The sample data consisted of N = 114,038 respondents from the National Survey 
+on Drug Use and Health (NSDUH) from 2015 and 2016. Classification models 
+vary in terms of complexity, accuracy, and interpretability. 
+
+Simple models provide interpretable solutions but may have lower accuracy 
+than more complex models which provide higher accuracy but are often more 
+difficult to interpret.   
 
 \footnote{ Address correspondence to \textit{smshiver@iu.edu}}
 \end{abstract}
@@ -47,47 +48,19 @@ the number of opioid-related overdose deaths has more than quadrupled.
 On average, more than 115 people die from an opioid overdose each day 
 \cite{cdc18, judd16}. Supply-based interventions to reduce the availability 
 of prescription opioids have produced a shift to the use of heroin and 
-synthetic opioids such as fentanyl \cite{jones15}. The sharp increase in 
-prescription overdose deaths (POD) and heroin overdose deaths (HOD) are 
-correlated \cite{muhuri13, unick13}. The dosage levels and potency of 
-illicit and synthetic opioids are largely unknown which increases the 
-risk of overdose death. Predictive analytics can provide useful tools to 
-understanding the opioid crisis given the huge amount of information being 
-generated from electronic medical records (EMRs), clinical research data, 
-and population-level data \cite{hay13, herland14}. The present study 
-compares several predictive models of pain reliever misuse and abuse to 
-analyze some of the features that contribute to the misuse and abuse 
-of prescription opioids  
-
-Big data is an ambiguous term that lacks a single unified definition, but is often 
-described in terms of {\it Volume, Velocity, Variety, Veracity, and Value}
-\cite{demchenko12}. 
-
-Trying to track an epidemic in real-time from multitudes of 
-incoming web searches and posts involves a high volume of data coming in at high 
-velocity \cite{lamb13, paul14}. In order to be of any use, diverse and often messy 
-raw data has to be sifted through and effectively organized for further analysis. 
-The issue of Veracity raises the questions of how reliable social media data are for 
-predicting real life events. What is the relationship between social media data to 
-biological events such as the spreading of contagion and disease? The question of 
-Value evaluates the quality of the data as it pertains to intended outcomes, such 
-as limiting the spread of contagion and disease prevention. There are legitimate 
-concerns about the quality of data obtained from the internet; however, the 
-literature suggests that mining information from social media can produce valuable 
-data. An important challenge for making sense of big data is developing analytic 
-tools adequate to handle large volumes of data in real time.
+synthetic opioids such as fentanyl \cite{jones15}. The dosage levels and 
+potency of illicit and synthetic opioids are largely unknown which has
+increased the risk of overdose death. The sharp rise in prescription 
+overdose deaths (POD) and heroin overdose deaths (HOD) are correlated 
+\cite{muhuri13, unick13}. Predictive analytics is a useful approach for 
+modeling the variables that contribute MUPO, especially given the large 
+amount of information generated from electronic medical records (EMRs), 
+clinical research data, and population-level data \cite{hay13, herland14}. 
+The present study compares several predictive models of pain reliever misuse 
+and abuse to identify the models that best fit the sample data, and understand
+features that contribute to the misuse and abuse of prescription opioids.  
 
 
-Supervised
-machine learning approaches are considered in this study to identify 
-characteristics of individuals susceptible to opioid misuse and abuse and 
-features related to opioid addiction. 
-
-
-
-
-This project considers whether opioid dependency and addiction can be predicted 
-from population-level public health data 
 
 Survey research 
 provides data on a wide range of issues that people may be reluctant to 
@@ -97,14 +70,6 @@ prescription medications, and illicit drug use.
 
 
 
-Understanding the features that contribute to opioid addiction 
-can identify underlying risk factors and increase awareness of potential 
-opioid abuse for patients and health care providers. 
-
-The results could be 
-extended to big data from previous years of the opioid crisis and to the 
-larger population of patients taking prescription opioid mediation. 
-Different machine learning classification methods are discussed.
 
 Mobile health applications can monitor patient medication 
 consumption and provide an early warning system for potential abuse, detecting 
@@ -146,8 +111,9 @@ label that new instances will be assigned to.
 
 
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Classification Algorithms} 
+\subsection{Linear Models} 
 
 Comparing the performance of different learning algorithms can be helpful for 
 selecting the best model for a given problem \cite{raschka17}. One of the 
@@ -159,50 +125,6 @@ advantage of the KNN classifier is that it provides a solution that is easy to
 understand. A limitation of KNN is that it does not perform well with a large 
 number of features (100 or more) or sparse datasets. Several different 
 classification algorithms are considered below.
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Classifier Models of Prescription Opioid Pain Reliever (PRL) Misuse}
-
-This section reports results from the same set of classification analyses
-described above using \emph{Prescription Opioid Pain Reliever Misuse} 
-(PRLMISEVR) as the target variable. Attributes related to Heroin Use were 
-now included as features (e.g., HEROINEVR, HEROINUSE, HEROINFQY). The 
-classifier models were built using SciKit Learn in a python notebook 
-\cite{classifyPRL}. The dataset was split into the training set and test 
-sets using the train-test-split function in sklearn and the target variables 
-was designated. Model accuracy for the training set and test set are reported, 
-for different parameter values, with feature importance. 
-
-
-\begin{table}
-  \caption{Classification Models Used to Predict Pain Reliever Misuse and Abuse
-  \cite{samhsa16}}
-  \label{tab:freq}
-  \begin{tabular}{ll}
-    \toprule
-    Linear Models \\
-    \midrule
-    Logistic Regression  \\
-    Linear Discriminant Analysis (LDA)  \\
-    \midrule
-    Non-linear Models   \\
-    \midrule
-    Support Vector Machines (SVM)  \\
-    Naive Bayes \\
-    Neural Network \\
-    \midrule
-    Tree-based Models \\
-    \midrule
-    Decision Trees \\
-    Boosted Trees \\ 
-    Random Forests \\
-    \bottomrule
-  \end{tabular}
-\end{table}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Logistic Regression Classifier}
@@ -229,7 +151,20 @@ attributes, mental health, prescription opioids, medication use, misuse,
 and illicit drug use. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Tree Based Models}
+\subsubsection{Non-linear Models}
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Decision Tree Models}
 
 Decision tree models are widely used for classification and regression. Tree 
 models ``learn'' a hierarchy of if-else questions that are represented in the
@@ -292,11 +227,60 @@ well without very much parameter tuning or scaling of data. A limitation of
 this approach is that Random forests do not perform well with very high-
 dimensional, data that is sparse data, such as text data.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{National Survey on Drug Use and Health} 
+
+Data for the study was derived from the National Survey on Drug Use and Health 
+(NSDUH) from 2015 and 2016,  The NSDUH is a comprehensive survey that consists
+of approximately 2600 questions covering all aspects of substance use, misuse, 
+dependency, abuse, and addiction for prescription medications and illicit drugs, 
+with a comprehensive set of demographic questions related to physical health, 
+depression, mental health treatment, and drug and alcohol treatment. 
+
+As described in the NSDUH codebook, sampling was weighted across states by 
+population size for a representative distribution selected from 6,000 area segments. 
+
+According 
+to the NSDUH codebook, sampling was weighted across states by population size 
+for a representative distribution selected from 6,000 area segments. The sample 
+design used five state sample size groups, drawing more heavily from the eight 
+states with the largest population (e.g., CA, FL, IL, MI, NY, OH, PA, TX) which 
+together account for 48 percent of the total U.S. population aged 12 or older.  
+All identifying information in the public data set were collapsed (e.g., age 
+categories) and state identifiers were removed from the public use file to 
+ensure confidentiality. The NSDUH public-use files do not include geographic 
+location, or demographic variables related to ethnicity or immigration status. 
+
+
+The sample design used five state sample size groups drawing more heavily 
+from the eight states with the largest population (e.g., CA, FL, IL, MI, NY,
+OH, PA, TX) which together account for 48 percent of total U.S. population 
+(aged 12 or older). 
+
+All identifying information was collapsed (e.g., age categories) and state 
+identifiers were removed from the public use file to ensure confidentiality. 
+
+
+obtained from the Substance Abuse and Mental Health 
+Data Archive (SAMHDA) \cite{samhsa16}.
+
+The weighted survey screening response rate was 81.94 percent and the weighted 
+interview response rate was 71.2 percent. For the present study, approximately
+90 variables were selected that were aggregated to a data set of 20 variables. 
+
+The dataset was split into the training set and test 
+sets using the train-test-split function in sklearn and the target variables 
+was designated. Model accuracy for the training set and test set are reported, 
+for different parameter values, with feature importance. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Project Goals} 
 
-The general idea of the project is that prescription opioid dependency and
+The main hypothesis is that pain reliever misuse and abuse (PRLMISAB) can be
+predicted by demographic features, medication use, and use of illicit drugs. 
+
+that prescription opioid dependency and
 addicted will in many cases lead to the use of illicit opioids such as heroin 
 or fentanyl. According to this reasoning, it was hypothesized that individuals 
 who report using heroin may also be susceptible to misusing or abusing 
@@ -319,45 +303,72 @@ opioid misuse, abuse and heroin use.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Method}
 
-The following steps were included in the project workflow: (1) Download and 
-extract the data, (2) Data cleaning and preparation, (3) Exploratory data 
-analysis, (4) Data visualization, (5) Analysis of classification models of
-prescription pain reliever misuse and abuse (PRLMA).
 
-\subsection{Data} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Classifier Models of Prescription Opioid Pain Reliever (PRL) Misuse}
 
-Data from the 2015 NSHUH was downloaded from the Substance Abuse and Mental 
-Health Data Archive (SAMHDA) \cite{samhsa16} URL using the get-data.py 
-function written to unzip the data files, extract the data as a Pandas data 
-frame, and write the file to CSV file \cite{getdata17}. The dataset consists 
-of 57,146 observations with 2,666 features representing individual-level 
-responses from a survey of the U.S. population. According to the NSDUH 
-codebook, sampling was weighted across states by population size for a 
-representative distribution selected from 6,000 area segments. 
+\begin{table}
+  \caption{Classification Models Used to Predict Pain Reliever Misuse and Abuse
+  \cite{samhsa16}}
+  \label{tab:freq}
+  \begin{tabular}{ll}
+    \toprule
+    Linear Models \\
+    \midrule
+    Logistic Regression  \\
+    Linear Discriminant Analysis (LDA)  \\
+    \midrule
+    Non-linear Models   \\
+    \midrule
+    Support Vector Machines (SVM)  \\
+    Naive Bayes \\
+    Neural Network \\
+    \midrule
+    Tree-based Models \\
+    \midrule
+    Decision Trees \\
+    Boosted Trees \\ 
+    Random Forests \\
+    \bottomrule
+  \end{tabular}
+\end{table}
 
-The sample design used five state sample size groups drawing more heavily 
-from the eight states with the largest population (e.g., CA, FL, IL, MI, NY,
-OH, PA, TX) which together account for 48 percent of total U.S. population aged 12 or older. 
-
-All identifying information was collapsed (e.g., age categories) and state 
-identifiers were removed from the public use file to ensure confidentiality. 
-
-The NSDUH public-use files do not include geographic location, or demographic 
-variables related to ethnicity or immigration status. The weighted survey 
-screening response rate was 81.94 percent and the weighted interview response 
-rate was 71.2 percent. 
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Method}
+
+The project workflow included the following steps: (1) Data download and 
+extraction, (2) Data cleaning and preparation, (3) Exploratory data analysis 
+and Visualization, (5) Construction and analysis of classification models of
+prescription pain reliever misuse and abuse (PRLMA).
+
 \subsection{Data Cleaning and Preparation }
 
-\subsubsection{Data Cleaning}
-All steps of this analysis was completed in a python interactive notebook 
-\cite{data17} based following examples from \emph{Python for Data Analysis}
-\cite{mckinney17}. After saving the NSDUH-2015 as a data frame object, the 
+All steps of data cleaning, preparation, and aggregation were completed using 
+a python interactive notebook \cite{mckinney17}.
+
+downloaded from the Substance Abuse and Mental 
+Health Data Archive (SAMHDA) \cite{samhsa18}
+After downloading the NSDUH 
+data files for 2015 and 2016 as a data frame object,
+
+
+The dataset consists 
+of 57,146 observations with 2,666 features representing individual-level 
+responses from a survey of the U.S. population.
+
+
+Data from the 2015 NSHUH was  URL using the get-data.py 
+function written to unzip the data files, extract the data as a Pandas data 
+frame, and write the file to CSV file
+
+
+
+
+the 
 dataset was subset by columns to include demographic characteristics (e.g., 
 age category, sex, marital status, education, employment status, and category 
 of metropolitan area), measures of physical health (e.g., overall health, 
@@ -405,6 +416,12 @@ at any time?'') is a dichotomous variables. The demographic characteristics
 and aggregated variables were subset and saved to a new data frame consisting 
 of 22 features and 57,146 observations, which was exported to CSV file. 
 
+The features of interest were demographic 
+characteristics, health, mental health (adultdepression), prescription 
+opioid misuse and abuse (PRLMISEVR, PRLMISAB, PRLANY), prescription 
+tranquilizers use and sedatives use (TRQLZRS, SEDATVS), use of illicit drugs 
+(COCAINE, AMPHETMN), drug treatment (TRTMENT), and mental health treatment 
+(MHTRTMT). 
 
 "AGECAT"    "SEX"       "MARRIED"   "EDUCAT"    "EMPLOY18"  "CTYMETRO" 
 "HEALTH"    "MENTHLTH"  "PRLMISEVR" "HEROINUSE" "TRQLZRS"   "SEDATVS"  
@@ -449,27 +466,73 @@ of 22 features and 57,146 observations, which was exported to CSV file.
 
 \subsection{Exploratory Data Analysis}
 
-Of the total sample of N=57,146 respondents, 26,736 were male and 30,410 
+The sample of N=57,146 respondents from 2015 (26,736 male, 30,410 female)
+and N=57,146 respondents from 2016 (26,736 male, 30,410 female), resulting
+in a total sample of N=57,146 respondents,
+
+6,343 individuals reported misusing pain medication at some point
+(3221 males, 3122 females), but only 956 respondents had used heroin (570 males, 
+386 females). 
+
+Of  26,736 were male and 30,410 
 female; 6,343 individuals reported misusing pain medication at some point
 (3221 males, 3122 females), but only 956 respondents had used heroin (570 males, 
 386 females). 
 
+Only few people 
+self-described as high in depression reported low Prescription Opioid PRL 
+misuse and abuse. 
+
+ The target variable was Heroin Use (HEROINEVR). Next, 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Classifier Models of Heroin Use}
 
-This analysis classified individuals according to whether they had ever used 
-heroin (i.e., ``Heroin Use Ever``). All classifier models were constructed 
-using SciKit Learn \cite{muller17} using an interactive python jupyter 
-notebook \cite{classifyH}. 
+\subsection{Classification Models}
 
-The features of interest were demographic 
-characteristics, health, mental health (adultdepression), prescription 
-opioid misuse and abuse (PRLMISEVR, PRLMISAB, PRLANY), prescription 
-tranquilizers use and sedatives use (TRQLZRS, SEDATVS), use of illicit drugs 
-(COCAINE, AMPHETMN), drug treatment (TRTMENT), and mental health treatment 
-(MHTRTMT). The target variable was Heroin Use (HEROINEVR). Next 
+The dataset was divided into the training set and test set using a 75-25 
+percent split. 
 
+
+Each model was fit to the training set, new values were predicted and model 
+performance was evaluated on the holdout scores in the test set. 
+
+the train-test-split() function in sklearn. Model accuracy for the training 
+set and test 
+set are reported, with different parameter values, and features importance. 
+
+
+
+\subsection{Logistic Regression Classifier}
+ 
+Logistic Regression Classification is a based on a linear equation that 
+calculates the relative weight of each feature for a categorical target or 
+binary outcome (yes / no) \cite{raschka17}. The logistic regression classifier 
+was fit to the training data in Scikit-Learn, and the model was validated on 
+the test data. By default, the model applies L2 penalty (Ridge). The training 
+set accuracy was 0.983 and the test set accuracy was 0.984. The parameter `C` 
+determines the strength of regularization, with higher values of C providing
+greater regularization. The L1 penalty (Lasso) limits the values of most 
+coefficients to zero, creating a more interpretable model that uses only a 
+few features. Figure 4 plots the coefficients of logistic regression classifier 
+for heroin use with the L1 Penalty (Lasso) under different values of parameter 
+C. The default setting, C=1.0, provides good performance for train and test 
+sets, but the model is very likely underfitting the test data. Using a higher
+value of C fits a more flexible model and generally gives improved accuracy 
+for both training and tests sets. Using a value of C=100 yielded training set
+accuracy of 0.98 and test set accuracy of 0.98. Figure 4 shows that the 
+features coefficient values did not change much according to the values of
+parameter C, and the accuracy values were approximately the same for all 
+values of C. Examination of the coefficients from the logistic regression 
+classifier revealed the three features which were most closely associated 
+with Heroin use were: Prescription Opioid Pain Reliever (PRL) Misuse ever 
+(as predicted), Cocaine Use, and Amphetamine use, respectively.
+
+\begin{figure}[!ht]
+  \centering\includegraphics[width=\columnwidth]{images/Figure4.pdf}
+  \caption{Coefficients of Logistic Regression Classifier of Heroin Use 
+  (With L1 Penalty and Values of Regularization Parameter C)}
+  \label{f:Figure4}
+\end{figure}
 
 
 
@@ -498,6 +561,7 @@ tranquilizers use and sedatives use (TRQLZRS, SEDATVS), use of illicit drugs
      & No Misuse & 25436 & 0 & 1.0 & 1.0 & 1.0 & 1.0 \\
      & PRL Misuse & 0 & 3163 &  &  &  & \\
     \midrule
+    
     Naive Bayes  & & No Misuse & PRL Misuse &  &  &  & \\
      & No Misuse & 25345 & 3133 & 0.890 & 0.999 & 0.890 & 0.941 \\
      & PRL Misuse & 1 & 30 &  &  &  & \\
@@ -547,6 +611,21 @@ tranquilizers use and sedatives use (TRQLZRS, SEDATVS), use of illicit drugs
     \bottomrule
   \end{tabular}
 \end{table*}
+
+
+
+
+
+This section reports results from the same set of classification analyses
+described above using \emph{Prescription Opioid Pain Reliever Misuse} 
+(PRLMISEVR) as the target variable. Attributes related to Heroin Use were 
+now included as features (e.g., HEROINEVR, HEROINUSE, HEROINFQY). The 
+classifier models were built using SciKit Learn in a python notebook 
+\cite{classifyPRL}. 
+
+
+
+
 
 
 
@@ -903,6 +982,8 @@ low rates of opioid and heroin in this sample, additional evidence is needed to
 resolve this question. The study can provide information to raise awareness 
 about the risk factors for prescription opioid addiction and may help reduce 
 opioid overdose deaths. 
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
