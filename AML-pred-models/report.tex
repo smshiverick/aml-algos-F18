@@ -251,18 +251,29 @@ labeled as positive: a person who has never misused or abused pain relievers
 may be classified as having done so (i.e., 'false positive'). Conversely, a 
 positive instance may be classified as negative: a person who has misused and 
 abused pain relievers may be labeled as never having done so (i.e., 'false 
-negative'). Table 1 shows the kinds of errors and correct classification decisions 
-represented in a \emph{confusion matrix} which indicates the correspondence 
-between predicted and actual outcomes. The confusion matrix is a two-by-two 
-array in which the columns correspond to the actual observed classes and the 
-rows correspond to the predicted classes. The main diagonal indicate the 
-number correctly classified (\emph{true positive}, \emph{true negative}, 
-while the other entries represent the number of samples in one class that 
-were mistakenly classified as another class. 
+negative'). Table 1 shows the kinds of classification errors and correct  
+decisions represented in a \emph{confusion matrix} which indicates the 
+correspondence between predicted and actual outcomes. The confusion matrix 
+is a two-by-two array in which the columns correspond to the actual observed 
+classes and the rows correspond to the predicted classes. The main diagonal 
+indicate the number correctly classified (\emph{true positive, true negative}, 
+while the other entries represent the number of samples in one class that were 
+mistakenly classified as another class. Model performance is also described in 
+terms of Recall and Precision \cite{wiki18}. Recall, or `sensitivity', 
+measures how many positive samples are captured by the positive predictions 
+\( \frac{TP}{TP+FN} \); recall is used when we want to identify all positive 
+samples and avoid false negatives. Precision measures how many of the samples 
+predicted as positive are actually positive \( \frac{TP}{TP+FP} \), and is 
+used as a metric when the goal is to limit the number of false positives. 
+Another metric, the f-score or f-measure provides the harmonic mean of 
+precision and recall. In datasets with \emph{imbalanced classes}, where one 
+class is much more frequent than the other class, the f-score can be a better 
+metric than accuracy as it takes recall and precision into account 
+\cite{muller17}.
 
-
-Recall provides a measure of completeness or quantity and precision can be seen as a measure of exactness of 'quality' \cite{wiki18}
-
+\begin{equation}
+  \ [f_1 score = 2*\frac{Precision*Recall}{Precision+Recall}\ ]
+\end{equation}
 
 
 \begin{table}
