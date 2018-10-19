@@ -123,31 +123,42 @@ which are outlined in the section below.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Classification Models} 
 
-One of the simplest classification 
-algorithms is K-Nearest-Neighbors (KNN) which takes a set of data points and 
-classifies a new data point based on the distance (e.g., Euclidean, by default) 
-to its nearest neighbors. The main parameter for KNN is the number of neighbors 
-
-
-
-
-and k of 3 or 5 neighbors works well. The 
-advantage of the KNN classifier is that it provides a solution that is easy to 
-understand. A limitation of KNN is that it does not perform well with a large 
-number of features (100 or more) or sparse datasets. 
-
-
-Several different 
-classification algorithms are considered below.
-
+One of the simplest classification algorithms is K-Nearest-Neighbors (KNN) 
+which takes a set of data points and classifies a new data point based on the 
+distance (Euclidean by default) to its nearest neighbors. The standard 
+procedure in modeling is to first divide the dataset into two portions: a 
+\emph{training set} that the model is fit to and a set of observations that 
+is set aside, the \emph{testing} set that is used to evaluate the model
+performance with a set of previously ``unseen scores''. It is somewhat of 
+a convention in creating the train set and test set is is to select 70 to 
+80 percent of the observations for the testing set and use the remaining 
+30 to 20 percent of observations in the testing set. The main parameter for 
+KNN algorithm is the number of neighbors that are used to classify 
+observations in the sample. In order to select the optimal parameter values, 
+the classification accuracy for the testing set and training set is 
+calculated and plotted separately by a range of neighbor values (Figure 1). 
+As seen in Figure 1, there is a tradeoff in training set accuracy versus 
+test set accuracy. A model with high accuracy on the training set may perform 
+poorly on when presented with new data in the test set because the model 
+is over-fit to the training data, which illistrates the problem of 
+\emph{overfitting}. By contrast, a model may fit the training data poorly
+but accuracy improves on the testing set which is an example of 
+``underfitting''. The ideal situation is to select parameter values which
+optimize test set accuracy, while controlling for the problems of 
+overfitting and underfitting. In selecting the number of neighbors, we
+see that there is little improvement in test set accuracy between 2 and
+4 neighbors, or beyond 5 neighbors; therefore a k-value of 3 or 5
+neighbors seems to work well. The advantage of the KNN classifier is that 
+it provides a solution that is easy to understand. A limitation of KNN is 
+that it does not perform well with a large number of features (100 or more) 
+or with sparse datasets where many value equal to zero. 
 
 \begin{figure}[!ht]
-  \centering\includegraphics[width=\columnwidth]{images/Figure4.pdf}
-  \caption{Coefficients of Logistic Regression Classifier of Heroin Use 
-  (With L1 Penalty and Values of Regularization Parameter C)}
-  \label{f:Figure4}
+  \centering\includegraphics[width=\columnwidth]{images/Figure1.pdf}
+  \caption{K-Nearest Neighbors Classifier Performance for Training Set and 
+  Testing Sets as a function of Number of Neighbors)}
+  \label{f:Figure1}
 \end{figure}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Linear Classifier Models}
@@ -175,8 +186,6 @@ and illicit drug use.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Non-linear Classifier Models}
-
-K-Nearest Neighbors 
 
 Support Vector Machines
 
