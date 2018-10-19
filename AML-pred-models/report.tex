@@ -95,44 +95,62 @@ the misuse and abuse of prescription opioids.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Predictive Modeling}
 
-Machine learning is a set of procedures and automated processes for extracting 
-knowledge from data. The two main branches of machine learning are supervised 
-learning and unsupervised learning. Supervised learning problems involve 
-prediction about a specific target variable or outcome of interest. If a given 
-dataset has no target outcome, unsupervised learning methods can be used to 
-discover underlying structure in unlabeled data. The goal of this project is 
-to classify opioid addiction and focuses on supervised learning. Supervised 
-learning is used to predict a certain outcome from a given input, when examples 
-of input/output pairs are available \cite{muller17}. A machine learning model 
-is constructed from the training set of input-output pairs, to predict new test 
+Predictive modeling, statistical learning, or machine learning is a set 
+of procedures and automated processes for extracting knowledge from data 
+\cite{james13, kuhn17, muller17, raschka17}. The two main branches of 
+predictive modeling are supervised learning and unsupervised learning. 
+Supervised learning problems involve prediction about a specific target 
+variable or outcome of interest. If a given dataset has no target outcome, 
+unsupervised learning methods (e.g., clustering) can be used to discover 
+underlying structure in unlabeled data. The present study uses a supervised 
+learning approach to classify sample data as instances of pain reliever 
+misuse and abuse (or not) and compare the performance of several different 
+predictive models. Supervised learning is used to predict a certain outcome 
+from a given input, when examples of input/output pairs are available 
+\cite{muller17}. A statistical learning model (e.g., logistic regression) is 
+constructed from the training set of input-output pairs to predict new test 
 data not previously seen by the model. The two major approaches to supervised 
 learning problems are regression and classification. When the target variable 
 to be predicted is continuous, or there is continuity between the outcome 
 (e.g., home values, or income), a regression model is used to test the set of 
 features that predict the target variable. If the target is a class label, set 
 of categorical or binary outcomes (e.g., spam or ham, benign or malignant), 
-then classification is used to predict which class or category 
-label that new instances will be assigned to.
-
-
-
+then classification is used to predict which class or category label that 
+new instances will be assigned to. Each classification model has 
+advantages and limitation when applied to a question and given data set
+which are outlined in the section below. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Linear Models} 
+\subsection{Classification Models} 
 
-Comparing the performance of different learning algorithms can be helpful for 
-selecting the best model for a given problem \cite{raschka17}. One of the 
-simplest classification algorithms is K-Nearest-Neighbors (KNN) which takes 
-a set of data points and classifies a new data point based on the distance 
-(e.g., Euclidean, by default) to its nearest neighbors. The main parameter for
-KNN is the number of neighbors, and k of 3 or 5 neighbors works well. The 
+One of the simplest classification 
+algorithms is K-Nearest-Neighbors (KNN) which takes a set of data points and 
+classifies a new data point based on the distance (e.g., Euclidean, by default) 
+to its nearest neighbors. The main parameter for KNN is the number of neighbors 
+
+
+
+
+and k of 3 or 5 neighbors works well. The 
 advantage of the KNN classifier is that it provides a solution that is easy to 
 understand. A limitation of KNN is that it does not perform well with a large 
-number of features (100 or more) or sparse datasets. Several different 
+number of features (100 or more) or sparse datasets. 
+
+
+Several different 
 classification algorithms are considered below.
 
+
+\begin{figure}[!ht]
+  \centering\includegraphics[width=\columnwidth]{images/Figure4.pdf}
+  \caption{Coefficients of Logistic Regression Classifier of Heroin Use 
+  (With L1 Penalty and Values of Regularization Parameter C)}
+  \label{f:Figure4}
+\end{figure}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Logistic Regression Classifier}
+\subsubsection{Linear Classifier Models}
 
 Logistic regression is a commonly used linear model for classification 
 problems. The decision boundary for the logistic regression classifier is a 
@@ -156,15 +174,17 @@ attributes, mental health, prescription opioids, medication use, misuse,
 and illicit drug use. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Non-linear Models}
+\subsubsection{Non-linear Classifier Models}
+
+K-Nearest Neighbors 
+
+Support Vector Machines
 
 
+Naive Bayes
 
 
-
-
-
-
+Neural Networks
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -240,41 +260,45 @@ dimensional, data that is sparse data, such as text data.
 
 \subsection{Metrics for Evaluating Prediction Models}
 
-Binary classification is assessed in terms of the successful assignment of 
-observations to one of two classes: positive or negative. In the present case,
-individuals as classified either as having misused and abused pain relievers 
-or not. Model performance is perhaps most commonly evaluated by its accuracy 
-which is defined by the number of correct predictions divided by the total 
-number of all samples. Any model selected cannot make perfect predictions as 
-there are always mistakes to be found. For example, a negative instance can be 
-labeled as positive: a person who has never misused or abused pain relievers 
-may be classified as having done so (i.e., 'false positive'). Conversely, a 
-positive instance may be classified as negative: a person who has misused and 
-abused pain relievers may be labeled as never having done so (i.e., 'false 
-negative'). Table 1 shows the kinds of classification errors and correct  
-decisions represented in a \emph{confusion matrix} which indicates the 
-correspondence between predicted and actual outcomes. The confusion matrix 
-is a two-by-two array in which the columns correspond to the actual observed 
-classes and the rows correspond to the predicted classes. The main diagonal 
-indicate the number correctly classified (\emph{true positive, true negative}, 
-while the other entries represent the number of samples in one class that were 
-mistakenly classified as another class. Model performance is also described in 
-terms of Recall and Precision \cite{wiki18}. Recall, or `sensitivity', 
-measures how many positive samples are captured by the positive predictions 
-\( \frac{TP}{TP+FN} \); recall is used when we want to identify all positive 
-samples and avoid false negatives. Precision measures how many of the samples 
-predicted as positive are actually positive \( \frac{TP}{TP+FP} \), and is 
-used as a metric when the goal is to limit the number of false positives. 
-Another metric, the f-score or f-measure provides the harmonic mean of 
-precision and recall. In datasets with \emph{imbalanced classes}, where one 
-class is much more frequent than the other class, the f-score can be a better 
-metric than accuracy as it takes recall and precision into account 
-\cite{muller17}.
+Comparing the performance of different learning algorithms can be helpful for 
+selecting the best model for a given problem. Binary classification is assessed 
+in terms of the successful assignment of observations to one of two classes: 
+positive or negative. In the present case, individuals are classified either 
+as having misused and abused pain relievers or not. Model performance is 
+commonly evaluated using accuracy which is defined by the number of correct 
+predictions divided by the total number of all samples. Any model selected 
+cannot make perfect predictions as there are always mistakes to be found. 
+For example, a negative instance can be labeled as positive: a person who has 
+never misused or abused pain relievers may be classified as having done so 
+(i.e., 'false positive'). Conversely, a positive instance may be classified 
+as negative: a person who has misused and abused pain relievers may be labeled 
+as never having done so (i.e., 'false negative'). Table 1 shows the kinds of 
+classification errors and correct decisions represented in a 
+\emph{confusion matrix} which indicates the correspondence between predicted 
+and actual outcomes. The confusion matrix is a two-by-two array in which the 
+columns correspond to the actual observed classes and the rows correspond to 
+the predicted classes. The main diagonal indicate the number of correctly 
+classified samples (\emph{true positive, true negative}, while the other 
+entries represent the number of samples in one class that were mistakenly 
+classified as another class. Classification models are evaluated using several 
+measures including recall, precision, and the $f_1$-score \cite{wiki18}. 
+\emph{Recall} or ``sensitivity'' measures how many positive samples are 
+captured by the positive predictions ( \(\frac{TP}{TP+FN}\) ), and is used 
+when we want to identify all positive samples while avoiding false negatives. 
+\emph{Precision} or the ``positive predictive value'', measures how many of 
+the samples predicted as positive are actually positive 
+( \(\frac{TP}{TP+FP}\) ), and is used as a metric when the goal is to limit 
+the number of false positives. The \emph{$f_1$-score} or `f-measure' provides 
+the harmonic mean of precision and recall. The $f_1$-score can be a better 
+metric than accuracy in datasets with \emph{imbalanced classes}, where one 
+class is much more frequent than the other class, as it takes recall and 
+precision into account \cite{muller17}.
 
 \begin{equation}
-  \ [f_1 score = 2*\frac{Precision*Recall}{Precision+Recall}\ ]
+  \ f_1 score = 2*\frac{Precision*Recall}{Precision+Recall}\
 \end{equation}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{table}
   \caption{Confusion Matrix for Evaluating Classification Model Performance}
@@ -291,10 +315,6 @@ metric than accuracy as it takes recall and precision into account
     \bottomrule
   \end{tabular}
 \end{table}
-
-
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Project Goals} 
@@ -564,12 +584,6 @@ classifier revealed the three features which were most closely associated
 with Heroin use were: Prescription Opioid Pain Reliever (PRL) Misuse ever 
 (as predicted), Cocaine Use, and Amphetamine use, respectively.
 
-\begin{figure}[!ht]
-  \centering\includegraphics[width=\columnwidth]{images/Figure4.pdf}
-  \caption{Coefficients of Logistic Regression Classifier of Heroin Use 
-  (With L1 Penalty and Values of Regularization Parameter C)}
-  \label{f:Figure4}
-\end{figure}
 
 
 
