@@ -124,34 +124,33 @@ which are outlined in the section below.
 \subsection{Classification Models} 
 
 One of the simplest classification algorithms is K-Nearest-Neighbors (KNN) 
-which takes a set of data points and classifies a new data point based on the 
-distance (Euclidean by default) to its nearest neighbors. The standard 
-procedure in modeling is to first divide the dataset into two portions: a 
-\emph{training set} that the model is fit to and a set of observations that 
-is set aside, the \emph{testing} set that is used to evaluate the model
-performance with a set of previously ``unseen scores''. It is somewhat of 
-a convention in creating the train set and test set is is to select 70 to 
-80 percent of the observations for the testing set and use the remaining 
-30 to 20 percent of observations in the testing set. The main parameter for 
-KNN algorithm is the number of neighbors that are used to classify 
+which takes a set of data points and classifies a new data point based on 
+the distance (Euclidean by default) to its nearest neighbors. A standard 
+practice in modeling is to first divide the dataset into two portions: a 
+\emph{training set} that the model is fit to and a \emph{testing} set of 
+observations that are set aside and later used to evaluate the model
+performance with a different set of score. By convention, approximately 
+70 to 80 percent of observations are used for the training set and the 
+remaining observations are reserved for the testing set. The main parameter 
+for KNN algorithm is the number of neighbors that are used to classify
 observations in the sample. In order to select the optimal parameter values, 
 the classification accuracy for the testing set and training set is 
 calculated and plotted separately by a range of neighbor values (Figure 1). 
 As seen in Figure 1, there is a tradeoff in training set accuracy versus 
-test set accuracy. A model with high accuracy on the training set may perform 
-poorly on when presented with new data in the test set because the model 
-is over-fit to the training data, which illistrates the problem of 
-\emph{overfitting}. By contrast, a model may fit the training data poorly
-but accuracy improves on the testing set which is an example of 
+test set accuracy. A model with high accuracy on the training set may 
+perform poorly on when presented with new data in the test set because 
+the model is over-fit to the training data, which illustrates the problem 
+of \emph{overfitting}. By contrast, a model may fit the training data 
+poorly but has high accuracy on the testing set which is an example of 
 ``underfitting''. The ideal situation is to select parameter values which
-optimize test set accuracy, while controlling for the problems of 
-overfitting and underfitting. In selecting the number of neighbors, we
-see that there is little improvement in test set accuracy between 2 and
-4 neighbors, or beyond 5 neighbors; therefore a k-value of 3 or 5
-neighbors seems to work well. The advantage of the KNN classifier is that 
+optimize test set accuracy, while controlling for the problems of model
+overfitting and underfitting. In selecting the number of neighbors
+parameter, the plot shows little improvement in test set accuracy between 
+2 and 4 neighbors, or beyond 5 neighbors; therefore a k-value of 3 or 5
+neighbors would work well. The advantage of the KNN classifier is that 
 it provides a solution that is easy to understand. A limitation of KNN is 
 that it does not perform well with a large number of features (100 or more) 
-or with sparse datasets where many value equal to zero. 
+or with sparse datasets with many value equal to zero. 
 
 \begin{figure}[!ht]
   \centering\includegraphics[width=\columnwidth]{images/Figure1.pdf}
