@@ -77,26 +77,20 @@ and dependence on substances including alcohol, tobacco, prescription
 medications, and illicit drugs. In addition to typical demographic information, 
 the survey includes self-reported measures items related to on physical health, 
 mental health (e.g., depression, anxiety, suicidal ideation), counseling, and 
-drug and alcohol treatment. As described in the NSDUH codebook, the sampling 
-design is weighted across states by population size, drawing more heavily from 
-eight states with the largest populations (CA, FL, IL, MI, NY, OH, PA, TX), 
-for a representative distribution that accounts for approximately 48 percent 
-of the total U.S. population. In the public use data files all identifying 
-information is collapsed (e.g., age categories) and state identifiers are 
-removed to ensure confidentiality. Therefore, the public NSDUH datasets do 
-not include geographic location, or demographic variables related to ethnicity 
-or immigration status. It can be difficult to obtain reliable information about
-drug use based on self-reports; however, surveys can provide data on a range 
-of issues that people may be reluctant to disclose such as drug use and 
-mental health issues. NSDUH data has been used for identifying groups at 
-high risk for substance use, and the co-occurrance of substance use and 
-mental disorders. The target variable for the study was any misuse and 
-abuse prescription pain reliever. The predictor variables of interest were 
-selected demographic variables, medication usage, and use of illicit drugs 
-(e.g., heroin, cocaine, amphetamines). The study goal was to construct and 
-compare different predictive classification models to predict pain reliever 
-misuse and abuse. Classification models were compared in order to select 
-the best predictive models for the question under consideration. 
+drug and alcohol treatment. The public NSDUH datasets do not include geographic
+location, or demographic variables related to ethnicity or immigration status. 
+It can be difficult to obtain reliable information about drug use based on
+self-reports; however, surveys can provide data on a range of issues that 
+people may be reluctant to disclose such as drug use and mental health issues.
+NSDUH data has been used for identifying groups at high risk for substance use, 
+and the co-occurrance of substance use and mental disorders. The target 
+variable for the study was any misuse and abuse prescription pain reliever. 
+The predictor variables of interest were selected demographic variables, 
+medication usage, and use of illicit drugs (e.g., heroin, cocaine, 
+amphetamines). The study goal was to construct and compare different 
+predictive classification models to predict pain reliever misuse and abuse.
+Classification models were compared in order to select the best predictive 
+models for the question under consideration. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Predictive Modeling}
@@ -438,6 +432,16 @@ for a representative distribution selected from 6,000 area segments. The sample
 design used five state sample size groups, drawing more heavily from the eight 
 
 
+As described in the NSDUH codebook, the sampling design is weighted across 
+states by population size, drawing more heavily from eight states with the 
+largest populations (CA, FL, IL, MI, NY, OH, PA, TX), for a representative
+distribution that accounts for approximately 48 percent of the total U.S.
+population \cite{samhsa18}. In the public use data files all identifying 
+information is collapsed (e.g., age categories) and state identifiers are 
+removed to ensure confidentiality.
+
+
+
 
 The dataset was split into the training set and test 
 sets using the train-test-split function in sklearn and the target variables 
@@ -461,6 +465,10 @@ Drug Treatment Status), and Mental Health Treatment History. A codebook was
 created to provide a complete list of variables included with summaries 
 of response categories \cite{codebook17}. The following steps were taken 
 to detect and remove inconsistencies in the data \cite{rahm00}:
+
+
+
+
 \begin{enumerate}
   \item Remove missing values (i.e., NaN) 
   \item Recode blanks, non-responses, or legitimate skips (e.g., 99, 991, 
