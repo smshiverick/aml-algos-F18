@@ -97,7 +97,7 @@ the misuse and abuse of prescription opioids.
 
 Predictive modeling, statistical learning, or machine learning is a set 
 of procedures and automated processes for extracting knowledge from data 
-\cite{james13, kuhn17, muller17, raschka17}. The two main branches of 
+\cite{james13, kuhn13, muller17, raschka17}. The two main branches of 
 predictive modeling are supervised learning and unsupervised learning. 
 Supervised learning problems involve prediction about a specific target 
 variable or outcome of interest. If a given dataset has no target outcome, 
@@ -114,11 +114,11 @@ learning problems are regression and classification. When the target variable
 to be predicted is continuous, or there is continuity between the outcome 
 (e.g., home values, or income), a regression model is used to test the set of 
 features that predict the target variable. If the target is a class label, set 
-of categorical or binary outcomes (e.g., spam or ham, benign or malignant), 
-then classification is used to predict which class or category label that 
-new instances will be assigned to. Each classification model has 
-advantages and limitation when applied to a question and given data set
-which are outlined in the section below. 
+of categorical or binary outcomes (e.g., spam or ham emails, benign or 
+malignant cells), then classification is used to predict which class or 
+category label that new instances will be assigned to. Each classification 
+model has advantages and limitation when applied to a question and given 
+dataset which are described in more detail below. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Classification Models} 
@@ -129,33 +129,33 @@ the distance (Euclidean by default) to its nearest neighbors. A standard
 practice in modeling is to first divide the dataset into two portions: a 
 \emph{training set} that the model is fit to and a \emph{testing} set of 
 observations that are set aside and later used to evaluate the model
-performance with a different set of score. By convention, approximately 
+performance with a different set of scores. By convention, approximately 
 70 to 80 percent of observations are used for the training set and the 
 remaining observations are reserved for the testing set. The main parameter 
 for KNN algorithm is the number of neighbors that are used to classify
-observations in the sample. In order to select the optimal parameter values, 
+observations in the sample. In order to select the optimal parameter value, 
 the classification accuracy for the testing set and training set is 
 calculated and plotted separately by a range of neighbor values (Figure 1). 
 As seen in Figure 1, there is a tradeoff in training set accuracy versus 
 test set accuracy. A model with high accuracy on the training set may 
-perform poorly on when presented with new data in the test set because 
-the model is over-fit to the training data, which illustrates the problem 
-of \emph{overfitting}. By contrast, a model may fit the training data 
-poorly but has high accuracy on the testing set which is an example of 
-``underfitting''. The ideal situation is to select parameter values which
-optimize test set accuracy, while controlling for the problems of model
-overfitting and underfitting. In selecting the number of neighbors
-parameter, the plot shows little improvement in test set accuracy between 
-2 and 4 neighbors, or beyond 5 neighbors; therefore a k-value of 3 or 5
-neighbors would work well. The advantage of the KNN classifier is that 
-it provides a solution that is easy to understand. A limitation of KNN is 
-that it does not perform well with a large number of features (100 or more) 
-or with sparse datasets with many value equal to zero. 
+perform poorly with new data in the test set because the model is `over-fit' 
+to the training data, which illustrates the problem of \emph{overfitting}. 
+By contrast, a model may fit the training data poorly but can have high
+accuracy on the test set  which is an example of ``underfitting''. The 
+ideal solution is to select a parameter value that optimizes accuracy on
+the test set while controlling for the problems of model overfitting 
+and underfitting. In selecting the number of neighbors parameter k, the 
+plot shows there is little improvement in test set accuracy between 2 and 
+4 neighbors, nor much beyond 5 neighbors. In this case, a k-value of 
+3 or 5 neighbors would work well. The advantage of the KNN classifier 
+is that it provides a solution that is easy to understand. A limitation 
+of KNN is that it does not perform well with a large number of features 
+(100 or more) or with sparse datasets with many values equal to zero. 
 
 \begin{figure}[!ht]
   \centering\includegraphics[width=\columnwidth]{images/Figure1.pdf}
-  \caption{K-Nearest Neighbors Classifier Performance for Training Set and 
-  Testing Sets as a function of Number of Neighbors)}
+  \caption{K-Nearest Neighbors Classifier Accuracy for Training Set and 
+  Testing Set as a function of Number of Neighbors}
   \label{f:Figure1}
 \end{figure}
 
@@ -194,7 +194,11 @@ Naive Bayes
 
 Neural Networks
 
-
+\begin{figure}[!ht]
+  \centering\includegraphics[width=\columnwidth]{images/Figure2.pdf}
+  \caption{Neural Net Classifier: Multilayer Perceptron with Single Hidden Layer}
+  \label{f:Figure2}
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Decision Tree Models}
