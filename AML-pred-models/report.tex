@@ -54,9 +54,9 @@ increased the risk of overdose death. The sharp rise in prescription
 overdose deaths (POD) and heroin overdose deaths (HOD) are correlated 
 \cite{muhuri13, unick13}. Predictive analytics is a useful approach for 
 modeling the variables that contribute to the misuse and abuse of 
-opioids. This study compares different predictive models to classification 
-pain reliever misuse and abuse in order to select the best model(s) to 
-address the question and understand features that contribute to MUPO. 
+opioids. This study compares different predictive models to classify 
+pain reliever misuse and abuse in order to select the best model(s) and
+better understand the features that contribute to MUPO. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -77,16 +77,18 @@ abuse of substances including alcohol, tobacco, prescription medications,
 and illicit drugs. In addition to typical demographic information, the survey 
 includes self-reported measures items related to on physical health, mental 
 health (e.g., depression, anxiety, suicidal ideation), counseling, and 
-drug and alcohol treatment. The public NSDUH datasets do not include geographic
-location or demographic variables related to ethnicity or immigration status. 
-It can be difficult to obtain reliable information about drug use based on
-self-reports; however, surveys provide data on a range of issues that people 
-may be reluctant to disclose such as drug use and mental health problems.
-NSDUH data has been used for identifying groups at high risk for substance use, 
-and the co-occurrance of substance use and mental disorders. The target 
-variable for the study was any misuse and abuse prescription pain reliever. 
-The features of interest were selected demographic variables, medication 
-usage, and use of illicit drugs (e.g., heroin, cocaine, amphetamines). 
+drug and alcohol treatment. The NSDUH sampling design is weighted across 
+states by population size, drawing more heavily from eight states with the 
+largest populations (CA, FL, IL, MI, NY, OH, PA, TX), for a representative
+distribution that accounts for approximately 48 percent of the total U.S.
+population \cite{samhsa18}. It can be difficult to obtain reliable information 
+about drug use based on self-reports; however, surveys provide data on a 
+range of issues that people may be reluctant to disclose such as drug use and 
+mental health problems. Data from the NSDUH has been used for identifying 
+groups at high risk for substance use, and the co-occurrance of substance use 
+and mental health disorders. The target variable for the study was any misuse 
+and abuse prescription pain reliever and the features of interest were selected 
+demographic variables, medication usage, and use of illicit drugs. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Predictive Modeling}
@@ -394,103 +396,23 @@ opioid misuse, abuse and heroin use.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Method}
 
-The following steps were performed as part of the data preparation and 
-analysis: (1) Download and extract the data, (2) Data cleaning and preparation, 
-(3) Exploratory data analysis and Visualization, (4) Construct and analyze classification models of pain reliever misuse and abuse (PRLMA). 
+\subsection{The Data}
 
-
-
-
-Data cleaning and preparation was completed using a python interactive 
-notebook . After downloading NSDUH datasets for 2015 and 
-2016 from the SAMHDA website \cite{samhsa18} the data files were saved as a data frame object \cite{mckinney17}.  
-
-
- NSDUH 
-data files for 2015 and 2016 
-
-consisted of N=57,146 respondents from 2015 (26,736 male, 30,410 female)
-and N=57,146 respondents from 2016 (26,736 male, 30,410 female), resulting
-in a total sample of N=57,146 respondents,
-
-
-
-
-\subsection{Data Cleaning and Preparation }
-
-
-
-
-
-
-
-
-The dataset consists 
-of 57,146 observations with 2,666 features representing individual-level 
-responses from a survey of the U.S. population.
-
-
-Data from the 2015 NSHUH was  URL using the get-data.py 
-function written to unzip the data files, extract the data as a Pandas data 
-frame, and write the file to CSV file
-
-all identifying information is collapsed (e.g., age categories), 
-variables related to ethnicity, immigration status, and state identifiers 
-are removed to ensure confidentiality.
-
-obtained from the Substance Abuse and Mental Health 
-Data Archive (SAMHDA) \cite{samhsa16}.
-
-The weighted survey screening response rate was 81.94 percent and the weighted 
-interview response rate was 71.2 percent. For the present study, approximately
-90 variables were selected that were aggregated to a data set of 20 variables. 
-
-As described in the NSDUH codebook, sampling was weighted across states by 
-population size for a representative distribution selected from 6,000 area segments. 
-
-According 
-to the NSDUH codebook, sampling was weighted across states by population size 
-for a representative distribution selected from 6,000 area segments. The sample 
-design used five state sample size groups, drawing more heavily from the eight 
-
-
-As described in the NSDUH codebook, the sampling design is weighted across 
-states by population size, drawing more heavily from eight states with the 
-largest populations (CA, FL, IL, MI, NY, OH, PA, TX), for a representative
-distribution that accounts for approximately 48 percent of the total U.S.
-population \cite{samhsa18}. In the public use data files all identifying 
-information is collapsed (e.g., age categories) and state identifiers are 
-removed to ensure confidentiality.
-
-
-
-
-The dataset was split into the training set and test 
-sets using the train-test-split function in sklearn and the target variables 
-was designated. Model accuracy for the training set and test set are reported, 
-for different parameter values, with feature importance. 
-
-
-the 
-dataset was subset by columns to include demographic characteristics (e.g., 
-age category, sex, marital status, education, employment status, and category 
-of metropolitan area), measures of physical health (e.g., overall health, 
-STDs, Hepatitis, HIV, Cancer, hospitalization), mental health (e.g., Adult 
-Depression, Emotional Distress, Suicidal Thoughts, Plans), Suicide Attempts, 
-Pain Reliever Medication Use, Misuse, and Abuse (over past year, past month), 
-Prescription Opioid Medications Taken in Past year (e.g., Hydrocodone, 
-Oxycodone, Tramadol, Morphine, Fentanyl, Oxymorphone, Demerol, Hydromorphone), 
-Heroin Use, Abuse (over past year, past month), Tranquilizer Use, Sedative Use, 
-Cocaine Use, Amphetamine and Methamphetamine Use, Hallucinogen Use, Drug 
-Treatment (e.g., Inpatient, Outpatient, Hospital, Mental Health Clinic, ER, 
-Drug Treatment Status), and Mental Health Treatment History. A codebook was 
-created to provide a complete list of variables included with summaries 
-of response categories \cite{codebook17}. The following steps were taken 
-to detect and remove inconsistencies in the data \cite{rahm00}:
-
-
-
-
+The NSDUH public data files for 2015 and 2016 were downloaded from the SAMHDA 
+website, extracted, and saved as data frame objects in a python interactive 
+notebook \cite{mckinney17, vanderplas17}. The 2015 NSDUH data set consisted 
+of N=57146 respondents with 2667 variables and the 2016 data set had N=57897 
+individuals and 2665 variables, resulting in a total sample of N=114043 
+observations (53873 male, 60165 female). As described in the NSHUD codebook, 
+the weighted survey screening response rate for 2015 was 81.94\% and the 
+weighted interview response rate was 71.2\% \cite{samhsa18}. Identifying 
+information in the survey is collapsed (e.g., age categories); variables 
+related to ethnicity, immigration status, and state identifiers are removed 
+to ensure confidentiality. The data frames were subset by column to select 
+approximately 90 variables that included common demographic characteristics, 
+physical health, mental health, medication usage, and use of illicit drugs. 
+The following steps were taken to detect and remove any inconsistencies in 
+the data \cite{rahm00}:
 \begin{enumerate}
   \item Remove missing values (i.e., NaN) 
   \item Recode blanks, non-responses, or legitimate skips (e.g., 99, 991, 
@@ -498,41 +420,37 @@ to detect and remove inconsistencies in the data \cite{rahm00}:
   \item Recode dichotomous responses (e.g., Yes=1 / No=2) so that No=0
   \item Recode categorical variables to be consistent with amount or degree 
   (e.g., 1=low, 2=med, 3=high)
-   \item Rename selected variables for better description (e.g., 
+   \item Relabel selected variables for better description (e.g., 
    Adult Major Depressive Episode Lifetime changed from AMDELT to DEPMELT)
+   \item Outliers were identified and excluded from the data set (n=5).
 \end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Aggregated Variables}
 
-Because the majority of features were represented as dichotomous Yes / No 
-variables, related features were summed to create aggregated variables. For 
-example, overall health, STD, Hepatitis, HIV, Cancer, and hospitalization were 
-aggregated to create a single health measure. The health measure was recoded
-so that higher scores indicated better health. Questions related to depression, 
-emotional distress, and suicidal thoughts were summed to create a single 
-variable for mental health (MENTHLTH) with scores ranging from 0 to 9. 
-Responses to pain reliever medication use, misuse, abuse, or dependency, 
-were aggregated to create a single variable of pain reliever misuse or abuse
-(PRLMISAB). All prescription painkiller medications used in the past year
-were summed. Similarly, all related responses were summed to create single 
-variables for Tranquilizers, Sedatives, Cocaine, Amphetamines, Hallucinogens, 
-Drug Treatment, and Mental Health Treatment. The target outcome of interest for 
-classification, lifetime heroin use (i.e., ``Have you ever used heroin before, 
-at any time?'') is a dichotomous variables. The demographic characteristics 
-and aggregated variables were subset and saved to a new data frame consisting 
-of 22 features and 57,146 observations, which was exported to CSV file. 
-
-The features of interest were demographic 
-characteristics, health, mental health (adultdepression), prescription 
-opioid misuse and abuse (PRLMISEVR, PRLMISAB, PRLANY), prescription 
-tranquilizers use and sedatives use (TRQLZRS, SEDATVS), use of illicit drugs 
-(COCAINE, AMPHETMN), drug treatment (TRTMENT), and mental health treatment 
-(MHTRTMT). 
-
-"AGECAT"    "SEX"       "MARRIED"   "EDUCAT"    "EMPLOY18"  "CTYMETRO" 
-"HEALTH"    "MENTHLTH"  "PRLMISEVR" "HEROINUSE" "TRQLZRS"   "SEDATVS"  
-"COCAINE"   "AMPHETMN"  "TRTMENT"   "MHTRTMT"  
+Thematically related variables were combined to create aggregated features. 
+For example, A single variable `HEALTH` was created by combining scores for 
+overall health (reverse scored), previous diagnosis of STDs, hepatitis, HIV, 
+or cancer, and any previous hospitalization. The variable for mental health 
+(MENTHLTH) aggregated responses for adult depression, emotional distress, 
+suicidal thoughts or plans. Any prescription opioid pain medication use (in 
+the past year) was assessed by combining binary responses for ten of the most 
+commonly used prescription pain medications (e.g., Hydrocodone, Oxycodone, 
+Tramadol, Morphine, Fentanyl, Oxymorphone, Demerol, Hydromorphone). The 
+majority of questions related to substance use had dichotomous responses 
+that were summed to create single measures for: Tranquilizers, Sedatives, 
+Heroin, Cocaine, and Amphetamines. Because hallucinogens varied greatly in
+strength and type (e.g., marijuana, psilocybin, MDMA, LSD), these were not 
+considered in the analysis. The variables for drug treatment and mental 
+health treatment combined responses for any inpatient care, outpatient care, 
+clinic treatment, emergency room visits, or hospital stays. A measure of
+any previous pain reliever misuse or abuse combined responses for the 
+misuse, abuse, or dependency on prescription pain relievers in the past year, 
+month. The target variable was a dichotomous measure of any pain reliever
+misuse or abuse at any point. The subset data frame consisting of 20 features
+and 114038 observations was exported to CSV file. Four variables were 
+excluded from analysis (PRLANY, PRLMISAB, HEROINEVR, HALUCNG). Table 2 
+shows the complete list of variables used for predictive modeling. 
 
 \begin{table*}[ht]
   \caption{Summary of Variables in the NSDUH 2015-16 Aggregated Data Set}
@@ -571,8 +489,6 @@ tranquilizers use and sedatives use (TRQLZRS, SEDATVS), use of illicit drugs
 
 \subsection{Exploratory Data Analysis}
 
-
-
 6,343 individuals reported misusing pain medication at some point
 (3221 males, 3122 females), but only 956 respondents had used heroin (570 males, 
 386 females). 
@@ -604,6 +520,10 @@ set and test
 set are reported, with different parameter values, and features importance. 
 
 
+The dataset was split into the training set and test 
+sets using the train-test-split function in sklearn and the target variables 
+was designated. Model accuracy for the training set and test set are reported, 
+for different parameter values, with feature importance. 
 
 \subsection{Comparison of Classifier Models}
  
