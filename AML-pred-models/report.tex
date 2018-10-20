@@ -53,10 +53,10 @@ potency of illicit and synthetic opioids are largely unknown which has
 increased the risk of overdose death. The sharp rise in prescription 
 overdose deaths (POD) and heroin overdose deaths (HOD) are correlated 
 \cite{muhuri13, unick13}. Predictive analytics is a useful approach for 
-modeling the variables that contribute MUPO. The present study compares 
-several predictive models of pain reliever misuse and abuse to identify 
-the models that best fit the sample data, and understand features that 
-contribute to the misuse and abuse of prescription opioids.  
+modeling the variables that contribute to the misuse and abuse of 
+opioids. This study compares different predictive models to classification 
+pain reliever misuse and abuse in order to select the best model(s) to 
+address the question and understand features that contribute to MUPO. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -71,26 +71,22 @@ current study was obtained from the National Survey on Drug Use and Health
 (NSDUH) on the Substance Abuse and Mental Health Data Archive (SAMHDA) website 
 \cite{samhsa18}. The NSDUH is a major source of information for the use of
 illicit drugs and mental health issues among the U.S. civilian population
-aged 12 or older. The NSDUH is a comprehensive public survey with over 2600 
-variables on a diverse array of questions related to the use, misuse, abuse, 
-and dependence on substances including alcohol, tobacco, prescription 
-medications, and illicit drugs. In addition to typical demographic information, 
-the survey includes self-reported measures items related to on physical health, 
-mental health (e.g., depression, anxiety, suicidal ideation), counseling, and 
+aged 12 or older. This comprehensive public survey includes more than 2600 
+variables on a diverse array of questions related to the use, misuse, and 
+abuse of substances including alcohol, tobacco, prescription medications, 
+and illicit drugs. In addition to typical demographic information, the survey 
+includes self-reported measures items related to on physical health, mental 
+health (e.g., depression, anxiety, suicidal ideation), counseling, and 
 drug and alcohol treatment. The public NSDUH datasets do not include geographic
-location, or demographic variables related to ethnicity or immigration status. 
+location or demographic variables related to ethnicity or immigration status. 
 It can be difficult to obtain reliable information about drug use based on
-self-reports; however, surveys can provide data on a range of issues that 
-people may be reluctant to disclose such as drug use and mental health issues.
+self-reports; however, surveys provide data on a range of issues that people 
+may be reluctant to disclose such as drug use and mental health problems.
 NSDUH data has been used for identifying groups at high risk for substance use, 
 and the co-occurrance of substance use and mental disorders. The target 
 variable for the study was any misuse and abuse prescription pain reliever. 
-The predictor variables of interest were selected demographic variables, 
-medication usage, and use of illicit drugs (e.g., heroin, cocaine, 
-amphetamines). The study goal was to construct and compare different 
-predictive classification models to predict pain reliever misuse and abuse.
-Classification models were compared in order to select the best predictive 
-models for the question under consideration. 
+The features of interest were selected demographic variables, medication 
+usage, and use of illicit drugs (e.g., heroin, cocaine, amphetamines). 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Predictive Modeling}
@@ -117,24 +113,26 @@ features that predict the target variable. If the target is a class label, set
 of categorical or binary outcomes (e.g., spam or ham emails, benign or 
 malignant cells), then classification is used to predict which class or 
 category label that new instances will be assigned to. Each classification 
-model has advantages and limitation when applied to a question and given 
-dataset which are described in more detail below. 
+model has advantages and limitation when applied to a given question taking
+into account the available data that are described further below. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Classification Models} 
 
-One of the simplest classification algorithms is K-Nearest-Neighbors (KNN) 
-which takes a set of data points and classifies a new data point based on 
-the distance (Euclidean by default) to its nearest neighbors. A standard 
-practice in modeling is to first divide the dataset into two portions: a 
-\emph{training set} that the model is fit to and a \emph{testing} set of 
-observations that are set aside and later used to evaluate the model
-performance with a different set of scores. By convention, approximately 
-70 to 80 percent of observations are used for the training set and the 
-remaining observations are reserved for the testing set. The main parameter 
-for KNN algorithm is the number of neighbors that are used to classify
-observations in the sample. In order to select the optimal parameter value, 
-the classification accuracy for the testing set and training set is 
+One of the simplest algorithms for classification is K-Nearest Neighbors (KNN)
+which takes a set of data points and classifies a new data point based on the
+(by default) Euclidean distance to its nearest neighbors. A standard practice 
+in modeling is to first divide the dataset into two portions: a set of 
+observations used to train the classifier, the \emph{training set}, and a 
+set of observations put aside and used later to evaluate the model performance 
+with a different set of scores, the \emph{testing set}.  We want the model 
+to perform well not only with the training set, but also with new observations 
+that were not used to train the model in the test set. By convention, 
+approximately 70 to 80 percent of observations are used for the training set 
+and the remaining observations are reserved for the testing set. The main 
+parameter for KNN algorithm is the number of neighbors that are used to 
+classify observations in the sample. In order to select the optimal parameter
+value, the classification accuracy for the testing set and training set is
 calculated and plotted separately by a range of neighbor values (Figure 1). 
 As seen in Figure 1, there is a tradeoff in training set accuracy versus 
 test set accuracy. A model with high accuracy on the training set may 
@@ -162,26 +160,34 @@ of KNN is that it does not perform well with a large number of features
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Linear Classifier Models}
 
-Logistic regression is a commonly used linear model for classification 
-problems. The decision boundary for the logistic regression classifier is a 
-linear function of the input; a binary classifier separates two classes using 
-along a line, plane, or hyperplane. Linear classification models differ in 
-terms of (1) how they measure how well a particular combination of coefficients 
-and intercept fit the training data, and (2) the type of regularization used 
-\cite{muller17}. The main parameter for linear classification models is the
-regularization parameter C. High values of C correspond to less regularization 
-and the model will fit the training set as best as possible, stressing the 
-importance of each individual data point to be classified correctly. By 
-contrast, with low values of C, the model puts more emphasis on finding 
-coefficient vectors (i.e., weights) that are close to zero, trying to adjust to 
-the majority of data points. In addition, the penalty parameter influences the 
-coefficient values of the linear model. The L2 penalty (Ridge) uses all 
-available features, but pushes the coefficient values toward zero. The L1 
-penalty (Lasso) sets the coefficient values for most features to zero, and uses 
-only a subset of features for improved interpretability. This analysis used a 
-logistic regression classifier to predict Heroin use from demographic 
-attributes, mental health, prescription opioids, medication use, misuse, 
-and illicit drug use. 
+One of the most useful predictive models for classification problems is 
+logistic regression. The decision boundary for the logistic regression 
+classifier is a linear function of the input; a binary classifier separates 
+two classes using along a line, plane, or hyperplane \cite{muller17}.
+Logistic regression models the probability that a target outcome \emph{$Y_i$} 
+belongs to a particular category. Given that the probability values for a 
+particular outcome range between 0 and 1, one can make predictions based 
+upon certain default values. For example, the default prediction, `Yes`, 
+could be made for any individual for whom the probability of pain reliever
+misuse and abuse is greater than chance, p(PRLMISAB) > 0.05. Logistic
+regression uses the maximum likelihood method to produce a distribution of
+probabilities that have an S-shaped curve. The logit model is also better
+at capturing the range of probabilities than linear regression model. 
+The coefficients estimates obtained from a logistic regression model, 
+($beta_0$, $beta_1$ ... $beta_k$) are selected in order to maximize the 
+likelihood function, and are interpreted as an indication of the log-odds 
+change in the outcome variable that is associated with a one-unit increase 
+in a predictor variable ($X_i$...$X_j$). Linear classification models differ 
+in terms of (1) how they measure how well a particular combination of 
+coefficients and intercept fit the training data, and (2) the type of 
+regularization used (e.g, L1, L2).
+
+\subsubsection{Quadratic Discriminant Analysis (QDA)}
+
+\subsubsection{Quadratic Discriminant Analysis (QDA)}
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Non-linear Classifier Models}
@@ -212,7 +218,8 @@ Each node in the tree either represents either a question or a terminal node
 the decision tree algorithm \emph{learns} the sequence of if-else questions 
 that arrives at the outcome most quickly. For continuous features, the 
 decisions are expressed in the form of, ``Is feature x larger than value y?''
- In constructing the tree the algorithm searches through all
+
+In constructing the tree the algorithm searches through all
 possible decisions or tests and finds a solution that is most informative 
 about the target outcome \cite{muller17}. A decision tree classifier is used 
 for binary or categorical targets, and decision tree regression is used for 
@@ -264,7 +271,7 @@ produce trees that are very different from each other, and reduces over-
 fitting. Random forests is of the most widely used ML algorithms that works 
 well without very much parameter tuning or scaling of data. A limitation of 
 this approach is that Random forests do not perform well with very high-
-dimensional, data that is sparse data, such as text data.
+dimensional, data that is sparse such as text data.
 
 \subsubsection{Gradient Boosted Tree Classifier}
 
@@ -329,7 +336,9 @@ precision into account \cite{muller17}.
 \end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Project Goals} 
+\subsection{} 
+
+The goal of the study was to
 
 The main hypothesis is that pain reliever misuse and abuse (PRLMISAB) can be
 predicted by demographic features, medication use, and use of illicit drugs. 
@@ -341,7 +350,7 @@ According to this reasoning, it was hypothesized that individuals
 who report using heroin may also be susceptible to misusing or abusing 
 prescription opioid medications. 
 
-The goal of the study was to identify the set 
+ identify the set 
 of features important for predicting opioid addiction. The data used in the 
 project is from the National Survey on Drug Use and Health from 2015 (NSHUH-
 2015) \cite{samhsa16}, which is the most recent year available. The NSDUH-2015 
@@ -385,20 +394,33 @@ opioid misuse, abuse and heroin use.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Method}
 
-The project workflow included the following steps: (1) Data download and 
-extraction, (2) Data cleaning and preparation, (3) Exploratory data analysis 
-and Visualization, (5) Construction and analysis of classification models of
-prescription pain reliever misuse and abuse (PRLMA).
+The following steps were performed as part of the data preparation and 
+analysis: (1) Download and extract the data, (2) Data cleaning and preparation, 
+(3) Exploratory data analysis and Visualization, (4) Construct and analyze classification models of pain reliever misuse and abuse (PRLMA). 
+
+
+
+
+Data cleaning and preparation was completed using a python interactive 
+notebook . After downloading NSDUH datasets for 2015 and 
+2016 from the SAMHDA website \cite{samhsa18} the data files were saved as a data frame object \cite{mckinney17}.  
+
+
+ NSDUH 
+data files for 2015 and 2016 
+
+consisted of N=57,146 respondents from 2015 (26,736 male, 30,410 female)
+and N=57,146 respondents from 2016 (26,736 male, 30,410 female), resulting
+in a total sample of N=57,146 respondents,
+
+
+
 
 \subsection{Data Cleaning and Preparation }
 
-All steps of data cleaning, preparation, and aggregation were completed using 
-a python interactive notebook \cite{mckinney17}.
 
-downloaded from the Substance Abuse and Mental 
-Health Data Archive (SAMHDA) \cite{samhsa18}
-After downloading the NSDUH 
-data files for 2015 and 2016 as a data frame object,
+
+
 
 
 
@@ -549,9 +571,7 @@ tranquilizers use and sedatives use (TRQLZRS, SEDATVS), use of illicit drugs
 
 \subsection{Exploratory Data Analysis}
 
-The sample of N=57,146 respondents from 2015 (26,736 male, 30,410 female)
-and N=57,146 respondents from 2016 (26,736 male, 30,410 female), resulting
-in a total sample of N=57,146 respondents,
+
 
 6,343 individuals reported misusing pain medication at some point
 (3221 males, 3122 females), but only 956 respondents had used heroin (570 males, 
@@ -610,7 +630,20 @@ classifier revealed the three features which were most closely associated
 with Heroin use were: Prescription Opioid Pain Reliever (PRL) Misuse ever 
 (as predicted), Cocaine Use, and Amphetamine use, respectively.
 
-
+The main parameter for linear classification models is the
+regularization parameter C. High values of C correspond to less regularization 
+and the model will fit the training set as best as possible, stressing the 
+importance of each individual data point to be classified correctly. By 
+contrast, with low values of C, the model puts more emphasis on finding 
+coefficient vectors (i.e., weights) that are close to zero, trying to adjust to 
+the majority of data points. In addition, the penalty parameter influences the 
+coefficient values of the linear model. The L2 penalty (Ridge) uses all 
+available features, but pushes the coefficient values toward zero. The L1 
+penalty (Lasso) sets the coefficient values for most features to zero, and uses 
+only a subset of features for improved interpretability. This analysis used a 
+logistic regression classifier to predict  from demographic 
+attributes, mental health, prescription opioids, medication use, misuse, 
+and illicit drug use. 
 
 
 
