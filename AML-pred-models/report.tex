@@ -110,9 +110,7 @@ binary outcomes (e.g., spam or ham emails, benign or malignant cells), then
 classification is used to predict which class or category label that new 
 instances will be assigned to. The present study uses a supervised learning 
 approach to classify sample data as instances of pain reliever misuse and abuse 
-(or not) and compare the performance of several predictive models. There are
-advantages and limitations to using any classification model for a given 
-question and a particular set of data which are explored further below. 
+(or not) and compare the performance of several predictive models. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -213,6 +211,9 @@ accuracy does not improve much beyond beyond 5 neighbors.
 
 \subsection{Linear Classifier Models}
 
+There are advantages and limitations to using any classification model for a 
+given question and a particular set of data which are explored further below. 
+
 Logistic Regression is a based on a linear equation that calculates the 
 relative weight of each feature for a categorical target or binary outcome 
 (yes / no) \cite{raschka17}. 
@@ -257,7 +258,7 @@ Neural Networks
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{Decision Tree Models}
+\subsection{Decision Tree Models}
 
 Decision tree models are widely used for classification and regression. Tree 
 models ``learn'' a hierarchy of if-else questions that are represented in the
@@ -367,7 +368,9 @@ predicted by demographic features, medication use, and use of illicit drugs.
   \end{tabular}
 \end{table*}
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Method}
 
 \subsection{The Data}
@@ -387,21 +390,14 @@ to ensure confidentiality. The data frames were subset by column to select
 approximately 90 variables that included common demographic characteristics, 
 physical health, mental health, medication usage, and use of illicit drugs. 
 The following steps were taken to detect and remove any inconsistencies in 
-the data:
-
-\begin{enumerate}
-  \item Remove missing values (i.e., NaN) 
-  \item Recode blanks, non-responses, or legitimate skips (e.g., 99, 991, 
-  993) to zero  
-  \item Recode dichotomous responses (e.g., Yes=1 / No=2) so that No=0
-  \item Recode categorical variables to be consistent with amount or degree 
-  (e.g., 1=low, 2=med, 3=high)
-   \item Relabel selected variables for better description (e.g., 
-   Adult Major Depressive Episode Lifetime changed from AMDELT to DEPMELT)
-   \item Outliers were identified and excluded from the data set (n=5).
-\end{enumerate}
+the data: (1) Missing values (i.e., NaN) were removed. (2) Blanks, non-responses, 
+or legitimate skips (e.g., 99, 991, 993) were recoded to zero. (3) Dichotomous 
+responses (e.g., Yes=1 / No=2) were recoded so that No=0. (4) Categorical 
+variables were recided to be consistent with amount or degree  (e.g., 1=low, 
+2=med, 3=high). (5) Outliers were identified and excluded from the data set (n=5).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsubsection{Aggregated Variables}
 
 Related variables were combined to create aggregated features. For example, 
@@ -427,6 +423,29 @@ point. The subset data frame consisted of 20 features and 114038 observations
 and was exported to CSV file. Four variables were excluded from analysis 
 (PRLANY, PRLMISAB, HEROINEVR, HALUCNG). Table 2 shows the complete list of 
 variables used for predictive modeling. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{table}
+  \caption{Classification Models for Predict Pain Reliever Misuse 
+  and Abuse and Main Parameters}
+  \label{tab:freq}
+  \begin{tabular}{ll}
+    \toprule
+    Model & Main Parameter \\
+    \midrule
+    K-Nearest Neighbors & Number of Neighbors = 4 \\
+    Logistic Regression & Number of Features = 15 \\
+    Linear Discriminant Analysis (LDA) & Number of Features = 15 \\
+    Support Vector Machines (SVM) & Kernel = linear \\
+    Naive Bayes & Cost C = 0.01 \\
+    Neural Network & Hidden Layers = 2 \\
+    Decision Trees & Tree-Depth = 4 \\ 
+    Random Forests & Number of Trees = 100 \\
+    Boosted Trees & Learning Rate = 0.01 \\ 
+    \bottomrule
+  \end{tabular}
+\end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
@@ -469,67 +488,28 @@ sets using the train-test-split function in sklearn and the target variables
 was designated. Model accuracy for the training set and test set are reported, 
 for different parameter values, with feature importance. 
 
-\begin{table}
-  \caption{Classification Models for Predict Pain Reliever Misuse 
-  and Abuse and Main Parameters}
-  \label{tab:freq}
-  \begin{tabular}{ll}
-    \toprule
-    Model & Main Parameter \\
-    \midrule
-    K-Nearest Neighbors & Number of Neighbors = 4 \\
-    Logistic Regression & Number of Features = 15 \\
-    Linear Discriminant Analysis (LDA) & Number of Features = 15 \\
-    Support Vector Machines (SVM) & Kernel = linear \\
-    Naive Bayes & Cost C = 0.01 \\
-    Neural Network & Hidden Layers = 2 \\
-    Decision Trees & Tree-Depth = 4 \\ 
-    Random Forests & Number of Trees = 100 \\
-    Boosted Trees & Learning Rate = 0.01 \\ 
-    \bottomrule
-  \end{tabular}
-\end{table}
 
 
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Comparison of Classifier Models}
  
- \subsubsection{K-Nearest Neighbors (KNN)}
+\subsubsection{K-Nearest Neighbors (KNN)}
  
-K-Nearest Neighbors (KNN), one of the simplest classification algorithms, 
-takes a set of data points and classifies a new data point based on the
-(by default) Euclidean distance to its nearest neighbors. A standard practice 
-in modeling is to first divide the dataset into two portions: a set of 
-observations used to train the classifier, the \emph{training set}, and a 
-set of observations put aside and used later to evaluate the model performance 
-with a different set of scores, the \emph{testing set}.  We want the model 
-to perform well not only with the training set, but also with new observations 
-that were not used to train the model in the test set. By convention, 
-approximately 70 to 80 percent of observations are used for the training set 
-and the remaining observations are reserved for the testing set. The main 
-parameter for KNN algorithm is the number of neighbors that are used to 
-classify observations in the sample. In order to select the optimal parameter
-value, the classification accuracy for the testing set and training set is
-calculated and plotted separately by a range of neighbor values (Figure 1). 
-As seen in Figure 1, there is a tradeoff in training set accuracy versus 
-test set accuracy. A model with high accuracy on the training set may 
-perform poorly with new data in the test set because the model is `over-fit' 
-to the training data, which illustrates the problem of \emph{overfitting}. 
-By contrast, a model may fit the training data poorly but can have high
-accuracy on the test set  which is an example of ``underfitting''. The 
-ideal solution is to select a parameter value that optimizes accuracy on
-the test set while controlling for the problems of model overfitting 
-and underfitting. In selecting the number of neighbors parameter k, the 
-plot shows there is little improvement in test set accuracy between 2 and 
-4 neighbors, nor much beyond 5 neighbors. In this case, a k-value of 
-3 or 5 neighbors would work well. The advantage of the KNN classifier 
-is that it provides a solution that is easy to understand. A limitation 
-of KNN is that it does not perform well with a large number of features 
-(100 or more) or with sparse datasets with many values equal to zero. 
- 
+one of the simplest classification algorithms, the K-Nearest Neighbors (KNN) 
+model takes a set of data points and classifies a new data point based on the
+(by default) Euclidean distance to its nearest neighbors. the KNN model was 
+fit on the training set, and  New values were predicted on the test set. In 
+terms of the number of neighbors parameter `k`, there was little improvement 
+in test set accuracy between 2 and 4 neighbors, nor much beyond 5 neighbors 
+(see Figure 1), therefore, k=3 neighbors was selected for the final model. 
+Model performance was evaluated in the confusion matrix (Table 3), which 
+shows that . 
 
+The advantage of the KNN classifier is that it provides a solution that is easy to understand. A limitation of KNN is that it does not perform well with a large number of features (100 or more) or with sparse datasets with many values equal to zero. ,  
+
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
 \subsubsection{Logistic Regression}
  
