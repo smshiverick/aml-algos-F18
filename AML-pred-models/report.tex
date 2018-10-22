@@ -52,45 +52,42 @@ synthetic opioids such as fentanyl \cite{jones15}. The dosage levels and
 potency of illicit and synthetic opioids are largely unknown which has
 increased the risk of overdose death. The sharp rise in prescription 
 overdose deaths (POD) and heroin overdose deaths (HOD) are correlated 
-\cite{muhuri13, unick13}. Predictive analytics is a useful approach for 
-modeling the variables that contribute to the misuse and abuse of 
-opioids. This study compares different predictive models to classify 
-pain reliever misuse and abuse in order to select the best model(s) and
-better understand the features that contribute to MUPO. 
+\cite{muhuri13, unick13}. Predictive modeling approaches can be used to 
+analyze the data, draw conclusions, and provide insights to inform 
+policy decisions for addressing the opioid crisis. This study compares 
+different classification models of pain reliever misuse and abuse to 
+select the best predictive model(s) and better understand the 
+features that contribute to the misuse of prescription opioids. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{National Survey on Drug Use and Health} 
 
 In the era of ``big data'', large amounts of health information are being 
 generated from electronic medical records (EMRs), clinical research data, to 
-population-level health data \cite{herland14}. Predictive modeling approaches
-can be used to analyze the data, draw conclusions, and provide insights to 
-inform policy decisions for addressing the opioid crisis. The current study 
-used data from the National Survey on Drug Use and Health (NSDUH) obtained 
-on the Substance Abuse and Mental Health Data Archive (SAMHDA) website
-\cite{samhsa18}. The NSDUH is a major source of information for the use of
-illicit drugs and mental health issues among the U.S. civilian population
-aged 12 or older. This comprehensive public survey includes more than 2600 
-variables on a diverse array of questions related to the use, misuse, and 
-abuse of substances including alcohol, tobacco, prescription medications, 
-and illicit drugs. In addition to typical demographic information, the survey 
-includes self-reported measures items related to on physical health, mental 
-health (e.g., depression, anxiety, suicidal ideation), counseling, and 
-drug and alcohol treatment. The NSDUH sampling design is weighted across 
-states by population size, drawing more heavily from eight states with the 
-largest populations (CA, FL, IL, MI, NY, OH, PA, TX), for a representative
-distribution that accounts for approximately 48 percent of the total U.S.
-population \cite{samhsa18}. It can be difficult to obtain reliable information 
-about drug use based on self-reports; however, surveys provide data on a 
-range of issues that people may be reluctant to disclose such as drug use and 
-mental health problems. Data from the NSDUH has been used for identifying 
-groups at high risk for substance use, and the co-occurrance of substance use 
-and mental health disorders. The target variable for the study was any misuse 
-and abuse prescription pain reliever and the features of interest were selected 
-demographic variables, medication usage, and use of illicit drugs. 
+population-level health data \cite{herland14}. The current study considers
+data from the National Survey on Drug Use and Health (NSDUH) which is a major 
+source of information for the use of illicit drugs and mental health issues 
+among the U.S. population aged 12 or older \cite{samhsa18}. The NSDUH is a 
+comprehensive public survey includes more than 2600 variables on a diverse 
+array of questions related to the use, misuse, and abuse of substances 
+including alcohol, tobacco, prescription medications, and illicit drugs. 
+In addition to typical demographic information, the survey includes self-
+reported measures items related to on physical health, mental health (e.g., 
+depression, anxiety, suicidal ideation), counseling, and drug and alcohol 
+treatment. The NSDUH sampling design is weighted across states by population 
+size, drawing more heavily from eight states with the largest populations 
+(CA, FL, IL, MI, NY, OH, PA, TX), for a representative distribution that 
+accounts for approximately 48 percent of the U.S. population. It can be 
+difficult to obtain reliable information about drug use based on self-reports; 
+however, surveys provide data on a range of issues that people may be reluctant 
+to disclose such as drug use and mental health problems. Data from the NSDUH 
+has been used for identifying groups at high risk for substance use, and the 
+co-occurrence of substance use and mental health disorders. The target variable 
+for the study was any misuse and abuse prescription pain reliever and the 
+features of interest were selected demographic variables, medication usage, 
+and use of illicit drugs. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection{Predictive Modeling}
 
 Predictive modeling, statistical learning, or machine learning is a set 
@@ -118,40 +115,32 @@ advantages and limitations to using any classification model for a given
 question and a particular set of data which are explored further below. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Classification Models} 
 
-One of the simplest algorithms for classification is K-Nearest Neighbors (KNN)
-which takes a set of data points and classifies a new data point based on the
-(by default) Euclidean distance to its nearest neighbors. A standard practice 
-in modeling is to first divide the dataset into two portions: a set of 
-observations used to train the classifier, the \emph{training set}, and a 
-set of observations put aside and used later to evaluate the model performance 
-with a different set of scores, the \emph{testing set}.  We want the model 
-to perform well not only with the training set, but also with new observations 
-that were not used to train the model in the test set. By convention, 
-approximately 70 to 80 percent of observations are used for the training set 
-and the remaining observations are reserved for the testing set. The main 
-parameter for KNN algorithm is the number of neighbors that are used to 
-classify observations in the sample. In order to select the optimal parameter
-value, the classification accuracy for the testing set and training set is
-calculated and plotted separately by a range of neighbor values (Figure 1). 
-As seen in Figure 1, there is a tradeoff in training set accuracy versus 
-test set accuracy. A model with high accuracy on the training set may 
-perform poorly with new data in the test set because the model is `over-fit' 
-to the training data, which illustrates the problem of \emph{overfitting}. 
-By contrast, a model may fit the training data poorly but can have high
-accuracy on the test set  which is an example of ``underfitting''. The 
-ideal solution is to select a parameter value that optimizes accuracy on
-the test set while controlling for the problems of model overfitting 
-and underfitting. In selecting the number of neighbors parameter k, the 
-plot shows there is little improvement in test set accuracy between 2 and 
-4 neighbors, nor much beyond 5 neighbors. In this case, a k-value of 
-3 or 5 neighbors would work well. The advantage of the KNN classifier 
-is that it provides a solution that is easy to understand. A limitation 
-of KNN is that it does not perform well with a large number of features 
-(100 or more) or with sparse datasets with many values equal to zero. 
+An important goal in constructing and evaluating predictive models is to 
+select a model that performs well not only with data used to train the model, 
+but also with new observations that are previously `unseen'. A standard 
+practice is to divide the sample dataset into two portions: a 
+\emph{training set} and a \emph{testing set} of observations that is set 
+aside and used to evaluate model performance. By convention, approximately 
+70 to 80 percent of observations are used in the training set and the 
+remaining observations are held in the testing set. Two main problems can 
+occur in evaluating model performance: overfitting and underfitting. 
+In the case of \emph{overfitting}, a model can have high accuracy on the 
+training set but perform poorly with new data in the test set because the 
+model is `over-fit' to the training data, By contrast, ``underfitting'' occurs 
+when a model performs poorly with the training data but has high accuracy 
+with the new observations in the testing set. In one of the simplest 
+classification algorithms, K-Nearest neighbors, observations are classified 
+by assigning the label that is most frequent among the `k' number of nearest
+training samples. Figure 1 shows the classification accuracy for the 
+testing set and training set plotted separately as a function of different 
+values of the parameter k-neighbors. The plot reveals the tradeoff in 
+training accuracy versus testing accuracy by the number of K-neighbors. 
+An ideal model optimizes testing set accuracy, while seeking to minimize 
+the problems of overfitting and underfitting. In this case, testing 
+accuracy does not improve much beyond beyond 5 neighbors.
 
-\begin{figure}[!ht]
+ \begin{figure}[!ht]
   \centering\includegraphics[width=\columnwidth]{images/Figure1.pdf}
   \caption{K-Nearest Neighbors Classifier Accuracy for Training Set and 
   Testing Set as a function of Number of Neighbors}
@@ -159,20 +148,86 @@ of KNN is that it does not perform well with a large number of features
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Linear Classifier Models}
 
-One of the most useful predictive models for classification problems is 
-logistic regression. The decision boundary for the logistic regression 
+\subsection{Metrics for Evaluating Prediction Models}
+
+Comparing the performance of different learning algorithms can be helpful for 
+selecting the best model for a given problem. Binary classification is assessed 
+in terms of the successful assignment of observations to one of two classes: 
+positive or negative. In the present case, individuals are classified either 
+as having misused and abused pain relievers or not. Model performance is 
+commonly evaluated using accuracy which is defined by the number of correct 
+predictions divided by the total number of all samples. Any model selected 
+cannot make perfect predictions as there are always mistakes to be found. 
+For example, a negative instance can be labeled as positive: a person who has 
+never misused or abused pain relievers may be classified as having done so 
+(i.e., 'false positive'). Conversely, a positive instance may be classified 
+as negative: a person who has misused and abused pain relievers may be labeled 
+as never having done so (i.e., 'false negative'). Table 1 shows the kinds of 
+classification errors and correct decisions represented in a 
+\emph{confusion matrix} which indicates the correspondence between predicted 
+and actual outcomes. The confusion matrix is a two-by-two array in which the 
+columns correspond to the actual observed classes and the rows correspond to 
+the predicted classes. The main diagonal indicate the number of correctly 
+classified samples (\emph{true positive, true negative}, while the other 
+entries represent the number of samples in one class that were mistakenly 
+classified as another class. Classification models are evaluated using several 
+measures including recall, precision, and the $f_1$-score \cite{wiki18}. 
+\emph{Recall} or ``sensitivity'' measures how many positive samples are 
+captured by the positive predictions ( \(\frac{TP}{TP+FN}\) ), and is used 
+when we want to identify all positive samples while avoiding false negatives. 
+\emph{Precision} or the ``positive predictive value'', measures how many of 
+the samples predicted as positive are actually positive 
+( \(\frac{TP}{TP+FP}\) ), and is used as a metric when the goal is to limit 
+the number of false positives. The \emph{$f_1$-score} or `f-measure' provides 
+the harmonic mean of precision and recall. The $f_1$-score can be a better 
+metric than accuracy in datasets with \emph{imbalanced classes}, where one 
+class is much more frequent than the other class, as it takes recall and 
+precision into account \cite{muller17}.
+
+\begin{equation}
+  \ f_1 score = 2*\frac{Precision*Recall}{Precision+Recall}\
+\end{equation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{table}
+  \caption{Confusion Matrix for Evaluating Classification Model Performance}
+  \label{tab:freq}
+  \begin{tabular}{llll}
+    \toprule
+     &  &  Actual Outcome & \\
+    \midrule
+     Predicted & Outcome & No Misuse & PRL Misuse \\
+    \midrule
+     & No Misuse & \textbf{True Negative} & False Positive \\
+    \midrule
+     & PRL Misuse & False Negative & \textbf{True Positive} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Linear Classifier Models}
+
+Logistic Regression is a based on a linear equation that calculates the 
+relative weight of each feature for a categorical target or binary outcome 
+(yes / no) \cite{raschka17}. 
+
+The decision boundary for the logistic regression 
 classifier is a linear function of the input; a binary classifier separates 
 two classes using along a line, plane, or hyperplane \cite{muller17}.
+
 Logistic regression models the probability that a target outcome \emph{$Y_i$} 
 belongs to a particular category. Given that the probability values for a 
 particular outcome range between 0 and 1, one can make predictions based 
 upon certain default values. For example, the default prediction, `Yes`, 
 could be made for any individual for whom the probability of pain reliever
-misuse and abuse is greater than chance, p(PRLMISAB) > 0.05. Logistic
-regression uses the maximum likelihood method to produce a distribution of
-probabilities that have an S-shaped curve. The logit model is also better
+misuse and abuse is greater than chance, $p(PRLMISAB) > 0.05$. 
+
+Logistic regression uses the maximum likelihood method to produce a distribution 
+of probabilities that have an S-shaped curve. The logit model is also better
 at capturing the range of probabilities than linear regression model. 
 The coefficients estimates obtained from a logistic regression model, 
 ($beta_0$, $beta_1$ ... $beta_k$) are selected in order to maximize the 
@@ -183,12 +238,9 @@ in terms of (1) how they measure how well a particular combination of
 coefficients and intercept fit the training data, and (2) the type of 
 regularization used (e.g, L1, L2).
 
-\subsubsection{Quadratic Discriminant Analysis (QDA)}
+Linear Discriminant Analysis (QDA)
 
-\subsubsection{Quadratic Discriminant Analysis (QDA)}
-
-
-
+Quadratic Discriminant Analysis (QDA)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Non-linear Classifier Models}
@@ -273,66 +325,6 @@ dimensional, data that is sparse such as text data.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Metrics for Evaluating Prediction Models}
-
-Comparing the performance of different learning algorithms can be helpful for 
-selecting the best model for a given problem. Binary classification is assessed 
-in terms of the successful assignment of observations to one of two classes: 
-positive or negative. In the present case, individuals are classified either 
-as having misused and abused pain relievers or not. Model performance is 
-commonly evaluated using accuracy which is defined by the number of correct 
-predictions divided by the total number of all samples. Any model selected 
-cannot make perfect predictions as there are always mistakes to be found. 
-For example, a negative instance can be labeled as positive: a person who has 
-never misused or abused pain relievers may be classified as having done so 
-(i.e., 'false positive'). Conversely, a positive instance may be classified 
-as negative: a person who has misused and abused pain relievers may be labeled 
-as never having done so (i.e., 'false negative'). Table 1 shows the kinds of 
-classification errors and correct decisions represented in a 
-\emph{confusion matrix} which indicates the correspondence between predicted 
-and actual outcomes. The confusion matrix is a two-by-two array in which the 
-columns correspond to the actual observed classes and the rows correspond to 
-the predicted classes. The main diagonal indicate the number of correctly 
-classified samples (\emph{true positive, true negative}, while the other 
-entries represent the number of samples in one class that were mistakenly 
-classified as another class. Classification models are evaluated using several 
-measures including recall, precision, and the $f_1$-score \cite{wiki18}. 
-\emph{Recall} or ``sensitivity'' measures how many positive samples are 
-captured by the positive predictions ( \(\frac{TP}{TP+FN}\) ), and is used 
-when we want to identify all positive samples while avoiding false negatives. 
-\emph{Precision} or the ``positive predictive value'', measures how many of 
-the samples predicted as positive are actually positive 
-( \(\frac{TP}{TP+FP}\) ), and is used as a metric when the goal is to limit 
-the number of false positives. The \emph{$f_1$-score} or `f-measure' provides 
-the harmonic mean of precision and recall. The $f_1$-score can be a better 
-metric than accuracy in datasets with \emph{imbalanced classes}, where one 
-class is much more frequent than the other class, as it takes recall and 
-precision into account \cite{muller17}.
-
-\begin{equation}
-  \ f_1 score = 2*\frac{Precision*Recall}{Precision+Recall}\
-\end{equation}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{table}
-  \caption{Confusion Matrix for Evaluating Classification Model Performance}
-  \label{tab:freq}
-  \begin{tabular}{llll}
-    \toprule
-     &  &  Actual Outcome & \\
-    \midrule
-     Predicted & Outcome & No Misuse & PRL Misuse \\
-    \midrule
-     & No Misuse & \textbf{True Negative} & False Positive \\
-    \midrule
-     & PRL Misuse & False Negative & \textbf{True Positive} \\
-    \bottomrule
-  \end{tabular}
-\end{table}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \subsection{Study Goals}
 
 The main hypothesis is that pain reliever misuse and abuse (PRLMISAB) can be
@@ -378,14 +370,15 @@ predicted by demographic features, medication use, and use of illicit drugs.
 
 \subsection{The Data}
 
-The NSDUH public data files for 2015 and 2016 were downloaded from the SAMHDA 
-website, extracted, and saved as data frame objects in a python interactive 
-notebook \cite{mckinney17, vanderplas17}. The 2015 NSDUH data set consisted 
-of N=57146 respondents with 2667 variables and the 2016 data set had N=57897 
-individuals and 2665 variables, resulting in a total sample of N=114043 
-observations (53873 male, 60165 female). As described in the NSHUD codebook, 
-the weighted survey screening response rate for 2015 was 81.94\% and the 
-weighted interview response rate was 71.2\% \cite{samhsa18}. Identifying 
+The NSDUH public data files for 2015 and 2016 were downloaded from the 
+Substance Abuse and Mental Health Data Archive (SAMHDA) website, and the 
+data sets were extracted, and saved as data frame objects in a python 
+interactive notebook \cite{mckinney17, vanderplas17}. The 2015 NSDUH data 
+set consisted of N=57146 respondents with 2667 variables and the 2016 data 
+set had N=57897 individuals and 2665 variables, resulting in a total sample of 
+N=114,043 observations (53873 male, 60165 female). As described in the NSHUD 
+codebook, the weighted survey screening response rate for 2015 was 81.94\% and 
+the weighted interview response rate was 71.2\% \cite{samhsa18}. Identifying 
 information in the survey is collapsed (e.g., age categories); variables 
 related to ethnicity, immigration status, and state identifiers are removed 
 to ensure confidentiality. The data frames were subset by column to select 
@@ -501,9 +494,44 @@ for different parameter values, with feature importance.
 
 \subsection{Comparison of Classifier Models}
  
-Logistic Regression Classification is a based on a linear equation that 
-calculates the relative weight of each feature for a categorical target or 
-binary outcome (yes / no) \cite{raschka17}. The logistic regression classifier 
+ \subsubsection{K-Nearest Neighbors (KNN)}
+ 
+K-Nearest Neighbors (KNN), one of the simplest classification algorithms, 
+takes a set of data points and classifies a new data point based on the
+(by default) Euclidean distance to its nearest neighbors. A standard practice 
+in modeling is to first divide the dataset into two portions: a set of 
+observations used to train the classifier, the \emph{training set}, and a 
+set of observations put aside and used later to evaluate the model performance 
+with a different set of scores, the \emph{testing set}.  We want the model 
+to perform well not only with the training set, but also with new observations 
+that were not used to train the model in the test set. By convention, 
+approximately 70 to 80 percent of observations are used for the training set 
+and the remaining observations are reserved for the testing set. The main 
+parameter for KNN algorithm is the number of neighbors that are used to 
+classify observations in the sample. In order to select the optimal parameter
+value, the classification accuracy for the testing set and training set is
+calculated and plotted separately by a range of neighbor values (Figure 1). 
+As seen in Figure 1, there is a tradeoff in training set accuracy versus 
+test set accuracy. A model with high accuracy on the training set may 
+perform poorly with new data in the test set because the model is `over-fit' 
+to the training data, which illustrates the problem of \emph{overfitting}. 
+By contrast, a model may fit the training data poorly but can have high
+accuracy on the test set  which is an example of ``underfitting''. The 
+ideal solution is to select a parameter value that optimizes accuracy on
+the test set while controlling for the problems of model overfitting 
+and underfitting. In selecting the number of neighbors parameter k, the 
+plot shows there is little improvement in test set accuracy between 2 and 
+4 neighbors, nor much beyond 5 neighbors. In this case, a k-value of 
+3 or 5 neighbors would work well. The advantage of the KNN classifier 
+is that it provides a solution that is easy to understand. A limitation 
+of KNN is that it does not perform well with a large number of features 
+(100 or more) or with sparse datasets with many values equal to zero. 
+ 
+
+ 
+\subsubsection{Logistic Regression}
+ 
+The logistic regression classifier 
 was fit to the training data in Scikit-Learn, and the model was validated on 
 the test data. By default, the model applies L2 penalty (Ridge). The training 
 set accuracy was 0.983 and the test set accuracy was 0.984. The parameter `C` 
