@@ -116,40 +116,7 @@ question and a particular set of data which are explored further below.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-An important goal in constructing and evaluating predictive models is to 
-select a model that performs well not only with data used to train the model, 
-but also with new observations that are previously `unseen'. A standard 
-practice is to divide the sample dataset into two portions: a 
-\emph{training set} and a \emph{testing set} of observations that is set 
-aside and used to evaluate model performance. By convention, approximately 
-70 to 80 percent of observations are used in the training set and the 
-remaining observations are held in the testing set. Two main problems can 
-occur in evaluating model performance: overfitting and underfitting. 
-In the case of \emph{overfitting}, a model can have high accuracy on the 
-training set but perform poorly with new data in the test set because the 
-model is `over-fit' to the training data, By contrast, ``underfitting'' occurs 
-when a model performs poorly with the training data but has high accuracy 
-with the new observations in the testing set. In one of the simplest 
-classification algorithms, K-Nearest neighbors, observations are classified 
-by assigning the label that is most frequent among the `k' number of nearest
-training samples. Figure 1 shows the classification accuracy for the 
-testing set and training set plotted separately as a function of different 
-values of the parameter k-neighbors. The plot reveals the tradeoff in 
-training accuracy versus testing accuracy by the number of K-neighbors. 
-An ideal model optimizes testing set accuracy, while seeking to minimize 
-the problems of overfitting and underfitting. In this case, testing 
-accuracy does not improve much beyond beyond 5 neighbors.
-
- \begin{figure}[!ht]
-  \centering\includegraphics[width=\columnwidth]{images/Figure1.pdf}
-  \caption{K-Nearest Neighbors Classifier Accuracy for Training Set and 
-  Testing Set as a function of Number of Neighbors}
-  \label{f:Figure1}
-\end{figure}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Metrics for Evaluating Prediction Models}
+\subsubsection{Metrics for Evaluating Prediction Models}
 
 Comparing the performance of different learning algorithms can be helpful for 
 selecting the best model for a given problem. Binary classification is assessed 
@@ -206,6 +173,41 @@ precision into account \cite{muller17}.
     \bottomrule
   \end{tabular}
 \end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Training and Test Set Accuracy}
+
+An important goal in constructing and evaluating predictive models is to 
+select a model that performs well not only with data used to train the model, 
+but also with new observations that are previously `unseen'. A standard 
+practice is to divide the sample dataset into two portions: a 
+\emph{training set} and a \emph{testing set} of observations that is set 
+aside and used to evaluate model performance. By convention, approximately 
+70 to 80 percent of observations are used in the training set and the 
+remaining observations are held in the testing set. Two main problems can 
+occur in evaluating model performance: overfitting and underfitting. 
+In the case of \emph{overfitting}, a model can have high accuracy on the 
+training set but perform poorly with new data in the test set because the 
+model is `over-fit' to the training data, By contrast, ``underfitting'' 
+occurs when a model performs poorly with the training data but has high 
+accuracy with the new observations in the testing set. In one of the simplest 
+classification algorithms, K-Nearest neighbors, observations are classified 
+by assigning the label that is most frequent among the `k' number of nearest
+training samples. Figure 1 shows the classification accuracy for the 
+testing set and training set plotted separately as a function of different 
+values of the parameter k-neighbors. The plot reveals the tradeoff in 
+training accuracy versus testing accuracy by the number of K-neighbors. 
+An ideal model optimizes testing set accuracy, while seeking to minimize 
+the problems of overfitting and underfitting. In this case, testing 
+accuracy does not improve much beyond beyond 5 neighbors.
+
+ \begin{figure}[!ht]
+  \centering\includegraphics[width=\columnwidth]{images/Figure1.pdf}
+  \caption{K-Nearest Neighbors Classifier Accuracy for Training Set and 
+  Testing Set as a function of Number of Neighbors}
+  \label{f:Figure1}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
