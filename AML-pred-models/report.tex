@@ -53,38 +53,33 @@ potency of illicit and synthetic opioids are largely unknown which has
 increased the risk of overdose death. The sharp rise in prescription 
 overdose deaths (POD) and heroin overdose deaths (HOD) are correlated 
 \cite{muhuri13, unick13}. Predictive modeling approaches can be used to 
-analyze the data, draw conclusions, and provide insights to inform 
-policy decisions for addressing the opioid crisis. This study compares 
-different classification models of pain reliever misuse and abuse to 
-select the best predictive model(s) and better understand the 
+provide insights to inform policy decisions for addressing the opioid crisis. 
+This study compares different classification models of pain reliever misuse 
+and abuse to select the best predictive model(s) and identify important 
 features that contribute to the misuse of prescription opioids. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 In the era of ``big data'', large amounts of health information are being 
 generated from electronic medical records (EMRs), clinical research data, to 
-population-level health data \cite{herland14}. The current study considers
+population-level health data \cite{herland14}. It can be difficult to obtain 
+reliable information about drug use based on self-reports; however, surveys 
+provide data on a range of issues that people may be reluctant to disclose 
+such as drug use and mental health problems. The current study considers
 data from the National Survey on Drug Use and Health (NSDUH) which is a major 
 source of information for the use of illicit drugs and mental health issues 
 among the U.S. population aged 12 or older \cite{samhsa18}. The NSDUH is a 
-comprehensive public survey includes more than 2600 variables on a diverse 
-array of questions related to the use, misuse, and abuse of substances 
+comprehensive public survey thay includes more than 2600 variables on a 
+diverse array of questions related to the use, misuse, and abuse of substances 
 including alcohol, tobacco, prescription medications, and illicit drugs. 
 In addition to typical demographic information, the survey includes self-
-reported measures items related to on physical health, mental health (e.g., 
+reported measures on items related to physical health, mental health (e.g., 
 depression, anxiety, suicidal ideation), counseling, and drug and alcohol 
-treatment. The NSDUH sampling design is weighted across states by population 
-size, drawing more heavily from eight states with the largest populations 
-(CA, FL, IL, MI, NY, OH, PA, TX), for a representative distribution that 
-accounts for approximately 48 percent of the U.S. population. It can be 
-difficult to obtain reliable information about drug use based on self-reports; 
-however, surveys provide data on a range of issues that people may be reluctant 
-to disclose such as drug use and mental health problems. Data from the NSDUH 
-has been used for identifying groups at high risk for substance use, and the 
-co-occurrence of substance use and mental health disorders. The target variable 
-for the study was any misuse and abuse prescription pain reliever and the 
-features of interest were selected demographic variables, medication usage, 
-and use of illicit drugs. 
+treatment. Data from the NSDUH has been used for identifying groups at high risk 
+for substance use, and the co-occurrence of substance use and mental health 
+disorders. The target variable for the study was any misuse or abuse of 
+prescription pain relievers and the features of interest were selected 
+demographic variables, medication usage, and use of illicit drugs. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -95,47 +90,51 @@ of procedures and automated processes for extracting knowledge from data
 \cite{james13, kuhn13, muller17, raschka17}. The two main branches of 
 predictive modeling are supervised learning and unsupervised learning. 
 Supervised learning problems involve prediction about a specific target 
-variable or outcome of interest. If a given dataset has no target outcome, 
+variable or outcome of interest . If a given dataset has no target outcome, 
 unsupervised learning methods can be used to discover underlying structure 
-in unlabeled data (e.g., clustering). Supervised learning is used to predict 
-a certain outcome from a given input, when examples of input/output pairs are 
-available \cite{muller17}. A statistical learning model is constructed from the 
-training set of input-output pairs to predict new test data not previously seen 
-by the model. The two major approaches to supervised learning problems are 
-regression and classification. When the target variable to be predicted is 
-continuous, or there is continuity between the outcome (e.g., home values, 
-income), a regression model is used to test the set of features that predict 
-the target variable. If the target is a class label, set of categorical or 
-binary outcomes (e.g., spam or ham emails, benign or malignant cells), then 
-classification is used to predict which class or category label that new 
-instances will be assigned to. The present study uses a supervised learning 
-approach to classify sample data as instances of pain reliever misuse and abuse 
-(or not) and compare the performance of several predictive models. 
+in unlabeled data (e.g., clustering). Supervised learning is used to 
+predict a certain outcome from a given input, when examples of input/output 
+pairs are available in the data (e.g., logistic regression) \cite{muller17}. 
+A statistical learning model is constructed on a set of observation used to
+train the model set and can then be used to predict new observations. Two major 
+approaches to supervised learning problems are regression and classification. 
+When the target variable to be predicted is continuous, or there is continuity 
+between the outcome (e.g., home values, income), a regression model is used 
+to test the set of features that predict the target variable. If the target is 
+a class label, set of categorical or binary outcomes (e.g., spam or ham emails, 
+benign or malignant cells), then classification is used to predict which class 
+or category label that new instances will be assigned to. The present study 
+uses a supervised learning approach to classify instances of pain reliever 
+misuse and abuse using several different classification models. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Metrics for Evaluating Prediction Models}
 
-Comparing the performance of different learning algorithms can be helpful for 
-selecting the best model for a given problem. Binary classification is assessed 
-in terms of the successful assignment of observations to one of two classes: 
-positive or negative. In the present case, individuals are classified either 
-as having misused and abused pain relievers or not. Model performance is 
-commonly evaluated using accuracy which is defined by the number of correct 
-predictions divided by the total number of all samples. Any model selected 
-cannot make perfect predictions as there are always mistakes to be found. 
-For example, a negative instance can be labeled as positive: a person who has 
-never misused or abused pain relievers may be classified as having done so 
-(i.e., 'false positive'). Conversely, a positive instance may be classified 
-as negative: a person who has misused and abused pain relievers may be labeled 
-as never having done so (i.e., 'false negative'). Table 1 shows the kinds of 
-classification errors and correct decisions represented in a 
-\emph{confusion matrix} which indicates the correspondence between predicted 
-and actual outcomes. The confusion matrix is a two-by-two array in which the 
-columns correspond to the actual observed classes and the rows correspond to 
-the predicted classes. The main diagonal indicate the number of correctly 
-classified samples (\emph{true positive, true negative}, while the other 
-entries represent the number of samples in one class that were mistakenly 
+Evaluating the performance of learning algorithms can be helpful for 
+selecting the best model for a given problem. Binary classification is 
+assessed in terms of the successful assignment of observations to one of two 
+classes: positive or negative. Medical testing outcomes are often used 
+as an example to illustrate classification decisions and errors. A person 
+is either diagnosed with an illness or not, and the person actually has the 
+illness or not. In the present case, individuals are classified either as 
+having misused and abused pain relievers or not, and the predictions are either 
+correct or incorrect. Model performance is evaluated using accuracy which is 
+defined by the number of correct predictions divided by the total number of 
+all samples. Any model selected cannot make perfect predictions as there are 
+always mistakes to be found. For example, a negative instance can be labeled 
+as positive: a person who has never misused or abused pain relievers may be 
+classified as having done so (i.e., 'false positive'). Conversely, a positive 
+instance may be classified as negative: a person who has misused and abused 
+pain relievers may be labeled as never having done so (i.e., 'false negative').
+
+Classification errors and correct decisions are represented in a 
+\emph{confusion matrix} (Table 1) that indicates the correspondence between 
+predicted and actual outcomes. The confusion matrix is a two-by-two array in 
+which the columns correspond to the actual observed classes and the rows 
+correspond to the predicted classes. The main diagonal indicate the number of 
+correctly classified samples (\emph{true positive, true negative}, while the 
+other entries represent the number of samples in one class that were mistakenly 
 classified as another class. Classification models are evaluated using several 
 measures including recall, precision, and the $f_1$-score \cite{wiki18}. 
 \emph{Recall} or ``sensitivity'' measures how many positive samples are 
@@ -189,16 +188,19 @@ In the case of \emph{overfitting}, a model can have high accuracy on the
 training set but perform poorly with new data in the test set because the 
 model is `over-fit' to the training data, By contrast, ``underfitting'' 
 occurs when a model performs poorly with the training data but has high 
-accuracy with the new observations in the testing set. In one of the simplest 
-classification algorithms, K-Nearest neighbors, observations are classified 
-by assigning the label that is most frequent among the `k' number of nearest
-training samples. Figure 1 shows the classification accuracy for the 
-testing set and training set plotted separately as a function of different 
-values of the parameter k-neighbors. The plot reveals the tradeoff in 
-training accuracy versus testing accuracy by the number of K-neighbors. 
-An ideal model optimizes testing set accuracy, while seeking to minimize 
-the problems of overfitting and underfitting. In this case, testing 
-accuracy does not improve much beyond beyond 5 neighbors.
+accuracy with the new observations in the testing set. One of the simplest 
+predictive models, K-Nearest neighbors, classifies observations by 
+assigning the label that is most frequent among the `k' number of nearest
+training samples that is selected by the user. The accuracy of the KNN
+classifier for the training set and testing set is plotted as a function 
+of the parameter k-neighbors in Figure 1. The plot shows a tradeoff in 
+training accuracy versus testing accuracy; higher accuracy on the testing 
+set is associated with a slight decrease in performance on the training set. 
+The best model is one that optimizes testing set accuracy, while striking 
+a balance between the problems of overfitting and underfitting. In this case,
+performance on the test set increased slightly between 2 and 4 neighbors, 
+but did not improve much beyond 5 neighbors. Therefore, selecting k=4 
+neighbors was selected would provide a good solution for the model fit. 
 
  \begin{figure}[!ht]
   \centering\includegraphics[width=\columnwidth]{images/Figure1.pdf}
@@ -209,39 +211,44 @@ accuracy does not improve much beyond beyond 5 neighbors.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Linear Classifier Models}
+\subsection{Classification Models}
 
-There are advantages and limitations to using any classification model for a 
-given question and a particular set of data which are explored further below. 
+\subsubsection{Linear Classifier Models}
 
-Logistic Regression is a based on a linear equation that calculates the 
-relative weight of each feature for a categorical target or binary outcome 
-(yes / no) \cite{raschka17}. 
+As stated by the statistician George Box, "All models are wrong, but some 
+models are useful." \cite{box05}. There are advantages and limitations for
+selecting any classification model; however, ogistic regression is one of 
+the most useful, powerful, and interpretable models available. Logistic 
+regression models the probability that a target outcome \emph{$Y_i$} 
+belongs to a particular category or binary outcome by calculating the 
+relative weight of each feature for predicting the probabilities of a 
+certain outcome \cite{raschka17}. The decision boundary for the logistic 
+regression classifier is a linear function of the input; a binary classifier 
+separates two classes using along a line, plane, or hyperplane 
+\cite{muller17}. Given that the probability values for the outcome 
+range between 0 and 1, predictions can be made based upon a default value. 
+For example, the default prediction, `Yes`, could be made for any individual 
+for whom the probability of pain reliever misuse and abuse is greater than
+chance, $p(PRLMISAB) > 0.05$. Logistic regression uses a maximum likelihood 
+method to predict the coefficient estimates that correspond as closely as 
+possible to the default state. In other words, the model will predict a 
+number close to one for individuals who have misused or abused pain
+relievers and a number close to zero for individuals who have not 
+\cite{james13}. The distribution of probabilities in the logit model has 
+an S-shaped curve. The coefficients estimates obtained from a logistic 
+regression model, ($beta_0$, $beta_1$ ... $beta_k$) are selected in order 
+to maximize the likelihood function, and are interpreted as an indication 
+of the log-odds change in the outcome variable that is associated with a 
+one-unit increase in a predictor variable ($X_i$...$X_j$). 
 
-The decision boundary for the logistic regression 
-classifier is a linear function of the input; a binary classifier separates 
-two classes using along a line, plane, or hyperplane \cite{muller17}.
+Linear classification models differ in terms of (1) how they measure how 
+well a particular combination of coefficients and intercept fit the training 
+data, and (2) the type of regularization that is applied (e.g, L1, L2).
+Linear Discriminant Analysis (QDA) is another commonly used model
 
-Logistic regression models the probability that a target outcome \emph{$Y_i$} 
-belongs to a particular category. Given that the probability values for a 
-particular outcome range between 0 and 1, one can make predictions based 
-upon certain default values. For example, the default prediction, `Yes`, 
-could be made for any individual for whom the probability of pain reliever
-misuse and abuse is greater than chance, $p(PRLMISAB) > 0.05$. 
 
-Logistic regression uses the maximum likelihood method to produce a distribution 
-of probabilities that have an S-shaped curve. The logit model is also better
-at capturing the range of probabilities than linear regression model. 
-The coefficients estimates obtained from a logistic regression model, 
-($beta_0$, $beta_1$ ... $beta_k$) are selected in order to maximize the 
-likelihood function, and are interpreted as an indication of the log-odds 
-change in the outcome variable that is associated with a one-unit increase 
-in a predictor variable ($X_i$...$X_j$). Linear classification models differ 
-in terms of (1) how they measure how well a particular combination of 
-coefficients and intercept fit the training data, and (2) the type of 
-regularization used (e.g, L1, L2).
 
-Linear Discriminant Analysis (QDA)
+]
 
 Quadratic Discriminant Analysis (QDA)
 
@@ -378,23 +385,27 @@ predicted by demographic features, medication use, and use of illicit drugs.
 The NSDUH public data files for 2015 and 2016 were downloaded from the 
 Substance Abuse and Mental Health Data Archive (SAMHDA) website, and the 
 data sets were extracted, and saved as data frame objects in a python 
-interactive notebook \cite{mckinney17, vanderplas17}. The 2015 NSDUH data 
-set consisted of N=57146 respondents with 2667 variables and the 2016 data 
-set had N=57897 individuals and 2665 variables, resulting in a total sample of 
-N=114,043 observations (53873 male, 60165 female). As described in the NSHUD 
-codebook, the weighted survey screening response rate for 2015 was 81.94\% and 
-the weighted interview response rate was 71.2\% \cite{samhsa18}. Identifying 
-information in the survey is collapsed (e.g., age categories); variables 
-related to ethnicity, immigration status, and state identifiers are removed 
-to ensure confidentiality. The data frames were subset by column to select 
-approximately 90 variables that included common demographic characteristics, 
-physical health, mental health, medication usage, and use of illicit drugs. 
-The following steps were taken to detect and remove any inconsistencies in 
-the data: (1) Missing values (i.e., NaN) were removed. (2) Blanks, non-responses, 
-or legitimate skips (e.g., 99, 991, 993) were recoded to zero. (3) Dichotomous 
-responses (e.g., Yes=1 / No=2) were recoded so that No=0. (4) Categorical 
-variables were recided to be consistent with amount or degree  (e.g., 1=low, 
-2=med, 3=high). (5) Outliers were identified and excluded from the data set (n=5).
+interactive notebook \cite{mckinney17, vanderplas17}. The 2015 NSDUH data set 
+consisted of N=57146 respondents with 2667 variables and the 2016 data set had 
+N=57897 individuals and 2665 variables, resulting in a total sample of N=114,043 
+observations (53873 male, 60165 female). As described in the NSHUD codebook, 
+the sampling design is weighted across states by population size, drawing more 
+heavily from eight states with the largest populations (CA, FL, IL, MI, NY, OH, 
+PA, TX), for a representative distribution that accounts for approximately 
+48 percent of the U.S. population. For 2015, the weighted survey screening 
+response rate  was 81.94\% and the weighted interview response rate was 71.2\% 
+\cite{samhsa18}. Identifying information in the survey is collapsed (e.g., age 
+categories); variables related to ethnicity, immigration status, and state 
+identifiers are removed to ensure confidentiality. The data frames were subset 
+by column to select approximately 90 variables that included common demographic 
+characteristics, physical health, mental health, medication usage, and use of 
+illicit drugs. The following steps were taken to detect and remove any 
+inconsistencies in the data: (1) Missing values (i.e., NaN) were removed. 
+(2) Blanks, non-responses, or legitimate skips (e.g., 99, 991, 993) were 
+recoded to zero. (3) Dichotomous responses (e.g., Yes=1 / No=2) were recoded 
+so that No=0. (4) Categorical variables were recided to be consistent with amount 
+or degree  (e.g., 1=low, 2=med, 3=high). (5) Outliers were identified and excluded 
+from the data set (n=5).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -469,44 +480,16 @@ misuse and abuse.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Classification Models}
+\subsection{Comparison of Classifier Models}
 
 The dataset was divided into the training set and test set using a 75-25 
-percent split. 
+percent split. Each model was fit to the training set, new values were 
+predicted on the holdout scores in the testing set. The main parameter settings 
+for each model are reported in Table 4. Model performance was evaluated 
+and reported in the confusion matrix (Table 3), which include metrics of
+Accuracy (percentage), Sensitivity (i.e., Recall), Precision, and $f_1-score$. 
 
-
-Each model was fit to the training set, new values were predicted and model 
-performance was evaluated on the holdout scores in the test set. 
-
-the train-test-split() function in sklearn. Model accuracy for the training 
-set and test 
-set are reported, with different parameter values, and features importance. 
-
-
-The dataset was split into the training set and test 
-sets using the train-test-split function in sklearn and the target variables 
-was designated. Model accuracy for the training set and test set are reported, 
-for different parameter values, with feature importance. 
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Comparison of Classifier Models}
  
-\subsubsection{K-Nearest Neighbors (KNN)}
- 
-one of the simplest classification algorithms, the K-Nearest Neighbors (KNN) 
-model takes a set of data points and classifies a new data point based on the
-(by default) Euclidean distance to its nearest neighbors. the KNN model was 
-fit on the training set, and  New values were predicted on the test set. In 
-terms of the number of neighbors parameter `k`, there was little improvement 
-in test set accuracy between 2 and 4 neighbors, nor much beyond 5 neighbors 
-(see Figure 1), therefore, k=3 neighbors was selected for the final model. 
-Model performance was evaluated in the confusion matrix (Table 3), which 
-shows that . 
-
-The advantage of the KNN classifier is that it provides a solution that is easy to understand. A limitation of KNN is that it does not perform well with a large number of features (100 or more) or with sparse datasets with many values equal to zero. ,  
 
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -557,9 +540,9 @@ and illicit drug use.
   \label{tab:freq}
   \begin{tabular}{llllllll}
     \toprule
-    Model& & Confusion Matrix & & Accuracy & Recall & Precision & F1-Score \\
+    Model& & Confusion Matrix & & Accuracy & Sensitivity & Precision & F1-Score \\
     \midrule
-    K-Nearest Neighbors Classifier & & No Misuse & PRL Misuse &  &  &  & \\
+    K-Nearest Neighbors & & No Misuse & PRL Misuse &  &  &  & \\
      & No Misuse & 25114 & 320 & 89.5\% & 0.900 & 0.870 & 0.870 \\
      & PRL Misuse & 2609 & 467 &  &  &  & \\
     \midrule
@@ -567,11 +550,15 @@ and illicit drug use.
      & No Misuse & 25002 & 2509 & 90\% & 0.986 & 0.909 & 0.946 \\
      & PRL Misuse & 344 & 654 &  &  &  & \\
     \midrule
-    Linear Discriminant Analysis  & & No Misuse & PRL Misuse &  &  &  & \\
-     & No Misuse & 24667 & 2238 & 89.8\% & 0.973 & 0.917 & 0.944 \\
-     & PRL Misuse & 679 & 925 &  &  &  & \\
+    Linear Discriminant Analysis (LDA) & & No Misuse & PRL Misuse &  &  &  & \\
+     & No Misuse & 24668 & 2239 & 89.8\% & 0.973 & 0.917 & 0.944 \\
+     & PRL Misuse & 678 & 924 &  &  &  & \\
     \midrule
-    Support Vector Classifier  & & No Misuse & PRL Misuse &  &  &  & \\
+    Quadratic Discriminant Analysis (QDA) & & No Misuse & PRL Misuse &  &  &  & \\
+     & No Misuse & 23165 & 1780 & 86.1\% & 0.914 & 0.9929 & 0.921 \\
+     & PRL Misuse & 2181 & 1383 &  &  &  & \\
+    \midrule
+    Support Vector Classifier (SVC) & & No Misuse & PRL Misuse &  &  &  & \\
      & No Misuse & 25201 & 233 & 90.4\% & 0.900 & 0.890 & 0.880 \\
      & PRL Misuse & 2514 & 562 &  &  &  & \\
     \midrule
@@ -579,7 +566,7 @@ and illicit drug use.
      & No Misuse & 25345 & 3133 & 89\% & 0.999 & 0.890 & 0.941 \\
      & PRL Misuse & 1 & 30 &  &  &  & \\
     \midrule
-    Neural Net (MLP) & & No Misuse & PRL Misuse &  &  &  & \\
+    Neural Net  (MLP) & & No Misuse & PRL Misuse &  &  &  & \\
      & No Misuse & 25088 & 346 & 90.6\% & 0.910 & 0.890 & 0.880 \\
      & PRL Misuse & 2366 & 710 &  &  &  & \\
     \midrule
@@ -605,6 +592,30 @@ and illicit drug use.
   \label{f:Figure2}
 \end{figure}
 
+
+
+
+
+
+
+
+
+
+
+
+\subsubsection{K-Nearest Neighbors (KNN)}
+
+
+one of the simplest classification algorithms, the K-Nearest Neighbors (KNN) 
+model takes a set of data points and classifies a new data point based on the
+(by default) Euclidean distance to its nearest neighbors. the KNN model was 
+fit on the training set, and  New values were predicted on the test set. In 
+
+
+
+The advantage of the KNN classifier is that it provides a solution that is easy 
+to understand. A limitation of KNN is that it does not perform well with a large 
+number of features (100 or more) or with sparse datasets with many values equal to zero. ,  
 
 
 
