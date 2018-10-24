@@ -1,4 +1,4 @@
-\documentclass[sigconf]{acmart}
+ \\\documentclass[sigconf]{acmart}
 
 \input{format/final}
 
@@ -69,7 +69,7 @@ such as drug use and mental health problems. The current study considers
 data from the National Survey on Drug Use and Health (NSDUH) which is a major 
 source of information for the use of illicit drugs and mental health issues 
 among the U.S. population aged 12 or older \cite{samhsa18}. The NSDUH is a 
-comprehensive public survey thay includes more than 2600 variables on a 
+comprehensive public survey that includes more than 2600 variables on a 
 diverse array of questions related to the use, misuse, and abuse of substances 
 including alcohol, tobacco, prescription medications, and illicit drugs. 
 In addition to typical demographic information, the survey includes self-
@@ -175,32 +175,31 @@ precision into account \cite{muller17}.
 
 \subsubsection{Training and Test Set Accuracy}
 
-An important goal in constructing and evaluating predictive models is to 
-select a model that performs well not only with data used to train the model, 
-but also with new observations that are previously `unseen'. A standard 
-practice is to divide the sample dataset into two portions: a 
-\emph{training set} and a \emph{testing set} of observations that is set 
-aside and used to evaluate model performance. By convention, approximately 
-70 to 80 percent of observations are used in the training set and the 
-remaining observations are held in the testing set. Two main problems can 
-occur in evaluating model performance: overfitting and underfitting. 
-In the case of \emph{overfitting}, a model can have high accuracy on the 
-training set but perform poorly with new data in the test set because the 
-model is `over-fit' to the training data, By contrast, ``underfitting'' 
-occurs when a model performs poorly with the training data but has high 
-accuracy with the new observations in the testing set. One of the simplest 
-predictive models, K-Nearest neighbors, classifies observations by 
-assigning the label that is most frequent among the `k' number of nearest
-training samples that is selected by the user. The accuracy of the KNN
-classifier for the training set and testing set is plotted as a function 
-of the parameter k-neighbors in Figure 1. The plot shows a tradeoff in 
-training accuracy versus testing accuracy; higher accuracy on the testing 
-set is associated with a slight decrease in performance on the training set. 
-The best model is one that optimizes testing set accuracy, while striking 
-a balance between the problems of overfitting and underfitting. In this case,
-performance on the test set increased slightly between 2 and 4 neighbors, 
-but did not improve much beyond 5 neighbors. Therefore, selecting k=4 
-neighbors was selected would provide a good solution for the model fit. 
+In constructing and evaluating predictive models it is important to select 
+a model that performs well not only with data used to train the model, but 
+also with new observations that are previously `unseen'. A standard practice 
+is to divide the sample dataset into two portions: a \emph{training set} and 
+a \emph{testing set} of observations that is set aside and used to evaluate 
+model performance. By convention, approximately 70 to 80 percent of 
+observations are used in the training set and the remaining observations 
+are held in the testing set. Two main problems can occur in evaluating model 
+performance: overfitting and underfitting. In the case of \emph{overfitting}, 
+a model can have high accuracy on the training set but perform poorly with 
+new data in the test set because the model is `over-fit' to the training data, 
+By contrast, ``underfitting'' occurs when a model performs poorly with the 
+training data but has higher accuracy with the new observations in the test 
+set. One of the simplest predictive models, K-Nearest neighbors, classifies 
+observations by assigning the label that is most frequent among the `k' number 
+of nearest training samples. K is a parameter selected by the user. The 
+accuracy of the KNN classifier for the training set and testing set is 
+plotted as a function of the parameter k-neighbors in Figure 1. The plot 
+shows a tradeoff in training accuracy versus testing accuracy; higher accuracy
+on the testing set is associated with a slight decrease in performance on the
+training set. The best model is one that optimizes testing set accuracy, 
+while striking a balance between the problems of overfitting and underfitting.
+In this case, performance on the test set increased slightly between 2 and 4 
+neighbors, but does not improve much beyond 5 neighbors. Therefore, a KNN
+model with k=4 neighbors will provide a reasonable solution for the data. 
 
  \begin{figure}[!ht]
   \centering\includegraphics[width=\columnwidth]{images/Figure1.pdf}
@@ -213,11 +212,11 @@ neighbors was selected would provide a good solution for the model fit.
 
 \subsection{Classification Models}
 
-\subsubsection{Linear Classifier Models}
+\subsubsection{Linear Models}
 
-As stated by the statistician George Box, "All models are wrong, but some 
+As the statistician George Box stated, "All models are wrong, but some 
 models are useful." \cite{box05}. There are advantages and limitations for
-selecting any classification model; however, ogistic regression is one of 
+any classification model that you can select; logistic regression is one of 
 the most useful, powerful, and interpretable models available. Logistic 
 regression models the probability that a target outcome \emph{$Y_i$} 
 belongs to a particular category or binary outcome by calculating the 
@@ -253,7 +252,7 @@ Linear Discriminant Analysis (QDA) is another commonly used model
 Quadratic Discriminant Analysis (QDA)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Non-linear Classifier Models}
+\subsubsection{Non-linear Models}
 
 Support Vector Machines
 
@@ -265,7 +264,7 @@ Neural Networks
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Decision Tree Models}
+\subsubsection{Tree-Based Models}
 
 Decision tree models are widely used for classification and regression. Tree 
 models ``learn'' a hierarchy of if-else questions that are represented in the
@@ -335,10 +334,9 @@ dimensional, data that is sparse such as text data.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Study Goals}
-
-The main hypothesis is that pain reliever misuse and abuse (PRLMISAB) can be
-predicted by demographic features, medication use, and use of illicit drugs. 
+The goal of the current study is to compare predictive models of prescription
+pain reliever misuse and abuse and better understand some of the factors 
+that contribute to the opioid dependence and addiction. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -414,25 +412,26 @@ from the data set (n=5).
 Related variables were combined to create aggregated features. For example, 
 A single variable `HEALTH` was created by combining scores for overall health 
 (reverse scored), previous diagnosis of STDs, hepatitis, HIV, cancer, and 
-any previous hospitalization. The variable for mental health (MENTHLTH) 
-aggregated responses for adult depression, emotional distress, suicidal 
-thoughts or plans. Any prescription opioid pain medication use (in past year) 
-was assessed by combining binary responses for ten of the most commonly used 
-prescription pain medications (e.g., Hydrocodone, Oxycodone, Tramadol, 
-Morphine, Fentanyl, Oxymorphone, Demerol, Hydromorphone). The majority of 
-questions related to substance use had dichotomous responses that were summed 
-to create single measures for: Tranquilizers, Sedatives, Heroin, Cocaine, 
-and Amphetamines. Because hallucinogens varied greatly in strength and type 
-(e.g., marijuana, psilocybin, MDMA, LSD), they were not considered in the 
-analysis. The variables for drug treatment and mental health treatment 
-combined responses for any inpatient care, outpatient care, treatment at a 
-clinic, emergency room visits, or hospital stays. A measure of any previous 
-pain reliever misuse or abuse combined responses for the misuse, abuse, or 
-dependency on prescription pain relievers in the past year, month. The target 
-variable was a dichotomous measure of any pain reliever misuse or abuse at any 
-point. The subset data frame consisted of 20 features and 114038 observations 
-and was exported to CSV file. Four variables were excluded from analysis 
-(PRLANY, PRLMISAB, HEROINEVR, HALUCNG). Table 2 shows the complete list of 
+any previous hospitalization; higher scores indicated greater history of 
+health problems. The variable for mental health (MENTHLTH) aggregated responses 
+for adult depression, emotional distress, suicidal thoughts or plans. Any 
+prescription opioid pain medication use in the past year was assessed by 
+combining binary responses for ten of the most commonly used prescription 
+pain medications (e.g., Hydrocodone, Oxycodone, Tramadol, Morphine, Fentanyl, 
+Oxymorphone, Demerol, Hydromorphone). The majority of questions related to 
+substance use had dichotomous responses that were summed to create single
+measures for: Tranquilizers, Sedatives, Heroin, Cocaine, and Amphetamines. 
+Because hallucinogens varied greatly in strength and type (e.g., marijuana, 
+psilocybin, MDMA, LSD), they were not considered in the analysis. The 
+variables for drug treatment and mental health treatment combined responses 
+for any inpatient care, outpatient care, treatment at a clinic, emergency room 
+visits, or hospital stays. A measure of any previous pain reliever misuse or 
+abuse combined responses for the misuse, abuse, or dependency on prescription 
+pain relievers in the past year, in the past month. The target variable was a 
+dichotomous measure of any pain reliever misuse or abuse at any point. The 
+subset data frame consisted of 20 features and 114038 observations and was 
+exported to CSV file. Four variables were excluded from analysis (PRLANY, 
+PRLMISAB, HEROINEVR, HALUCNG). Table 2 shows the complete list of 
 variables used for predictive modeling. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -452,7 +451,7 @@ variables used for predictive modeling.
     Naive Bayes & Cost C = 0.01 \\
     Neural Network & Hidden Layers = 2 \\
     Decision Trees & Tree-Depth = 4 \\ 
-    Random Forests & Number of Trees = 100 \\
+    Random Forests & Number of Trees = 1000 \\
     Boosted Trees & Learning Rate = 0.01 \\ 
     \bottomrule
   \end{tabular}
@@ -463,20 +462,40 @@ variables used for predictive modeling.
 
 \subsection{Exploratory Data Analysis}
 
-6,343 individuals reported misusing pain medication at some point
-(3221 males, 3122 females), but only 956 respondents had used heroin (570 males, 
-386 females). 
+Of the total sample of N=114038 survey respondents from 2015-2016, 27\%
+(n=30790) reported taking any pain relievers in the past year (13405 males, 
+17383 females). Approximately 11\% (n=12305) of the sample disclosed that 
+they had previously misused or abused prescription pain relievers at some 
+point (6239 males, 6066 females). Only 2\% of individuals (n=2266) disclosed 
+ever using heroin (1320 males; 946 females). Given previous findings 
+that indicate a relationship between the the misuse and abuse of prescription
+opioids pain and heroin use \cite{unick13}, the exploratory analysis focused 
+on individuals who reported misusing or abusing pain relievers or using heroin, 
+Figure 1 shows that the proportion of pain reliever misuse and abuse was 
+higher among individuals who reported using heroin than those who had not. 
+In addition, pain reliever misuse and abuse and heroin use both varied by sex 
+(Figure 3). Although, a greater number of females than males reported using any 
+pain relievers , the left panel of figure 3 shows that more females than males
+reported they had not misused or abused pain relievers compared to males; 
+however, roughly equal proportions of males and females reported misusing or 
+abusing pain relievers. The right panel of Figure 3 shows that a higher 
+proportion of males reported using heroin than females, but more females 
+reported they had never used heroin than males. 
 
-Of  26,736 were male and 30,410 
-female; 6,343 individuals reported misusing pain medication at some point
-(3221 males, 3122 females), but only 956 respondents had used heroin (570 males, 
-386 females). 
+\begin{figure}[!ht]
+  \centering\includegraphics[width=\columnwidth]{images/Figure2.pdf}
+  \caption{Residual and Predicted Values for Logistic Regression of 
+  Pain Reliever Misuse and Abuse fit to the Testing Set (n=}
+  \label{f:Figure2}
+\end{figure}
 
-Only few people 
-self-described as high in depression reported low Prescription Opioid PRL 
-misuse and abuse. 
+\begin{figure}[!ht]
+  \centering\includegraphics[width=\columnwidth]{images/Figure3.pdf}
+  \caption{Residual and Predicted Values for Logistic Regression of 
+  Pain Reliever Misuse and Abuse fit to the Testing Set (n=}
+  \label{f:Figure3}
+\end{figure}
 
- The target variable was Heroin Use (HEROINEVR). Next, 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -494,45 +513,7 @@ Accuracy (percentage), Sensitivity (i.e., Recall), Precision, and $f_1-score$.
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
-\subsubsection{Logistic Regression}
- 
-The logistic regression classifier 
-was fit to the training data in Scikit-Learn, and the model was validated on 
-the test data. By default, the model applies L2 penalty (Ridge). The training 
-set accuracy was 0.983 and the test set accuracy was 0.984. The parameter `C` 
-determines the strength of regularization, with higher values of C providing
-greater regularization. The L1 penalty (Lasso) limits the values of most 
-coefficients to zero, creating a more interpretable model that uses only a 
-few features. Figure 4 plots the coefficients of logistic regression classifier 
-for heroin use with the L1 Penalty (Lasso) under different values of parameter 
-C. The default setting, C=1.0, provides good performance for train and test 
-sets, but the model is very likely underfitting the test data. Using a higher
-value of C fits a more flexible model and generally gives improved accuracy 
-for both training and tests sets. Using a value of C=100 yielded training set
-accuracy of 0.98 and test set accuracy of 0.98. Figure 4 shows that the 
-features coefficient values did not change much according to the values of
-parameter C, and the accuracy values were approximately the same for all 
-values of C. Examination of the coefficients from the logistic regression 
-classifier revealed the three features which were most closely associated 
-with Heroin use were: Prescription Opioid Pain Reliever (PRL) Misuse ever 
-(as predicted), Cocaine Use, and Amphetamine use, respectively.
 
-The main parameter for linear classification models is the
-regularization parameter C. High values of C correspond to less regularization 
-and the model will fit the training set as best as possible, stressing the 
-importance of each individual data point to be classified correctly. By 
-contrast, with low values of C, the model puts more emphasis on finding 
-coefficient vectors (i.e., weights) that are close to zero, trying to adjust to 
-the majority of data points. In addition, the penalty parameter influences the 
-coefficient values of the linear model. The L2 penalty (Ridge) uses all 
-available features, but pushes the coefficient values toward zero. The L1 
-penalty (Lasso) sets the coefficient values for most features to zero, and uses 
-only a subset of features for improved interpretability. This analysis used a 
-logistic regression classifier to predict  from demographic 
-attributes, mental health, prescription opioids, medication use, misuse, 
-and illicit drug use. 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{table*}[ht]
   \caption{Confusion Matrices and Performance Metrics for Predictive Models of 
@@ -575,8 +556,8 @@ and illicit drug use.
      & PRL Misuse & 304 & 591 &  &  &  & \\
     \midrule
     Random Forests & & No Misuse & PRL Misuse &  &  &  & \\
-     & No Misuse & 25054 & 2518 & 90.1\% & 0.989 & 0.909 & 0.947 \\
-     & PRL Misuse & 292 & 645 &  &  &  & \\
+     & No Misuse & 25026 & 2298 & 90.1\% & 0.987 & 0.909 & 0.946 \\
+     & PRL Misuse & 320 & 665 &  &  &  & \\
     \midrule
     Gradient Boosted Trees & & No Misuse & PRL Misuse &  &  &  & \\
      & No Misuse & 25415 & 19 & 89.6\% & 0.900 & 0.890 & 0.850 \\
@@ -585,40 +566,99 @@ and illicit drug use.
   \end{tabular}
 \end{table*}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Logistic Regression}
+ 
+The logistic regression classifier 
+was fit to the training data in Scikit-Learn, and the model was validated on 
+the test data. By default, the model applies L2 penalty (Ridge). The training 
+set accuracy was 0.983 and the test set accuracy was 0.984. The parameter `C` 
+determines the strength of regularization, with higher values of C providing
+greater regularization. The L1 penalty (Lasso) limits the values of most 
+coefficients to zero, creating a more interpretable model that uses only a 
+few features. Figure 4 plots the coefficients of logistic regression classifier 
+for heroin use with the L1 Penalty (Lasso) under different values of parameter 
+C. The default setting, C=1.0, provides good performance for train and test 
+sets, but the model is very likely underfitting the test data. Using a higher
+value of C fits a more flexible model and generally gives improved accuracy 
+for both training and tests sets. Using a value of C=100 yielded training set
+accuracy of 0.98 and test set accuracy of 0.98. Figure 4 shows that the 
+features coefficient values did not change much according to the values of
+parameter C, and the accuracy values were approximately the same for all 
+values of C. Examination of the coefficients from the logistic regression 
+classifier revealed the three features which were most closely associated 
+with Heroin use were: Prescription Opioid Pain Reliever (PRL) Misuse ever 
+(as predicted), Cocaine Use, and Amphetamine use, respectively.
+
+
+
+The main parameter for linear classification models is the
+regularization parameter C. High values of C correspond to less regularization 
+and the model will fit the training set as best as possible, stressing the 
+importance of each individual data point to be classified correctly. By 
+contrast, with low values of C, the model puts more emphasis on finding 
+coefficient vectors (i.e., weights) that are close to zero, trying to adjust to 
+the majority of data points. In addition, the penalty parameter influences the 
+coefficient values of the linear model. The L2 penalty (Ridge) uses all 
+available features, but pushes the coefficient values toward zero. The L1 
+penalty (Lasso) sets the coefficient values for most features to zero, and uses 
+only a subset of features for improved interpretability. This analysis used a 
+logistic regression classifier to predict  from demographic 
+attributes, mental health, prescription opioids, medication use, misuse, 
+and illicit drug use. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{table}
+  \caption{Coefficient Estimates for Logistic Regression Model 
+  of Pain Reliever Misuse and Abuse fit to the Training Set}
+  \label{tab:freq}
+  \begin{tabular}{llll}
+    \toprule
+    Predictor&  Estimate& Std. Error& z-value  \\    
+    \midrule
+    (Intercept)& -2.960 &   0.048 & -61.10 ***  \\
+    COCAINE  &    0.690 &   0.019 &  36.91 ***  \\
+    AMPHETMN &    0.608 &   0.021 &  29.92 ***  \\
+    TRQLZRS  &    0.381 &   0.014 &  27.29 ***  \\
+    MENTHLTH &    0.136 &   0.006 &  22.42 ***  \\
+    AGECAT   &   -0.216 &   0.013 & -16.75 ***  \\
+    HEROINUSE&    0.798 &   0.052 &  15.47 ***  \\  
+    EMPLOY18 &    0.222 &   0.016 &  13.72 ***  \\
+    TRTMENT  &    0.195 &   0.019 &  10.47 ***  \\
+    SEDATVS  &    0.281 &   0.029 &   9.63 ***  \\   
+    HEALTH   &    0.103 &   0.012 &   8.27 ***  \\
+    EDUCAT   &    0.104 &   0.013 &   8.22 ***  \\   
+    SEX      &   -0.186 &   0.026 &  -7.24 ***  \\
+    CTYMETRO &   -0.068 &   0.013 &  -5.03 ***  \\
+    MARRIED  &    0.051 &   0.012 &   4.10 ***  \\
+    MHTRTMT  &   -0.024 &   0.018 &  -1.32     \\
+    \bottomrule
+    Note: *** p-value $<$ 0.001. &  &  
+  \end{tabular}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{figure}[!ht]
-  \centering\includegraphics[width=\columnwidth]{images/Figure2.pdf}
-  \caption{Neural Net Classifier: Multilayer Perceptron with Single Hidden Layer}
-  \label{f:Figure2}
+  \centering\includegraphics[width=\columnwidth]{images/Figure4.pdf}
+  \caption{Residual and Predicted Values for Logistic Regression of 
+  Pain Reliever Misuse and Abuse fit to the Testing Set (n=}
+  \label{f:Figure4}
 \end{figure}
 
-
-
-
-
-
-
-
-
-
-
-
 \subsubsection{K-Nearest Neighbors (KNN)}
-
 
 one of the simplest classification algorithms, the K-Nearest Neighbors (KNN) 
 model takes a set of data points and classifies a new data point based on the
 (by default) Euclidean distance to its nearest neighbors. the KNN model was 
 fit on the training set, and  New values were predicted on the test set. In 
 
-
-
 The advantage of the KNN classifier is that it provides a solution that is easy 
 to understand. A limitation of KNN is that it does not perform well with a large 
-number of features (100 or more) or with sparse datasets with many values equal to zero. ,  
-
-
-
+number of features (100 or more) or with sparse datasets with many values equal 
+to zero. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Decision Tree Classifier}
@@ -720,7 +760,7 @@ Single trees are still useful for visually representing the decision process.
 
 \begin{figure}[!ht]
   \centering\includegraphics[width=\columnwidth]{images/Figure5.pdf}
-  \caption{Decision Tree Classification of Heroin Use (Partial View)}
+  \caption{Decision Tree Classification of Pain Reliever Misuse and Abuse}
   \label{f:Figure5}
 \end{figure}
 
@@ -770,9 +810,9 @@ Prescription Opioid PRL Misuse and Abuse, the gradient boosting classifier
 selected Amphetamine Use as an informative feature of Heroin Use. 
 
 \begin{figure}[!ht]
-  \centering\includegraphics[width=\columnwidth]{images/Figure7.pdf}
-  \caption{Feature Importance for Gradient Boosting Classifier for Heroin Use}
-  \label{f:Figure7}
+  \centering\includegraphics[width=\columnwidth]{images/Figure6.pdf}
+  \caption{Neural Net Classifier: Multilayer Perceptron with Single Hidden Layer}
+  \label{f:Figure6}
 \end{figure}
 
 The Gradient Boosting Classifier from Scikit-Learn was used to classify 
@@ -1003,4 +1043,4 @@ All code, notebooks, files, and folders for this project can be found in the
 
 %\input{issues}
 
-\end{document}
+\end{document} 
