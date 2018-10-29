@@ -267,56 +267,40 @@ that can be separated by hyperplane the maximal marginal classifier provides
 the maximum distance (i.e., margin) from each observation to the hyperplane 
 \cite{james13}. The test observations are classified based on which side of 
 the hyperplane they fall, but in many cases no separating hyperplane exists. 
-The \emph{Support Vector Classifier} (SVM) extends the maximal margin classifier 
-by using a soft margin that allows a small number of observations to be 
-misclassified on the wrong side of hyperplane. The observations that fall 
-directly on the margin or on the wrong side of the hyperplane are called `support 
-vectors'. The parameter `C' indicates the number of observations that can 
-violate the margin; if $C>0$, not more than C observations can be on the wrong 
-side of the hyperplane. SVC addresses the problem of non-linear boundaries 
-between classes by enlarging the feature space with higher order (e.g., quadratic, 
-cubic, polynomial) functions of the predictors. Support vector machines (SVM) 
-is an extension of SVC that uses a kernel. One of the most commonly used 
-approaches is the radial basis function (RBF) kernel is  (i.e., Guassian kernel).
-In training the model, only a subset of data points is used to construct 
-the decision boundary, the support vectors that lie on the border separating
-the two classes. In making predictions for new observations, the algorithm
+The \emph{support vector classifier} (SVC) extends the maximal margin 
+classifier by using a soft margin that allows a small number of observations 
+to be misclassified on the wrong side of hyperplane. The observations that 
+fall directly on the margin or on the wrong side of the hyperplane are called 
+`support vectors'. The parameter `C' indicates the number of observations that 
+can violate the margin; if $C>0$, not more than C observations can be on the 
+wrong side of the hyperplane. SVC addresses the problem of non-linear 
+boundaries between classes by enlarging the feature space with higher order 
+(e.g., quadratic, cubic, polynomial) functions of the predictors. Support 
+vector machines (SVM) are an extension of SVC that uses a kernel trick to 
+reduce computational demands. The radial basis function (RBF) kernel (i.e., 
+Guassian kernel) is one of the most commonly used approaches. In training 
+the model, only a subset of data points is used to construct the decision 
+boundary, namely the support vectors that lie on the border which separates 
+the two classes. In making predictions for new observations, the algorithm 
 calculates the distance to each of the support vectors measured by the 
-Guassian kernel \cite{muller17}. Figure 1 shows an example of the non-linear
-decision boundary obtained with SVM using the RBF kernel; the decision
-boundary is a smooth curve and the support vectors are large points with 
-bold outlines. 
+Guassian kernel \cite{muller17}. Figure 1 shows an example of the non-linear 
+decision boundary obtained with SVM using the RBF kernel; the decision boundary 
+is a smooth curve and the support vectors are large points in bold outline. 
 
-A high value of C stresses the importance of each individual sample and the 
-SVC model will try to fit the training set as best as possible, which increases 
-the risk of overfitting. With a low value of C the classification algorithm 
-adjusts to the majority of data points, and the influence of each data point 
-on the decision boundary is limited.
-
-
-Low values of C correspond to strong regularization,  this leads to many support vectors, so many alphas are non-zero
-High values of C means less regularization, allows each data point to have a lot of influence
-More precisely, each alpha parameter can only be between zero and C
-
-
-
-The Kernel Function most commonly used is Radial basis function (Gaussian) kernel:
-k(x,x′)=exp(−γ||x−x′||2)
- 
-It's easy to plot this function in 1D
-Fix training data point at zero and show the value as a function of different test data points
-The Gaussian kernel has a free parameter, gamma, that allows to control how wide the Gaussian is
-Large values means that only close values are relvant; small values means far points are similar
-
-Effects of C and gamma parameters
-
-For default settings, decision boundary is already quite non-linear
-Increasing C will lead to an even more curved decision boundary, to correctly classify all training data points, more smooth boundary, focusing more on the main body of the classes
-For some small value of C, all points will become support vectors (i.e., non-zero alpha); C limits the influence of each data point, and if you decrease C even further, nothing more can happen
-
-Strong interaction for settings of C and gamma parametters
-Increasing gamma means that more points will be considered neighbors, resulting in a smoother decision boundary; at some point, the decision becomes practically linear
-If we allow both C and gamma to be large, each points can have an arbitrary large influence in a very small region; this leads to a very bumpy decision boundary, each point can become its own island
+For default settings, the decision boundary of the RBF kernel is already quite 
+non-linear. The main parameters for SVM are C, which regulates the importance 
+of each data point, and gamma which controls the width of the Guassian kernel. 
+A small value of C indicates a restricted model in which the influence of each 
+data point is limited and the algorithm adjusts to the majority of data points. 
+As the value of C increases, more importance is given to each data point and
+the model will try to correctly classify as many training observations as 
+possible, which results to more curve in the decision boundary, but also
+increases the risk of overfitting. Large values of gamma mean that only close 
+values are relevant for classification, resulting in a smooth decision boundary. 
+Small values of gamma mean that far points are similar. If both C and gamma are
+large, each point can have an arbitrary large influence in a small region, 
+which produces a choppy decision boundary, where each point becomes separated.
+If both C and gamma are small, the decision boundary becomes close to linear.
 
 \begin{figure}[!ht]
   \centering\includegraphics[width=\columnwidth]{images/Figure4.pdf}
@@ -328,7 +312,27 @@ If we allow both C and gamma to be large, each points can have an arbitrary larg
 \emph{Naive Bayes}
 
 
+
+
+
+
+
+
+
+
+
 \emph{Neural Networks}
+
+
+
+
+
+
+
+
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
