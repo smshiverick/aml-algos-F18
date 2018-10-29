@@ -48,12 +48,13 @@ the number of opioid-related overdose deaths has more than quadrupled.
 On average, more than 115 people die from an opioid overdose each day 
 \cite{cdc18, judd16}. Supply-based interventions to reduce the availability 
 of prescription opioids have produced a shift to the use of heroin and 
-synthetic opioids such as fentanyl \cite{jones15}. The dosage levels and 
-potency of illicit and synthetic opioids are largely unknown which has
-increased the risk of overdose death. The sharp rise in prescription 
-overdose deaths (POD) and heroin overdose deaths (HOD) are correlated 
-\cite{muhuri13, unick13}. Predictive modeling approaches can be used to 
-provide insights to inform policy decisions for addressing the opioid crisis. 
+synthetic opioids such as fentanyl \cite{jones15}. Because the dosage levels 
+and potency of illicit and synthetic opioids are largely unknown, The risk 
+of overdose death has increased. The sharp rise in prescription 
+overdose deaths (POD) and heroin overdose deaths (HOD) are positively 
+correlated \cite{muhuri13, unick13}. Predictive modeling approaches can 
+identify individuals susceptible for opioid addiction and may provide 
+insights to inform policy decisions for addressing the opioid crisis. 
 This study compares different classification models of pain reliever misuse 
 and abuse to select the best predictive model(s) and identify important 
 features that contribute to the misuse of prescription opioids. 
@@ -90,7 +91,7 @@ of procedures and automated processes for extracting knowledge from data
 \cite{james13, kuhn13, muller17, raschka17}. The two main branches of 
 predictive modeling are supervised learning and unsupervised learning. 
 Supervised learning problems involve prediction about a specific target 
-variable or outcome of interest . If a given dataset has no target outcome, 
+variable or outcome of interest. If a given dataset has no target outcome, 
 unsupervised learning methods can be used to discover underlying structure 
 in unlabeled data (e.g., clustering). Supervised learning is used to 
 predict a certain outcome from a given input, when examples of input/output 
@@ -111,16 +112,16 @@ misuse and abuse using several different classification models.
 
 \subsubsection{Metrics for Evaluating Prediction Models}
 
-Evaluating the performance of learning algorithms can be helpful for 
-selecting the best model for a given problem. Binary classification is 
+Evaluating the performance of learning algorithms is helpful for selecting 
+the best model for a given problem and data set. Binary classification is 
 assessed in terms of the successful assignment of observations to one of two 
-classes: positive or negative. Medical testing outcomes are often used 
-as an example to illustrate classification decisions and errors. A person 
-is either diagnosed with an illness or not, and the person actually has the 
-illness or not. In the present case, individuals are classified either as 
-having misused and abused pain relievers or not, and the predictions are either 
-correct or incorrect. Model performance is evaluated using accuracy which is 
-defined by the number of correct predictions divided by the total number of 
+classes: positive or negative. Medical testing outcomes are often used to 
+illustrate classification decisions and errors. A person can be either 
+diagnosed with an illness or not, and the person can actually have the 
+illness or not. In the present case, individuals are classified as having 
+misused and abused pain relievers or not, and the predictions made are either 
+correct or incorrect. Model performance is typically evaluated using accuracy 
+which is the number of correct predictions divided by the total number of 
 all samples. Any model selected cannot make perfect predictions as there are 
 always mistakes to be found. For example, a negative instance can be labeled 
 as positive: a person who has never misused or abused pain relievers may be 
@@ -212,71 +213,137 @@ model with k=4 neighbors will provide a reasonable solution for the data.
 
 \subsection{Classification Models}
 
-\subsubsection{Linear Models}
+\subsubsection{Linear Classifier Models}
 
-As the statistician George Box stated, "All models are wrong, but some 
-models are useful." \cite{box05}. There are advantages and limitations for
-any classification model that you can select; logistic regression is one of 
-the most useful, powerful, and interpretable models available. Logistic 
-regression models the probability that a target outcome \emph{$Y_i$} 
-belongs to a particular category or binary outcome by calculating the 
-relative weight of each feature for predicting the probabilities of a 
-certain outcome \cite{raschka17}. The decision boundary for the logistic 
-regression classifier is a linear function of the input; a binary classifier 
-separates two classes using along a line, plane, or hyperplane 
-\cite{muller17}. Given that the probability values for the outcome 
-range between 0 and 1, predictions can be made based upon a default value. 
-For example, the default prediction, `Yes`, could be made for any individual 
-for whom the probability of pain reliever misuse and abuse is greater than
-chance, $p(PRLMISAB) > 0.05$. Logistic regression uses a maximum likelihood 
-method to predict the coefficient estimates that correspond as closely as 
-possible to the default state. In other words, the model will predict a 
-number close to one for individuals who have misused or abused pain
-relievers and a number close to zero for individuals who have not 
-\cite{james13}. The distribution of probabilities in the logit model has 
-an S-shaped curve. The coefficients estimates obtained from a logistic 
-regression model, ($beta_0$, $beta_1$ ... $beta_k$) are selected in order 
-to maximize the likelihood function, and are interpreted as an indication 
-of the log-odds change in the outcome variable that is associated with a 
-one-unit increase in a predictor variable ($X_i$...$X_j$). 
+As stated by George Box, "All models are wrong, but some models are useful"\cite{box05}. There are advantages and limitations with any 
+classification model, but one of the most useful and interpretable models 
+is logistic regression. Logistic regression models the conditional 
+distribution of probabilities for a binary response (e.g., $Pr(Y=k | X=x)$) 
+as a combination of a set of predictor variables \cite{james13, raschka17}. 
+The decision boundary for the logistic regression classifier is a linear 
+function of the input; a binary classifier separates two classes using a line, 
+plane, or hyperplane \cite{muller17}. Given that the probability values for 
+the outcome range between 0 and 1, predictions can be made based on a default 
+value. For example, a default value of `Yes` could be predicted for any 
+individual for whom the probability of pain reliever misuse and abuse is 
+greater than fifty-percent, $Pr(PRLMISAB) > 0.5$. Logistic regression 
+uses a maximum likelihood method to predict the coefficient estimates that 
+correspond as closely as possible to the default state. In other words, the 
+model will predict a number close to one for individuals who have misused or 
+abused pain relievers and a number close to zero for individuals who have 
+not. The distribution of probabilities in the logit model has an S-shaped 
+curve. The coefficients estimates obtained from a logistic regression model, 
+($beta_0$, $beta_1$ ... $beta_k$) are selected in order to maximize the 
+likelihood function, and are interpreted as an indication of the log-odds 
+change in the outcome variable that is associated with a one-unit increase 
+in a predictor variable ($X_i$...$X_j$). 
 
-Linear classification models differ in terms of (1) how they measure how 
-well a particular combination of coefficients and intercept fit the training 
-data, and (2) the type of regularization that is applied (e.g, L1, L2).
-Linear Discriminant Analysis (QDA) is another commonly used model
-
-
-
-]
-
-Quadratic Discriminant Analysis (QDA)
+An alternative approach to estimating the probabilities, linear discriminant 
+analysis (LDA), models the distribution of predictors separately in each of 
+the response classes and then uses the Bayes' theorem to flip these into 
+estimates for $Pr(Y=k | X=x)$ \cite{james13}. The term linear in the LDA 
+classifier refers to the the discriminant functions being linear functions of 
+X. For distributions assumed to be normal (i.e., multivariate Guassian), LDA 
+provides a model that is similar in form to logistic regression, but more 
+stable. LDA is also preferred for outcomes with more than two response classes. 
+Two important assumptions of LDA are: (1) a common covariance matrix for all 
+classes and (2) the class boundaries are linear functions of the predictors.   
+Quadratic Discriminant Analysis (QDA) is an approach that assumes each class 
+has its own covariance matrix and the decision boundaries are quadratically
+curvilinear in the predictor space \cite{kuhn13}. LDA is less flexible 
+as a classifier than QDA, but can perform better when there are relatively 
+few training observations or the majority of predictors in the data represent 
+discrete categories. QDA is recommended over LDA in cases where you have a 
+very large training set or the decision boundary between two classes is 
+non-linear, 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Non-linear Models}
 
-Support Vector Machines
+\subsubsection{Non-linear Classifier Models}
+
+The performance of linear classifiers suffers when there is a non-linear 
+relationship between the predictors and outcome. With training observations 
+that can be separated by hyperplane the maximal marginal classifier provides 
+the maximum distance (i.e., margin) from each observation to the hyperplane 
+\cite{james13}. The test observations are classified based on which side of 
+the hyperplane they fall, but in many cases no separating hyperplane exists. 
+The \emph{Support Vector Classifier} (SVM) extends the maximal margin classifier 
+by using a soft margin that allows a small number of observations to be 
+misclassified on the wrong side of hyperplane. The observations that fall 
+directly on the margin or on the wrong side of the hyperplane are called `support 
+vectors'. The parameter `C' indicates the number of observations that can 
+violate the margin; if $C>0$, not more than C observations can be on the wrong 
+side of the hyperplane. SVC addresses the problem of non-linear boundaries 
+between classes by enlarging the feature space with higher order (e.g., quadratic, 
+cubic, polynomial) functions of the predictors. Support vector machines (SVM) 
+is an extension of SVC that uses a kernel. One of the most commonly used 
+approaches is the radial basis function (RBF) kernel is  (i.e., Guassian kernel).
+In training the model, only a subset of data points is used to construct 
+the decision boundary, the support vectors that lie on the border separating
+the two classes. In making predictions for new observations, the algorithm
+calculates the distance to each of the support vectors measured by the 
+Guassian kernel \cite{muller17}. Figure 1 shows an example of the non-linear
+decision boundary obtained with SVM using the RBF kernel; the decision
+boundary is a smooth curve and the support vectors are large points with 
+bold outlines. 
+
+A high value of C stresses the importance of each individual sample and the 
+SVC model will try to fit the training set as best as possible, which increases 
+the risk of overfitting. With a low value of C the classification algorithm 
+adjusts to the majority of data points, and the influence of each data point 
+on the decision boundary is limited.
 
 
-Naive Bayes
+Low values of C correspond to strong regularization,  this leads to many support vectors, so many alphas are non-zero
+High values of C means less regularization, allows each data point to have a lot of influence
+More precisely, each alpha parameter can only be between zero and C
 
 
-Neural Networks
+
+The Kernel Function most commonly used is Radial basis function (Gaussian) kernel:
+k(x,x′)=exp(−γ||x−x′||2)
+ 
+It's easy to plot this function in 1D
+Fix training data point at zero and show the value as a function of different test data points
+The Gaussian kernel has a free parameter, gamma, that allows to control how wide the Gaussian is
+Large values means that only close values are relvant; small values means far points are similar
+
+Effects of C and gamma parameters
+
+For default settings, decision boundary is already quite non-linear
+Increasing C will lead to an even more curved decision boundary, to correctly classify all training data points, more smooth boundary, focusing more on the main body of the classes
+For some small value of C, all points will become support vectors (i.e., non-zero alpha); C limits the influence of each data point, and if you decrease C even further, nothing more can happen
+
+Strong interaction for settings of C and gamma parametters
+Increasing gamma means that more points will be considered neighbors, resulting in a smoother decision boundary; at some point, the decision becomes practically linear
+If we allow both C and gamma to be large, each points can have an arbitrary large influence in a very small region; this leads to a very bumpy decision boundary, each point can become its own island
+
+\begin{figure}[!ht]
+  \centering\includegraphics[width=\columnwidth]{images/Figure4.pdf}
+  \caption{Decision Boundary and Support Vectors for SVM with RBF kernel 
+  \cite{muller17}}
+  \label{f:Figure4}
+\end{figure}
+
+\emph{Naive Bayes}
+
+
+\emph{Neural Networks}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Tree-Based Models}
 
-Decision tree models are widely used for classification and regression. Tree 
-models ``learn'' a hierarchy of if-else questions that are represented in the
-form of a decision tree. Building decision trees proceeds from a root node as 
-the starting point and continues through a series of decisions or choices.
-Each node in the tree either represents either a question or a terminal node 
-(i.e.,leaf) that contains the outcome. Applied to a binary classification task, 
-the decision tree algorithm \emph{learns} the sequence of if-else questions 
-that arrives at the outcome most quickly. For continuous features, the 
-decisions are expressed in the form of, ``Is feature x larger than value y?''
-
-In constructing the tree the algorithm searches through all
+\emph{Decision trees} are widely used for classification and regression. 
+Tree models ``learn'' a hierarchy of if-else questions that are represented 
+in the form of a decision tree. Building decision trees proceeds from a root 
+node as the starting point and continues through a series of decisions or 
+choices. Each node in the tree either represents either a question or a 
+terminal node (i.e.,leaf) that contains the outcome. Applied to a binary 
+classification task, the decision tree algorithm learns the sequence of 
+if-else questions that arrives at the outcome most quickly. For continuous 
+features, the decisions are expressed in the form of, ``Is feature x larger 
+than value y?'' In constructing the tree the algorithm searches through all
 possible decisions or tests and finds a solution that is most informative 
 about the target outcome \cite{muller17}. A decision tree classifier is used 
 for binary or categorical targets, and decision tree regression is used for 
@@ -298,45 +365,49 @@ well with features measured on very different scales, or with data that has
 a mix of binary and continuous features. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Random Forests Classifier}
 
-A random forest is a collection of decision trees that are slightly different 
-from the others, which each overfits the data in different ways. The idea 
-behind random forests is that overfitting can be reduced by building many 
-trees and averaging their results. This approach retains the predictive power 
-of trees while reducing overfitting. Randomness is introduced into the tree 
-building process in two ways: (a) selecting a bootstrap sample of the data, 
+\emph{Random Forests} is an an ensemble approach that combines many simple
+decision trees that are each slightly different from the others, which each overfits the data in different ways. 
+
+The idea behind random forests is that overfitting can be reduced by building 
+many trees and averaging their results. This approach retains the predictive 
+power of trees while reducing overfitting. Randomness is introduced into the 
+tree building process in two ways: (a) selecting a bootstrap sample of the data, 
 and (b) selecting features in each node branch \cite{muller17,raschka17}. In 
-building the random forest, we first decide how many trees to build (e.g., 10 
-or 100), and the algorithm makes different random choices so that each tree is 
-distinct. The bootstrapping method repeatedly draws random samples of size n 
-from the dataset (with replacement). The decision trees are build on these 
-random samples that are the same size as the original data, with some points 
-missing and some data points repeated. The algorithm also selects a random 
-subset of p features, repeated separately each node in the tree, so that 
-each decision at the node branch is made using a different subset of features.
-These two processes help ensure that all of the decision trees in the random
-forest are different. 
-
-The important parameters for the random forests 
-algorithm are the number of sampled data points and the maximum number of 
-features; the algorithm could look at all of the features in the dataset
-or a limited number. A high value for \emph{maximum-features} will produce 
-trees in the random forest that are very similar and will fit the data 
-easily based on the most distinctive features, whereas a low value will 
-produce trees that are very different from each other, and reduces over-
-fitting. Random forests is of the most widely used ML algorithms that works 
-well without very much parameter tuning or scaling of data. A limitation of 
-this approach is that Random forests do not perform well with very high-
-dimensional, data that is sparse such as text data.
-
-\subsubsection{Gradient Boosted Tree Classifier}
+building the random forest, we first decide how many trees to build (e.g., 100), 
+and the algorithm makes different random choices so that each tree is distinct. 
+The bootstrapping method repeatedly draws random samples of size n from the 
+data set (with replacement). The decision trees are build on these random 
+samples that are the same size as the original data, with some points missing 
+and some data points repeated. The algorithm also selects a random subset of `p'
+features, repeated separately each node in the tree, so that each decision at 
+the node branch is made using a different subset of features. These two 
+processes help ensure that all of the decision trees in the random forest 
+are different. Random forests is one of the most widely used supervised learning
+algorithms that works well without very much parameter tuning or scaling of data. 
+A limitation of this approach is that Random forests do not perform well with 
+very high-dimensional, or with data that is sparse such as text data.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The goal of the current study is to compare predictive models of prescription
-pain reliever misuse and abuse and better understand some of the factors 
-that contribute to the opioid dependence and addiction. 
+\emph{Gradient Boosting Classifier} is another ensemble method that combines 
+multiple decision trees for regression or classification by building trees 
+in a serial fashion, where each tree tries to correct for mistakes of the 
+previous one \cite{muller17}. Gradient boosted regression trees use strong 
+pre-pruning, with shallow trees of a depth of one to five. Each tree only 
+provides a good estimate of part of the data; combining many shallow trees 
+(i.e., ``weak learners'') iteratively improves performance. In addition to 
+pre-pruning and the number of trees, an important parameter for gradient 
+boosting is the \emph{learning rate} which determines how strongly each
+tree tries to correct for mistakes of previous trees. A high learning rate
+produces stronger corrections, allowing for more complex models. Adding
+more trees to the ensemble also increases model complexity. Gradient boosting
+and random forests perform well on similar tasks and data; it is common to
+first try random forests and then include gradient boosting to attain 
+improvements in accuracy of the learning model. The goal of the current study 
+is to compare predictive models of prescription pain reliever misuse and 
+abuse and identify features important for predicting the misuse and abuse of
+prescription opioid. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -381,29 +452,29 @@ that contribute to the opioid dependence and addiction.
 \subsection{The Data}
 
 The NSDUH public data files for 2015 and 2016 were downloaded from the 
-Substance Abuse and Mental Health Data Archive (SAMHDA) website, and the 
-data sets were extracted, and saved as data frame objects in a python 
+Substance Abuse and Mental Health Data Archive (SAMHDA) \cite{samhsa18}. 
+The data sets were extracted and saved as data frame objects in a python 
 interactive notebook \cite{mckinney17, vanderplas17}. The 2015 NSDUH data set 
 consisted of N=57146 respondents with 2667 variables and the 2016 data set had 
-N=57897 individuals and 2665 variables, resulting in a total sample of N=114,043 
+N=57897 individuals and 2665 variables, resulting in a total sample of N=114043 
 observations (53873 male, 60165 female). As described in the NSHUD codebook, 
-the sampling design is weighted across states by population size, drawing more 
+the sampling design was weighted across states by population size, drawing more 
 heavily from eight states with the largest populations (CA, FL, IL, MI, NY, OH, 
 PA, TX), for a representative distribution that accounts for approximately 
 48 percent of the U.S. population. For 2015, the weighted survey screening 
 response rate  was 81.94\% and the weighted interview response rate was 71.2\% 
-\cite{samhsa18}. Identifying information in the survey is collapsed (e.g., age 
-categories); variables related to ethnicity, immigration status, and state 
-identifiers are removed to ensure confidentiality. The data frames were subset 
-by column to select approximately 90 variables that included common demographic 
-characteristics, physical health, mental health, medication usage, and use of 
-illicit drugs. The following steps were taken to detect and remove any 
-inconsistencies in the data: (1) Missing values (i.e., NaN) were removed. 
-(2) Blanks, non-responses, or legitimate skips (e.g., 99, 991, 993) were 
-recoded to zero. (3) Dichotomous responses (e.g., Yes=1 / No=2) were recoded 
-so that No=0. (4) Categorical variables were recided to be consistent with amount 
-or degree  (e.g., 1=low, 2=med, 3=high). (5) Outliers were identified and excluded 
-from the data set (n=5).
+\cite{samhsa18}. Identifying information in the public use files is collapsed 
+(e.g., age categories); variables related to ethnicity, immigration status, and 
+state identifiers are removed to ensure confidentiality. The data frames were 
+subset by column to select approximately 90 variables that included common 
+demographic characteristics, physical health, mental health, medication usage, 
+and use of illicit drugs. The following steps were taken to detect and remove 
+any inconsistencies in the data: (1) Remove missing values (i.e., NaN); 
+(2) Recode blanks, non-responses, or legitimate skips (e.g., 99, 991, 993) to 
+zero; (3) Recode dichotomous responses (e.g., Yes=1 / No=2) so that 
+`No' = 0; (4) Recode categorical variables to be consistent with amount or 
+degree  (e.g., 1=`Low', 2=`Med', 3=`High'). (5) Outliers were identified 
+and excluded from the data set (n=5).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -469,13 +540,13 @@ they had previously misused or abused prescription pain relievers at some
 point (6239 males, 6066 females). Only 2\% of individuals (n=2266) disclosed 
 ever using heroin (1320 males; 946 females). Given previous findings 
 that indicate a relationship between the the misuse and abuse of prescription
-opioids pain and heroin use \cite{unick13}, the exploratory analysis focused 
-on individuals who reported misusing or abusing pain relievers or using heroin, 
-Figure 1 shows that the proportion of pain reliever misuse and abuse was 
-higher among individuals who reported using heroin than those who had not. 
-In addition, pain reliever misuse and abuse and heroin use both varied by sex 
-(Figure 3). Although, a greater number of females than males reported using any 
-pain relievers , the left panel of figure 3 shows that more females than males
+opioids pain and heroin use \cite{muhuri13, unick13}, the exploratory analysis 
+focused on misuse or abuse of pain relievers and heroin use. Figure 1 shows 
+that the proportion of pain reliever misuse and abuse was higher among 
+individuals who reported using heroin than those who had not. In addition, 
+pain reliever misuse and abuse and heroin use both varied by sex (Figure 3). 
+Although, a greater number of females than males reported using any pain 
+relievers , the left panel of figure 3 shows that more females than males
 reported they had not misused or abused pain relievers compared to males; 
 however, roughly equal proportions of males and females reported misusing or 
 abusing pain relievers. The right panel of Figure 3 shows that a higher 
@@ -490,10 +561,10 @@ reported they had never used heroin than males.
 \end{figure}
 
 \begin{figure}[!ht]
-  \centering\includegraphics[width=\columnwidth]{images/Figure3.pdf}
+  \centering\includegraphics[width=\columnwidth]{images/Figure9.pdf}
   \caption{Residual and Predicted Values for Logistic Regression of 
   Pain Reliever Misuse and Abuse fit to the Testing Set (n=}
-  \label{f:Figure3}
+  \label{f:Figure9}
 \end{figure}
 
 
@@ -504,7 +575,11 @@ reported they had never used heroin than males.
 The dataset was divided into the training set and test set using a 75-25 
 percent split. Each model was fit to the training set, new values were 
 predicted on the holdout scores in the testing set. The main parameter settings 
-for each model are reported in Table 4. Model performance was evaluated 
+for each model are reported in Table 4. 
+
+
+
+Model performance was evaluated 
 and reported in the confusion matrix (Table 3), which include metrics of
 Accuracy (percentage), Sensitivity (i.e., Recall), Precision, and $f_1-score$. 
 
@@ -648,17 +723,7 @@ and illicit drug use.
   \label{f:Figure4}
 \end{figure}
 
-\subsubsection{K-Nearest Neighbors (KNN)}
-
-one of the simplest classification algorithms, the K-Nearest Neighbors (KNN) 
-model takes a set of data points and classifies a new data point based on the
-(by default) Euclidean distance to its nearest neighbors. the KNN model was 
-fit on the training set, and  New values were predicted on the test set. In 
-
-The advantage of the KNN classifier is that it provides a solution that is easy 
-to understand. A limitation of KNN is that it does not perform well with a large 
-number of features (100 or more) or with sparse datasets with many values equal 
-to zero. 
+ 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Decision Tree Classifier}
@@ -730,33 +795,38 @@ Tranquilizer Use, Drug Treatment, and Heroin Use were tied for second place.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Random Forests Classifier}
 
+ The important parameters for the random forests algorithm are 
+the number of sampled data points and the maximum number of features; 
+the algorithm could look at all of the features in the dataset or a limited 
+number. A high value for \emph{maximum-features} will produce trees in the 
+random forest that are very similar and will fit the data easily based on the most distinctive features, whereas a low value will 
+produce trees that are very different from each other, and reduces over-
+fitting. 
+
+
 Random forests is an ensemble approach that builds many trees and averages 
-their results to reduce overfitting. The model was build using the 
+their results to reduce overfitting. 
+
+The model was build using the 
 \emph{Random Forest Classifier} package in Scikit-Learn. The parameters of 
 interest for building random forests are: (a) the number of trees 
 (n-estimators), (b) the number of data points for bootstrap sampling 
 (n-samples), and (c) the maximum number of features considered at each node 
-(max-features). The max-features parameter determines how random each tree is, 
+(max-features). 
+
+The max-features parameter determines how random each tree is, 
 with smaller values of max-features resulting in trees in the random forest 
 that are very different from each other. This analysis applied a random forest 
-consisting of 100 trees to classify Heroin Use, and the random state was set to 
-zero. The training set accuracy was 0.999 and the test set accuracy was 0.984. 
+consisting of 100 trees 
+
+The test set accuracy was 0.984. 
 Often the default settings for random forests work well, but we can apply
 pre-pruning as with a single tree, or adjust the maximum number of features. 
 Feature importance for random forests is computed by aggregating the feature 
 importance over trees in the random forest, and random forests gives
-non-zero importance to more features than a single tree. Typically random
-forests provide a more reliable measure of feature importance than the
-feature importance for a single tree. Figure 6 shows the feature importance 
-of the random forests classifier for heroin use with 100 trees. Similar to
-the single tree, the random forest selected Cocaine Use as the most
-informative feature in the model, followed by Any PRL Use, which is an 
-aggregated measure of prescription opioid medication use. Following after 
-that, several features were tied for third place of importance, namely 
-Education Level, Overall Health, Age Category, and Pain Reliever Misuse 
-and Abuse. Random forests provides much of the same benefit as decision
-trees, while compensating for some of their shortcomings of overfitting.
-Single trees are still useful for visually representing the decision process.
+non-zero importance to more features than a single tree. 
+
+
 
 \begin{figure}[!ht]
   \centering\includegraphics[width=\columnwidth]{images/Figure5.pdf}
@@ -770,32 +840,22 @@ Single trees are still useful for visually representing the decision process.
 The Random Forest Classifier package in Scikit-Learn was used to classify
 Prescription Opioid PRL Misuse as the target variable, with 100 trees. The 
 model accuracy for the training set was 0.955 and the test set accuracy was 
-0.896, which suggests that the model overfit the data. Figure 10 shows the 
-feature importance of the random forests classifier for Prescription Opioid 
-PRL Misuse. As Figure 10 shows, several features were identified as important
-for classifying Prescription Opioid PRL Misuse. The random forest selected 
-Overall Health as the most informative feature in the model, followed by 
-Cocaine Use, Education Level, Age Category, and Size of City Metropolitan 
-region. Because of the additional features included as important, gradient 
-boosting was performed to clarify the feature importance.
+0.896, which suggests that the model overfit the data. 
+
+
+compensating for some of their shortcomings of overfitting.
+
+Although random forests models are more accurate than a single tree and can
+compensate for some of the shortcomings of overfitting, a limitation of this 
+approach is that it can be difficult to interpret an ensemble of trees apart 
+from the measure of feature importance provided in the output. Single trees 
+are still useful for visually representing the decision process.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Gradient Boosting Classifier Tree}
 
-Gradient boosting machines is another ensemble method that combines multiple
-decision trees for regression or classification by building trees in a serial 
-fashion, where each tree tries to correct for mistakes of the previous one
-\cite{muller17}. Gradient boosted regression trees use strong pre-pruning, 
-with shallow trees of a depth of one to five. Each tree only provides a good
-estimate of part of the data, but combining many shallow trees (i.e., ``weak 
-learners''), the use many simple models iteratively improves performance. In 
-addition to pre-pruning and the number of trees, an important parameter for 
-gradient boosting is the learning rate, which determines how strongly each
-tree tries to correct for mistakes of previous trees. A high learning rate
-produces stronger corrections, allowing for more complex models. Adding
-more trees to the ensemble also increases model complexity. Gradient boosting
-and random forests perform well on similar tasks and data; it is common to
-first try random forests and then include gradient boosting to attain 
-improvements in accuracy of the learning model. This analysis used the 
+
+This analysis used the 
 \emph{Gradient Boosting Classifier} from Scikit-Learn to classify Heroin Use, 
 with the default setting of 100 trees of maximum depth of 3, and a learning 
 rate of 0.1. The model was build on the training set and evaluated on the test 
@@ -834,7 +894,19 @@ Health (depression) coming in fourth in terms of feature importance. This
 result illustrates that several features are important for understanding 
 Prescription Opioid Misuse, and the relations among features may be complex.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\subsubsection{K-Nearest Neighbors (KNN)}
+
+one of the simplest classification algorithms, the K-Nearest Neighbors (KNN) 
+model takes a set of data points and classifies a new data point based on the
+(by default) Euclidean distance to its nearest neighbors. the KNN model was 
+fit on the training set, and  New values were predicted on the test set. In 
+
+The advantage of the KNN classifier is that it provides a solution that is easy 
+to understand. A limitation of KNN is that it does not perform well with a large 
+number of features (100 or more) or with sparse datasets with many values equal 
+to zero.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -949,72 +1021,54 @@ using a broader set of features, with more inclusive sample representative
 of the larger population, and integrate data from multiple sources. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Opioid Addiction and Epidemic Spreading}
+\subsection{Opioid Addiction Epidemic}
 
-Drug addiction has many similar characteristics to other chronic medical 
-illnesses, but there are unique challenges to the treatment of addiction
-\cite{marsch12, swendson16}. In drug rehabilitation treatment programs, 
-patients undergo intense detoxification that reduces their drug tolerance, 
-but are then released back into the environments associated with their drug 
-use, putting them at high risk for relapse and potential drug overdose 
-\cite{johnson11}. If the prescription opioid crisis is a genuine epidemic, 
-we must consider the process of spreading or diffusion of contagion. Epidemic 
-spreading is a dynamic process based on networks of direct person-to-person 
-contact and indirect exposure via transportation pathways \cite{Colizza06}. 
-Epidemics are quantified in terms of the proportion of the population infected, 
-those yet to be infected, and the rate of transmission. Potentially everyone
-is at risk of becoming dependent or addicted to prescription medications or 
-illicit opioids. In terms of the opioid epidemic, rather than labeling persons 
-as infected or uninfected, it is more useful to consider people as either 
-susceptible to dependence and addiction or less susceptible. Furthermore, 
-the structure of the contact network can influence epidemic spreading
-\cite{pastor01}. For example, in the case of simple contagion, weak 
-ties among acquaintances or infrequent associations provide shortcuts between 
-distant nodes that reduce distance within the network \cite{granovetter73} 
-which can facilitate the spread of contagion, or in this case drug use. 
-Furthermore, contact networks for drug use may have ``small world'' properties
-where a small number of nodes have a high number of connection that can 
-rapidly transmit contagion throughout the network \cite{watts98}. Network 
-analysis may help to identify the underlying structure of the contact network
-of opioid use, to examine pathways and points of contact in the misuse and 
-abuse of prescription opioid medications. According to a classical conditioning
-model of addiction, situational cues or events can elicit a motivational state 
-underlying relapse to drug use. Addictive behavior can be also be reinstated 
-after extinction of dependency by exposure to drug-related cues or stressors 
-in the environment \cite{shaham03}. Future research could use social network 
-modeling to explore how drug dependency and addiction are subserved by patterns 
-of social interaction. 
+If the crisis of opioid addiction were an epidemic like other illnesses caused 
+by biological contagion, its spreading or diffusion could be measured by the 
+proportion of infected in the population, those yet to be infected, and the 
+rate of transmission. Although drug addiction has many similar characteristics 
+to other chronic medical illnesses, but there are unique challenges to the 
+treatment of addiction \cite{marsch12, swendson16}. According to the classical 
+conditioning theory of addiction, situational cues or events can elicit a 
+motivational state underlying the relapse to drug use. Following treatment, 
+many addicted individuals return to the same environments associated with 
+their drug use. Addictive behavior can be reinstated by exposure to drug-
+related cues or stressors in the environment \cite{shaham03}, putting
+individuals in recovery at risk for relapse and possible overdose \cite{johnson11}. 
+Furthermore, the structure of social contact networks can influence epidemic 
+spreading or diffusion \cite{pastor01, watts98}, as person-to-person contact 
+and indirect associations may facilitate the spread of drug use and addictive 
+behavior. In the case of prescription opioids, anyone is potentially at 
+risk of misusing opioids and becoming addicted. Rather than labeling people 
+as addicted or not addicted, it may be useful to consider people as more or 
+less susceptible to misusing or abusing opioid pain medication, leading to
+a greater or lesser susceptability to becoming dependent or addicted to 
+opioids. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
 
-This project compared several classification algorithms to predict heroin use 
-and prescription opioid misuse and abuse. The results provided partial support
-for the hypothesis that prescription opioid misuse is associated with the use
-of illicit opioids such as heroin. Several features were identified as 
-important for classifying heroin use, including Cocaine Use, Amphetamine Use, 
-and any prescription opioid medication use. In regards to predicting heroin
-use, it appears the use of other illicit drugs such as Cocaine and Amphetamine 
-was perhaps more informative than any prescription opioid use or misuse. Heroin 
-use was selected as important for classifying prescription opioid pain reliever 
-misuse, but additional factors also played as role, including tranquilizer use,
-age category, overall health, cocaine use. Substance treatment had the largest
-regression coefficient, suggesting that people who are misusing prescription
-opioid pain medication are also more likely to be in drug treatment programs. 
-The direction of these effects cannot be determined owing to the nature of the 
-analyses. On the one hand individual misusing or abusing prescription opioids 
-may also be using heroin. Alternatively, individuals with a susceptability for 
-opioid use may be equally likely to have use heroin and also to have misused 
-prescription opioids. A general conclusion is that of those individuals who 
-reported misusing prescription opioid medications, twice as said they had used
-heroin than reported they had not used heroin. The results do not provide 
-sufficient evidence to rule out alternative hypotheses. Given the relatively 
-low rates of opioid and heroin in this sample, additional evidence is needed to 
-resolve this question. The study can provide information to raise awareness 
-about the risk factors for prescription opioid addiction and may help reduce 
-opioid overdose deaths. 
+The present study compared the results of several classification models of 
+pain reliever misuse and abuse. A general conclusion is that 
 
+The results do not provide sufficient evidence to rule out alternative hypotheses. 
 
+Several features were identified as important for classifying pain reliever
+misuse and abuse, including Cocaine Use, Amphetamine Use, tranquilizer use,
+age category, overall health,
+
+Prescription opioid misuse and abuse was associated with heroin use: of 
+the individuals who reported misusing prescription opioid medications, twice 
+as many reported having used heroin than those who said that they had not used 
+heroin. the importance of heroin use was a predictor of pain reliever misuse and
+abuse was limited, given the very small number of individuals who reported 
+using heroin.
+
+additional evidence is needed to address these question. 
+
+Predictive modeling is a useful approach for classifying individuals as 
+having misused or abuse opioid pain relievers and may help inform 
+efforts to address the opioid crisis and reduce risk of overdose deaths. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
