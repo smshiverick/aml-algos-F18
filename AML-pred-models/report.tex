@@ -37,34 +37,34 @@ difficult to interpret.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 
-The misuse and abuse of prescription opioids (MUPO) over the past two 
-decades has become a major health crisis in the U.S. \cite{volkow14}. 
-An estimated 2 million Americans suffered a substance use disorder related 
+Over the past two decades the misuse and abuse of prescription opioids (MUPO)  
+has become a major health crisis in the U.S. \cite{volkow14}. In 2015, an 
+estimated 2 million Americans suffered a substance use disorder related 
 to prescription opioid pain relievers such as oxycodone or hydrocodone 
 in 2015 \cite{nida18}. Opioid dependence and relapse are chronic health 
 conditions and following treatment many addicted individuals are at high 
-risk for relapse and overdose death \cite{shaham03}. From 1999 to 2016, 
-the number of opioid-related overdose deaths has more than quadrupled. 
-On average, more than 115 people die from an opioid overdose each day 
+risk for relapse and overdose death \cite{shaham03}. The number of opioid-
+related overdose deaths has more than quadrupled from 1999 to 2016. 
+Each day, an average of 115 people die from an opioid overdose in the U.S. 
 \cite{cdc18, judd16}. Supply-based interventions to reduce the availability 
 of prescription opioids have produced a shift to the use of heroin and 
-synthetic opioids such as fentanyl \cite{jones15}. Because the dosage levels 
-and potency of illicit and synthetic opioids are largely unknown, The risk 
-of overdose death has increased. The sharp rise in prescription 
-overdose deaths (POD) and heroin overdose deaths (HOD) are positively 
+synthetic opioids such as fentanyl \cite{jones15}. The risk of overdose 
+death from illicit and synthetic opioids is greatly increased because 
+the dosage levels and potency are largely unknown. The sharp rise in 
+prescription overdose deaths (POD) and heroin overdose deaths (HOD) are 
 correlated \cite{muhuri13, unick13}. Predictive modeling approaches can 
-identify individuals susceptible for opioid addiction and may provide 
-insights to inform policy decisions for addressing the opioid crisis. 
+help identify individuals susceptible for opioid addiction and may provide 
+insights that inform policy decisions for addressing the opioid crisis. 
 This study compares different classification models of pain reliever misuse 
-and abuse to select the best predictive model(s) and identify important 
-features that contribute to the misuse of prescription opioids. 
+and abuse and identifies several important features that contribute to 
+the misuse and abuse of prescription opioids. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Predictive Modeling}
 
-Predictive modeling, statistical learning, or machine learning is a set 
-of procedures and automated processes for extracting knowledge from data 
+Predictive modeling, statistical learning, or machine learning describe a 
+set of procedures and automated processes for extracting knowledge from data 
 \cite{james13, kuhn13, muller17, raschka17}. The two main branches of 
 predictive modeling are supervised learning and unsupervised learning. 
 Supervised learning problems involve prediction about a specific target 
@@ -91,8 +91,8 @@ In the era of ``big data'', large amounts of health information are being
 generated from electronic medical records (EMRs), clinical research data, to 
 population-level health data \cite{herland14}. Surveys provide data on a range 
 of issues that people may be reluctant to disclose such as drug use and mental 
-health problems; however, it can be difficult to obtain reliable information 
-about drug use based on self-reports.  This study considers data from the 
+health problems, but it can be difficult to obtain reliable information 
+about drug use based on self-reports. This study considers data from the 
 National Survey on Drug Use and Health (NSDUH) which is a major source of 
 information for the use of illicit drugs and mental health issues among the 
 U.S. population aged 12 or older \cite{samhsa18}. The NSDUH is a comprehensive 
@@ -115,28 +115,29 @@ demographic variables,  medication usage, and use of illicit drugs.
 
 \subsubsection{Linear Classifier Models}
 
-As stated by George Box, "All models are wrong, but some models are useful"\cite{box05}. There are advantages and limitations with any 
-classification model, but one of the most useful and interpretable models 
-is logistic regression. Logistic regression models the conditional 
-distribution of probabilities for a binary response (e.g., $Pr(Y=k | X=x)$) 
-as a combination of a set of predictor variables \cite{james13, raschka17}. 
-The decision boundary for the logistic regression classifier is a linear 
-function of the input; a binary classifier separates two classes using a line, 
-plane, or hyperplane \cite{muller17}. Given that the probability values for 
-the outcome range between 0 and 1, predictions can be made based on a default 
-value. For example, a default value of `Yes` could be predicted for any 
-individual for whom the probability of pain reliever misuse and abuse is 
-greater than fifty-percent, $Pr(PRLMISAB) > 0.5$. Logistic regression 
+As stated by statistician George Box, "All models are wrong, but some models 
+are useful" \cite{box05}. There are advantages and limitations for using any 
+classification model, but logistic regression is one of the most useful,
+reliable, and interpretable models to select from. Logistic regression models 
+the conditional distribution of probabilities for a binary response (e.g., 
+$Pr(Y=k | X=x)$) as a combination of a set of predictor variables 
+\cite{james13, raschka17}. The decision boundary for the logistic regression 
+classifier is a linear function of the input; a binary classifier separates 
+two classes using a line, plane, or hyperplane \cite{muller17}. Given that the 
+probability values for the outcome range between 0 and 1, predictions can be 
+made based on a default value. For example, a default value of `Yes` could be 
+predicted for any individual for whom the probability of pain reliever misuse 
+and abuse is greater than fifty-percent, $Pr(PRLMISAB) > 0.5$. Logistic regression 
 uses a maximum likelihood method to predict the coefficient estimates that 
 correspond as closely as possible to the default state. In other words, the 
 model will predict a number close to one for individuals who have misused or 
 abused pain relievers and a number close to zero for individuals who have 
 not. The distribution of conditional probabilities in the logit model has an 
-S-shaped curve (Figure 2). The coefficients estimates obtained from a logistic 
-regression model, ($beta_0$, $beta_1$ ... $beta_k$) are selected in order to 
-maximize the likelihood function, and are interpreted as an indication of the 
-log-odds change in the outcome variable that is associated with a one-unit 
-increase in a predictor variable ($X_i$...$X_j$). 
+S-shaped curve. The coefficients estimates obtained from a logistic regression 
+model, ($beta_0$, $beta_1$ ... $beta_k$) are selected in order to maximize the 
+likelihood function, and are interpreted as an indication of the log-odds 
+change in the outcome variable that is associated with a one-unit increase 
+in a predictor variable ($X_i$...$X_j$). 
 
 %\begin{figure}[!ht]
 %  \centering\includegraphics[width=\columnwidth]{images/Figure2.pdf}
@@ -187,9 +188,8 @@ the predictors.
 
 \begin{figure}[!ht]
   \centering\includegraphics[width=\columnwidth]{images/Figure3.pdf}
-  \caption{Non-Linear Decision Boundary and Support Vectors for SVM with Radial 
-  Basis Function (RBF) Kernel 
-  \cite{muller17}}
+  \caption{Decision Boundary and Support Vectors for Support Vector Machine 
+  SVM Classifier with Nonlinear Kernel \cite{muller17}}
   \label{f:Figure3}
 \end{figure}
 
@@ -364,6 +364,7 @@ as positive: a person who has never misused or abused pain relievers may be
 classified as having done so (i.e., 'false positive'). Conversely, a positive 
 instance may be classified as negative: a person who has misused and abused 
 pain relievers may be labeled as never having done so (i.e., 'false negative').
+
 
 Classification errors and correct decisions are represented in a 
 \emph{confusion matrix} (Table 1) that indicates the correspondence between 
