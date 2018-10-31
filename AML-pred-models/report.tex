@@ -253,27 +253,34 @@ probabilities will become more extreme.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \emph{Neural Networks} are powerful models for classification and 
-regression based on theories of connectivity between neurons in the brain
-\cite{kuhn13}. The present study considers a simple method called multilayer 
-perceptrons (MLP) as a feed-forward neural network \cite{muller17, raschka17}. 
-The outcome is modeled by an intermediary set of set of unobserved variables
-called hidden units, which are linear combinations of the original predictors. 
+regression based on theories about connectivity in the brain \cite{kuhn13}. 
+The present study considers a simple method called multilayer perceptrons 
+(MLP) as a feed-forward neural network \cite{muller17, raschka17}. 
+The outcome is modeled by an intermediary set of unobserved variables called 
+hidden units, which are linear combinations of the original predictors. 
 Each hidden unit is a combination of some or all of the predictors which 
 are then transformed by a nonlinear function (e.g., sigmoidal). The neural 
-network model usually has multiple hidden units that are used to model the 
-outcome. The MLP classifier computes weights between the input and the 
-hidden layer, and weights between the hidden layer and the output. After 
-computing each hidden unit, the output is modeled by a nonlinear combination 
-of the hidden units. The nonlinear function allows the neural network to fit 
-more complicated functions than a linear model. There are several ways to modify 
-the complexity of a neural network: selecting the number of hidden layers, 
-the number of units within each layer, and selecting the regularization 
-parameter (L2) which shrinks the weights towards zero. A limitation of neural 
-networks is they have tend to overfit data used to train the model. 
+network usually has multiple hidden units used to model the outcome. 
+The MLP classifier computes weights between the inputs and the hidden layers, 
+and weights between the hidden layers and the output. After computing each 
+hidden unit, the output is modeled by a nonlinear combination of the hidden 
+units. The nonlinear function allows the neural network to fit more 
+complicated functions than a linear model. Neural networks are sensitive to 
+the scaling of the features and can require extensive data preprocessing. 
+There are several ways to modify the complexity of a neural network: by 
+selecting the number of hidden layers, the number of units within each 
+layer, and the regularization parameter (L2) which shrinks the weights 
+towards zero. The feature weights provide an estimate of feature importance.
+Although neural networks can capture information in large amounts of data 
+with very complex models, some limitations are that they tend to overfit 
+data used to train the model, and can be difficult to interpret. Neural
+networks may work best with homogenous datasets where the predictor variables
+all have similar meanings \cite{muhuri13}. For datasets with many different
+kinds of features, tree-based methods may provide a better approach.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{Tree-Based Models}
+\subsubsection{Decision Tree Models}
 
 \emph{Decision trees} are widely used for classification and regression. 
 Tree models ``learn'' a hierarchy of if-else questions that are represented 
