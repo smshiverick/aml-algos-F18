@@ -14,20 +14,21 @@
 
 \begin{abstract}
 
-The misuse and abuse of prescription opioids (MUPO) has become a major health 
-crisis in the U.S. The rise of opioid overdose deaths in recent years is also 
-correlated with the increased availability of illicit and synthetic opioids
-\cite{nida18}. Predictive models can be used to identify demographic factors 
-related to MUPO and may help predict individuals at risk for opioid addiction.
-The present study compares several linear and non-linear classification models 
-of pain reliever misuse and abuse to identify the models that best fit the data. 
-The sample data consisted of N = 114,038 respondents from the National Survey 
-on Drug Use and Health (NSDUH) from 2015 and 2016. Classification models 
-vary in terms of complexity, accuracy, and interpretability. 
+Prescription opioid abuse and addiction is a chronic health condition that 
+has resulted in increased overdose deaths in recent years \cite{nida18}. 
+Predictive modeling can identify factors related to MUPO and may help predict 
+individuals at risk for opioid addiction. The present study compares several 
+linear and non-linear classification models of pain reliever misuse and abuse 
+and considers some of the advantages and limitations of different predictive 
+models. The sample data consisted of N = 114,038 respondents from the 
+National Survey on Drug Use and Health (NSDUH) for 2015 and 2016.
 
-Simple models provide interpretable solutions but may have lower accuracy 
-than more complex models which provide higher accuracy but are often more 
-difficult to interpret.   
+[Summarize findings]
+
+Classification models vary in terms of complexity, accuracy, and 
+interpretability. Although Simple models may have lower accuracy they provide 
+interpretable solutions than more complex models which can yield higher accuracy 
+but are often more difficult to interpret.   
 
 \footnote{ Address correspondence to \textit{smshiver@iu.edu}}
 \end{abstract}
@@ -83,17 +84,17 @@ a class label, set of categorical or binary outcomes (e.g., spam or ham emails,
 benign or malignant cells), then classification is used to predict which class 
 or category label that new instances will be assigned to. The present study 
 uses a supervised learning approach to classify instances of pain reliever 
-misuse and abuse using several different classification models. 
+misuse and abuse with several classification models. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 In the era of ``big data'', large amounts of health information are being 
 generated from electronic medical records (EMRs), clinical research data, to 
-population-level health data \cite{herland14}. Surveys provide data on a range 
-of issues that people may be reluctant to disclose such as drug use and mental 
-health problems, but it can be difficult to obtain reliable information 
-about drug use based on self-reports. This study considers data from the 
-National Survey on Drug Use and Health (NSDUH) which is a major source of 
+population-level health data \cite{herland14}. It can be difficult to obtain 
+reliable information about drug use based on self-reports, though surveys 
+provide data on a range of issues that people may be reluctant to disclose 
+such as drug use and mental health problems. This study considers data from 
+the National Survey on Drug Use and Health (NSDUH) which is a major source of 
 information for the use of illicit drugs and mental health issues among the 
 U.S. population aged 12 or older \cite{samhsa18}. The NSDUH is a comprehensive 
 public survey that includes more than 2600 variables on a diverse array of 
@@ -106,8 +107,7 @@ Data from the NSDUH has been used for identifying groups at high risk for
 substance use, and the co-occurrence of substance use and mental health 
 disorders. The target variable for the study was any misuse or abuse of 
 prescription pain relievers and the features of interest were selected 
-demographic variables,  medication usage, and use of illicit drugs. 
-
+demographic variables, medication usage, and use of illicit drugs. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -146,21 +146,21 @@ in a predictor variable ($X_i$...$X_j$).
 %  \label{f:Figure2}
 %\end{figure}
 
-An alternative approach to estimating the probabilities, linear discriminant 
-analysis (LDA), models the distribution of predictors separately in each of 
-the response classes and then uses the Bayes' theorem to flip these into 
-estimates for $Pr(Y=k | X=x)$ \cite{james13}. The term linear in the LDA 
-classifier refers to the the discriminant functions being linear functions of 
-X. For distributions assumed to be normal (i.e., multivariate Guassian), LDA 
-provides a model that is similar in form to logistic regression, but more 
-stable. LDA is also preferred for outcomes with more than two response classes. 
-Two important assumptions of LDA are: (1) a common covariance matrix for all 
-classes and (2) the class boundaries are linear functions of the predictors.   
-Quadratic Discriminant Analysis (QDA) is an approach that assumes each class 
-has its own covariance matrix and the decision boundaries are quadratically
-curvilinear in the predictor space \cite{kuhn13}. LDA is less flexible 
-as a classifier than QDA, but can perform better when there are relatively 
-few training observations or the majority of predictors in the data represent 
+\emph{Linear discriminant analysis} (LDA) is an alternative approach to 
+estimating the probabilities which models the distribution of predictors 
+separately in each of the response classes and then uses the Bayes' theorem 
+to flip these into estimates for $Pr(Y=k | X=x)$ \cite{james13}. The term 
+linear in LDA refers to the the discriminant functions being linear functions 
+of the predictors. For distributions assumed to be normal (i.e., multivariate 
+Guassian), LDA provides a model that is similar in form to logistic regression, 
+but more stable. LDA is also preferred for outcomes with more than two response 
+classes. Two important assumptions of LDA are: (1) a common covariance matrix 
+for all classes and (2) the class boundaries are linear functions of the 
+predictors. \emph{Quadratic Discriminant Analysis} (QDA) is an approach that 
+assumes each class has its own covariance matrix and the decision boundaries 
+are quadratically curvilinear in the predictor space \cite{kuhn13}. LDA is less 
+flexible as a classifier than QDA, but can perform better with relatively few 
+training observations or when the majority of predictors in the data represent 
 discrete categories. QDA is recommended over LDA in cases where you have a 
 very large training set or the decision boundary between two classes is 
 non-linear, 
@@ -193,38 +193,39 @@ the predictors.
   \label{f:Figure3}
 \end{figure}
 
-Support vector machines (SVM) are an extension of SVC that uses a kernel trick 
-to reduce computational load. The radial basis function (RBF) kernel (i.e., 
-Guassian kernel) is one of the most commonly used approaches. In training 
-the model, only a subset of data points is used to construct the decision 
-boundary, namely the support vectors that lie on the border which separates 
-the two classes. In making predictions for new observations, the algorithm 
-calculates the distance to each of the support vectors measured by the 
-Guassian kernel \cite{muller17}. Figure 1 shows an example of the non-linear 
+Support vector machines (SVM) are an extension of SVC that uses a kernel 
+trick to reduce computational load. The radial basis function (RBF) kernel 
+(i.e., Guassian kernel) is one of the most commonly used approaches. 
+In training the model, only a subset of data points is used to construct the 
+decision boundary, namely the support vectors that lie on the border which 
+separates the two classes. In making predictions for new observations, the 
+algorithm calculates the distance to each of the support vectors measured by 
+the Guassian kernel \cite{muller17}. Figure 1 shows an example of the non-linear 
 decision boundary obtained with SVM using the RBF kernel; the decision boundary 
-is a smooth curve and the support vectors are large points in bold outline. 
+is a smooth curve and the support vectors are the large points in bold outline. 
 With the default settings, the decision boundary of the RBF kernel is already 
-non-linear. The main parameters for SVM are C, which regulates the importance 
-of each data point, and gamma which controls the width of the Guassian kernel. 
+non-linear. The main parameters for SVM are `C', which regulates the importance 
+of each data point, and `gamma' which controls the width of the Guassian kernel. 
 A small value of C indicates a restricted model in which the influence of each 
 data point is limited and the algorithm adjusts to the majority of data points. 
-As the value of C increases, more importance is given to each data point and
-the model will try to correctly classify as many training observations as 
-possible, which results to more curve in the decision boundary, but also
-increases the risk of overfitting. Large values of gamma mean that only close 
-values are relevant for classification, resulting in a smooth decision boundary. 
-Small values of gamma mean that far points are similar. If both C and gamma are
-large, each point can have an arbitrary large influence in a small region, 
-which produces a choppy decision boundary, where each point becomes separated
-as its own class. If both C and gamma are small, the decision boundary becomes 
-close to linear.
+With larger values of C, more importance is given to each data point and the 
+model will try to correctly classify as many training observations as possible, 
+which results to more curve in the decision boundary, but also increases the 
+risk of overfitting to the training data. Large values of gamma mean that only 
+close values are relevant for classification, resulting in a smooth decision 
+boundary. Small values of gamma mean that far points are similar. If the values
+of both C and gamma are large, each point can have an arbitrary large influence 
+in a small region, which produces a choppy decision boundary, where each point 
+becomes separated as its own class. If both C and gamma are small, the decision 
+boundary becomes close to linear.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The Bayes' rule was mentioned above in the terms of LDA. In this section, 
 the \emph{Naive Bayes} model is considered for non-linear classification
-(formula 2). The question of interest is, based on a given set of predictors, 
-what is the probability than an outcome belongs to a particular class?
+(formula 2). The question of interest modeled by the naive Bayes
+classifier is: Based on a given set of predictors, what is the probability 
+than an outcome belongs to a particular class?
 
 \begin{equation}
   \ P(Y=cl|X) = \frac{P(Y)*P(X|Y=cl)}{P(X)}\
@@ -243,12 +244,12 @@ can be used to determine the probability distributions. The prior probability
 allows us to tilt the final probability toward a particular class. Class 
 probabilities are created and the predicted class is one associated with the 
 largest class probability. Despite the somewhat unrealistic assumption of 
-independence among predictors, the naive Bayes model is computationally fast, 
-even with large training sets, and performs competitively compared to 
-other models. The naive Bayes model encounters issues when dealing with 
-frequencies or probabilities equal to zero, especially for small sample sizes.   
-In addition, as the number of predictors increases relative to sample size,
-the posterior probabilities will become more extreme.
+independence among predictors, the naive Bayes model is computationally quick, 
+even with large training sets, and performs competitively compared to other 
+models. The naive Bayes model encounters issues when dealing with frequencies 
+or probabilities equal to zero, especially for small sample sizes. In addition, 
+as the number of predictors increases relative to sample size, the posterior 
+probabilities will become more extreme.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
