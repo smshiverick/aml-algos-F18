@@ -161,30 +161,29 @@ assumes each class has its own covariance matrix and the decision boundaries
 are quadratically curvilinear in the predictor space \cite{kuhn13}. LDA is less 
 flexible as a classifier than QDA, but can perform better with relatively few 
 training observations or when the majority of predictors in the data represent 
-discrete categories. QDA is recommended over LDA in cases where you have a 
-very large training set or the decision boundary between two classes is 
-non-linear, 
+discrete categories. QDA is recommended over LDA with a very large training 
+set or when the decision boundary between two classes is non-linear. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Non-linear Classifier Models}
 
 The performance of linear classifiers suffers when there is a non-linear 
-relationship between the predictors and outcome. With training observations 
-that can be separated by hyperplane the maximal marginal classifier provides 
-the maximum distance (i.e., margin) from each observation to the hyperplane 
-\cite{james13}. The test observations are classified based on which side of 
-the hyperplane they fall, but in many cases no separating hyperplane exists. 
-The \emph{support vector classifier} (SVC) extends the maximal margin 
-classifier by using a soft margin that allows a small number of observations 
-to be misclassified on the wrong side of hyperplane \cite{kuhn13, cortes95}. 
-The observations that fall directly on the margin or on the wrong side of the 
-hyperplane are called `support vectors'. The parameter `C' indicates the number 
-of observations that can violate the margin; if $C>0$, not more than C 
-observations can be on the wrong side of the hyperplane. SVC addresses the 
-problem of non-linear boundaries between classes by enlarging the feature 
-space with higher order (e.g., quadratic, cubic, polynomial) functions of 
-the predictors. 
+relationship between the predictors and target outcome. With training
+observations that can be separated by hyperplane, the maximal marginal 
+classifier provides the maximum distance (i.e., margin) from each observation
+to the hyperplane \cite{james13}. The test observations are classified based 
+on which side of the hyperplane they fall, but in many cases no separating 
+hyperplane exists. The \emph{support vector classifier} (SVC) extends the 
+maximal margin classifier by using a soft margin that allows a small number 
+of observations to be misclassified on the wrong side of hyperplane 
+\cite{kuhn13, cortes95}. The observations that fall directly on the margin or 
+on the wrong side of the hyperplane are called `support vectors'. The parameter 
+`C' indicates the number of observations that can violate the margin; if $C>0$, 
+no more than C observations can be on the wrong side of the hyperplane. 
+SVC addresses the problem of non-linear boundaries between classes by 
+enlarging the feature space with higher order (e.g., quadratic, cubic, 
+polynomial) functions of the predictors. 
 
 \begin{figure}[!ht]
   \centering\includegraphics[width=\columnwidth]{images/Figure3.pdf}
@@ -193,11 +192,11 @@ the predictors.
   \label{f:Figure3}
 \end{figure}
 
-Support vector machines (SVM) are an extension of SVC that uses a kernel 
-trick to reduce computational load. The radial basis function (RBF) kernel 
-(i.e., Guassian kernel) is one of the most commonly used approaches. 
+\emph{Support vector machines} (SVM) are an extension of SVC that use a 
+kernel trick to reduce computational load. The radial basis function (RBF) 
+kernel (i.e., Guassian kernel) is one of the most commonly used approaches. 
 In training the model, only a subset of data points is used to construct the 
-decision boundary, namely the support vectors that lie on the border which 
+decision boundary, namely the support vectors that lie on the border that 
 separates the two classes. In making predictions for new observations, the 
 algorithm calculates the distance to each of the support vectors measured by 
 the Guassian kernel \cite{muller17}. Figure 1 shows an example of the non-linear 
@@ -221,25 +220,25 @@ boundary becomes close to linear.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The Bayes' rule was mentioned above in the terms of LDA. In this section, 
-the \emph{Naive Bayes} model is considered for non-linear classification
-(formula 2). The question of interest modeled by the naive Bayes
-classifier is: Based on a given set of predictors, what is the probability 
-than an outcome belongs to a particular class?
+The Bayes' rule was mentioned above in the terms of LDA; in this section, 
+the \emph{naive Bayes classifier} is considered as a non-linear model.
+The Bayes theorem is represented by a set of relevant probabilities to 
+represent the following question: Based on a given set of predictors, what
+is the probability than an outcome belongs to a particular class?
 
 \begin{equation}
   \ P(Y=cl|X) = \frac{P(Y)*P(X|Y=cl)}{P(X)}\
 \end{equation}
 
 The prior probability, P(Y), is the expected probability of a given class 
-based on what is known (e.g., rate of disease transmission). P(X) is the 
-probability of the predictor variables. The conditional probability, P(X=cl|Y), 
-is the probability of observing the predictor variables for data associated 
-with a given class. The naive Bayes model is based on the assumption that 
-all the predictor variables are independent, although this is not always 
-realistic. The conditional probabilities are calculated based on the 
-probability densities for each individual predictor \cite{kuhn13}. For 
-categorical predictors, the observed frequencies in the training set data 
+based on what is known (e.g., rate of disease in the population). P(X) 
+is the probability of the predictor variables. The conditional probability,
+P(X=cl|Y), is the probability of observing the predictor variables for data 
+associated with a given class. The naive Bayes model is based on the 
+assumption that all the predictor variables are independent, although this 
+is not always realistic. The conditional probabilities are calculated based 
+on the probability densities for each individual predictor \cite{kuhn13}. 
+For categorical predictors, the observed frequencies in the training set data 
 can be used to determine the probability distributions. The prior probability 
 allows us to tilt the final probability toward a particular class. Class 
 probabilities are created and the predicted class is one associated with the 
@@ -253,18 +252,24 @@ probabilities will become more extreme.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\emph{Neural Networks}
-
-
-
-
-
-
-
-
-
-
-
+\emph{Neural Networks} are powerful models for classification and 
+regression based on theories of connectivity between neurons in the brain
+\cite{kuhn13}. The present study considers a simple method called multilayer 
+perceptrons (MLP) as a feed-forward neural network \cite{muller17, raschka17}. 
+The outcome is modeled by an intermediary set of set of unobserved variables
+called hidden units, which are linear combinations of the original predictors. 
+Each hidden unit is a combination of some or all of the predictors which 
+are then transformed by a nonlinear function (e.g., sigmoidal). The neural 
+network model usually has multiple hidden units that are used to model the 
+outcome. The MLP classifier computes weights between the input and the 
+hidden layer, and weights between the hidden layer and the output. After 
+computing each hidden unit, the output is modeled by a nonlinear combination 
+of the hidden units. The nonlinear function allows the neural network to fit 
+more complicated functions than a linear model. There are several ways to modify 
+the complexity of a neural network: selecting the number of hidden layers, 
+the number of units within each layer, and selecting the regularization 
+parameter (L2) which shrinks the weights towards zero. A limitation of neural 
+networks is they have tend to overfit data used to train the model. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -569,6 +574,7 @@ settings for each model are reported in Table 4.
     K-Nearest Neighbors & Number of Neighbors = 4 \\
     Logistic Regression & Number of Features = 15 \\
     Linear Discriminant Analysis (LDA) & Number of Features = 15 \\
+    Quadratic Discriminant Analysis (LDA) & Number of Features = 15 \\
     Support Vector Machines (SVM) & Kernel = linear \\
     Naive Bayes & Cost C = 0.01 \\
     Neural Network & Hidden Layers = 2 \\
