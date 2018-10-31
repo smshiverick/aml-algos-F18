@@ -233,7 +233,7 @@ is the probability than an outcome belongs to a particular class?
 The prior probability, P(Y), is the expected probability of a given class 
 based on what is known (e.g., rate of disease in the population). P(X) 
 is the probability of the predictor variables. The conditional probability,
-P(X=cl|Y), is the probability of observing the predictor variables for data 
+$P(X=cl|Y)$, is the probability of observing the predictor variables for data 
 associated with a given class. The naive Bayes model is based on the 
 assumption that all the predictor variables are independent, although this 
 is not always realistic. The conditional probabilities are calculated based 
@@ -259,7 +259,7 @@ The present study considers a simple method called multilayer perceptrons
 The outcome is modeled by an intermediary set of unobserved variables called 
 hidden units, which are linear combinations of the original predictors. 
 Each hidden unit is a combination of some or all of the predictors which 
-are then transformed by a nonlinear function (e.g., sigmoidal). The neural 
+are then transformed by a nonlinear function (e.g., sigmoidal). A neural 
 network usually has multiple hidden units used to model the outcome. 
 The MLP classifier computes weights between the inputs and the hidden layers, 
 and weights between the hidden layers and the output. After computing each 
@@ -282,33 +282,29 @@ kinds of features, tree-based methods may provide a better approach.
 
 \subsubsection{Tree-based Models} Decision trees are widely used for 
 classification and regression. Tree models are based on a hierarchy of 
-if-else questions represented in the form of a decision tree. A decision 
-tree classifier is used for binary or categorical outcomes and decision 
-tree regression is used for continuous targets. Trees are constructed 
-starting from a root node and proceeding through a series of binary decisions 
-or choices. Each node in the tree represents either a question or a terminal 
-node (i.e.,leaf) that contains the outcome. Applied to a binary classification 
-task, the decision tree algorithm learns the sequence of if-else questions 
-that arrives at the outcome most quickly. For continuous features, the 
-decisions are expressed in the form of, ``Is feature x larger than value y?'' 
-In constructing the tree the algorithm searches through all possible tests 
-and finds a solution that is most informative about the target outcome 
-\cite{muller17}. The recursive branching process of tree based models yields 
-a binary tree of decisions, with each node representing a test that considers 
-a single feature. This process of recursive partitioning is repeated until 
-each leaf in the decision tree contains only a single target. Prediction for 
-a new data point proceeds by checking which region of the partition the point 
-falls in, and predicting the majority in that feature space. The main advantage 
-of tree based models is that they require little adjustment and are easy to 
-interpret. A drawback is that they can lead to complex models which are highly 
-overfit to the training observations. A common strategy to prevent overfitting 
-is \emph{pre-pruning}, which stops tree construction early by limiting the 
-maximum depth of the tree, or the maximum number of leaves. One can also set 
-the minimum number of points in a node required for splitting. Another approach 
-is to build the tree and then remove or collapse nodes with little information, 
-which is called \emph{post-pruning}. Decision trees work well with features 
-measured on very different scales, or with data that has a mix of binary 
-and continuous features. 
+if-else questions starting from a root node and proceeding through a series 
+of binary decisions or choices. Each node in the tree represents either a 
+question or a terminal node (i.e.,leaf) that contains the outcome. Applied to 
+a binary classification task, the decision tree algorithm learns the sequence
+of if-else questions that arrives at the outcome most quickly. For continuous 
+features, questions are expressed in the form: ``Is feature x larger than 
+value y?'' In constructing the tree the algorithm searches through all 
+possible tests and finds a solution that is most informative about the target 
+outcome \cite{muller17}. The recursive branching process of tree based models 
+yields a binary tree of decisions, with each node representing a test that 
+considers a single feature. This process of recursive partitioning is repeated 
+until each leaf in the decision tree contains only a single target. Prediction 
+for a new data point proceeds by checking which region of the partition the 
+point falls in, and predicting the majority in that feature space. The main 
+advantage of tree models is that they require little adjustment and are easy 
+to interpret. A drawback is that they can lead to complex models which are 
+highly overfit to the training observations. A common strategy to prevent 
+overfitting is \emph{pre-pruning}, which stops tree construction early by 
+limiting the maximum depth of the tree, or the maximum number of leaves. 
+One can also set the minimum number of points in a node required for splitting. Another approach is to build the tree and then remove or collapse nodes with 
+little information (i.e., post-pruning). Decision trees work well with 
+features measured on different scales, or with data that has a mix of 
+binary and continuous features. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -375,7 +371,6 @@ as positive: a person who has never misused or abused pain relievers may be
 classified as having done so (i.e., 'false positive'). Conversely, a positive 
 instance may be classified as negative: a person who has misused and abused 
 pain relievers may be labeled as never having done so (i.e., 'false negative').
-
 
 Classification errors and correct decisions are represented in a 
 \emph{confusion matrix} (Table 1) that indicates the correspondence between 
