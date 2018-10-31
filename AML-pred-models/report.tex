@@ -280,61 +280,59 @@ kinds of features, tree-based methods may provide a better approach.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{Decision Tree Models}
-
-\emph{Decision trees} are widely used for classification and regression. 
-Tree models ``learn'' a hierarchy of if-else questions that are represented 
-in the form of a decision tree. Building decision trees proceeds from a root 
-node as the starting point and continues through a series of decisions or 
-choices. Each node in the tree either represents either a question or a 
-terminal node (i.e.,leaf) that contains the outcome. Applied to a binary 
-classification task, the decision tree algorithm learns the sequence of 
-if-else questions that arrives at the outcome most quickly. For continuous 
-features, the decisions are expressed in the form of, ``Is feature x larger 
-than value y?'' In constructing the tree the algorithm searches through all
-possible decisions or tests and finds a solution that is most informative 
-about the target outcome \cite{muller17}. A decision tree classifier is used 
-for binary or categorical targets, and decision tree regression is used for 
-continuous target outcomes. The recursive branching process of tree based 
-models yields a binary tree of decisions, with each node representing a test 
-that considers a single feature. This process of recursive partitioning is 
-repeated until each leaf in the decision tree contains only a single target. 
-Prediction for a new data point proceeds by checking which region of the 
-partition the point falls in, and predicting the majority in that feature space. 
-The main advantage of tree based models is that they require little adjustment 
-and are easy to interpret. A drawback is that they can lead to complex models 
-that are highly overfit to the training data. A common strategy to prevent 
-overfitting is \emph{pre-pruning}, which stops tree construction early by 
-limiting the maximum depth of the tree, or the maximum number of leaves. 
-One can also set the minimum number of points in a node required for splitting. 
-Another approach is to build the tree and then remove or collapse nodes with 
-little information, which is called \emph{post-pruning}. Decision trees work 
-well with features measured on very different scales, or with data that has 
-a mix of binary and continuous features. 
+\subsubsection{Tree-based Models} Decision trees are widely used for 
+classification and regression. Tree models are based on a hierarchy of 
+if-else questions represented in the form of a decision tree. A decision 
+tree classifier is used for binary or categorical outcomes and decision 
+tree regression is used for continuous targets. Trees are constructed 
+starting from a root node and proceeding through a series of binary decisions 
+or choices. Each node in the tree represents either a question or a terminal 
+node (i.e.,leaf) that contains the outcome. Applied to a binary classification 
+task, the decision tree algorithm learns the sequence of if-else questions 
+that arrives at the outcome most quickly. For continuous features, the 
+decisions are expressed in the form of, ``Is feature x larger than value y?'' 
+In constructing the tree the algorithm searches through all possible tests 
+and finds a solution that is most informative about the target outcome 
+\cite{muller17}. The recursive branching process of tree based models yields 
+a binary tree of decisions, with each node representing a test that considers 
+a single feature. This process of recursive partitioning is repeated until 
+each leaf in the decision tree contains only a single target. Prediction for 
+a new data point proceeds by checking which region of the partition the point 
+falls in, and predicting the majority in that feature space. The main advantage 
+of tree based models is that they require little adjustment and are easy to 
+interpret. A drawback is that they can lead to complex models which are highly 
+overfit to the training observations. A common strategy to prevent overfitting 
+is \emph{pre-pruning}, which stops tree construction early by limiting the 
+maximum depth of the tree, or the maximum number of leaves. One can also set 
+the minimum number of points in a node required for splitting. Another approach 
+is to build the tree and then remove or collapse nodes with little information, 
+which is called \emph{post-pruning}. Decision trees work well with features 
+measured on very different scales, or with data that has a mix of binary 
+and continuous features. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \emph{Random Forests} is an an ensemble approach that combines many simple
-decision trees that are each slightly different from the others, which each overfits the data in different ways. 
-
-The idea behind random forests is that overfitting can be reduced by building 
-many trees and averaging their results. This approach retains the predictive 
-power of trees while reducing overfitting. Randomness is introduced into the 
-tree building process in two ways: (a) selecting a bootstrap sample of the data, 
-and (b) selecting features in each node branch \cite{muller17,raschka17}. In 
-building the random forest, we first decide how many trees to build (e.g., 100), 
-and the algorithm makes different random choices so that each tree is distinct. 
-The bootstrapping method repeatedly draws random samples of size n from the 
-data set (with replacement). The decision trees are build on these random 
-samples that are the same size as the original data, with some points missing 
-and some data points repeated. The algorithm also selects a random subset of `p'
-features, repeated separately each node in the tree, so that each decision at 
-the node branch is made using a different subset of features. These two 
-processes help ensure that all of the decision trees in the random forest 
-are different. Random forests is one of the most widely used supervised learning
-algorithms that works well without very much parameter tuning or scaling of data. 
-A limitation of this approach is that Random forests do not perform well with 
-very high-dimensional, or with data that is sparse such as text data.
+decision trees that are each slightly different from the others, which each 
+overfits the data in different ways. The idea behind random forests is that 
+overfitting can be reduced by building many trees and averaging their results. 
+This approach retains the predictive power of trees while reducing overfitting. 
+Randomness is introduced into the tree building process in two ways: (a) 
+selecting a bootstrap sample of the data, and (b) selecting features in each 
+node branch \cite{muller17,raschka17}. In building the random forest, we first 
+decide how many trees to build (e.g., 100), and the algorithm makes different 
+random choices so that each tree is distinct. The bootstrapping method 
+repeatedly draws random samples of size n from the data set (with replacement). 
+The decision trees are build on these random samples that are the same size as 
+the original data, with some points missing and some data points repeated. The 
+algorithm also selects a random subset of `p' features, repeated separately 
+each node in the tree, so that each decision at the node branch is made using a 
+different subset of features. These two processes help ensure that all of the 
+decision trees in the random forest are different. Random forests is one of the 
+most widely used supervised learning algorithms that works well without very 
+much parameter tuning or scaling of data. A limitation is that Random forests 
+do not perform well with high-dimensional data, or data that is sparse 
+such as text data.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
