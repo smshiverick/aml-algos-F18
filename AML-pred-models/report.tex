@@ -19,16 +19,17 @@ has resulted in increased overdose deaths in recent years \cite{nida18}.
 Predictive modeling can identify factors related to MUPO and may help predict 
 individuals at risk for opioid addiction. The present study compares several 
 linear and non-linear classification models of pain reliever misuse and abuse 
-and considers some of the advantages and limitations of different predictive 
-models. The sample data consisted of N = 114,038 respondents from the 
-National Survey on Drug Use and Health (NSDUH) for 2015 and 2016.
+and considers advantages and limitations of the different models. The sample 
+data consisted of N = 114,038 respondents from the National Survey on Drug Use 
+and Health (NSDUH) for 2015 and 2016. Classifier models were fit to a training 
+set, class labels were predicted for holdout observations in the test set, and 
+model performance was evaluated in a confusion matrix. 
 
 [Summarize findings]
 
-Classification models vary in terms of complexity, accuracy, and 
-interpretability. Although Simple models may have lower accuracy they provide 
-interpretable solutions than more complex models which can yield higher accuracy 
-but are often more difficult to interpret.   
+Simple models had lower accuracy but provide more interpretable solutions 
+than complex models which can yield higher accuracy but are often harder 
+to interpret.   
 
 \footnote{ Address correspondence to \textit{smshiver@iu.edu}}
 \end{abstract}
@@ -69,22 +70,22 @@ set of procedures and automated processes for extracting knowledge from data
 \cite{james13, kuhn13, muller17, raschka17}. The two main branches of 
 predictive modeling are supervised learning and unsupervised learning. 
 Supervised learning problems involve prediction about a specific target 
-variable or outcome of interest. If a given dataset has no target outcome, 
-unsupervised learning methods can be used to discover underlying structure 
-in unlabeled data (e.g., clustering). Supervised learning is used to 
-predict a certain outcome from a given input, when examples of input/output 
-pairs are available in the data (e.g., logistic regression) \cite{muller17}. 
-A statistical learning model is constructed on a set of observation used to
-train the model set and can then be used to predict new observations. Two major 
-approaches to supervised learning problems are regression and classification. 
-When the target variable to be predicted is continuous, or there is continuity 
-between the outcome (e.g., home values, income), a regression model is used 
-to test the set of features that predict the target variable. If the target is 
-a class label, set of categorical or binary outcomes (e.g., spam or ham emails, 
-benign or malignant cells), then classification is used to predict which class 
-or category label that new instances will be assigned to. The present study 
-uses a supervised learning approach to classify instances of pain reliever 
-misuse and abuse with several classification models. 
+variable or outcome. If a given dataset has no target outcome, unsupervised 
+learning methods can be used to discover underlying structure in unlabeled data 
+(e.g., clustering). Supervised learning is used to predict a certain outcome 
+from a given input, when examples of input/output pairs are available in the 
+data (e.g., logistic regression) \cite{muller17}. A statistical learning model 
+is constructed on a set of observation used to train the model set and can then 
+be used to predict new observations. Two major approaches to supervised learning 
+problems are regression and classification. When the target variable to be 
+predicted is continuous, or there is continuity between the outcome 
+(e.g., home values), a regression model is used to test the set of features 
+that predict the target variable. If the target is a class label, set of 
+categorical or binary outcomes (e.g., spam or ham emails, benign or malignant 
+cells), then classification is used to predict which class or category label 
+that new instances will be assigned to. The present study uses a supervised 
+learning approach to classify instances of pain reliever misuse and abuse 
+using several classification models. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -220,9 +221,9 @@ boundary becomes close to linear.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The Bayes' rule was mentioned above in the terms of LDA; in this section, 
-the \emph{naive Bayes classifier} is considered as a non-linear model.
-The Bayes theorem is represented by a set of relevant probabilities to 
+The Bayes' rule was mentioned above in relatin to LDA, but this section 
+considers the \emph{naive Bayes classifier} as a non-linear model.
+The Bayes theorem (equation 2) is represented by a set of probabilities to 
 represent the following question: Based on a given set of predictors, what
 is the probability than an outcome belongs to a particular class?
 
@@ -254,7 +255,7 @@ probabilities will become more extreme.
 
 \emph{Neural Networks} are powerful models for classification and 
 regression based on theories about connectivity in the brain \cite{kuhn13}. 
-The present study considers a simple method called multilayer perceptrons 
+The pstudy considers a simple method called multilayer perceptrons 
 (MLP) as a feed-forward neural network \cite{muller17, raschka17}. 
 The outcome is modeled by an intermediary set of unobserved variables called 
 hidden units, which are linear combinations of the original predictors. 
@@ -280,76 +281,63 @@ kinds of features, tree-based methods may provide a better approach.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{Tree-based Models} Decision trees are widely used for 
-classification and regression. Tree models are based on a hierarchy of 
-if-else questions starting from a root node and proceeding through a series 
-of binary decisions or choices. Each node in the tree represents either a 
-question or a terminal node (i.e.,leaf) that contains the outcome. Applied to 
+\subsubsection{Tree-based Models} Decision trees are based on a hierarchy of 
+\emph{`if-else'} questions starting from a root node and proceeding through a 
+series of binary decisions or choices. Each node in the tree represents either 
+a question or a terminal node (i.e.,leaf) that contains the outcome. Applied to 
 a binary classification task, the decision tree algorithm learns the sequence
 of if-else questions that arrives at the outcome most quickly. For continuous 
 features, questions are expressed in the form: ``Is feature x larger than 
-value y?'' In constructing the tree the algorithm searches through all 
+value y?'' In constructing the tree, the algorithm searches through all 
 possible tests and finds a solution that is most informative about the target 
-outcome \cite{muller17}. The recursive branching process of tree based models 
-yields a binary tree of decisions, with each node representing a test that 
-considers a single feature. This process of recursive partitioning is repeated 
-until each leaf in the decision tree contains only a single target. Prediction 
-for a new data point proceeds by checking which region of the partition the 
-point falls in, and predicting the majority in that feature space. The main 
-advantage of tree models is that they require little adjustment and are easy 
-to interpret. A drawback is that they can lead to complex models which are 
-highly overfit to the training observations. A common strategy to prevent 
-overfitting is \emph{pre-pruning}, which stops tree construction early by 
-limiting the maximum depth of the tree, or the maximum number of leaves. 
-One can also set the minimum number of points in a node required for splitting. Another approach is to build the tree and then remove or collapse nodes with 
-little information (i.e., post-pruning). Decision trees work well with 
-features measured on different scales, or with data that has a mix of 
+outcome \cite{muller17}. The recursive branching process yields a binary tree 
+of decisions, with each node representing a test for a single feature. This 
+process of partitioning is repeated until each leaf in the decision tree 
+contains only a single target. Prediction for a new data point proceeds by 
+checking which region of the partition the point falls in, and predicting the 
+majority in that feature space. The main advantage of tree models is that they 
+require little adjustment and are easy to interpret. A drawback is that they 
+can lead to complex models which are highly overfit to the training data. 
+Prepruning`can help reduce overfitting by limiting the maximum depth of the 
+tree, or the maximum number of leaves. Another approach is to set the minimum 
+number of points in a node required for splitting. Decision trees work well 
+with features measured on different scales, or with data that has a mix of 
 binary and continuous features. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\emph{Random Forests} is an an ensemble approach that combines many simple
-decision trees that are each slightly different from the others, which each 
-overfits the data in different ways. The idea behind random forests is that 
-overfitting can be reduced by building many trees and averaging their results. 
-This approach retains the predictive power of trees while reducing overfitting. 
-Randomness is introduced into the tree building process in two ways: (a) 
-selecting a bootstrap sample of the data, and (b) selecting features in each 
-node branch \cite{muller17,raschka17}. In building the random forest, we first 
-decide how many trees to build (e.g., 100), and the algorithm makes different 
-random choices so that each tree is distinct. The bootstrapping method 
-repeatedly draws random samples of size n from the data set (with replacement). 
-The decision trees are build on these random samples that are the same size as 
-the original data, with some points missing and some data points repeated. The 
-algorithm also selects a random subset of `p' features, repeated separately 
-each node in the tree, so that each decision at the node branch is made using a 
-different subset of features. These two processes help ensure that all of the 
-decision trees in the random forest are different. Random forests is one of the 
-most widely used supervised learning algorithms that works well without very 
-much parameter tuning or scaling of data. A limitation is that Random forests 
-do not perform well with high-dimensional data, or data that is sparse 
-such as text data.
+\emph{Random Forests} is an ensemble approach that combines many simple trees 
+that each overfit the data in different ways. By building many trees and 
+averaging their results, random forests helps to reduce overfitting. In 
+constructing the forests, the user selects the number of trees to build 
+(e.g., 1000). Randomness is introduced using a bootstrapping method that 
+repeatedly draws random samples of size n from the data set (with replacement).  
+The decision trees are build on these random samples of the same size, with 
+some points missing and some data points repeated \cite{muller17,raschka17}.
+The algorithm makes a random selection of p- features, and uses a different 
+set of features at each node branch. These processes ensure that all of the 
+decision trees in the random forest are different. Random forests is one of 
+the most widely used supervised learning algorithms that works well without 
+very much parameter tuning or scaling of data. A limitation is that Random 
+forests do not perform well with high-dimensional data, or data that is 
+sparse such as text data.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\emph{Gradient Boosting Classifier} is another ensemble method that combines 
-multiple decision trees for regression or classification by building trees 
-in a serial fashion, where each tree tries to correct for mistakes of the 
-previous one \cite{muller17}. Gradient boosted regression trees use strong 
-pre-pruning, with shallow trees of a depth of one to five. Each tree only 
-provides a good estimate of part of the data; combining many shallow trees 
-(i.e., ``weak learners'') iteratively improves performance. In addition to 
-pre-pruning and the number of trees, an important parameter for gradient 
-boosting is the \emph{learning rate} which determines how strongly each
-tree tries to correct for mistakes of previous trees. A high learning rate
-produces stronger corrections, allowing for more complex models. Adding
-more trees to the ensemble also increases model complexity. Gradient boosting
-and random forests perform well on similar tasks and data; it is common to
-first try random forests and then include gradient boosting to attain 
-improvements in accuracy of the learning model. The goal of the current study 
-is to compare predictive models of prescription pain reliever misuse and 
-abuse and identify features important for predicting the misuse and abuse of
-prescription opioid. 
+\emph{Gradient Boosted trees} is another ensemble method that combines 
+multiple decision trees in a serial fashion, where each tree tries to correct 
+for mistakes of the previous one \cite{muller17}. Gradient boosted regression 
+trees use strong pre-pruning, with shallow trees of a depth of one to five. 
+Each tree only provides a good estimate of part of the data; combining many 
+shallow trees (i.e., ``weak learners'') iteratively improves performance. 
+In addition to pre-pruning and the number of trees, an important parameter 
+for gradient boosting is the \emph{learning rate} which determines how strongly 
+each tree tries to correct for mistakes of previous trees. A high learning rate
+produces stronger corrections, allowing for more complex models. Adding more 
+trees to the ensemble also increases model complexity. Gradient boosting
+and random forests perform well on similar tasks and data. A common 
+approach is to first try random forests and then include gradient boosting 
+to improve model accuracy. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -371,6 +359,24 @@ as positive: a person who has never misused or abused pain relievers may be
 classified as having done so (i.e., 'false positive'). Conversely, a positive 
 instance may be classified as negative: a person who has misused and abused 
 pain relievers may be labeled as never having done so (i.e., 'false negative').
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{table}
+  \caption{Confusion Matrix for Evaluating Classification Model Performance}
+  \label{tab:freq}
+  \begin{tabular}{llll}
+    \toprule
+     &  &  Actual Outcome & \\
+    \midrule
+     Predicted & Outcome & No Misuse & PRL Misuse \\
+    \midrule
+     & No Misuse & \textbf{True Negative} & False Positive \\
+    \midrule
+     & PRL Misuse & False Negative & \textbf{True Positive} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
 
 Classification errors and correct decisions are represented in a 
 \emph{confusion matrix} (Table 1) that indicates the correspondence between 
@@ -397,23 +403,12 @@ precision into account \cite{muller17}.
   \ f_1 score = 2*\frac{Precision*Recall}{Precision+Recall}\
 \end{equation}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{table}
-  \caption{Confusion Matrix for Evaluating Classification Model Performance}
-  \label{tab:freq}
-  \begin{tabular}{llll}
-    \toprule
-     &  &  Actual Outcome & \\
-    \midrule
-     Predicted & Outcome & No Misuse & PRL Misuse \\
-    \midrule
-     & No Misuse & \textbf{True Negative} & False Positive \\
-    \midrule
-     & PRL Misuse & False Negative & \textbf{True Positive} \\
-    \bottomrule
-  \end{tabular}
-\end{table}
+ \begin{figure}[!ht]
+  \centering\includegraphics[width=\columnwidth]{images/Figure1.pdf}
+  \caption{K-Nearest Neighbors Classifier Accuracy for Training Set and 
+  Testing Set as a function of Number of Neighbors}
+  \label{f:Figure1}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -444,15 +439,6 @@ while striking a balance between the problems of overfitting and underfitting.
 In this case, performance on the test set increased slightly between 2 and 4 
 neighbors, but does not improve much beyond 5 neighbors. Therefore, a KNN
 model with k=4 neighbors will provide a reasonable solution for the data. 
-
- \begin{figure}[!ht]
-  \centering\includegraphics[width=\columnwidth]{images/Figure1.pdf}
-  \caption{K-Nearest Neighbors Classifier Accuracy for Training Set and 
-  Testing Set as a function of Number of Neighbors}
-  \label{f:Figure1}
-\end{figure}
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -678,7 +664,7 @@ Precision, and the $f_1-score$.
      & No Misuse & 25345 & 3133 & 89\% & 0.999 & 0.890 & 0.941 \\
      & PRL Misuse & 1 & 30 &  &  &  & \\
     \midrule
-    Neural Net  (MLP) & & No Misuse & PRL Misuse &  &  &  & \\
+    Neural Network (MLP) & & No Misuse & PRL Misuse &  &  &  & \\
      & No Misuse & 25088 & 346 & 90.6\% & 0.910 & 0.890 & 0.880 \\
      & PRL Misuse & 2366 & 710 &  &  &  & \\
     \midrule
