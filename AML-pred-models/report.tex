@@ -378,7 +378,7 @@ pain relievers may be labeled as never having done so (i.e., 'false negative').
   \end{tabular}
 \end{table}
 
-Classification errors and correct decisions are represented in a 
+Classification errors and correct decisions can be represented in a 
 \emph{confusion matrix} (Table 1) that indicates the correspondence between 
 predicted and actual outcomes. The confusion matrix is a two-by-two array in 
 which the columns correspond to the actual observed classes and the rows 
@@ -391,7 +391,7 @@ measures including recall, precision, and the $f_1$-score \cite{wiki18}.
 captured by the positive predictions ( \(\frac{TP}{TP+FN}\) ), and is used 
 when we want to identify all positive samples while avoiding false negatives. 
 \emph{Precision} or the ``positive predictive value'', measures how many of 
-the samples predicted as positive are actually positive 
+the samples predicted as positive are actually positive  
 ( \(\frac{TP}{TP+FP}\) ), and is used as a metric when the goal is to limit 
 the number of false positives. The \emph{$f_1$-score} or `f-measure' provides 
 the harmonic mean of precision and recall. The $f_1$-score can be a better 
@@ -507,26 +507,26 @@ and excluded from the data set (n=5).
 
 \subsubsection{Aggregated Variables}
 
-Related variables were combined to create aggregated features. For example, 
-A single variable `HEALTH` was created by combining scores for overall health 
-(reverse scored), previous diagnosis of STDs, hepatitis, HIV, cancer, and 
-any previous hospitalization; higher scores indicated greater history of 
-health problems. The variable for mental health (MENTHLTH) aggregated responses 
-for adult depression, emotional distress, suicidal thoughts or plans. Any 
-prescription opioid pain medication use in the past year was assessed by 
-combining binary responses for ten of the most commonly used prescription 
-pain medications (e.g., Hydrocodone, Oxycodone, Tramadol, Morphine, Fentanyl, 
-Oxymorphone, Demerol, Hydromorphone). The majority of questions related to 
-substance use had dichotomous responses that were summed to create single
-measures for: Tranquilizers, Sedatives, Heroin, Cocaine, and Amphetamines. 
-Because hallucinogens varied greatly in strength and type (e.g., marijuana, 
-psilocybin, MDMA, LSD), they were not considered in the analysis. The 
-variables for drug treatment and mental health treatment combined responses 
-for any inpatient care, outpatient care, treatment at a clinic, emergency room 
-visits, or hospital stays. A measure of any previous pain reliever misuse or 
-abuse combined responses for the misuse, abuse, or dependency on prescription 
-pain relievers in the past year, in the past month. The target variable was a 
-dichotomous measure of any pain reliever misuse or abuse at any point. The 
+Related variables were aggregated to create features. For example, a single 
+variable `HEALTH` was created by combining scores for overall health (reverse 
+scored), previous diagnosis of STDs, hepatitis, HIV, cancer, or any 
+hospitalization; higher scores indicated higher level of health problems. 
+A variable for mental health (MENTHLTH) aggregated responses for adult 
+depression, emotional distress, suicidal thoughts or plans. Any prescription 
+opioid pain medication use in the past year was assessed by combining binary 
+responses for ten of the most commonly used prescription pain medications 
+(e.g., Hydrocodone, Oxycodone, Tramadol, Morphine, Fentanyl, Oxymorphone, 
+Demerol, Hydromorphone). The majority of questions related to substance use 
+had dichotomous responses that were summed to create single measures for: 
+Tranquilizers, Sedatives, Heroin, Cocaine, and Amphetamines. Because 
+hallucinogens varied greatly in strength and type (e.g., marijuana, 
+psilocybin, MDMA, LSD), they were not included in the analysis. Variables 
+for drug treatment and mental health treatment combined responses for any 
+inpatient care, outpatient care, treatment at a clinic, emergency room visits, 
+or hospital stays. A measure of any previous pain reliever misuse or abuse 
+combined responses for the misuse, abuse, or dependency on prescription pain 
+relievers in the past year, in the past month. The target variable was a 
+dichotomous measure of any previous pain reliever misuse or abuse. The 
 subset data frame consisted of 20 features and 114038 observations and was 
 exported to CSV file. Four variables were excluded from analysis (PRLANY, 
 PRLMISAB, HEROINEVR, HALUCNG). Table 2 shows the complete list of 
@@ -537,15 +537,18 @@ variables used for predictive modeling.
 \subsubsection{Classifier Models}
 
 The dataset was divided into the training set and test set using a 75-25 
-percent split. Modeling was conducted using the same general procedure: 
-(1) Each model was fit to the training set, (2) new values were predicted 
-on the holdout scores in the testing set, and (3) model performance was 
-evaluated using a confusion matrix.  The logistic regression classifier, 
-LDA, QDA, decision trees classifier, random forests classifier, boosted 
-trees classifier were built using the caret package. The KNN classifier, 
-support vector classifier (SVC), Naive Bayes classifier, and Neural Net 
-(multilayer perceptron) were built using scikit-learn. The main parameter 
-settings for each model are reported in Table 4. 
+percent split ($n_train$=85538, $n_test$=28510). The same general procedure
+was used in constructing each classification model: (i) Each model was fit to 
+the training set, (ii) New values were predicted on the holdout scores in the 
+testing set, and (iii) Model performance was evaluated in a confusion matrix, 
+and the performance metrics|accuracy, sensitivity (i.e., recall), precision|
+were obtained from the confusion matrix; the $f_1-score$ was derived from the 
+values for recall and precision (equation 1). The logistic regression classifier, 
+LDA, QDA, decision trees classifier, random forests classifier, gradient boosted 
+classifier were constructed using the caret package. The KNN classifier, support 
+vector classifier (SVC), naive Bayes classifier, and neural net (multilayer 
+perceptron) were constructed using scikit-learn. The main parameter settings 
+for each model are reported in Table 4. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
