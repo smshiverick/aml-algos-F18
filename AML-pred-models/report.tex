@@ -446,6 +446,23 @@ a reasonable solution for the data.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\subsubsection{Study Goals}
+
+This study compares different classification models of pain reliever misuse 
+and abuse and identifies several important features that contribute to 
+the misuse and abuse of prescription opioids. 
+
+The present study uses a supervised 
+learning approach to classify instances of pain reliever misuse and abuse 
+using several classification models. 
+
+ This study compares different classification models of pain reliever misuse 
+and abuse and identifies several important features that contribute to 
+the misuse and abuse of prescription opioids. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{table*}[ht]
   \caption{Summary of Variables in the NSDUH 2015-16 Aggregated Data Set}
   \label{tab:freq}
@@ -546,7 +563,7 @@ predictor variables used for constructing the classification models.
     \midrule
     K-Nearest Neighbors & Number of Neighbors = 4 \\
     Logistic Regression & NA \\
-    Linear Discriminant Analysis (LDA) NA \\
+    Linear Discriminant Analysis (LDA) & NA \\
     Quadratic Discriminant Analysis (LDA) & NA \\
     Support Vector Machines (SVM) & Kernel = linear \\
     Naive Bayes & Cost C = 0.01 \\
@@ -576,17 +593,7 @@ support vector classifier (SVC), naive Bayes classifier, and neural net
 (multilayer perceptron) were constructed using scikit-learn. The main 
 parameter settings for each model are reported in Table 4. 
 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-The Decision Tree Classifier package in Scikit-Learn was used to build the 
-tree model, pre-pruning was applied with a maximum depth of 4, which means 
-the algorithm split on four consecutive questions. The training set accuracy 
-of the pruned tree was 0.902 and test set accuracy was 0.902. Figure 9 shows 
-a partial view of the decision tree classifier of prescription opioid misuse
-(the full tree is included in the BDA-Analytics-Classifier-PRL.ipynb 
-notebook) \cite{classifyPRL}. 
 
 \section{Results}
 
@@ -632,9 +639,18 @@ reported they had never used heroin than males.
 
 Model performance was evaluated and reported in the confusion matrix (Table 3), 
 which include metrics of Accuracy (percentage), Sensitivity (i.e., Recall), 
-Precision, and the $f_1-score$. 
+Precision, and the $f_1-score$. In terms of model accuracy, the multilayer 
+perceptron neural networks, support vector classifier, random forests, and 
+logistic regression were among the top performers. However, as described in 
+the interaction, in cases of unbalanced classes, when with greatly more 
+instances of one class than another class | and given that the proportion of 
+respondents who had never misused or abused pain relievers was much greater 
+than the proportion who had| then the $f_1$-score is a better metric of model 
+performance than accuracy because it takes into account both sensitivity and 
+precision. The classification models with the highest $f_1$-score were 
+logistic regression, decision trees, and random forests, followed by linear 
+discriminant analysis (LDA) and the naive Bayes classifier. 
 
- 
 
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -746,38 +762,44 @@ positively related to pain reliever misuse and abuse
 
 \subsubsection{Decision Tree Classifier}
 
-The following analysis used the \emph{Decision Tree Classifier} package in 
-Scikit-Learn, which only does pre-pruning. First, the decision model was build
-using the default setting of a fully developed tree until all leaves are pure. 
-The random state` features is fixed to break ties internally. Accuracy on the
-training set was 0.99 and test set accuracy was 0.974. Without restricting 
-their depth, decision trees can become complex; unpruned trees are prone to 
-overfitting and do not generalize well to new data. Limiting the depth of 
-tree decreases overfitting, which results in lower training set accuracy, 
-but improved performance on the test set. 
+The Decision Tree Classifier package in Scikit-Learn was used to build the 
+tree model, pre-pruning was applied with a maximum depth of 4, which means 
+the algorithm split on four consecutive questions. The training set accuracy 
+of the pruned tree was 0.902 and test set accuracy was 0.902. Figure 9 shows 
+a partial view of the decision tree classifier of prescription opioid misuse
+(the full tree is included in the BDA-Analytics-Classifier-PRL.ipynb 
+notebook) \cite{classifyPRL}. 
 
-Next, pre-pruning was applied, with 
+
+
+The Decision Tree Classifier model was build using the default setting of a 
+fully developed tree until all leaves are pure. Accuracy on the
+training set was 0.99 and test set accuracy was 0.974.
+Without restricting 
+their depth, decision trees can become complex; unpruned trees are prone to 
+overfitting and do not generalize well to new data. 
+pre-pruning was applied, with 
 a maximum depth of 4, which means the algorithm split on four consecutive
 questions. Training set accuracy of the pruned tree was 0.985 and test set
 accuracy was 0.984. Even with a depth of 4, the tree can become a bit complex.
-Figure 5 shows a partial view of the decision tree classifier of heroin use 
-(the entire tree was too wide to include as a legible Figure), and the full 
-tree image is available in the notebook BDA-Analytics-Classifier-Heroin.ipynb 
-\cite{classifyH}. 
+Limiting the depth of 
+tree decreases overfitting, which results in lower training set accuracy, 
+but improved performance on the test set. 
 
 One way to interpret a decision tree it by following the sample numbers 
 represented at the test split for each node. The classifier algorithm 
-selected Cocaine Use (aggregated score) as the root node of the decision tree. 
+selected Cocaine Use as the root node of the decision tree. 
 The branch to the left  side of the tree represents samples with a score equal 
 to or less than 1.5 (n=40956), whereas the branch to the right represents 
 samples with a Cocaine Use score greater than 1.5 (n=1903). The second split 
 on the right occurs for X, with n=1443 having a score less than or equal 
 to 3.5, and n=460 respondents with a PRL score greater than 3.5. In other 
 words, of those respondents who reported relatively high Cocaine use, a small
-portion also reported relatively high Prescription Opioid PRL use. Instead of 
-looking at the whole tree, feature importance is a common summary function 
-that rates how important each feature is for the classification decisions 
-made in the algorithm. 
+portion also reported relatively high Prescription Opioid PRL use.
+
+
+Feature importance is a common summary function that rates how important 
+each feature is for the classification decisions made in the algorithm. 
 
 Each feature is assigned an importance value between 0 and 1; with a value of 
 1 indicating the feature perfectly predicts the target and a value of 0 meaning 
@@ -853,44 +875,18 @@ model accuracy for the training set was 0.955 and the test set accuracy was
 
 compensating for some of their shortcomings of overfitting.
 
+ The model was build on the training set and evaluated on the test 
+set, with both training set and test set accuracy equal to 0.984. To reduce
+overfitting, pre-pruning could be implemented by reducing the maximum depth, 
+or by reducing the learning rate. 
+
+
 Although random forests models are more accurate than a single tree and can
 compensate for some of the shortcomings of overfitting, a limitation of this 
 approach is that it can be difficult to interpret an ensemble of trees apart 
 from the measure of feature importance provided in the output. Single trees 
 are still useful for visually representing the decision process.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Gradient Boosting Classifier Tree}
-
-
-This analysis used the 
-\emph{Gradient Boosting Classifier} from Scikit-Learn to classify Heroin Use, 
-with the default setting of 100 trees of maximum depth of 3, and a learning 
-rate of 0.1. The model was build on the training set and evaluated on the test 
-set, with both training set and test set accuracy equal to 0.984. To reduce
-overfitting, pre-pruning could be implemented by reducing the maximum depth, 
-or by reducing the learning rate. Figure 7 shows that the feature importance 
-for the gradient boosting classifier tree looks similar to the feature 
-importance for random forests, but the gradient boosting has decreased the 
-importance of many features to zero. Again Cocaine is selected as the most 
-imformative features, followed by Any Opioid PRL Use. In addition to 
-Prescription Opioid PRL Misuse and Abuse, the gradient boosting classifier 
-selected Amphetamine Use as an informative feature of Heroin Use. 
-
-\begin{figure}[!ht]
-  \centering\includegraphics[width=\columnwidth]{images/Figure7.pdf}
-  \caption{Neural Net Classifier: Multilayer Perceptron with Single Hidden Layer}
-  \label{f:Figur7}
-\end{figure}
-
-The Gradient Boosting Classifier from Scikit-Learn was used to classify 
-Prescription Opioid PRL Misuse, using the default setting of 100 trees, of 
-maximum depth of 3, and a learning rate of 0.1. The model accuracy for the
-training set was 0.894 and accuracy for the test set was 0.893. Gradient 
-boosting typically improves test set accuracy by using many simple models 
-iteratively. In this case, model accuracy for gradient boosting was no better 
-than random forests, and this is because the default parameter settings were
-used; further parameter tuning is needed to improve model performance.
 
 Feature 
 importance was a primary interest for identifying features related to '
@@ -904,9 +900,76 @@ Health (depression) coming in fourth in terms of feature importance. This
 result illustrates that several features are important for understanding 
 Prescription Opioid Misuse, and the relations among features may be complex.
 
+
+\begin{table}
+  \caption{Coefficient Estimates for Logistic Regression Model 
+  of Pain Reliever Misuse and Abuse fit to the Training Set}
+  \label{tab:freq}
+  \begin{tabular}{llll}
+    \toprule
+    Predictor&  Estimate& Std. Error& z-value  \\    
+    \midrule
+    (Intercept)& -2.960 &   0.048 & -61.10 ***  \\
+    COCAINE  &    0.690 &   0.019 &  36.91 ***  \\
+    AMPHETMN &    0.608 &   0.021 &  29.92 ***  \\
+    TRQLZRS  &    0.381 &   0.014 &  27.29 ***  \\
+    MENTHLTH &    0.136 &   0.006 &  22.42 ***  \\
+    AGECAT   &   -0.216 &   0.013 & -16.75 ***  \\
+    HEROINUSE&    0.798 &   0.052 &  15.47 ***  \\  
+    EMPLOY18 &    0.222 &   0.016 &  13.72 ***  \\
+    TRTMENT  &    0.195 &   0.019 &  10.47 ***  \\
+    SEDATVS  &    0.281 &   0.029 &   9.63 ***  \\   
+    HEALTH   &    0.103 &   0.012 &   8.27 ***  \\
+    EDUCAT   &    0.104 &   0.013 &   8.22 ***  \\   
+    SEX      &   -0.186 &   0.026 &  -7.24 ***  \\
+    CTYMETRO &   -0.068 &   0.013 &  -5.03 ***  \\
+    MARRIED  &    0.051 &   0.012 &   4.10 ***  \\
+    MHTRTMT  &   -0.024 &   0.018 &  -1.32     \\
+    \bottomrule
+    Note: *** p-value $<$ 0.001. &  &  
+  \end{tabular}
+\end{table}
+
+          MeanDecreaseGini
+COCAINE          1284.8425
+AMPHETMN          830.9271
+MENTHLTH          748.9417
+TRQLZRS           638.8508
+AGECAT            524.8896
+HEROINUSE         514.8185
+HEALTH            501.3848
+EDUCAT            450.6318
+CTYMETRO          329.0871
+MHTRTMT           327.6592
+MARRIED           293.5298
+EMPLOY18          285.7841
+TRTMENT           236.5581
+SEX               197.7114
+SEDATVS           139.2340
+
+The Gradient Boosting Classifier from Scikit-Learn was used to classify 
+Prescription Opioid PRL Misuse, using the default setting of 100 trees, of 
+maximum depth of 3, and a learning rate of 0.1. 
+
+The model accuracy for gradient boosting was no better than random forests, 
+and this is because the default parameter settings were used; further parameter 
+tuning is needed to improve model performance.
+
+training set was 0.894 and accuracy for the test set was 0.893. Gradient 
+boosting typically improves test set accuracy by using many simple models 
+iteratively. 
+
+Figure 7 shows that the feature importance 
+for the gradient boosting classifier tree looks similar to the feature 
+importance for random forests, but the gradient boosting has decreased the 
+importance of many features to zero. Again Cocaine is selected as the most 
+imformative features, followed by Any Opioid PRL Use. In addition to 
+Prescription Opioid PRL Misuse and Abuse, the gradient boosting classifier 
+selected Amphetamine Use as an informative feature of Heroin Use. 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{Tradeoff Between Accuracy and Interpretability}
+\subsubsection{Accuracy and Interpretability}
 
 One of the simplest classifier algorithms, K-Nearest Neighbors (KNN)
 classifies a new data point based on the Euclidean distance to its 
@@ -916,6 +979,14 @@ However, KNN does not perform well with a large number of features
 
 SVMs often perform well, but are sensitive to parameter settings 
 and scaling of the data. 
+
+\begin{figure}[!ht]
+  \centering\includegraphics[width=\columnwidth]{images/Figure7.pdf}
+  \caption{Neural Net Classifier: Multilayer Perceptron with Single Hidden Layer}
+  \label{f:Figur7}
+\end{figure}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
