@@ -91,24 +91,24 @@ using several classification models.
 
 In the era of ``big data'', large amounts of health information are being 
 generated from electronic medical records (EMRs), clinical research data, to 
-population-level health data \cite{herland14}. It can be difficult to obtain 
-reliable information about drug use based on self-reports, though surveys 
+population-level health data \cite{herland14}. Although it can be difficult 
+to obtain reliable information about opioid use based on self-reports, surveys 
 provide data on a range of issues that people may be reluctant to disclose 
-such as drug use and mental health problems. This study considers data from 
-the National Survey on Drug Use and Health (NSDUH) which is a major source of 
-information for the use of illicit drugs and mental health issues among the 
-U.S. population aged 12 or older \cite{samhsa18}. The NSDUH is a comprehensive 
-public survey that includes more than 2600 variables on a diverse array of 
-questions related to the use, misuse, and abuse of substances including 
-alcohol, tobacco, prescription medications, and illicit drugs. In addition 
-to typical demographic information, the survey includes self-reported 
-measures on items related to physical health, mental health (e.g., depression, 
-anxiety, suicidal ideation), counseling, and drug and alcohol treatment. 
-Data from the NSDUH has been used for identifying groups at high risk for 
-substance use, and the co-occurrence of substance use and mental health 
-disorders. The target variable for the study was any misuse or abuse of 
-prescription pain relievers and the features of interest were selected 
-demographic variables, medication usage, and use of illicit drugs. 
+such as illicit drug use and mental health problems. The data for the present 
+study was obtained from the National Survey on Drug Use and Health (NSDUH) 
+which is a major source of information for the use of illicit drugs and mental 
+health issues among the U.S. population aged 12 or older \cite{samhsa18}. 
+The NSDUH is a comprehensive public survey that includes more than 2600 
+variables on a diverse array of questions related to the use, misuse, and 
+abuse of substances including alcohol, tobacco, prescription medications, and 
+illicit drugs. In addition to typical demographic information, the survey
+includes self-reported measures on items related to physical health, mental 
+health (e.g., depression, anxiety, suicidal ideation), counseling, and drug 
+and alcohol treatment. Data from the NSDUH has been used for identifying 
+groups at high risk for substance use, and the co-occurrence of substance 
+use and mental health disorders. The target outcome for the study was any 
+misuse or abuse of prescription pain relievers and the predictor variables of 
+interest were demographic variables, medication usage, and use of illicit drugs. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -119,17 +119,17 @@ demographic variables, medication usage, and use of illicit drugs.
 As stated by statistician George Box, "All models are wrong, but some models 
 are useful" \cite{box05}. There are advantages and limitations for using any 
 classification model, but logistic regression is one of the most useful,
-reliable, and interpretable models to select from. Logistic regression models 
-the conditional distribution of probabilities for a binary response (e.g., 
-$Pr(Y=k | X=x)$) as a combination of a set of predictor variables 
-\cite{james13, raschka17}. The decision boundary for the logistic regression 
-classifier is a linear function of the input; a binary classifier separates 
-two classes using a line, plane, or hyperplane \cite{muller17}. Given that the 
-probability values for the outcome range between 0 and 1, predictions can be 
-made based on a default value. For example, a default value of `Yes` could be 
-predicted for any individual for whom the probability of pain reliever misuse 
-and abuse is greater than fifty-percent, $Pr(PRLMISAB) > 0.5$. Logistic regression 
-uses a maximum likelihood method to predict the coefficient estimates that 
+and interpretable models available. Logistic regression models the conditional 
+distribution of probabilities for a binary response (e.g., $Pr(Y=k | X=x)$) 
+as a combination of a set of predictor variables \cite{james13, raschka17}. 
+The decision boundary for the logistic regression classifier is a linear 
+function of the input; a binary classifier separates two classes using a line, 
+plane, or hyperplane \cite{muller17}. Given that the probability values for 
+the outcome range between 0 and 1, predictions can be made based on a default 
+value. For example, a default value of `Yes` could be predicted for any 
+individual for whom the probability of pain reliever misuse and abuse is 
+greater than fifty-percent, $Pr(PRLMISAB) > 0.5$. Logistic regression uses 
+a maximum likelihood method to predict the coefficient estimates that 
 correspond as closely as possible to the default state. In other words, the 
 model will predict a number close to one for individuals who have misused or 
 abused pain relievers and a number close to zero for individuals who have 
@@ -155,15 +155,16 @@ linear in LDA refers to the the discriminant functions being linear functions
 of the predictors. For distributions assumed to be normal (i.e., multivariate 
 Guassian), LDA provides a model that is similar in form to logistic regression, 
 but more stable. LDA is also preferred for outcomes with more than two response 
-classes. Two important assumptions of LDA are: (1) a common covariance matrix 
-for all classes and (2) the class boundaries are linear functions of the 
-predictors. \emph{Quadratic Discriminant Analysis} (QDA) is an approach that 
-assumes each class has its own covariance matrix and the decision boundaries 
-are quadratically curvilinear in the predictor space \cite{kuhn13}. LDA is less 
-flexible as a classifier than QDA, but can perform better with relatively few 
-training observations or when the majority of predictors in the data represent 
-discrete categories. QDA is recommended over LDA with a very large training 
-set or when the decision boundary between two classes is non-linear. 
+classes. The important assumptions for LDA are, first, a common covariance 
+matrix for all classes, and second, the class boundaries are linear functions 
+of the predictors. \emph{Quadratic Discriminant Analysis} (QDA) is an approach 
+that assumes each class has its own covariance matrix and the decision 
+boundaries are quadratically curvilinear in the predictor space \cite{kuhn13}. 
+LDA is less flexible as a classifier than QDA, but can perform better with 
+relatively few training observations or when the majority of predictors in the 
+data represent discrete categories. QDA is recommended over LDA with a very 
+large training set or when the decision boundary between two classes is 
+non-linear. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -198,32 +199,32 @@ kernel trick to reduce computational load. The radial basis function (RBF)
 kernel (i.e., Guassian kernel) is one of the most commonly used approaches. 
 In training the model, only a subset of data points is used to construct the 
 decision boundary, namely the support vectors that lie on the border that 
-separates the two classes. In making predictions for new observations, the 
-algorithm calculates the distance to each of the support vectors measured by 
-the Guassian kernel \cite{muller17}. Figure 1 shows an example of the non-linear 
-decision boundary obtained with SVM using the RBF kernel; the decision boundary 
-is a smooth curve and the support vectors are the large points in bold outline. 
-With the default settings, the decision boundary of the RBF kernel is already 
-non-linear. The main parameters for SVM are `C', which regulates the importance 
-of each data point, and `gamma' which controls the width of the Guassian kernel. 
-A small value of C indicates a restricted model in which the influence of each 
-data point is limited and the algorithm adjusts to the majority of data points. 
-With larger values of C, more importance is given to each data point and the 
-model will try to correctly classify as many training observations as possible, 
-which results to more curve in the decision boundary, but also increases the 
-risk of overfitting to the training data. Large values of gamma mean that only 
-close values are relevant for classification, resulting in a smooth decision 
-boundary. Small values of gamma mean that far points are similar. If the values
-of both C and gamma are large, each point can have an arbitrary large influence 
-in a small region, which produces a choppy decision boundary, where each point 
-becomes separated as its own class. If both C and gamma are small, the decision 
-boundary becomes close to linear.
+separates the two classes. In predicting classes for new observations, the 
+algorithm calculates the distance to each of the support vectors measured 
+by the Guassian kernel \cite{muller17}. Figure 1 shows an example of the 
+non-linear decision boundary obtained with SVM using the RBF kernel; the 
+decision boundary is a smooth curve and the support vectors are the large 
+points in bold outline. Even with the default settings, the RBF kernel 
+provides a decision boundary that is decidedly non-linear. The parameters 
+for SVM are `C', which regulates the importance of each data point, and 
+`gamma' which controls the width of the Guassian kernel. A small value of 
+C indicates a restricted model in which the influence of each data point is 
+limited and the algorithm adjusts to the majority of data points. With larger 
+values of C, more importance is given to each data point and the model tries 
+to correctly classify as many training observations as possible, which results 
+in more curvature in the decision boundary. Large values of gamma mean that 
+only close values are relevant for classification, resulting in a smooth 
+decision boundary. Small values of gamma mean that far points are similar. 
+If the values of both C and gamma are large, each point can have an large 
+influence in a small region, which produces a choppy decision boundary. 
+If the values of C and gamma are both small, the decision boundary becomes 
+close to linear.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The Bayes' rule was mentioned above in relatin to LDA, but this section 
-considers the \emph{naive Bayes classifier} as a non-linear model.
-The Bayes theorem (equation 2) is represented by a set of probabilities to 
+The Bayes' rule was mentioned above in relation to LDA; in this section, the 
+\emph{naive Bayes classifier} is considered as a non-linear model.
+The Bayes theorem (equation 1) is represented by a set of probabilities to 
 represent the following question: Based on a given set of predictors, what
 is the probability than an outcome belongs to a particular class?
 
@@ -344,17 +345,19 @@ to improve model accuracy.
 \subsection{Metrics for Evaluating Prediction Models}
 
 Evaluating the performance of learning algorithms is helpful for selecting 
-the best model for a given problem and data set. Binary classification is 
-assessed in terms of the successful assignment of observations to one of two 
-classes: positive or negative. Medical testing outcomes are often used to 
+the best model for a problem given the available data. Binary classification 
+is assessed in terms of the successful assignment of observations to one of 
+two classes: positive or negative. Medical testing outcomes are often used to 
 illustrate classification decisions and errors. A person can be either 
 diagnosed with an illness or not, and the person can actually have the 
-illness or not. In the present case, individuals are classified as having 
-misused and abused pain relievers or not, and the predictions made are either 
-correct or incorrect. Model performance is typically evaluated using accuracy 
+illness or not. In the present case, individuals were classified as having 
+previously misused and abused pain relievers or not, and the positive class
+represents self-reported pain reliever misuse and abuse ever (PRLMISEVR).
+The model predictions will be either correct or incorrect in relation to
+observed outcomes. Model performance is typically evaluated using accuracy 
 which is the number of correct predictions divided by the total number of 
-all samples. Any model selected cannot make perfect predictions as there are 
-always mistakes to be found. For example, a negative instance can be labeled 
+all samples. Any model cannot make perfect predictions as mistakes are 
+always to be found. For example, a negative instance can be labeled 
 as positive: a person who has never misused or abused pain relievers may be 
 classified as having done so (i.e., 'false positive'). Conversely, a positive 
 instance may be classified as negative: a person who has misused and abused 
@@ -393,11 +396,11 @@ when we want to identify all positive samples while avoiding false negatives.
 \emph{Precision} or the ``positive predictive value'', measures how many of 
 the samples predicted as positive are actually positive  
 ( \(\frac{TP}{TP+FP}\) ), and is used as a metric when the goal is to limit 
-the number of false positives. The \emph{$f_1$-score} or `f-measure' provides 
-the harmonic mean of precision and recall. The $f_1$-score can be a better 
-metric than accuracy in datasets with \emph{imbalanced classes}, where one 
-class is much more frequent than the other class, as it takes recall and 
-precision into account \cite{muller17}.
+the number of false positives. The \emph{$f_1$-score} or `f-measure' 
+(equation 2) provides the harmonic mean of precision and recall. The 
+$f_1$-score can be a better metric than accuracy in datasets with 
+imbalanced classes, where one class is much more frequent than the other 
+class, as it takes recall and precision into account \cite{muller17}.
 
 \begin{equation}
   \ f_1 score = 2*\frac{Precision*Recall}{Precision+Recall}\
@@ -416,29 +419,30 @@ precision into account \cite{muller17}.
 
 In constructing and evaluating predictive models it is important to select 
 a model that performs well not only with data used to train the model, but 
-also with new observations that are previously `unseen'. The sample data
-is divided into two portions: a \emph{training set} used to fit the model 
-and a \emph{testing set} of observations that is set aside and used to 
-evaluate model performance. By convention, approximately 70 to 80 percent of 
-observations are used in the training set and the remaining observations 
-are held in the testing set. Two main problems can occur in evaluating model 
-performance: overfitting and underfitting. In the case of \emph{overfitting}, 
-a model can have high accuracy on the training set but perform poorly with 
-new data in the test set because the model is `over-fit' to the training data, 
-By contrast, ``underfitting'' occurs when a model performs poorly with the 
-training data but has higher accuracy with the new observations in the test 
-set. One of the simplest predictive models, K-Nearest neighbors, classifies 
-observations by assigning the label that is most frequent among the `k' number 
-of nearest training samples. K is a parameter selected by the user. The 
-accuracy of the KNN classifier for the training set and testing set is 
+also with new observations. A common procedure is to partition the sample data
+into a \emph{training set} and a \emph{testing set} of observations that is 
+set aside and used to evaluate model performance. By convention, 
+approximately 70 to 80 percent of observations are used in the training set 
+and the remaining observations are held in the testing set. Two main problems 
+can occur in evaluating model performance: overfitting and underfitting. 
+In the case of \emph{overfitting}, a model can have high accuracy on the 
+training set but perform poorly with new data in the test set because the 
+model is `over-fit' to the training data, By contrast, ``underfitting'' 
+occurs when a model performs poorly with the training data but has higher 
+accuracy with the new observations in the test set. One of the simplest 
+classification models, K-Nearest neighbors is used as an illustrative example. 
+classifies observations by assigning the label that is most frequent among the 
+`k' number of nearest training samples. K is a parameter selected by the user. 
+The accuracy of the KNN classifier for the training set and testing set is 
 plotted as a function of the parameter k-neighbors in Figure 1. The plot 
-shows a tradeoff in training accuracy versus testing accuracy; higher accuracy
-on the testing set is associated with a slight decrease in performance on the
-training set. The best model is one that optimizes testing set accuracy, 
-while striking a balance between the problems of overfitting and underfitting.
-In this case, performance on the test set increased slightly between 2 and 4 
-neighbors, but does not improve much beyond 5 neighbors. Therefore, a KNN
-model with k=4 neighbors will provide a reasonable solution for the data. 
+shows that increased accuracy on the testing set is associated with 
+decreased training set accuracy, and conversely, increase accuracy on the
+training set is related to decreased test set accuracy. The best model 
+optimizes testing set accuracy and strikes a balance between the problems of 
+overfitting and underfitting. In the case of KNN, performance on the test set 
+increased only slightly between 2 and 4 neighbors, but did not improve much 
+beyond 5 neighbors. Therefore, a KNN model with k=4 neighbors provides 
+a reasonable solution for the data. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -496,11 +500,11 @@ state identifiers are removed to ensure confidentiality. The data frames were
 subset by column to select approximately 90 variables that included common 
 demographic characteristics, physical health, mental health, medication usage, 
 and use of illicit drugs. The following steps were taken to detect and remove 
-any inconsistencies in the data: (1) Remove missing values (i.e., NaN); 
-(2) Recode blanks, non-responses, or legitimate skips (e.g., 99, 991, 993) to 
-zero; (3) Recode dichotomous responses (e.g., Yes=1 / No=2) so that 
-`No' = 0; (4) Recode categorical variables to be consistent with amount or 
-degree  (e.g., 1=`Low', 2=`Med', 3=`High'). (5) Outliers were identified 
+any inconsistencies in the data: (i) Remove missing values (i.e., NaN); 
+(ii) Recode blanks, non-responses, or legitimate skips (e.g., 99, 991, 993) to 
+zero; (iii) Recode dichotomous responses (e.g., Yes=1 / No=2) so that 
+`No' = 0; (iv) Recode categorical variables to be consistent with amount or 
+degree  (e.g., 1=`Low', 2=`Med', 3=`High'). (v) Outliers were identified 
 and excluded from the data set (n=5).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -519,36 +523,16 @@ responses for ten of the most commonly used prescription pain medications
 Demerol, Hydromorphone). The majority of questions related to substance use 
 had dichotomous responses that were summed to create single measures for: 
 Tranquilizers, Sedatives, Heroin, Cocaine, and Amphetamines. Because 
-hallucinogens varied greatly in strength and type (e.g., marijuana, 
+hallucinogens varied greatly in type and potency (e.g., marijuana, 
 psilocybin, MDMA, LSD), they were not included in the analysis. Variables 
 for drug treatment and mental health treatment combined responses for any 
 inpatient care, outpatient care, treatment at a clinic, emergency room visits, 
-or hospital stays. A measure of any previous pain reliever misuse or abuse 
-combined responses for the misuse, abuse, or dependency on prescription pain 
-relievers in the past year, in the past month. The target variable was a 
-dichotomous measure of any previous pain reliever misuse or abuse. The 
-subset data frame consisted of 20 features and 114038 observations and was 
-exported to CSV file. Four variables were excluded from analysis (PRLANY, 
-PRLMISAB, HEROINEVR, HALUCNG). Table 2 shows the complete list of 
-variables used for predictive modeling. 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsubsection{Classifier Models}
-
-The dataset was divided into the training set and test set using a 75-25 
-percent split ($n_train$=85538, $n_test$=28510). The same general procedure
-was used in constructing each classification model: (i) Each model was fit to 
-the training set, (ii) New values were predicted on the holdout scores in the 
-testing set, and (iii) Model performance was evaluated in a confusion matrix, 
-and the performance metrics|accuracy, sensitivity (i.e., recall), precision|
-were obtained from the confusion matrix; the $f_1-score$ was derived from the 
-values for recall and precision (equation 1). The logistic regression classifier, 
-LDA, QDA, decision trees classifier, random forests classifier, gradient boosted 
-classifier were constructed using the caret package. The KNN classifier, support 
-vector classifier (SVC), naive Bayes classifier, and neural net (multilayer 
-perceptron) were constructed using scikit-learn. The main parameter settings 
-for each model are reported in Table 4. 
+or hospital stays. The target variable was a dichotomous measure of any 
+previous pain reliever misuse or abuse. The subset data frame consisted of 
+20 features and 114038 observations and was exported to CSV file. Three 
+variables (PRLANY, PRLMISAB, HEROINEVR) were highly correlated with other 
+variables and excluded from the analysis . Table 2 shows the list of 15
+predictor variables used for constructing the classification models. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -561,9 +545,9 @@ for each model are reported in Table 4.
     Model & Main Parameter \\
     \midrule
     K-Nearest Neighbors & Number of Neighbors = 4 \\
-    Logistic Regression & Number of Features = 15 \\
-    Linear Discriminant Analysis (LDA) & Number of Features = 15 \\
-    Quadratic Discriminant Analysis (LDA) & Number of Features = 15 \\
+    Logistic Regression & NA \\
+    Linear Discriminant Analysis (LDA) NA \\
+    Quadratic Discriminant Analysis (LDA) & NA \\
     Support Vector Machines (SVM) & Kernel = linear \\
     Naive Bayes & Cost C = 0.01 \\
     Neural Network & Hidden Layers = 2 \\
@@ -573,6 +557,26 @@ for each model are reported in Table 4.
     \bottomrule
   \end{tabular}
 \end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Classifier Models}
+
+The dataset was divided into the training set and test set using a $75\%/25\%$  
+split ($n_train$=85538, $n_test$=28510). The same general procedure was used in 
+constructing each classification model: (i) The model was fit to the training 
+set, (ii) New values were predicted on the holdout scores in the testing set, 
+and (iii) Model performance was evaluated in a confusion matrix. Performance 
+metrics|accuracy, sensitivity (i.e., recall), precision| were obtained from 
+the confusion matrix; the $f_1-score$ was derived from the values for recall 
+and precision (equation 1). The logistic regression classifier, LDA, QDA, 
+decision trees classifier, random forests classifier, gradient boosted 
+classifier were constructed using the caret package. The KNN classifier, 
+support vector classifier (SVC), naive Bayes classifier, and neural net 
+(multilayer perceptron) were constructed using scikit-learn. The main 
+parameter settings for each model are reported in Table 4. 
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -690,7 +694,7 @@ Precision, and the $f_1-score$.
 
 \subsubsection{Logistic Regression}
  
-This analysis used logistic regression to predict pain reliever misuse and abuse
+A logistic regression to predict pain reliever misuse and abuse
 from the set of predictor variables. The logistic regression classifier was fit to 
 the training data using the caret package, and the model was validated on the test 
 data. Together, all of the variables entered into the model significantly predicted 
@@ -700,7 +704,8 @@ sorted in descending order by z-score, which gives an indication of the relative
 influence of each predictor on the outcome variable. The logistic regression model 
 identified cocaine, amphetamines, tranquilizers, mental health, age category, and 
 heroin use as six of the most influential predictors of pain reliever misuse and 
-abuse. The model was rerun leaving out the non-significant variables, mental health treatment, which did not change the sign or significant of the parameter estimates. 
+abuse. The model was rerun leaving out the non-significant variables, mental health 
+treatment, which did not change the sign or significant of the parameter estimates. 
 Age category, sex, and size of city of metropolitan area were negatively related
 to the outcome variables, whereas the remaining significant predictors were 
 positively related to pain reliever misuse and abuse
@@ -885,7 +890,9 @@ training set was 0.894 and accuracy for the test set was 0.893. Gradient
 boosting typically improves test set accuracy by using many simple models 
 iteratively. In this case, model accuracy for gradient boosting was no better 
 than random forests, and this is because the default parameter settings were
-used; further parameter tuning is needed to improve model performance. Feature 
+used; further parameter tuning is needed to improve model performance.
+
+Feature 
 importance was a primary interest for identifying features related to '
 prescription opioid abuse. Figure 11 shows the feature importance for the 
 gradient boosting classifier tree. As Figure 11 shows, several features were 
