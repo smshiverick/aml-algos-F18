@@ -17,22 +17,22 @@
 The misuse and abuse of prescription opioids (MUPO) is a chronic health 
 condition associated with increased overdose deaths in recent years 
 \cite{nida18}. Predictive modeling can identify factors related to MUPO and 
-may help predict individuals at risk for opioid addiction. The present study 
-compares ten linear classification models . The sample data consisted of 
-N = 114,038 respondents from the National Survey on Drug Use and Health 
-(NSDUH) for 2015 and 2016. Of the total sample, 27\% had used any opioid 
-pain reliever medication in the past year, and 11\% of respondents had 
-previously misuse or abused pain relievers; 2\% of the sample reported 
-heroin use. The classifier models were fit to a training set with fifteen
-predictor variables and pain reliever misuse and abuse as the target outcome. 
-Class labels were predicted for the testing set and model performance was 
-evaluated in a confusion matrix. Four performance metrics were considered: 
-accuracy, sensitivity (recall), precision, and $f_1$-score. Neural networks 
-(MLP) and support vector classifier had the highest model accuracy; however, 
-logistic regression, decision trees, and random forests, had the highest 
-$f_1$-score. The $f_1$-score is considered a better metric of performance 
-than accuracy With data that has unbalanced unbalanced classes. Advantages 
-and limitation of the classification models are discussed. 
+help predict individuals at risk for opioid addiction. The present study 
+compares ten linear classification models using four performance metrics 
+: accuracy, sensitivity (recall), precision, and $f_1$-score. The sample 
+data consisted of N = 114,038 respondents from the National Survey on Drug 
+Use and Health (NSDUH) for 2015 and 2016. Of the total sample, 27\% had 
+used any opioid pain reliever medication in the past year, and 11\% of 
+respondents had previously misuse or abused pain relievers; 2\% of the 
+sample reported using heroin. The classifier models were fit to a training 
+set with fifteen predictor variables and pain reliever misuse and abuse as 
+the target outcome. Class labels were predicted for the testing set and model 
+performance was evaluated in a confusion matrix. Neural networks (MLP) and 
+support vector classifier had the highest model accuracy; however, logistic
+regression, decision trees, and random forests, had the highest $f_1$-score. 
+The $f_1$-score is considered a better metric of performance than accuracy 
+With data that has unbalanced unbalanced classes. Advantages and limitation 
+of the classification models are discussed. 
 \footnote{ Address correspondence to \textit{smshiver@iu.edu}}
 
 \end{abstract}
@@ -601,28 +601,6 @@ heroin use \cite{muhuri13, unick13}.
   and Heroin Use Ever as a function of Sex}
   \label{f:Figure5}
 \end{figure}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Comparison of Classifier Models}
-
-Performance of the classification models was evaluated in the confusion matrices
-reported in Table 3, which includes the performance metrics of Accuracy, 
-Sensitivity (i.e., Recall), Precision, and the $f_1$-score. The neural network
-(MLP), support vector classifier, random forests, and logistic regression had
-the highest model accuracy; however, as described in the introduction, with 
-data that has unbalanced classes | instances of one class are much greater than 
-instances of the other class | the $f_1$-score provides a better metric of model 
-performance than accuracy because it takes into account both sensitivity and 
-precision. Given that the proportion of respondents who had never misused or 
-abused pain relievers in the NSDUH dataset was much greater than the proportion 
-who had, logistic regression, decision trees, and random forests, had the 
-highest $f_1$-score, followed by linear discriminant analysis (LDA) and the 
-naive Bayes classifier. 
- 
-The main parameter settings for the classification models are presented in 
-Table 
- 
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
@@ -670,9 +648,9 @@ Table
      & No Misuse & 25026 & 2298 & 90.1\% & 0.987 & 0.909 & 0.946 \\
      & PRL Misuse & 320 & 665 &  &  &  & \\
     \midrule
-    Boosted Trees & & No Misuse & PRL Misuse &  &  &  & \\
-     & No Misuse & 25415 & 19 & 89.6\% & 0.900 & 0.890 & 0.850 \\
-     & PRL Misuse & 2954 & 122 &  &  &  & \\
+    Gradient Boosted Trees & & No Misuse & PRL Misuse &  &  &  & \\
+     & No Misuse & 25398 & 36 & 89.9\% & 0.900 & 0.890 & 0.895 \\
+     & PRL Misuse & 2856 & 220 &  &  &  & \\
     \bottomrule
   \end{tabular}
 \end{table*}
@@ -699,6 +677,34 @@ Table
 \end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Comparison of Classifier Models}
+
+Performance of the classification models was evaluated in the confusion 
+matrices reported in Table 3, which includes the performance metrics of 
+accuracy, sensitivity (i.e., Recall), precision, and the $f_1$-score. 
+The neural networks (MLP) and support vector classifier had the highest model 
+accuracy; however, as described in the introduction, the $f_1$-score 
+is a better performance metric than accuracy with datasets that have 
+unbalanced classes because it takes into account both sensitivity and precision. 
+In the present data set, there is a clear indication that the classes were
+unbalanced, given that the proportion of respondents who had never misused 
+or abused pain relievers in the NSDUH dataset was much greater than the 
+proportion who had, approximately 11\% of respondents in both the training 
+and test sets reported misusing and abusing opioid pain relievers. Therefore, 
+using the $f_1$-score as the preferred performance metric, logistic regression, decision trees, and random forests, had the best performance given that they
+were tied for the highest $f_1$-score.
+
+, with 
+| instances of one class are much greater than 
+instances of the other class | Given that followed by linear discriminant analysis (LDA) and the 
+naive Bayes classifier. 
+ 
+The main parameter settings for the classification models are presented in 
+Table 
+
 
 \subsubsection{Logistic Regression}
  
@@ -795,20 +801,11 @@ that the feature was not used at all. Feature importance values also always
 sum to 1. A feature may have a low importance value because another feature 
 encodes the same information. 
 
-The top two important features for classifying Heroin Use were Cocaine Use 
-and Any Prescription Opioid PRL Use, with smaller importance given to Opioid 
-PRL Misuse Ever and Prescription Opioid PRL Misuse and Abuse. 
+As Figure 9 shows, the decision tree classifier selected Cocaine Use as the 
+root note. At the second node, on the branch to the right n=5015 samples were further divided according to 
 
-
-
-As Figure 9 shows, the decision tree classifier
-selected Cocaine Use as the root note, that branched by the test score equal
-to or less than 0.5 (any Cocaine Use). At the second node, on the branch to 
-the right n=5015 samples were further divided according to heroin use, with 
-n=1913 having a score greater than 0.5 (any Heroin Use). At the third node
-on the right branch, samples were selected according to Tranquilizer
-medication use, with n=1419 scoring positively. On the left branch, the 
-second node selected was Drug Treatment, with n=2844 respondents scoring
+heroin use, with n=1913 having a score greater 
+than 0.5 (any Heroin Use). At the third node on the right branch, samples were selected according to Tranquilizer medication use, with n=1419 scoring positively. On the left branch, the second node selected was Drug Treatment, with n=2844 respondents scoring
 positively that they had received Drug Treatment. Feature importance of
 the decision tree classifier selected Cocaine Use as the most informative
 feature for Prescription Opioid PRL Misuse. Following afterwards, 
@@ -824,24 +821,16 @@ Tranquilizer Use, Drug Treatment, and Heroin Use were tied for second place.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Random Forests Classifier}
 
-The important parameters for the random forests algorithm are the number of 
-sampled data points and the maximum number of features; the algorithm could 
-look at all of the features in the dataset or a limited number. A high value 
-for \emph{maximum-features} will produce trees in the random forest that are 
-very similar and will fit the data easily based on the most distinctive 
+Random forests reduces overfitting by building many trees and averaging 
+their results. The important parameters are the number of trees (100), 
+the number of data points for bootstrap sampling, and the maximum number of 
+features considered at each node which determines how random each tree is. 
+The algorithm can look at all of the features in the dataset or only a 
+limited number. A high value for maximum-features will produce trees that 
+are very similar and will fit the data easily based on the most distinctive 
 features, whereas a low value will produce trees that are very different 
-from each other, and reduces over-fitting. 
+from each other, which also reduces over-fitting. 
 
-
-Random forests is an ensemble approach that builds many trees and averages 
-their results to reduce overfitting. 
-
-The parameters of interest for building random forests are: (a) the number of 
-trees (n-estimators), (b) the number of data points for bootstrap sampling 
-(n-samples), and (c) the maximum number of features considered at each node 
-(max-features). 
-
-The max-features parameter determines how random each tree is, 
 with smaller values of max-features resulting in trees in the random forest 
 that are very different from each other. This analysis applied a random forest 
 consisting of 100 trees 
@@ -855,15 +844,12 @@ importance over trees in the random forest, and random forests gives
 non-zero importance to more features than a single tree. 
 
 The Random Forest Classifier package in Scikit-Learn was used to classify
-Prescription Opioid PRL Misuse as the target variable, with 100 trees. The 
-model accuracy for the training set was 0.955 and the test set accuracy was 
-0.896, which suggests that the model overfit the data. 
+Prescription Opioid PRL Misuse as the target variable, with 100 trees. 
 
 compensating for some of their shortcomings of overfitting.
 
-The model was build on the training set and evaluated on the test set, with
-both training set and test set accuracy equal to 0.984. To reduce overfitting, 
-pre-pruning could be implemented by reducing the maximum depth, or by reducing 
+To reduce overfitting, pre-pruning could be implemented by reducing the 
+maximum depth, or by reducing 
 the learning rate. 
 
 Although random forests models are more accurate than a single tree and can
@@ -886,7 +872,8 @@ Prescription Opioid Misuse, and the relations among features may be complex.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{table}
-  \caption{Feature Importance for Random Forest Model}
+  \caption{Feature Importance for Random Forest Model: Mean Decrease in Gini
+  Score}
   \label{tab:freq}
   \begin{tabular}{ll}
     \toprule
@@ -896,8 +883,8 @@ Prescription Opioid Misuse, and the relations among features may be complex.
     AMPHETMN  &  830.93 \\
     MENTHLTH  &  748.94 \\ 
     TRQLZRS   &  638.85 \\
-    AGECAT    &  524,89
-    HEROINUSE &  514.82  \\
+    AGECAT    &  524,89 \\
+    HEROINUSE &  514.82 \\
     HEALTH    &  501.38 \\
     EDUCAT    &  450.63 \\
     CTYMETRO  &  329.09 \\
@@ -911,25 +898,14 @@ Prescription Opioid Misuse, and the relations among features may be complex.
   \end{tabular}
 \end{table}
 
-The Gradient Boosting Classifier from Scikit-Learn was used to classify 
-Prescription Opioid PRL Misuse, using the default setting of 100 trees, of 
+The Gradient Boosting Classifier used the default setting of 100 trees, of 
 maximum depth of 3, and a learning rate of 0.1. 
 
-The model accuracy for gradient boosting was no better than random forests, 
-and this is because the default parameter settings were used; further parameter 
-tuning is needed to improve model performance.
-
-training set was 0.894 and accuracy for the test set was 0.893. Gradient 
-boosting typically improves test set accuracy by using many simple models 
-iteratively. 
-
-Figure 7 shows that the feature importance 
-for the gradient boosting classifier tree looks similar to the feature 
-importance for random forests, but the gradient boosting has decreased the 
-importance of many features to zero. Again Cocaine is selected as the most 
-imformative features, followed by Any Opioid PRL Use. In addition to 
-Prescription Opioid PRL Misuse and Abuse, the gradient boosting classifier 
-selected Amphetamine Use as an informative feature of Heroin Use. 
+Accuracy for the test set was 0.893. Gradient boosting typically improves test 
+set accuracy by using many simple models iteratively. The model accuracy for 
+gradient boosting was no better than random forests, and this is because the 
+default parameter settings were used. Further parameter tuning is needed 
+to improve model performance.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
