@@ -681,45 +681,57 @@ heroin use \cite{muhuri13, unick13}.
 
 Performance of the classification models was evaluated in the confusion 
 matrices reported in Table 3, which includes model accuracy, sensitivity 
-(i.e., Recall), precision, and the $f_1$-score. In terms of accuracy, neural
-networks (MLP) and support vector classifier had the best performance; 
-however, as described in the introduction, the $f_1$-score is a better 
-performance metric than accuracy with datasets that have unbalanced classes 
-because it takes into account both sensitivity and precision. There is a 
-clear indication of unbalanced classes in the NSDUH data given that the 
-proportion of respondents who had never misused or abused pain relievers 
-was much greater than the proportion who had. Approximately 11\% of 
-respondents in both the training and test sets reported misusing and abusing 
-opioid pain relievers. Using the $f_1$-score as the preferred metric, logistic
-regression, decision trees, and random forests performed better than the other 
-classification models, and were ited with the same $f_1$-score. 
+(i.e., Recall), precision, and the $f_1$-score. Because there was a clear 
+indication of unbalanced classes in the sample data | the proportion of 
+respondents who had never misused or abused pain relievers (89\%) was 
+much greater than the proportion who had | the $f_1$-score was used as
+the preferred metric of performance rather than accuracy because it takes 
+into account both sensitivity and precision. Although the neural networks 
+(MLP) model and support vector classifier (SLC) had the highest accuracy, 
+they both had very low $f_1$-scores compared to other models. In terms 
+of $f_1$-score logistic regression, decision trees, and random forests 
+performed better than the other classifiers and were tied for the highest 
+score. Examination of the confusion matrices reveals that the random forests 
+model identified more true positives than the decision trees and had fewer 
+misclassification errors than logistic regression. The LDA model
+performed similarly to logistic regression in terms of $f_1$-score and
+accuracy, more true positives and fewer false positives, but more
+false negatives. It is interesting to note that the QDA model had the 
+highest number of true positives, but a lower $f_1$-score than the naive 
+Bayes classifier, even though the naive Bayes model returned only 30 true 
+positives. The main parameter settings for the classification models are 
+presented in Table 4.
 
-The main parameter settings for the classification models are presented in 
-Table 4
+\subsubsection{Linear Models}
+
+Together, all of the features entered into the logistic regression model
+significantly predicted pain reliever misuse and abuse. The parameter estimates 
+for the logistic regression classifier model are presented in Table 5, sorted 
+in descending order by z-score. The estimates for all of the features were 
+statistically significant ($p<.001$), except for mental health treatment 
+which was non-significant. The model was rerun leaving out mental health 
+treatment, and excluding this variable this did not significantly change 
+the parameter estimates. All of the predictor variables were positively 
+associated with pain reliever misuse and abuse except for age category, sex,
+and size of city/metropolitan region which were negatively related to MUPO. 
+The z-score provides an indication of the relative influence of each predictor 
+on the dependent variable. Cocaine, amphetamines, tranquilizers, mental health, 
+age category, and heroin use were identified as six of the most influential predictors of pain reliever misuse and abuse. 
 
 
-\subsubsection{Feature Importance}
- 
-the parameter estimates for the logistic regression classifier model are 
-presented in Table 5, sorted in descending order by z-score. The z-score
-provides an indication of the relative influence of each predictor on the 
-dependent variable. The model identified cocaine, amphetamines, tranquilizers,
-mental health, age category, and heroin use as six of the most influential.
 
-All of the features were significant predictors of pain reliever misuse and abuse
-except for mental health which was non-significant.   The model was rerun leaving out 
-the non-significant variables, mental health 
-treatment, which did not change the sign or significant of the parameter estimates. 
-Age category, sex, and size of city of metropolitan area were negatively related
-to the outcome variables, whereas the remaining significant predictors were 
-positively related to pain reliever misuse and abuse
 
-to predict pain reliever misuse and abuse
-from the set of predictor variables. The logistic regression classifier was fit to 
-the training data using the caret package, and the model was validated on the test 
-data. Together, all of the variables entered into the model significantly predicted 
-pain reliever misuse and abuse; only mental health treatment was a non-significant
-predictor. 
+The important assumptions for LDA are, first, a common covariance 
+matrix for all classes, and second, the class boundaries are linear functions 
+of the predictors. \emph{Quadratic Discriminant Analysis} (QDA) is an approach 
+that assumes each class has its own covariance matrix and the decision 
+boundaries are quadratically curvilinear in the predictor space \cite{kuhn13}. 
+LDA is less flexible as a classifier than QDA, but can perform better with 
+relatively few training observations or when the majority of predictors in the 
+data represent discrete categories. QDA is recommended over LDA with a very 
+large training set or when the decision boundary between two classes is 
+non-linear. 
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -816,7 +828,7 @@ Tranquilizer Use, Drug Treatment, and Heroin Use were tied for second place.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Random Forests Classifier}
+\subsubsection{Feature Importance}
 
 Random forests reduces overfitting by building many trees and averaging 
 their results. The important parameters are the number of trees (100), 
