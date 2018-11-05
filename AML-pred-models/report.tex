@@ -143,13 +143,6 @@ likelihood function, and are interpreted as an indication of the log-odds
 change in the outcome variable that is associated with a one-unit increase 
 in a predictor variable ($X_i$...$X_j$). 
 
-%\begin{figure}[!ht]
-%  \centering\includegraphics[width=\columnwidth]{images/Figure2.pdf}
-%  \caption{Conditional Probabilities for Predicting Class Labels with 
-%  a Logistic Regression Model \cite{raschka17}}
-%  \label{f:Figure2}
-%\end{figure}
-
 \emph{Linear discriminant analysis} (LDA) is an alternative approach to 
 estimating the probabilities which models the distribution of predictors 
 separately in each of the response classes and then uses the Bayes' theorem 
@@ -681,58 +674,57 @@ heroin use \cite{muhuri13, unick13}.
 
 Performance of the classification models was evaluated in the confusion 
 matrices reported in Table 3, which includes model accuracy, sensitivity 
-(i.e., Recall), precision, and the $f_1$-score. Because there was a clear 
-indication of unbalanced classes in the sample data | the proportion of 
-respondents who had never misused or abused pain relievers (89\%) was 
-much greater than the proportion who had | the $f_1$-score was used as
-the preferred metric of performance rather than accuracy because it takes 
-into account both sensitivity and precision. Although the neural networks 
-(MLP) model and support vector classifier (SLC) had the highest accuracy, 
-they both had very low $f_1$-scores compared to other models. In terms 
-of $f_1$-score logistic regression, decision trees, and random forests 
+(i.e., Recall), precision, and the $f_1$-score. The accuracy scores
+ranged form 86.1\% to 90.6\%. Because there was a clear indication of 
+unbalanced classes in the sample data | the proportion of respondents who 
+had never misused or abused pain relievers (89\%) was much greater than 
+the proportion who had | the $f_1$-score was used as the preferred metric 
+of performance rather than accuracy because it takes into account both 
+sensitivity and precision. The $f_1$-score ranged form 0.88\% to 0.946\%.
+Although the neural networks (MLP) model and support vector classifier 
+(SLC) had the highest accuracy (90.6\% and 90.4\%, respectively), they 
+both had very low $f_1$-scores compared to other models (0.88). In terms 
+of the $f_1$-score, logistic regression, decision trees, and random forests 
 performed better than the other classifiers and were tied for the highest 
-score. Examination of the confusion matrices reveals that the random forests 
-model identified more true positives than the decision trees and had fewer 
-misclassification errors than logistic regression. The LDA model
-performed similarly to logistic regression in terms of $f_1$-score and
-accuracy, more true positives and fewer false positives, but more
-false negatives. It is interesting to note that the QDA model had the 
-highest number of true positives, but a lower $f_1$-score than the naive 
-Bayes classifier, even though the naive Bayes model returned only 30 true 
-positives. The main parameter settings for the classification models are 
-presented in Table 4.
+score (0.946). Examination of the confusion matrices reveals that the 
+random forests model identified more true positives than the decision 
+trees and had fewer misclassification errors than logistic regression. 
+The main parameter settings for the classification models are presented 
+in Table 4.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Linear Models}
 
-Together, all of the features entered into the logistic regression model
-significantly predicted pain reliever misuse and abuse. The parameter estimates 
-for the logistic regression classifier model are presented in Table 5, sorted 
-in descending order by z-score. The estimates for all of the features were 
-statistically significant ($p<.001$), except for mental health treatment 
-which was non-significant. The model was rerun leaving out mental health 
-treatment, and excluding this variable this did not significantly change 
+Together, the features significantly predicted pain reliever misuse and abuse.
+The parameter estimates for the logistic regression classifier are presented 
+in Table 5, sorted in descending order by z-score. The estimates for all of 
+the features were statistically significant ($p<.001$), except for mental 
+health treatment. The model was rerun leaving out the non-significant 
+variables, and excluding this variable this did not significantly change 
 the parameter estimates. All of the predictor variables were positively 
 associated with pain reliever misuse and abuse except for age category, sex,
 and size of city/metropolitan region which were negatively related to MUPO. 
 The z-score provides an indication of the relative influence of each predictor 
 on the dependent variable. Cocaine, amphetamines, tranquilizers, mental health, 
-age category, and heroin use were identified as six of the most influential predictors of pain reliever misuse and abuse. 
+age category, and heroin use were identified as six of the most influential 
+predictors of pain reliever misuse and abuse. 
 
-
-
-
-The important assumptions for LDA are, first, a common covariance 
-matrix for all classes, and second, the class boundaries are linear functions 
-of the predictors. \emph{Quadratic Discriminant Analysis} (QDA) is an approach 
-that assumes each class has its own covariance matrix and the decision 
-boundaries are quadratically curvilinear in the predictor space \cite{kuhn13}. 
-LDA is less flexible as a classifier than QDA, but can perform better with 
-relatively few training observations or when the majority of predictors in the 
-data represent discrete categories. QDA is recommended over LDA with a very 
-large training set or when the decision boundary between two classes is 
-non-linear. 
-
-
+The LDA model performed similarly to logistic regression in terms of 
+$f_1$-score and accuracy, with more true positives and fewer false 
+positives, but more false negatives. An important assumption for logistic
+regression and LDA is that the class boundaries are linear functions 
+of the predictors. When the decision boundary between two classes is 
+non-linear, QDA is recommended over LDA, as QDA assumes the decision 
+boundary is curvilinear in the predictor space \cite{kuhn13}. The plots 
+of the residual and fitted values for the logistic regression in Figure 5
+suggest that the relationship may not be linear and therefore a non-linear
+may be a better approach for the sample data. It is interesting to note 
+that the QDA model had the highest number of true positives, but a lower 
+$f_1$-score than the naive Bayes classifier, even though the naive Bayes 
+model returned only 30 true positives. Furthermore, the QDA model had a 
+lower $f_1$-score and accuracy than decision tree and random forests, 
+the tree based models may provide the best fit for the data. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -767,13 +759,25 @@ non-linear.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\begin{figure}[!ht]
+ \centering\includegraphics[width=\columnwidth]{images/Figure6.pdf}
+  \caption{Plot of Residual and Fitted Values of Pain Reliever Misuse
+  and Abuse for the Logistic Regression Model}
+  \label{f:Figure6}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsubsection{Decision Tree Classifier}
 
-The Decision Tree Classifier package in Scikit-Learn was used to build the 
-tree model, pre-pruning was applied with a maximum depth of 4, which means 
+The decision tree classifier was built with a maximum depth of 4 trees, 
+as shown in Figure 7. 
+
+
+which means 
 the algorithm split on four consecutive questions. The training set accuracy 
-of the pruned tree was 0.902 and test set accuracy was 0.902. Figure 9 shows 
-a partial view of the decision tree classifier of prescription opioid misuse
+of the pruned tree was 0.902 and test set accuracy was 0.902. 
 
 The Decision Tree Classifier model was build using the default setting of a 
 fully developed tree until all leaves are pure. Accuracy on the
@@ -821,9 +825,9 @@ feature for Prescription Opioid PRL Misuse. Following afterwards,
 Tranquilizer Use, Drug Treatment, and Heroin Use were tied for second place. 
 
 \begin{figure}[!ht]
-  \centering\includegraphics[width=\columnwidth]{images/Figure6.pdf}
+  \centering\includegraphics[width=\columnwidth]{images/Figure7.pdf}
   \caption{Decision Tree Classification of Pain Reliever Misuse and Abuse}
-  \label{f:Figure6}
+  \label{f:Figure7}
 \end{figure}
 
 
@@ -845,6 +849,11 @@ that are very different from each other. This analysis applied a random forest
 consisting of 100 trees 
 
 The test set accuracy was 0.984. 
+
+
+
+
+
 
 Often the default settings for random forests work well, but we can apply
 pre-pruning as with a single tree, or adjust the maximum number of features. 
@@ -935,9 +944,9 @@ SVMs often perform well, but are sensitive to parameter settings
 and scaling of the data. 
 
 \begin{figure}[!ht]
-  \centering\includegraphics[width=\columnwidth]{images/Figure7.pdf}
+  \centering\includegraphics[width=\columnwidth]{images/Figure8.pdf}
   \caption{Neural Net Classifier: Multilayer Perceptron with Single Hidden Layer}
-  \label{f:Figur7}
+  \label{f:Figur8}
 \end{figure}
 
 
