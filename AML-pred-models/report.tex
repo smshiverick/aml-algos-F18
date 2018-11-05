@@ -683,46 +683,46 @@ heroin use \cite{muhuri13, unick13}.
 \subsection{Comparison of Classifier Models}
 
 Performance of the classification models was evaluated in the confusion 
-matrices reported in Table 3, which includes the performance metrics of 
-accuracy, sensitivity (i.e., Recall), precision, and the $f_1$-score. 
-The neural networks (MLP) and support vector classifier had the highest model 
-accuracy; however, as described in the introduction, the $f_1$-score 
-is a better performance metric than accuracy with datasets that have 
-unbalanced classes because it takes into account both sensitivity and precision. 
-In the present data set, there is a clear indication that the classes were
-unbalanced, given that the proportion of respondents who had never misused 
-or abused pain relievers in the NSDUH dataset was much greater than the 
-proportion who had, approximately 11\% of respondents in both the training 
-and test sets reported misusing and abusing opioid pain relievers. Therefore, 
-using the $f_1$-score as the preferred performance metric, logistic regression, decision trees, and random forests, had the best performance given that they
-were tied for the highest $f_1$-score.
+matrices reported in Table 3, which includes model accuracy, sensitivity 
+(i.e., Recall), precision, and the $f_1$-score. In terms of accuracy, neural
+networks (MLP) and support vector classifier had the best performance; 
+however, as described in the introduction, the $f_1$-score is a better 
+performance metric than accuracy with datasets that have unbalanced classes 
+because it takes into account both sensitivity and precision. There is a 
+clear indication of unbalanced classes in the NSDUH data given that the 
+proportion of respondents who had never misused or abused pain relievers 
+was much greater than the proportion who had. Approximately 11\% of 
+respondents in both the training and test sets reported misusing and abusing 
+opioid pain relievers. Using the $f_1$-score as the preferred metric, logistic
+regression, decision trees, and random forests performed better than the other 
+classification models, and were ited with the same $f_1$-score. 
 
-, with 
-| instances of one class are much greater than 
-instances of the other class | Given that followed by linear discriminant analysis (LDA) and the 
-naive Bayes classifier. 
- 
 The main parameter settings for the classification models are presented in 
-Table 
+Table 4
 
 
-\subsubsection{Logistic Regression}
+\subsubsection{Logistic Regression versus Tree models}
  
-A logistic regression to predict pain reliever misuse and abuse
-from the set of predictor variables. The logistic regression classifier was fit to 
-the training data using the caret package, and the model was validated on the test 
-data. Together, all of the variables entered into the model significantly predicted 
-pain reliever misuse and abuse; only mental health treatment was a non-significant
-predictor. Table 4 provides the parameter estimates for the predictor variables 
-sorted in descending order by z-score, which gives an indication of the relative
-influence of each predictor on the outcome variable. The logistic regression model 
-identified cocaine, amphetamines, tranquilizers, mental health, age category, and 
-heroin use as six of the most influential predictors of pain reliever misuse and 
-abuse. The model was rerun leaving out the non-significant variables, mental health 
+the parameter estimates for the logistic regression classifier model are 
+presented in Table 5, sorted in descending order by z-score. The z-score
+provides an indication of the relative influence of each predictor on the 
+dependent variable. The model identified cocaine, amphetamines, tranquilizers,
+mental health, age category, and heroin use as six of the most influential.
+
+All of the features were significant predictors of pain reliever misuse and abuse
+except for mental health which was non-significant.   The model was rerun leaving out 
+the non-significant variables, mental health 
 treatment, which did not change the sign or significant of the parameter estimates. 
 Age category, sex, and size of city of metropolitan area were negatively related
 to the outcome variables, whereas the remaining significant predictors were 
 positively related to pain reliever misuse and abuse
+
+to predict pain reliever misuse and abuse
+from the set of predictor variables. The logistic regression classifier was fit to 
+the training data using the caret package, and the model was validated on the test 
+data. Together, all of the variables entered into the model significantly predicted 
+pain reliever misuse and abuse; only mental health treatment was a non-significant
+predictor. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
