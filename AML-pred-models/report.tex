@@ -1,12 +1,11 @@
- \\\documentclass[sigconf]{acmart}
+\documentclass[sigconf]{acmart}
 
 \input{format/final}
 
 \begin{document}
   \title{Comparing Predictive Models of Pain Reliever Misuse and Abuse}
   \author{Sean M. Shiverick}
-  \affiliation{
-  \institution{Indiana University-Bloomington}
+  \affiliation{\institution{Indiana University-Bloomington}
   }
 \renewcommand{\shortauthors}{S.M. Shiverick}
 
@@ -15,7 +14,7 @@
 \begin{abstract}
 
 The misuse and abuse of prescription opioids (MUPO) is a chronic health 
-condition associated with increased overdose deaths in recent years 
+condition associated with increased overdose deaths over the past decade
 \cite{nida18}. Predictive modeling can identify factors related to MUPO and 
 help predict individuals at risk for opioid addiction. The present study 
 compares ten linear classification models using four performance metrics 
@@ -33,7 +32,7 @@ regression, decision trees, and random forests, had the highest $f_1$-score.
 The $f_1$-score is considered a better metric of performance than accuracy 
 With data that has unbalanced unbalanced classes. Advantages and limitation 
 of the classification models are discussed. 
-\footnote{ Address correspondence to \textit{smshiver@iu.edu}}
+\footnote{This project was completed in partial fulfillment of requirements for the M.S. in Data Science from the School of Informatics and Computing at IU-Bloomington in May, 2018. Address correspondence to \textit{smshiver@iu.edu}}
 
 \end{abstract}
 \keywords{Predictive Modeling, Supervised Learning, Classification Models}
@@ -650,15 +649,14 @@ heroin use \cite{muhuri13, unick13}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{table}
-  \caption{Classification Models for Predict Pain Reliever Misuse 
-  and Abuse and Main Parameters}
+  \caption{Main Parameters for Non-linear Classification Models of 
+  Pain Reliever Misuse and Abuse}
   \label{tab:freq}
   \begin{tabular}{ll}
     \toprule
     Model & Main Parameter \\
     \midrule
     K-Nearest Neighbors & Number of Neighbors = 4 \\
-    Logistic Regression & NA \\
     Naive Bayes & Cost C = 0.01 \\
     Neural Network & Hidden Layers = 2 \\
     Decision Trees & Tree-Depth = 4 \\ 
@@ -766,63 +764,32 @@ the tree based models may provide the best fit for the data.
   \label{f:Figure6}
 \end{figure}
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{Decision Tree Classifier}
+\subsubsection{Decision Trees} 
 
-The decision tree classifier was built with a maximum depth of 4 trees, 
-as shown in Figure 7. 
+>>> Work on the interpretation, in terms of probability
 
-
-which means 
-the algorithm split on four consecutive questions. The training set accuracy 
-of the pruned tree was 0.902 and test set accuracy was 0.902. 
-
-The Decision Tree Classifier model was build using the default setting of a 
-fully developed tree until all leaves are pure. Accuracy on the
-training set was 0.99 and test set accuracy was 0.974.
-Without restricting 
-their depth, decision trees can become complex; unpruned trees are prone to 
-overfitting and do not generalize well to new data. 
-pre-pruning was applied, with 
-a maximum depth of 4, which means the algorithm split on four consecutive
-questions. Training set accuracy of the pruned tree was 0.985 and test set
-accuracy was 0.984. Even with a depth of 4, the tree can become a bit complex.
-Limiting the depth of 
-tree decreases overfitting, which results in lower training set accuracy, 
-but improved performance on the test set. 
-
-One way to interpret a decision tree it by following the sample numbers 
-represented at the test split for each node. The classifier algorithm 
-selected Cocaine Use as the root node of the decision tree. 
-The branch to the left  side of the tree represents samples with a score equal 
-to or less than 1.5 (n=40956), whereas the branch to the right represents 
-samples with a Cocaine Use score greater than 1.5 (n=1903). The second split 
-on the right occurs for X, with n=1443 having a score less than or equal 
-to 3.5, and n=460 respondents with a PRL score greater than 3.5. In other 
-words, of those respondents who reported relatively high Cocaine use, a small
-portion also reported relatively high Prescription Opioid PRL use.
-
-
-Feature importance is a common summary function that rates how important 
-each feature is for the classification decisions made in the algorithm. 
-
-Each feature is assigned an importance value between 0 and 1; with a value of 
-1 indicating the feature perfectly predicts the target and a value of 0 meaning 
-that the feature was not used at all. Feature importance values also always 
-sum to 1. A feature may have a low importance value because another feature 
-encodes the same information. 
-
-As Figure 9 shows, the decision tree classifier selected Cocaine Use as the 
-root note. At the second node, on the branch to the right n=5015 samples were further divided according to 
-
-heroin use, with n=1913 having a score greater 
-than 0.5 (any Heroin Use). At the third node on the right branch, samples were selected according to Tranquilizer medication use, with n=1419 scoring positively. On the left branch, the second node selected was Drug Treatment, with n=2844 respondents scoring
-positively that they had received Drug Treatment. Feature importance of
-the decision tree classifier selected Cocaine Use as the most informative
-feature for Prescription Opioid PRL Misuse. Following afterwards, 
-Tranquilizer Use, Drug Treatment, and Heroin Use were tied for second place. 
+Without restricting their depth, decision trees can become complex and are 
+prone to overfitting. The decision tree model was prepruned to a maximum 
+depth of 4, which means the algorithm split on four consecutive features 
+(see Figure 7). The dependent variables was pain reliever misuse and abuse 
+and the root node of the decision tree includes the 85528 observations in 
+the training set. One way to interpret a decision tree is by following the 
+number of samples represented at the split for each node. The algorithm 
+selected cocaine as the root node; the branch to the left indicates 75562 
+samples (88\%) with no or low cocaine use, and on the right branch 9966 samples 
+(12\%) had a score greater than 0.5. In other words, of those samples with 
+high cocaine use, 12 percent had also misused or abused pain relievers. 
+The second split was based on heroin use, with 8562 samples (10\%) on the 
+left branch reported no or low heroin use, and 1404 samples (2\%) on the right 
+branch had heroin a score greater than 0.5. The third split in the decision 
+tree was by tranquilizer use; on the left branch, 6465 samples (8\%) had a 
+score less than one, and on the right branch 2097 samples (2\%) with a score 
+greater or equal to one. The fourth split was based on age category; the left 
+branch represented 946 samples (8\%) age 36 and older and the right branch 
+represented 1162 samples (8\%) age 35 and younger who also reported misuse 
+and abuse of prescription pain relievers. 
 
 \begin{figure}[!ht]
   \centering\includegraphics[width=\columnwidth]{images/Figure7.pdf}
@@ -830,62 +797,25 @@ Tranquilizer Use, Drug Treatment, and Heroin Use were tied for second place.
   \label{f:Figure7}
 \end{figure}
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Feature Importance}
+\subsubsection{Feature Importance for Random Forests}
 
-Random forests reduces overfitting by building many trees and averaging 
-their results. The important parameters are the number of trees (100), 
-the number of data points for bootstrap sampling, and the maximum number of 
-features considered at each node which determines how random each tree is. 
-The algorithm can look at all of the features in the dataset or only a 
-limited number. A high value for maximum-features will produce trees that 
-are very similar and will fit the data easily based on the most distinctive 
-features, whereas a low value will produce trees that are very different 
-from each other, which also reduces over-fitting. 
-
-with smaller values of max-features resulting in trees in the random forest 
-that are very different from each other. This analysis applied a random forest 
-consisting of 100 trees 
-
-The test set accuracy was 0.984. 
-
-
-
-
-
-
-Often the default settings for random forests work well, but we can apply
-pre-pruning as with a single tree, or adjust the maximum number of features. 
-Feature importance for random forests is computed by aggregating the feature 
-importance over trees in the random forest, and random forests gives
-non-zero importance to more features than a single tree. 
-
-The Random Forest Classifier package in Scikit-Learn was used to classify
-Prescription Opioid PRL Misuse as the target variable, with 100 trees. 
-
-compensating for some of their shortcomings of overfitting.
-
-To reduce overfitting, pre-pruning could be implemented by reducing the 
-maximum depth, or by reducing 
-the learning rate. 
-
-Although random forests models are more accurate than a single tree and can
-compensate for some of the shortcomings of overfitting, a limitation of this 
-approach is that it can be difficult to interpret an ensemble of trees apart 
-from the measure of feature importance provided in the output. Single trees 
-are still useful for visually representing the decision process.
-
-Feature importance was a primary interest for identifying features related to
-prescription opioid abuse. Figure 11 shows the feature importance for the 
-gradient boosting classifier tree. As Figure 11 shows, several features were 
-important for classifying prescription opioid misuse, and contrary to the 
-random forests, gradient boosting selected Tranquilizer use as the most 
-informative feature. Following closely in importance were Heroin Use and Age 
-Category. Tied for fourth place were Cocaine Use and Treatment, with Mental 
-Health (depression) coming in fourth in terms of feature importance. This 
-result illustrates that several features are important for understanding 
-Prescription Opioid Misuse, and the relations among features may be complex.
+Random forests reduce overfitting by averaging the results of many different
+trees. The random forest model was fit using 1000 trees and all of the features 
+were considered at each node to determine the randomness of each tree.
+Feature importance is a model summary that rates how important each feature is 
+for the classification decisions made in the algorithm. For the random forests 
+model, feature importance was measured by the mean decrease in Gini coefficient 
+which indicates how each variable contributes to the homogeneity of the nodes 
+and leaves in the resulting random forest. For classification trees, the splits 
+are chosen so as to minimize entropy or Gini impurity in the resulting subsets.
+For random forests, Variables that result in nodes with higher purity have a 
+higher decrease in Gini coefficient.feature importance is computed by 
+aggregating the feature importance over trees in the random forest, and gives 
+non-zero importance to more features than a single tree.  A feature may have 
+a low importance value because another feature encodes the same information. 
+Figure 9 provides the feature importance for the random forests model or pain 
+reliever misuse and abuse sorted by the mean decrease in the Gini coefficient. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -929,6 +859,15 @@ to improve model performance.
 
 \subsubsection{Model Interpretability}
 
+
+The advantage of decision trees is that they provide an interpretable model,
+but are prone to overfitting. 
+
+Although random forests models are more accurate than a single tree and can
+compensate for some of the shortcomings of overfitting, a limitation of this 
+is that it can be difficult to interpret an ensemble of trees apart from the 
+measure of feature importance provided in the output. Single trees are still 
+useful for visually representing the decision process.
 
 Simple models had lower accuracy but provide more interpretable solutions 
 than complex models which can yield higher accuracy but are often harder 
@@ -1072,14 +1011,25 @@ using a broader set of features, with more inclusive sample representative
 of the larger population, and integrate data from multiple sources. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Opioid Addiction Epidemic}
+\subsection{Opioid Epidemic}
+
+Nonmedical use of 
+prescription opioids is a significant risk factor for heroin use \cite{Rudd16}.
+Four in five new heroin users started out misusing prescription painkillers
+\cite{jones13}.
+
+
 
 If the crisis of opioid addiction were an epidemic like other illnesses caused 
 by biological contagion, its spreading or diffusion could be measured by the 
 proportion of infected in the population, those yet to be infected, and the 
-rate of transmission. Although drug addiction has many similar characteristics 
+rate of transmission. 
+
+Although drug addiction has many similar characteristics 
 to other chronic medical illnesses, but there are unique challenges to the 
-treatment of addiction \cite{marsch12, swendson16}. According to the classical 
+treatment of addiction \cite{marsch12, swendson16}. 
+
+According to the classical 
 conditioning theory of addiction, situational cues or events can elicit a 
 motivational state underlying the relapse to drug use. Following treatment, 
 many addicted individuals return to the same environments associated with 
