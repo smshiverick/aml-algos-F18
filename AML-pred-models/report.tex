@@ -573,52 +573,53 @@ vector classifier (SVC), naive Bayes classifier, and neural network
 
 Of the total sample of N=114038 respondents from 2015-2016, 27\% (n=30790) 
 reported taking any pain relievers in the past year (13405 males, 17383 
-females). Approximately 11\% (n=12305) of the sample disclosed that they 
-had previously misused or abused prescription pain relievers at some point 
-(6239 males, 6066 females). The percent of individuals reporting pain reliever 
-misuse and abuse in the training set and test sets was the same as in the 
-full sample. Although, more females reported using any prescription opioid 
-pain relievers in the past year than males, roughly equal proportions of 
-males and females reported misusing or abusing opioid pain relievers. 
-Figure 4 shows that the proportion of pain reliever misuse and abuse was 
-higher among younger individuals, between the ages of 12 to 25, than 
-individuals over 26 years, and decreased among individuals age 36 and older. 
+females). Table 3 provides the frequency and percent of respondents who 
+reported pain reliever misuse and abuse by demographic characteristics. 
+Approximately 11\% of the sample had misused or abused prescription pain 
+relievers at some point. This same rate of pain reliever misuse and abuse 
+was found in both the training set and test sets. Although, more females 
+reported using any prescription opioid pain relievers in the past year than 
+males, roughly equal proportions of males and females reported misusing or 
+abusing opioid pain relievers. The proportion of pain reliever misuse and 
+abuse was highest among individuals between the ages of 18 to 25, and 
+decreased among older age groups. Pain reliever misuse was more frequent
+among respondents with some college education, and more than half of
+individuals who reported misusing or abusing pain relievers were single. 
 Only 2\% of individuals (n=2266) disclosed ever using heroin (1320 males; 
-946 females). As shown in Figure 5, the proportion of pain reliever misuse 
-and abuse was higher among individuals who reported using heroin than those 
-who had not, which is consistent with previous findings that indicate a 
-relationship between the misuse and abuse of prescription opioids and 
-heroin use \cite{muhuri13, unick13}.
+946 females); however, as shown in Figure 3, the proportion of pain 
+reliever misuse and abuse was more than twice as large among individuals
+who reporting using heroin than those who had not. This finding is
+consistent with past research indicating a connection between prescription
+opioid misuse and abuse and heroin use \cite{muhuri13, unick13}.
 
 \begin{table}
-  \caption{Sample Demographics of NSDUH (2015-2016) by Pain Reliever Misuse and 
-  Abuse Ever (PRLMISAB)}
+  \caption{Frequency of Pain Reliever Misuse and Abuse
+  by Demographics Features for Sample Data (NSDUH 2015-2016)}
   \label{tab:freq}
   \begin{tabular}{llllll}
     \toprule
-              & PRLMISAB & & & No PRLMISAB & \\
+              & \textbf{PRLMISAB} & & & \textbf{Non-PRLMISAB} & \\
               & N & \% &  & N & \% \\
     \midrule
-    Total     & 12305 & 10.8\% & & 101733 & 89.2\% \\
-    \midrule
-    Female    & 6066 & 49.3\% & & 54099 & 53.1\%  \\
+    \textbf{Total}     & 12305 & 10.8\% & & 101733 & 89.2\% \\
     Male      & 6239 & 50.7\% & & 47634 & 46.8\%  \\
+    Female    & 6066 & 49.3\% & & 54099 & 53.1\%  \\
     \midrule
-    Age Group &  &  &  &  & \\
+    \textbf{Age Group} &  &  &  &  & \\
     12-17     & 1567 & 12.7\% & & 26288 & 25.8\% \\
     18-25     & 3830 & 31.1\% & & 24382 & 24.0\% \\
-    26-34     & 2942 & 23.9\% & & 14891 & 14.6\% \\
-    35-49     & 2733 & 22.2\% & & 19797 & 19.5\% \\
+    26-35     & 2942 & 23.9\% & & 14891 & 14.6\% \\
+    36-49     & 2733 & 22.2\% & & 19797 & 19.5\% \\
     50+       & 1233 & 10.0\% & & 16375 & 16.1\% \\
     \midrule
-    Education Level &  &  &  &  & \\
+    \textbf{Education} Level &  &  &  &  & \\
     School Age & 1567 & 12.7\% & & 26288 & 25.8\% \\
     Some H.S.  & 1279 & 10.4\% & & 10507 & 10.3\% \\
     H.S. Grad  & 2797 & 22.7\% & & 20290 & 19.9\% \\
     Some Coll. & 4017 & 32.6\% & & 24922 & 24.5\% \\
     Coll. Grad & 2645 & 21.5\% & & 19726 & 19.4\% \\
     \midrule
-    Marital Status &  &  &  &  & \\
+    \textbf{Marital Status} &  &  &  &  & \\
     Single    & 6564 & 53.3\% & & 57648 & 56.6\% \\
     Divorced  & 3241 & 26.3\% & & 23068 & 22.7\% \\
     Widowed   &  652 &  5.3\% & &  4101 &  4.0\% \\
@@ -630,19 +631,19 @@ heroin use \cite{muhuri13, unick13}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\begin{figure}[!ht]
-%  \centering\includegraphics[width=\columnwidth]{images/Figure4.pdf}
-%  \caption{Proportion of Individuals Reporting Pain Reliever Misuse and Abuse
-%  as a function of Heroin Use Ever}
-%  \label{f:Figure4}
-%\end{figure}
-
 \begin{figure}[!ht]
-  \centering\includegraphics[width=\columnwidth]{images/Figure5.pdf}
+  \centering\includegraphics[width=\columnwidth]{images/Figure3.pdf}
   \caption{Proportion of Individuals Reporting Pain Reliever Misuse and Abuse
-  and Heroin Use Ever as a function of Sex}
-  \label{f:Figure5}
+  as a function of Heroin Use Ever}
+  \label{f:Figure3}
 \end{figure}
+
+%\begin{figure}[!ht]
+%  \centering\includegraphics[width=\columnwidth]{images/Figure5.pdf}
+%  \caption{Proportion of Individuals Reporting Pain Reliever Misuse and Abuse
+%  and Heroin Use Ever as a function of Sex}
+%  \label{f:Figure5}
+%\end{figure}
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
@@ -654,43 +655,43 @@ heroin use \cite{muhuri13, unick13}.
     \toprule
     Model& & Confusion Matrix & & Accuracy & Sensitivity & Precision & F1-Score \\
     \midrule
-    K-Nearest Neighbors & & No Misuse & PRL Misuse &  &  &  & \\
+    \textbf{K-Nearest Neighbors} & & No Misuse & PRL Misuse &  &  &  & \\
      & No Misuse & 25114 & 320 & 89.5\% & 0.900 & 0.870 & 0.870 \\
      & PRL Misuse & 2609 & 467 &  &  &  & \\
     \midrule
-    Logistic Regression & & No Misuse & PRL Misuse &  &  &  & \\
+    \textbf{Logistic Regression} & & No Misuse & PRL Misuse &  &  &  & \\
      & No Misuse & 25002 & 2509 & 90\% & 0.986 & 0.909 & 0.946 \\
      & PRL Misuse & 344 & 654 &  &  &  & \\
     \midrule
-    Linear Discriminant Analysis (LDA) & & No Misuse & PRL Misuse &  &  &  & \\
+    \textbf{Linear Discriminant Analysis (LDA)} & & No Misuse & PRL Misuse &  &  &  & \\
      & No Misuse & 24668 & 2239 & 89.8\% & 0.973 & 0.917 & 0.944 \\
      & PRL Misuse & 678 & 924 &  &  &  & \\
     \midrule
-    Quadratic Discriminant Analysis (QDA) & & No Misuse & PRL Misuse &  &  &  & \\
+    \textbf{Quadratic Discriminant Analysis (QDA)} & & No Misuse & PRL Misuse &  &  &  & \\
      & No Misuse & 23165 & 1780 & 86.1\% & 0.914 & 0.9929 & 0.921 \\
      & PRL Misuse & 2181 & 1383 &  &  &  & \\
     \midrule
-    Support Vector Classifier (SVM) & & No Misuse & PRL Misuse &  &  &  & \\
+    \textbf{Support Vector Classifier (SVM)} & & No Misuse & PRL Misuse &  &  &  & \\
      & No Misuse & 25201 & 233 & 90.4\% & 0.900 & 0.890 & 0.880 \\
      & PRL Misuse & 2514 & 562 &  &  &  & \\
     \midrule
-    Naive Bayes & & No Misuse & PRL Misuse &  &  &  & \\
+    \textbf{Naive Bayes} & & No Misuse & PRL Misuse &  &  &  & \\
      & No Misuse & 25345 & 3133 & 89\% & 0.999 & 0.890 & 0.941 \\
      & PRL Misuse & 1 & 30 &  &  &  & \\
     \midrule
-    Neural Network (MLP) & & No Misuse & PRL Misuse &  &  &  & \\
+    \textbf{Neural Network (MLP)} & & No Misuse & PRL Misuse &  &  &  & \\
      & No Misuse & 25088 & 346 & 90.6\% & 0.910 & 0.890 & 0.880 \\
      & PRL Misuse & 2366 & 710 &  &  &  & \\
     \midrule
-    Decision Trees & & No Misuse & PRL Misuse &  &  &  & \\
+    \textbf{Decision Trees} & & No Misuse & PRL Misuse &  &  &  & \\
      & No Misuse & 25042 & 2572 & 89.9\% & 0.988 & 0.907 & 0.946 \\
      & PRL Misuse & 304 & 591 &  &  &  & \\
     \midrule
-    Random Forests & & No Misuse & PRL Misuse &  &  &  & \\
+    \textbf{Random Forests} & & No Misuse & PRL Misuse &  &  &  & \\
      & No Misuse & 25026 & 2298 & 90.1\% & 0.987 & 0.909 & 0.946 \\
      & PRL Misuse & 320 & 665 &  &  &  & \\
     \midrule
-    Gradient Boosted Trees & & No Misuse & PRL Misuse &  &  &  & \\
+    \textbf{Gradient Boosted Trees} & & No Misuse & PRL Misuse &  &  &  & \\
      & No Misuse & 25398 & 36 & 89.9\% & 0.900 & 0.890 & 0.895 \\
      & PRL Misuse & 2856 & 220 &  &  &  & \\
     \bottomrule
@@ -708,9 +709,9 @@ heroin use \cite{muhuri13, unick13}.
     Model & Main Parameter \\
     \midrule
     K-Nearest Neighbors & Number of Neighbors = 4 \\
-    Naive Bayes & Cost C = 0.01 \\
-    Neural Network & Hidden Layers = 2 \\
-    Decision Trees & Tree-Depth = 4 \\ 
+    Naive Bayes & Cost, \textit{C} = 0.01 \\
+    Neural Network & Hidden Layers = 1 \\
+    Decision Trees & Maximum Depth = 4 \\ 
     Random Forests & Number of Trees = 1000 \\
     Boosted Trees & Learning Rate = 0.01 \\ 
     \bottomrule
@@ -758,6 +759,14 @@ The z-score provides an indication of the relative influence of each predictor
 on the dependent variable. Cocaine, amphetamines, tranquilizers, mental health, 
 age category, and heroin use were identified as six of the most influential 
 predictors of pain reliever misuse and abuse. 
+
+The slope parameter, $\beta_2$ , is interpreted as the change in the log of 
+the odds of Y occurring (i.e., change in the log of odds ratio) given a unit 
+change in X (holding effects of other variables constant). The intercept, β1, 
+is the log of the odds ratio when X is 0 \cite{gujarati09}. The parameters 
+relate to the log of the odds ratio rather than to the dependent variable
+directly.
+
 
 The LDA model performed similarly to logistic regression in terms of 
 $f_1$-score and accuracy, with more true positives and fewer false 
@@ -809,10 +818,10 @@ the tree based models may provide the best fit for the data.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{figure}[!ht]
- \centering\includegraphics[width=\columnwidth]{images/Figure6.pdf}
+ \centering\includegraphics[width=\columnwidth]{images/Figure4.pdf}
   \caption{Plot of Residual and Fitted Values of Pain Reliever Misuse
   and Abuse for the Logistic Regression Model}
-  \label{f:Figure6}
+  \label{f:Figure4}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -845,10 +854,10 @@ probability
 
 
 \begin{figure}[!ht]
-  \centering\includegraphics[width=\columnwidth]{images/Figure7.pdf}
+  \centering\includegraphics[width=\columnwidth]{images/Figure5.pdf}
   \caption{Decision Tree Model of Pain Reliever Misuse and Abuse
   fit to the Training Set}
-  \label{f:Figure7}
+  \label{f:Figure5}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -939,9 +948,9 @@ SVMs often perform well, but are sensitive to parameter settings
 and scaling of the data. 
 
 \begin{figure}[!ht]
-  \centering\includegraphics[width=\columnwidth]{images/Figure8.pdf}
+  \centering\includegraphics[width=\columnwidth]{images/Figure6.pdf}
   \caption{Neural Net Classifier: Multilayer Perceptron with Single Hidden Layer}
-  \label{f:Figur8}
+  \label{f:Figur6}
 \end{figure}
 
 
