@@ -142,10 +142,10 @@ likelihood function, and are interpreted as an indication of the log-odds
 change in the outcome variable that is associated with a one-unit increase 
 in the predictor variable, holding the effects of other predictor variables 
 constant. The intercept, $\beta_0$, is the log of the odds ratio when X is 
-0 \cite{gujarati09}. 
+0 \cite{gujarati09}. The log odds or logit function is represented below: 
 
 \begin{equation}
-  \ ln\frac{P_i}{1-P_i} = \beta_0 + \beta_1*X_i + ... \beta_j*X_k \
+  \ ln\frac{P_i}{1-P_i} = \beta_0 + \beta_1X_1 + \beta_1X_2 +... \beta_j*X_k \
 \end{equation}
 
 \emph{Linear discriminant analysis} (LDA) is an alternative approach to 
@@ -749,43 +749,56 @@ Together, the independent variables significantly predicted pain reliever
 misuse and abuse. The parameter estimates and odds ratios for the logistic 
 regression model are presented in Table 5, sorted by z-score. The estimates 
 for all of the features were statistically significant ($p<.001$) except for 
-mental health treatment. The coefficient estimates ($\beta_i$...$\beta_k$) 
-are interpreted as the change in the log of the odds of the dependent variable, 
+mental health treatment. The coefficient estimates ($\beta_i$...$\beta_j$) 
+are interpreted as the change in the log of the odds of the dependent variable 
 (PRLMISAB) occurring given a one unit change in each independent variable
 ($X_i$...$X_j$), holding constant the effects of other independent variables. 
 The parameters relate to the log of the odds ratio rather than to the dependent 
 variable directly. The odds are calculated as the probability of the event 
 occurring divided by the probability of the event not occurring 
 ( \(\frac{P}{P-1}\) ). The odds ratios are obtained by taking the antilog of 
-the estimated coefficients, which are the exponentiated parameter estimates: 
-$e^x$. For an interval scaled independent variable, the odds ratio is 
-interpreted as the multiplicative increase in the odds of the dependent 
-variable event happening (e.g., PRLMISAB) given a one unit change in the value 
-of the independent variable, assuming the effects of all other independent 
-variables are held constant. For a dichotomous (dummy) independent variable, 
-e.g., sex, the multiplicative increase in the odds of the dependent variable 
-event happening if the event represented by the independent variable occurs, 
-holding constant the effects of all other independent variables \cite{gujarati09}.  
+the estimated coefficients, which are the exponentiated parameter estimates 
+($e^x$). For an interval scaled independent variable, the odds ratio 
+is interpreted as the multiplicative increase in the odds of the dependent 
+variable event happening given a one unit change in the value of the 
+independent variable, assuming the effects of all other independent variables 
+are held constant. For a dichotomous (dummy) independent variable, e.g., sex, 
+the multiplicative increase in the odds of the dependent variable event 
+happening if the event represented by the independent variable occurs, holding 
+constant the effects of all other independent variables. In general, if you 
+take the antilog of the coefficient estimate, subtract 1 from it, and multiply 
+the result by 100, you get the percent change in the odds for a unit increase 
+in the independent variable  \cite{gujarati09}.  
 
-For a one unit change in cocaine use, there is a 
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The odds ratio indicates the ratio of the positive event to negative event, 
-but does not reveal the probability of the positive outcome. To obtain the 
-probability for a particular student, we need to look at y-hat and p-hat.
-
-Interpretation of Logit Model
-•	GPA odds ratio value of 3.82 is interpreted as 
-"the odds of an IU student finding a job increases by 3.82 times for a one GPA unit increase, holding the effects of Major and Residency constant."
-
-•	IN Resident value is interpreted as "the odds of an IU student finding a job increases by 0.12 times if the student is an Indiana Resident, holding the effects of Major and GPA constant.  
-
-•	These results indicate that a SPEA student is 9.68 times more likely to get public sector job than is a non-SPEA student.  
-
-NOTE: The odds ratio does  of a student obtaining 
-a private sector job.  it only reveals the ratio of success to failure; 
- 
+but does not reveal the probability of the positive outcome. The odds ratios 
+in Table 5 can be interpreted as follows: The odds of a respondent misusing or 
+abusing pain relievers increases by 1.99 times or 99\% for a one unit increase 
+in cocaine use, holding the effects of all other independent variables (IVs) 
+constant. For a one unit increase in amphetamine use, the odds of pain reliever 
+misuse and abuse (PRLMISAB) increases by 1.84 times or 84\%, holding all other 
+IVs constant. A one unit increase in tranquilizer use is associated with a 
+1.46 or 46\% increase in the odds of PRLMISAB, holding other IVs constant. 
+For a unit increase in mental health issues, the odds for PRLMISAB increased 
+by 1.15 or 15\%. For a one unit increase in age category, the odds of PRLMISAB 
+decreased by 1.24 times or 24\%, holding the effects of other IVs constant. 
+For a one unit increase in heroin use, the odds of PRLMISAB increases by 2.22 
+times or 22\%, holding other IVs constant. A one unit increase in employment is 
+associated with a 1.25 or 25\% increase in the odds of PRLMISAB, holding other 
+IVs constant. For a unit increase in substance treatment, the odds for PRLMISAB 
+increased by 1.22 or 22\%, holding other IVs constant. For a one unit increase 
+in sedative use, the odds of PRLMISAB increases by 1.32 times or 32\%, holding 
+all other IVs constant. For a one unit increase in health problems, the odds 
+for PRLMISAB increased by 1.11 or 11\%, holding other IVs constant. For a one 
+unit increase in education, the odds of PRLMISAB increased by 1.11 times or 
+11\%, holding other IVs constant. For a one unit increase in sex, the odds of 
+PRLMISAB decreases by 1.20 times or 20\%, holding all other IVs constant. 
+A unit increase in the size of a respondents city or metropolitan area resulted 
+in a 1.07 or 7\% decrease in the odds of PRLMISAB, holding other IVs constant. 
+For a unit increase in marital status, the odds for PRLMISAB increases by 1.05 
+or 5\%, holding other IVs constant. 
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -795,9 +808,9 @@ a private sector job.  it only reveals the ratio of success to failure;
   \label{tab:freq}
   \begin{tabular}{lllll}
     \toprule
-    Predictor&  Estimate& Std. Error& Z-Value & Odds Ratio \\    
+    Predictor&  Estimate& Std. Err.& Z-Value & Odds Ratio \\    
     \midrule
-    (Intercept)   & -2.960 &   0.048 & -61.10 *** &  &  \\
+    (Intercept)   & -2.960 &   0.048 & -61.10 *** &  \\
     Cocaine       & 0.690  &   0.019 &  36.91 *** & 1.99  \\
     Amphetamines  & 0.608  &   0.021 &  29.92 *** & 1.84  \\
     Tranquilizers & 0.381  &   0.014 &  27.29 *** & 1.46  \\
