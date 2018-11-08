@@ -32,7 +32,9 @@ regression, decision trees, and random forests, had the highest $f_1$-score.
 The $f_1$-score is considered a better metric of performance than accuracy 
 With data that has unbalanced unbalanced classes. Advantages and limitation 
 of the classification models are discussed. 
-\footnote{This project was completed in partial fulfillment of requirements for the M.S. in Data Science from the School of Informatics and Computing at IU-Bloomington in May, 2018. Address correspondence to \textit{smshiver@iu.edu}}
+\footnote{This project was completed in partial fulfillment of requirements 
+for the M.S. in Data Science from the School of Informatics and Computing at 
+IU-Bloomington in May, 2018. Address correspondence to \textit{smshiver@iu.edu}}
 
 \end{abstract}
 \keywords{Predictive Modeling, Supervised Learning, Classification Models}
@@ -41,9 +43,9 @@ of the classification models are discussed.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 
-Over the past two decades the misuse and abuse of prescription opioids (MUPO)  
-has become a major health crisis in the U.S. \cite{volkow14}. In 2015, an 
-estimated 2 million Americans suffered a substance use disorder related 
+Over the past two decades the misuse and abuse of prescription opioids 
+(MUPO) has become a major health crisis in the U.S. \cite{volkow14}. In 2015, 
+an estimated 2 million Americans suffered a substance use disorder related 
 to prescription opioid pain relievers such as oxycodone or hydrocodone 
 in 2015 \cite{nida18}. Opioid dependence and addiction are chronic health 
 conditions. The number of opioid-related overdose deaths has more than 
@@ -121,27 +123,30 @@ interest were demographic variables, medication usage, and use of illicit drugs.
 
 As the statistician George Box stated, "All models are wrong, but some models 
 are useful" \cite{box05}. There are advantages and limitations for selecting
-any model, but logistic regression is one of the most powerful and interpretable 
-models for classification. Logistic regression models the conditional 
-distribution of probabilities for a binary response (e.g., $Pr(Y=k | X=x)$) 
-as a combination of a set of predictor variables \cite{james13, raschka17}. 
-The decision boundary for the logistic regression classifier is a linear 
-function of the input; a binary classifier separates two classes using a line, 
-plane, or hyperplane \cite{muller17}. Given that the probability values for 
-the outcome range between 0 and 1, predictions can be made based on a default 
-value. For example, a default value of `Yes` could be predicted for any 
-individual for whom the probability of pain reliever misuse and abuse is 
-greater than fifty-percent, $Pr(PRLMISAB) > 0.5$. Logistic regression uses 
-a maximum likelihood method to predict the coefficient estimates that 
-correspond as closely as possible to the default state. In other words, the 
-model will predict a number close to one for individuals who have misused or 
-abused pain relievers and a number close to zero for individuals who have 
-not. The distribution of conditional probabilities in the logit model has an 
-S-shaped curve. The coefficients estimates obtained from a logistic regression 
-model, ($beta_0$, $beta_1$ ... $beta_k$) are selected in order to maximize the 
+any model, but logistic regression is one of the most reliable models for 
+classification. Logistic regression models the conditional distribution of 
+probabilities for a binary response (e.g., $Pr(Y=k | X=x)$) as a combination 
+of a set of predictor variables \cite{james13, raschka17}. The decision 
+boundary for the logistic regression classifier is a linear function of the 
+input; a binary classifier separates two classes using a line, plane, or 
+hyperplane \cite{muller17}. Given that the probability values for the outcome 
+range between 0 and 1, predictions can be made based on a default value. 
+For example, a default value of `Yes` could be predicted for any individual 
+for whom the probability of pain reliever misuse and abuse is greater than 
+fifty-percent, $Pr(PRLMISAB) > 0.5$. Logistic regression uses a maximum 
+likelihood method to predict the coefficient estimates that correspond as 
+closely as possible to the default state. In other words, the model will 
+predict a number close to one for individuals who have misused or abused 
+pain relievers and a number close to zero for individuals who have not. 
+The distribution of conditional probabilities in the logit model has an 
+S-shaped curve. The coefficient estimates are selected to maximize the 
 likelihood function, and are interpreted as an indication of the log-odds 
 change in the outcome variable that is associated with a one-unit increase 
-in a predictor variable ($X_i$...$X_j$). 
+in the predictor variable. 
+
+\begin{equation}
+  \ ln\frac{P_i}{1-P_i} = \beta_0 + \beta_1*X_i + ... \beta_j*X_k \
+\end{equation}
 
 \emph{Linear discriminant analysis} (LDA) is an alternative approach to 
 estimating the probabilities which models the distribution of predictors 
@@ -184,10 +189,10 @@ enlarging the feature space with higher order (e.g., quadratic, cubic,
 polynomial) functions of the predictors. 
 
 \begin{figure}[!ht]
-  \centering\includegraphics[width=\columnwidth]{images/Figure3.pdf}
+  \centering\includegraphics[width=\columnwidth]{images/Figure1.pdf}
   \caption{Decision Boundary and Support Vectors for Support Vector Machine 
   SVM Classifier with Nonlinear Kernel \cite{muller17}}
-  \label{f:Figure3}
+  \label{f:Figure1}
 \end{figure}
 
 \emph{Support vector machines} (SVM) are an extension of SVC that use a 
@@ -328,11 +333,11 @@ trees use strong pre-pruning, with shallow trees of a depth of one to five.
 Each tree only provides a good estimate of part of the data; combining many 
 shallow trees (i.e., ``weak learners'') iteratively improves performance. 
 In addition to pre-pruning and the number of trees, an important parameter 
-for gradient boosting is the \emph{learning rate} which determines how strongly 
-each tree tries to correct for mistakes of previous trees. A high learning rate
-produces stronger corrections, allowing for more complex models. Adding more 
-trees to the ensemble also increases model complexity. Gradient boosting
-and random forests perform well on similar tasks and data. A common 
+for gradient boosting is the \emph{learning rate} which determines how 
+strongly each tree tries to correct for mistakes of previous trees. A high 
+learning rate produces stronger corrections, allowing for more complex models. 
+Adding more trees to the ensemble also increases model complexity. Gradient 
+boosting and random forests perform well on similar tasks and data. A common 
 approach is to first try random forests and then include gradient boosting 
 to improve model accuracy. 
 
@@ -377,6 +382,8 @@ pain relievers may be labeled as never having done so (i.e., 'false negative').
   \end{tabular}
 \end{table}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 Classification errors and correct decisions can be represented in a 
 \emph{confusion matrix} (Table 1) that indicates the correspondence between 
 predicted and actual outcomes. The confusion matrix is a two-by-two array in 
@@ -402,15 +409,41 @@ class, as it takes recall and precision into account \cite{muller17}.
   \ f_1 score = 2*\frac{Precision*Recall}{Precision+Recall}\
 \end{equation}
 
- \begin{figure}[!ht]
-  \centering\includegraphics[width=\columnwidth]{images/Figure1.pdf}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Training and Test Set Accuracy}
+
+In constructing and evaluating predictive models it is important to select 
+a model that performs well not only with data used to train the model, but 
+also with new observations. The sample data is divided into a 
+\emph{training set} and a \emph{testing set} of observations that is set aside 
+and used to evaluate model performance. By convention, approximately 70 to 80 
+percent of observations are used in the training set and the remaining 
+portion is held in the testing set. Two main problems can occur in evaluating 
+model performance: overfitting and underfitting. A model can have high accuracy 
+on the training set but perform poorly with new data in the test set because 
+the model is `over-fit' to the training data. By contrast, a model can perform 
+poorly with the training data but have higher accuracy with the test set 
+because of `underfitting'. One of the simplest classification models, 
+K-Nearest neighbors is used as an example. KNN classifies observations by 
+assigning the label that is most frequent among the `k' number of nearest 
+training samples (selected by the user). The accuracy of the KNN classifier 
+for the training set and testing set is plotted as a function of the parameter 
+k-neighbors in Figure 1. The plot shows that increased accuracy on the testing 
+set is associated with decreased training set accuracy, and conversely, 
+increase accuracy on the training set is related to decreased test set accuracy. 
+The best model optimizes testing set accuracy and strikes a balance between 
+the problems of overfitting and underfitting. In the case of KNN, performance 
+on the test set increased only slightly between 2 and 4 neighbors, but did not 
+improve much beyond 5 neighbors. Therefore, a model with k=4 neighbors 
+provides a reasonable solution for the data. 
+
+\begin{figure}[!ht]
+  \centering\includegraphics[width=\columnwidth]{images/Figure2.pdf}
   \caption{K-Nearest Neighbors Classifier Accuracy for Training Set and 
   Testing Set as a function of Number of Neighbors}
-  \label{f:Figure1}
+  \label{f:Figure2}
 \end{figure}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -443,34 +476,6 @@ class, as it takes recall and precision into account \cite{muller17}.
   \end{tabular}
 \end{table*}
 
-
-\subsubsection{Training and Test Set Accuracy}
-
-In constructing and evaluating predictive models it is important to select 
-a model that performs well not only with data used to train the model, but 
-also with new observations. The sample data is divided into a 
-\emph{training set} and a \emph{testing set} of observations that is set aside 
-and used to evaluate model performance. By convention, approximately 70 to 80 
-percent of observations are used in the training set and the remaining 
-portion is held in the testing set. Two main problems can occur in evaluating 
-model performance: overfitting and underfitting. A model can have high accuracy 
-on the training set but perform poorly with new data in the test set because 
-the model is `over-fit' to the training data. By contrast, a model can perform 
-poorly with the training data but have higher accuracy with the test set 
-because of `underfitting'. One of the simplest classification models, 
-K-Nearest neighbors is used as an example. KNN classifies observations by 
-assigning the label that is most frequent among the `k' number of nearest 
-training samples (selected by the user). The accuracy of the KNN classifier 
-for the training set and testing set is plotted as a function of the parameter 
-k-neighbors in Figure 1. The plot shows that increased accuracy on the testing 
-set is associated with decreased training set accuracy, and conversely, 
-increase accuracy on the training set is related to decreased test set accuracy. 
-The best model optimizes testing set accuracy and strikes a balance between 
-the problems of overfitting and underfitting. In the case of KNN, performance 
-on the test set increased only slightly between 2 and 4 neighbors, but did not 
-improve much beyond 5 neighbors. Therefore, a model with k=4 neighbors 
-provides a reasonable solution for the data. 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Imbalanced Classes}
@@ -489,6 +494,7 @@ preferred performance metric, rather than accuracy, as it takes into account
 both sensitivity (i.e., recall) and precision. A second goal was to identify 
 important features for predicting the misuse and abuse of prescription opioid. 
 The tradeoff between model performance and interpretability is discussed. 
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -598,7 +604,7 @@ opioid misuse and abuse and heroin use \cite{muhuri13, unick13}.
   \label{tab:freq}
   \begin{tabular}{llllll}
     \toprule
-              & \textbf{PRLMISAB} & & & \textbf{Non-PRLMISAB} & \\
+              & PRLMISAB & & & Non-PRLMISAB & \\
               & N & \% &  & N & \% \\
     \midrule
     \textbf{Total}     & 12305 & 10.8\% & & 101733 & 89.2\% \\
@@ -637,13 +643,6 @@ opioid misuse and abuse and heroin use \cite{muhuri13, unick13}.
   as a function of Heroin Use Ever}
   \label{f:Figure3}
 \end{figure}
-
-%\begin{figure}[!ht]
-%  \centering\includegraphics[width=\columnwidth]{images/Figure5.pdf}
-%  \caption{Proportion of Individuals Reporting Pain Reliever Misuse and Abuse
-%  and Heroin Use Ever as a function of Sex}
-%  \label{f:Figure5}
-%\end{figure}
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
@@ -655,43 +654,43 @@ opioid misuse and abuse and heroin use \cite{muhuri13, unick13}.
     \toprule
     Model& & Confusion Matrix & & Accuracy & Sensitivity & Precision & F1-Score \\
     \midrule
-    \textbf{K-Nearest Neighbors} & & No Misuse & PRL Misuse &  &  &  & \\
+    K-Nearest Neighbors & & No Misuse & PRL Misuse &  &  &  & \\
      & No Misuse & 25114 & 320 & 89.5\% & 0.900 & 0.870 & 0.870 \\
      & PRL Misuse & 2609 & 467 &  &  &  & \\
     \midrule
-    \textbf{Logistic Regression} & & No Misuse & PRL Misuse &  &  &  & \\
+    Logistic Regression & & No Misuse & PRL Misuse &  &  &  & \\
      & No Misuse & 25002 & 2509 & 90\% & 0.986 & 0.909 & 0.946 \\
      & PRL Misuse & 344 & 654 &  &  &  & \\
     \midrule
-    \textbf{Linear Discriminant Analysis (LDA)} & & No Misuse & PRL Misuse &  &  &  & \\
+    Linear Discriminant Analysis (LDA) & & No Misuse & PRL Misuse &  &  &  & \\
      & No Misuse & 24668 & 2239 & 89.8\% & 0.973 & 0.917 & 0.944 \\
      & PRL Misuse & 678 & 924 &  &  &  & \\
     \midrule
-    \textbf{Quadratic Discriminant Analysis (QDA)} & & No Misuse & PRL Misuse &  &  &  & \\
+    Quadratic Discriminant Analysis (QDA) & & No Misuse & PRL Misuse &  &  &  & \\
      & No Misuse & 23165 & 1780 & 86.1\% & 0.914 & 0.9929 & 0.921 \\
      & PRL Misuse & 2181 & 1383 &  &  &  & \\
     \midrule
-    \textbf{Support Vector Classifier (SVM)} & & No Misuse & PRL Misuse &  &  &  & \\
+    Support Vector Classifier (SVM) & & No Misuse & PRL Misuse &  &  &  & \\
      & No Misuse & 25201 & 233 & 90.4\% & 0.900 & 0.890 & 0.880 \\
      & PRL Misuse & 2514 & 562 &  &  &  & \\
     \midrule
-    \textbf{Naive Bayes} & & No Misuse & PRL Misuse &  &  &  & \\
+    Naive Bayes & & No Misuse & PRL Misuse &  &  &  & \\
      & No Misuse & 25345 & 3133 & 89\% & 0.999 & 0.890 & 0.941 \\
      & PRL Misuse & 1 & 30 &  &  &  & \\
     \midrule
-    \textbf{Neural Network (MLP)} & & No Misuse & PRL Misuse &  &  &  & \\
+    Neural Network (MLP) & & No Misuse & PRL Misuse &  &  &  & \\
      & No Misuse & 25088 & 346 & 90.6\% & 0.910 & 0.890 & 0.880 \\
      & PRL Misuse & 2366 & 710 &  &  &  & \\
     \midrule
-    \textbf{Decision Trees} & & No Misuse & PRL Misuse &  &  &  & \\
+    Decision Trees & & No Misuse & PRL Misuse &  &  &  & \\
      & No Misuse & 25042 & 2572 & 89.9\% & 0.988 & 0.907 & 0.946 \\
      & PRL Misuse & 304 & 591 &  &  &  & \\
     \midrule
-    \textbf{Random Forests} & & No Misuse & PRL Misuse &  &  &  & \\
+    Random Forests & & No Misuse & PRL Misuse &  &  &  & \\
      & No Misuse & 25026 & 2298 & 90.1\% & 0.987 & 0.909 & 0.946 \\
      & PRL Misuse & 320 & 665 &  &  &  & \\
     \midrule
-    \textbf{Gradient Boosted Trees} & & No Misuse & PRL Misuse &  &  &  & \\
+    Gradient Boosted Trees & & No Misuse & PRL Misuse &  &  &  & \\
      & No Misuse & 25398 & 36 & 89.9\% & 0.900 & 0.890 & 0.895 \\
      & PRL Misuse & 2856 & 220 &  &  &  & \\
     \bottomrule
@@ -744,85 +743,70 @@ in Table 4.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{Linear Models}
+\subsubsection{ogistic Regression}
 
-Together, the features significantly predicted pain reliever misuse and abuse.
-The parameter estimates for the logistic regression classifier are presented 
-in Table 5, sorted in descending order by z-score. The estimates for all of 
-the features were statistically significant ($p<.001$), except for mental 
-health treatment. The model was rerun leaving out the non-significant 
-variables, and excluding this variable this did not significantly change 
-the parameter estimates. All of the predictor variables were positively 
-associated with pain reliever misuse and abuse except for age category, sex,
-and size of city/metropolitan region which were negatively related to MUPO. 
-The z-score provides an indication of the relative influence of each predictor 
-on the dependent variable. Cocaine, amphetamines, tranquilizers, mental health, 
-age category, and heroin use were identified as six of the most influential 
-predictors of pain reliever misuse and abuse. 
-
-The slope parameter, $\beta_2$ , is interpreted as the change in the log of 
-the odds of Y occurring (i.e., change in the log of odds ratio) given a unit 
-change in X (holding effects of other variables constant). The intercept, β1, 
-is the log of the odds ratio when X is 0 \cite{gujarati09}. The parameters 
-relate to the log of the odds ratio rather than to the dependent variable
-directly.
+Together, the independent variables significantly predicted pain reliever 
+misuse and abuse. The parameter estimates for the logistic regression model 
+are presented in Table 5, sorted in descending order by z-score. The estimates 
+for all of the features were statistically significant ($p<.001$) except for 
+mental health treatment. In the logit model, the coefficient estimates, 
+the $\beta_i$ slopes, are interpreted as the change in the log of the odds 
+of the dependent variable, Y, occurring (i.e., change in the log odds ratio) 
+given a one unit change in each $X_i$...$X_j$ variable, holding the effects 
+of other predictor variables constant. The intercept, $\beta_0$, is the 
+log of the odds ratio when X is 0 \cite{gujarati09}. The parameters relate to 
+the log of the odds ratio rather than to the dependent variable directly. 
 
 
-The LDA model performed similarly to logistic regression in terms of 
-$f_1$-score and accuracy, with more true positives and fewer false 
-positives, but more false negatives. An important assumption for logistic
-regression and LDA is that the class boundaries are linear functions 
-of the predictors. When the decision boundary between two classes is 
-non-linear, QDA is recommended over LDA, as QDA assumes the decision 
-boundary is curvilinear in the predictor space \cite{kuhn13}. The plots 
-of the residual and fitted values for the logistic regression in Figure 5
-suggest that the relationship may not be linear and therefore a non-linear
-may be a better approach for the sample data. It is interesting to note 
-that the QDA model had the highest number of true positives, but a lower 
-$f_1$-score than the naive Bayes classifier, even though the naive Bayes 
-model returned only 30 true positives. Furthermore, the QDA model had a 
-lower $f_1$-score and accuracy than decision tree and random forests, 
-the tree based models may provide the best fit for the data. 
+
+
+The odds ratio for an interval scaled independent variable is interpreted as 
+the multiplicative increase in the odds of the dependent variable event 
+happening given a one unit change in the value of the independent variable,
+assuming the effects of all other independent variables are held constant.
+
+
+
+
+For a dichotomous (dummy) independent variable, the odds ratio is interpreted as 
+•	"the multiplicative increase in the odds of the dependent variable event happening if the event represented by the independent variable occurs, assuming that the effects of all other independent variables are held constant."  
+
+
+
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{table}
-  \caption{Coefficient Estimates for Logistic Regression Model 
-  of Pain Reliever Misuse and Abuse fit to the Training Set}
+  \caption{Parameter Estimates for Logistic Regression Model and Log-odds 
+  Ratios for Pain Reliever Misuse and Abuse (Training Set)}
   \label{tab:freq}
-  \begin{tabular}{llll}
+  \begin{tabular}{lllll}
     \toprule
-    Predictor&  Estimate& Std. Error& z-value  \\    
+    Predictor&  Estimate& Std. Error& Z-Value & Odds Ratio \\    
     \midrule
-    (Intercept)& -2.960 &   0.048 & -61.10 ***  \\
-    COCAINE  &    0.690 &   0.019 &  36.91 ***  \\
-    AMPHETMN &    0.608 &   0.021 &  29.92 ***  \\
-    TRQLZRS  &    0.381 &   0.014 &  27.29 ***  \\
-    MENTHLTH &    0.136 &   0.006 &  22.42 ***  \\
-    AGECAT   &   -0.216 &   0.013 & -16.75 ***  \\
-    HEROINUSE&    0.798 &   0.052 &  15.47 ***  \\  
-    EMPLOY18 &    0.222 &   0.016 &  13.72 ***  \\
-    TRTMENT  &    0.195 &   0.019 &  10.47 ***  \\
-    SEDATVS  &    0.281 &   0.029 &   9.63 ***  \\   
-    HEALTH   &    0.103 &   0.012 &   8.27 ***  \\
-    EDUCAT   &    0.104 &   0.013 &   8.22 ***  \\   
-    SEX      &   -0.186 &   0.026 &  -7.24 ***  \\
-    CTYMETRO &   -0.068 &   0.013 &  -5.03 ***  \\
-    MARRIED  &    0.051 &   0.012 &   4.10 ***  \\
-    MHTRTMT  &   -0.024 &   0.018 &  -1.32     \\
-    \bottomrule
-    Note: *** p-value $<$ 0.001. &  &  
+    (Intercept)   & -2.960 &   0.048 & -61.10 *** &  &  \\
+    Cocaine       & 0.690  &   0.019 &  36.91 *** & 1.99  \\
+    Amphetamines  & 0.608  &   0.021 &  29.92 *** & 1.84  \\
+    Tranquilizers & 0.381  &   0.014 &  27.29 *** & 1.46  \\
+    Mental Health & 0.136  &   0.006 &  22.42 *** & 1.15  \\
+    Age Category  & -0.216 &   0.013 & -16.75 *** & 1.24  \\
+    Heroin use    & 0.798  &   0.052 &  15.47 *** & 2.22  \\  
+    Employment    & 0.222  &   0.016 &  13.72 *** & 1.25  \\
+    Treatment     & 0.195  &   0.019 &  10.47 *** & 1.22  \\
+    Sedatives     & 0.281  &   0.029 &   9.63 *** & 1.32  \\   
+    Health        & 0.103  &   0.012 &   8.27 *** & 1.11  \\
+    Education     & 0.104  &   0.013 &   8.22 *** & 1.11  \\   
+    Sex           & -0.186 &   0.026 &  -7.24 *** & 1.20  \\
+    City/Metro    & -0.068 &   0.013 &  -5.03 *** & 1.07  \\
+    Married       & 0.051  &   0.012 &   4.10 *** & 1.05  \\
+    MH Treatment  & -0.024 &   0.018 &  -1.32     & 1.02  \\
+    \bottomrule 
+    Note: p-value& $<$ 0.001.***  &  &  &   
   \end{tabular}
 \end{table}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{figure}[!ht]
- \centering\includegraphics[width=\columnwidth]{images/Figure4.pdf}
-  \caption{Plot of Residual and Fitted Values of Pain Reliever Misuse
-  and Abuse for the Logistic Regression Model}
-  \label{f:Figure4}
-\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -901,21 +885,21 @@ to improve model performance.
     \toprule
     Predictor&  Mean Decrease in Gini Score  \\    
     \midrule
-    COCAINE   & 1284.84 \\
-    AMPHETMN  &  830.93 \\
-    MENTHLTH  &  748.94 \\ 
-    TRQLZRS   &  638.85 \\
-    AGECAT    &  524,89 \\
-    HEROINUSE &  514.82 \\
-    HEALTH    &  501.38 \\
-    EDUCAT    &  450.63 \\
-    CTYMETRO  &  329.09 \\
-    MHTRTMT   &  327.66 \\
-    MARRIED   &  293.53 \\
-    EMPLOY18  &  285.78 \\ 
-    TRTMENT   &  236.56 \\
-    SEX       &  197.71 \\
-    SEDATVS   &  139.23 \\
+    Cocaine       & 1284.84 \\
+    Amphetamines  &  830.93 \\
+    Mental Health &  748.94 \\ 
+    Tranquilizers &  638.85 \\
+    Age Group     &  524,89 \\
+    Heroin Use    &  514.82 \\
+    Health        &  501.38 \\
+    Education     &  450.63 \\
+    City/Metro    &  329.09 \\
+    MH Treatment  &  327.66 \\
+    Married       &  293.53 \\
+    Employment    &  285.78 \\ 
+    Treatment     &  236.56 \\
+    Sex           &  197.71 \\
+    Sedatives   &  139.23 \\
     \bottomrule
   \end{tabular}
 \end{table}
