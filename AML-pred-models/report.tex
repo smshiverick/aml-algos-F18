@@ -746,39 +746,34 @@ in Table 4.
 \subsubsection{Logistic Regression}
 
 Together, the independent variables significantly predicted pain reliever 
-misuse and abuse. The parameter estimates for the logistic regression model 
-are presented in Table 5, sorted in descending order by z-score. The estimates 
+misuse and abuse. The parameter estimates and odds ratios for the logistic 
+regression model are presented in Table 5, sorted by z-score. The estimates 
 for all of the features were statistically significant ($p<.001$) except for 
 mental health treatment. The coefficient estimates ($\beta_i$...$\beta_k$) 
-are interpreted as the change in the log of the odds of the positive outcome
-of the dependent variable, $Y_i=True$, occurring given a one unit change in each 
-$X_i$...$X_j$ variable, holding constant the effects of other independent
-variables. The parameters relate to the log of the odds ratio rather than to 
-the dependent variable directly. The odds are calculated as the probability of 
-the event occurring divided by the probability of the event not occurring. 
+are interpreted as the change in the log of the odds of the dependent variable, 
+(PRLMISAB) occurring given a one unit change in each independent variable
+($X_i$...$X_j$), holding constant the effects of other independent variables. 
+The parameters relate to the log of the odds ratio rather than to the dependent 
+variable directly. The odds are calculated as the probability of the event 
+occurring divided by the probability of the event not occurring 
+( \(\frac{P}{P-1}\) ). The odds ratios are obtained by taking the antilog of 
+the estimated coefficients, which are the exponentiated parameter estimates: 
+$e^x$. For an interval scaled independent variable, the odds ratio is 
+interpreted as the multiplicative increase in the odds of the dependent 
+variable event happening (e.g., PRLMISAB) given a one unit change in the value 
+of the independent variable, assuming the effects of all other independent 
+variables are held constant. For a dichotomous (dummy) independent variable, 
+e.g., sex, the multiplicative increase in the odds of the dependent variable 
+event happening if the event represented by the independent variable occurs, 
+holding constant the effects of all other independent variables \cite{gujarati09}.  
 
-
-The odds ratios are obtained 
-by taking the antilog of estimated coefficient, which is the exponentiated 
-parameter estimates: $e^x$. For an interval scaled independent variable, the 
-odds ratio  is interpreted as the multiplicative increase in the odds of the 
-dependent variable event happening (e.g., PRLMISAB) given a one unit change in 
-the value of the independent variable, assuming the effects of all other 
-independent variables are held constant. For a dichotomous (dummy) independent 
-variable, e.g., sex, the multiplicative increase in the odds of the dependent 
-variable event happening if the event represented by the independent 
-variable occurs, assuming the effects of all other independent variables 
-are constant \cite{gujarati09}.  
-
-
+For a one unit change in cocaine use, there is a 
 
 
 
-
-
-
-
-
+The odds ratio indicates the ratio of the positive event to negative event, 
+but does not reveal the probability of the positive outcome. To obtain the 
+probability for a particular student, we need to look at y-hat and p-hat.
 
 Interpretation of Logit Model
 •	GPA odds ratio value of 3.82 is interpreted as 
@@ -788,9 +783,8 @@ Interpretation of Logit Model
 
 •	These results indicate that a SPEA student is 9.68 times more likely to get public sector job than is a non-SPEA student.  
 
-NOTE: The odds ratio does not reveal the probability of a student obtaining 
-a private sector job.  it only reveals the ratio of success to failure; to get 
-the probability for a particular student, we need to look at y-hat and p-hat.
+NOTE: The odds ratio does  of a student obtaining 
+a private sector job.  it only reveals the ratio of success to failure; 
  
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
