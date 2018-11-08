@@ -14,24 +14,22 @@
 \begin{abstract}
 
 The misuse and abuse of prescription opioids (MUPO) is a chronic health 
-condition associated with increased overdose deaths over the past decade
-\cite{nida18}. Predictive modeling can identify factors related to MUPO and 
-help predict individuals at risk for opioid addiction. The present study 
-compares ten linear classification models using four performance metrics 
-: accuracy, sensitivity (recall), precision, and $f_1$-score. The sample 
-data consisted of N = 114,038 respondents from the National Survey on Drug 
-Use and Health (NSDUH) for 2015 and 2016. Of the total sample, 27\% had 
-used any opioid pain reliever medication in the past year, and 11\% of 
-respondents had previously misuse or abused pain relievers; 2\% of the 
-sample reported using heroin. The classifier models were fit to a training 
-set with fifteen predictor variables and pain reliever misuse and abuse as 
-the target outcome. Class labels were predicted for the testing set and model 
-performance was evaluated in a confusion matrix. Neural networks (MLP) and 
-support vector classifier had the highest model accuracy; however, logistic
+condition associated with increased overdose deaths over the past two decades
+\cite{nida18}. Predictive modeling can identify factors related to MUPO and  
+predict individuals at risk for opioid addiction. The present study compares 
+ten classification models using four performance metrics: accuracy, sensitivity 
+(recall), precision, and $f_1$-score. With unbalanced classes, the $f_1$-score 
+is considered a better metric of performance than accuracy. The sample data 
+consisted of N = 114,038 respondents from the National Survey on Drug Use 
+and Health (NSDUH) for 2015-2016. Of the total sample, 27\% had used any 
+opioid pain reliever medications in the past year, 11\% of respondents had 
+previously misused or abused pain relievers; 2\% reported using heroin. The 
+classifier models were fit to a training set with fifteen features and pain 
+reliever misuse and abuse was the binary target variable. Model performance 
+was evaluated on the testing set in a confusion matrix. Neural networks (MLP) 
+and support vector classifier had the highest model accuracy; however, logistic 
 regression, decision trees, and random forests, had the highest $f_1$-score. 
-The $f_1$-score is considered a better metric of performance than accuracy 
-With data that has unbalanced unbalanced classes. Advantages and limitation 
-of the classification models are discussed. 
+Advantages and limitation of the classification models are discussed. 
 \footnote{This project was completed in partial fulfillment of requirements 
 for the M.S. in Data Science from the School of Informatics and Computing at 
 IU-Bloomington in May, 2018. Address correspondence to \textit{smshiver@iu.edu}}
@@ -142,7 +140,9 @@ The distribution of conditional probabilities in the logit model has an
 S-shaped curve. The coefficient estimates are selected to maximize the 
 likelihood function, and are interpreted as an indication of the log-odds 
 change in the outcome variable that is associated with a one-unit increase 
-in the predictor variable. 
+in the predictor variable, holding the effects of other predictor variables 
+constant. The intercept, $\beta_0$, is the log of the odds ratio when X is 
+0 \cite{gujarati09}. 
 
 \begin{equation}
   \ ln\frac{P_i}{1-P_i} = \beta_0 + \beta_1*X_i + ... \beta_j*X_k \
@@ -322,7 +322,7 @@ decision trees in the random forest are different. Random forests is one of
 the most widely used supervised learning algorithms that works well without 
 very much parameter tuning or scaling of data. A limitation is that Random 
 forests do not perform well with high-dimensional data, or data that is 
-sparse such as text data.
+sparse (e.g., text).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -371,13 +371,13 @@ pain relievers may be labeled as never having done so (i.e., 'false negative').
   \label{tab:freq}
   \begin{tabular}{llll}
     \toprule
-     &  &  Actual Outcome & \\
+     & &  Actual Outcome & \\
     \midrule
-     Predicted & Outcome & No Misuse & PRL Misuse \\
+    Predicted & Outcome & No Misuse & PRL Misuse \\
     \midrule
-     & No Misuse & \textbf{True Negative} & False Positive \\
+    & No Misuse & \textbf{True Negative} & False Positive \\
     \midrule
-     & PRL Misuse & False Negative & \textbf{True Positive} \\
+    & PRL Misuse & False Negative & \textbf{True Positive} \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -393,17 +393,17 @@ correctly classified samples (\emph{true positive, true negative}, while the
 other entries represent the number of samples in one class that were mistakenly 
 classified as another class. Classification models are evaluated using several 
 measures including recall, precision, and the $f_1$-score \cite{wiki18}. 
-\emph{Recall} or ``sensitivity'' measures how many positive samples are 
+\emph{Sensitivity} or  recall measures how many positive samples are 
 captured by the positive predictions ( \(\frac{TP}{TP+FN}\) ), and is used 
 when we want to identify all positive samples while avoiding false negatives. 
 \emph{Precision} or the ``positive predictive value'', measures how many of 
 the samples predicted as positive are actually positive  
 ( \(\frac{TP}{TP+FP}\) ), and is used as a metric when the goal is to limit 
 the number of false positives. The \emph{$f_1$-score} or `f-measure' 
-(equation 2) provides the harmonic mean of precision and recall. The 
+(equation 2) provides the harmonic mean of recall and precision. The 
 $f_1$-score can be a better metric than accuracy in datasets with 
 imbalanced classes, where one class is much more frequent than the other 
-class, as it takes recall and precision into account \cite{muller17}.
+class, as it takes precision and recall into account \cite{muller17}.
 
 \begin{equation}
   \ f_1 score = 2*\frac{Precision*Recall}{Precision+Recall}\
@@ -743,33 +743,36 @@ in Table 4.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{ogistic Regression}
+\subsubsection{Logistic Regression}
 
 Together, the independent variables significantly predicted pain reliever 
 misuse and abuse. The parameter estimates for the logistic regression model 
 are presented in Table 5, sorted in descending order by z-score. The estimates 
 for all of the features were statistically significant ($p<.001$) except for 
-mental health treatment. In the logit model, the coefficient estimates, 
-the $\beta_i$ slopes, are interpreted as the change in the log of the odds 
-of the dependent variable, Y, occurring (i.e., change in the log odds ratio) 
-given a one unit change in each $X_i$...$X_j$ variable, holding the effects 
-of other predictor variables constant. The intercept, $\beta_0$, is the 
-log of the odds ratio when X is 0 \cite{gujarati09}. The parameters relate to 
-the log of the odds ratio rather than to the dependent variable directly. 
+mental health treatment. The coefficient estimates ($\beta_i$...$\beta_k$) 
+are interpreted as the change in the log of the odds of the positive outcome
+of the dependent variable, $Y_i=True$, occurring given a one unit change in each 
+$X_i$...$X_j$ variable, holding constant the effects of other independent
+variables. The parameters relate to the log of the odds ratio rather than to 
+the dependent variable directly. The odds are calculated as the probability of 
+the event occurring divided by the probability of the event not occurring. 
+
+
+The odds ratios are obtained 
+by taking the antilog of estimated coefficient, which is the exponentiated 
+parameter estimates: $e^x$. For an interval scaled independent variable, the 
+odds ratio  is interpreted as the multiplicative increase in the odds of the 
+dependent variable event happening (e.g., PRLMISAB) given a one unit change in 
+the value of the independent variable, assuming the effects of all other 
+independent variables are held constant. For a dichotomous (dummy) independent 
+variable, e.g., sex, the multiplicative increase in the odds of the dependent 
+variable event happening if the event represented by the independent 
+variable occurs, assuming the effects of all other independent variables 
+are constant \cite{gujarati09}.  
 
 
 
 
-The odds ratio for an interval scaled independent variable is interpreted as 
-the multiplicative increase in the odds of the dependent variable event 
-happening given a one unit change in the value of the independent variable,
-assuming the effects of all other independent variables are held constant.
-
-
-
-
-For a dichotomous (dummy) independent variable, the odds ratio is interpreted as 
-•	"the multiplicative increase in the odds of the dependent variable event happening if the event represented by the independent variable occurs, assuming that the effects of all other independent variables are held constant."  
 
 
 
@@ -777,6 +780,19 @@ For a dichotomous (dummy) independent variable, the odds ratio is interpreted as
 
 
 
+Interpretation of Logit Model
+•	GPA odds ratio value of 3.82 is interpreted as 
+"the odds of an IU student finding a job increases by 3.82 times for a one GPA unit increase, holding the effects of Major and Residency constant."
+
+•	IN Resident value is interpreted as "the odds of an IU student finding a job increases by 0.12 times if the student is an Indiana Resident, holding the effects of Major and GPA constant.  
+
+•	These results indicate that a SPEA student is 9.68 times more likely to get public sector job than is a non-SPEA student.  
+
+NOTE: The odds ratio does not reveal the probability of a student obtaining 
+a private sector job.  it only reveals the ratio of success to failure; to get 
+the probability for a particular student, we need to look at y-hat and p-hat.
+ 
+ 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{table}
@@ -867,14 +883,11 @@ the most informative feature for predicting pain reliever misuse and abuse;
 in contrast, the random forest selected amphetamines and mental health as
 important features followed by tranquilizers, age category, and heroin use. 
 
-The Gradient Boosting Classifier used the default setting of 100 trees, of 
-maximum depth of 3, and a learning rate of 0.1. 
-
-Accuracy for the test set was 0.893. Gradient boosting typically improves test 
-set accuracy by using many simple models iteratively. The model accuracy for 
-gradient boosting was no better than random forests, and this is because the 
-default parameter settings were used. Further parameter tuning is needed 
-to improve model performance.
+Gradient boosting typically improves test set accuracy by using many simple
+models iteratively; however, the accuracy and $f_1$-score for the gradient 
+boosting model was not better than random forests. This is because the 
+default parameter settings were used; additional tuning of the hyper-
+parameters may have improved the boosted model performance.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -949,14 +962,6 @@ The dataset had imbalanced classes because the large majority of respondents
 (88\$ percent) had not misused prescription opioid pain relievers. 
 
 
-
-
-
- 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Comparison of Classifier Models}
-
 Several classifier algorithms were used to identify relevant features for 
 predicting heroin use and prescription opioid misuse. Comparing the performance 
 of different algorithms is helpful for  selecting the best model. 
@@ -1007,8 +1012,6 @@ Future research could include a more comprehensive selection of
 features to identify the set of features relevant for predicting opioid
 dependency and addiction. 
 
-
-
 The study could be extended in the following ways: including a larger
 selection of features in model building, obtain a larger sample by including 
 data for additional years, and subset the data to focus on individuals who 
@@ -1041,10 +1044,8 @@ rate of transmission.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
 
-The present study compared the results of several classification models of 
+This results of several classification models of 
 pain reliever misuse and abuse. A general conclusion is that 
-
-The results do not provide sufficient evidence to rule out alternative hypotheses. 
 
 Several features were identified as important for classifying pain reliever
 misuse and abuse, including Cocaine Use, Amphetamine Use, tranquilizer use,
@@ -1068,25 +1069,15 @@ efforts to address the opioid crisis and reduce risk of overdose deaths.
 \begin{acks}
 
 Portions of this paper were completed as part of a course project in Big Data 
-Applications and Analytics taugt by Dr. Gregor von Laszewskin at Indiana 
-University in the Fall 2017. Thanks to the Professor von Laszewski and the
-Teaching Assistants, Juliette Zurick, Miao Jiang, Hungri Lee, Grace Li, and 
-Saber Sheybani Moghadam for helpful comments and feedback.
+Applications and Analytics taught by Professor Gregor von Laszewskin at 
+Indiana University in the Fall 2017. Thanks to the Teaching Assistants, 
+Juliette Zurick and Miao Jiang for helpful comments for helpful comments. 
+Thanks to Dallas J. Elgin for encouragement. 
 
 \end{acks}
 
 \bibliographystyle{unsrt} %%ACM-Reference-Format%%
 \bibliography{report} 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\appendix
-
-\section{Code References}
-All code, notebooks, files, and folders for this project can be found in the
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 %\input{issues}
 
