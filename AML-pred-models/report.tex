@@ -142,10 +142,11 @@ likelihood function, and are interpreted as an indication of the log-odds
 change in the outcome variable that is associated with a one-unit increase 
 in the predictor variable, holding the effects of other predictor variables 
 constant. The intercept, $\beta_0$, is the log of the odds ratio when X is 
-0 \cite{gujarati09}. The log odds or logit function is represented below: 
+0 \cite{gujarati09}. The log odds or logit function is represented below,
+where X = ($X_1$...$X_p$) predictors: 
 
 \begin{equation}
-  \ ln\frac{P_i}{1-P_i} = \beta_0 + \beta_1X_1 + \beta_1X_2 +... \beta_j*X_k \
+  \ ln\frac{P_i}{1-P_i} = \beta_0 + \beta_1X_1 + \beta_1X_2 +... \beta_p*X_p \
 \end{equation}
 
 \emph{Linear discriminant analysis} (LDA) is an alternative approach to 
@@ -768,15 +769,15 @@ happening if the event represented by the independent variable occurs, holding
 constant the effects of all other independent variables. In general, if you 
 take the antilog of the coefficient estimate, subtract 1 from it, and multiply 
 the result by 100, you get the percent change in the odds for a unit increase 
-in the independent variable  \cite{gujarati09}.  
+in the independent variable  \cite{gujarati09}.  The odds ratio indicates the 
+ratio of the positive event to negative event, but does not reveal the 
+probability of the positive outcome.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The odds ratio indicates the ratio of the positive event to negative event, 
-but does not reveal the probability of the positive outcome. The odds ratios 
-in Table 5 can be interpreted as follows: The odds of a respondent misusing or 
-abusing pain relievers increases by 1.99 times or 99\% for a one unit increase 
-in cocaine use, holding the effects of all other independent variables (IVs) 
+The results in Table 5 can be interpreted as: The odds of a respondent misusing 
+or abusing pain relievers increases by 1.99 times or 99\% for a one unit 
+increase in cocaine use, holding the effects of all other independent variables 
 constant. For a one unit increase in amphetamine use, the odds of pain reliever 
 misuse and abuse (PRLMISAB) increases by 1.84 times or 84\%, holding all other 
 IVs constant. A one unit increase in tranquilizer use is associated with a 
@@ -785,21 +786,21 @@ For a unit increase in mental health issues, the odds for PRLMISAB increased
 by 1.15 or 15\%. For a one unit increase in age category, the odds of PRLMISAB 
 decreased by 1.24 times or 24\%, holding the effects of other IVs constant. 
 For a one unit increase in heroin use, the odds of PRLMISAB increases by 2.22 
-times or 22\%, holding other IVs constant. A one unit increase in employment is 
-associated with a 1.25 or 25\% increase in the odds of PRLMISAB, holding other 
-IVs constant. For a unit increase in substance treatment, the odds for PRLMISAB 
-increased by 1.22 or 22\%, holding other IVs constant. For a one unit increase 
-in sedative use, the odds of PRLMISAB increases by 1.32 times or 32\%, holding 
-all other IVs constant. For a one unit increase in health problems, the odds 
-for PRLMISAB increased by 1.11 or 11\%, holding other IVs constant. For a one 
-unit increase in education, the odds of PRLMISAB increased by 1.11 times or 
-11\%, holding other IVs constant. In terms of sex, the odds of misusing or 
-abusing pain relievers for females decreases by 1.20 times compared to males,
-holding all other IVs constant. In other words, the odds of PRLMISAB for 
-females was 20\% lower than for males. A unit increase in the size of a 
-respondents city or metropolitan area resulted in a 1.07 or 7\% decrease in 
-the odds of PRLMISAB, holding other IVs constant. For a unit increase in 
-marital status, the odds for PRLMISAB increases by 1.05 or 5\%, 
+times or 22\%, holding other IVs constant. A one unit increase in employment 
+is associated with a 1.25 or 25\% increase in the odds of PRLMISAB, holding 
+other IVs constant. For a unit increase in substance treatment, the odds for 
+PRLMISAB increased by 1.22 or 22\%, holding other IVs constant. For a one unit 
+increase in sedative use, the odds of PRLMISAB increases by 1.32 times or 32\%, 
+holding all other IVs constant. For a one unit increase in health problems, 
+the odds for PRLMISAB increased by 1.11 or 11\%, holding other IVs constant. 
+For a one unit increase in education, the odds of PRLMISAB increased by 1.11 
+times or 11\%, holding other IVs constant. In terms of sex, the odds of 
+misusing or abusing pain relievers for females decreases by 1.20 times 
+compared to males, holding all other IVs constant. In other words, the odds
+of PRLMISAB for females was 20\% lower than for males. A unit increase in the 
+size of a respondents city or metropolitan area resulted in a 1.07 or 7\% 
+decrease in the odds of PRLMISAB, holding other IVs constant. For a unit 
+increase in marital status, the odds for PRLMISAB increases by 1.05 or 5\%, 
 holding other IVs constant. 
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -837,25 +838,23 @@ holding other IVs constant.
 
 \subsubsection{Decision Trees} 
 
-The decision tree model was prepruned to a maximum 
-depth of 4, which means the algorithm split on four consecutive features 
-(see Figure 7). The dependent variables was pain reliever misuse and abuse 
-and the root node of the decision tree includes the 85528 observations in 
-the training set. One way to interpret a decision tree is by following the 
-number of samples represented at the split for each node. The algorithm 
-selected cocaine as the root node; the branch to the left indicates 75562 
-samples (88\%) with no or low cocaine use, and on the right branch 9966 samples 
-(12\%) had a score greater than 0.5. In other words, of those samples with 
-high cocaine use, 12 percent had also misused or abused pain relievers. 
-The second split was based on heroin use, with 8562 samples (10\%) on the 
-left branch reported no or low heroin use, and 1404 samples (2\%) on the right 
-branch had heroin a score greater than 0.5. The third split in the decision 
-tree was by tranquilizer use; on the left branch, 6465 samples (8\%) had a 
-score less than one, and on the right branch 2097 samples (2\%) with a score 
-greater or equal to one. The fourth split was based on age category; the left 
-branch represented 946 samples (8\%) age 36 and older and the right branch 
-represented 1162 samples (8\%) age 35 and younger who also reported misuse 
-and abuse of prescription pain relievers. 
+The decision tree model was prepruned to a maximum depth of 4, which means
+the algorithm split on four consecutive features (see Figure 7). The algorithm 
+selected cocaine as the root node includes the 85528 observations in the 
+training set. One way to interpret a decision tree is by following the number
+of samples represented at the split for each node. The branch to the left 
+indicates 75562 samples (88\%) with no or low cocaine use, and on the branch
+to the right 9966 samples (12\%) had a score greater than 0.5. In other words, 
+of those samples with high cocaine use, 12 percent had also misused or abused 
+pain relievers. The second split was based on heroin use, with 8562 samples 
+(10\%) on the left branch reported no or low heroin use, and 1404 samples 
+(2\%) on the right branch had heroin a score greater than 0.5. The third 
+split in the decision tree was by tranquilizer use; the left branch had 6465 
+samples (8\%) with a score less than one, and the right branch had 2097 
+samples (2\%) with a score greater or equal to one. The fourth split was on 
+age category; the left branch represented 946 samples (8\%) age 36 and older 
+and the right branch represented 1162 samples (8\%) age 35 and younger who 
+also reported misuse and abuse of prescription pain relievers. 
 
 Another way to interpret decision trees is in terms of the proportion or
 probability
