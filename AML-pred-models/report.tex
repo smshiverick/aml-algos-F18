@@ -775,36 +775,6 @@ probability of the positive outcome.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The results in Table 5 can be interpreted as: The odds of a respondent misusing 
-or abusing pain relievers increases by 1.99 times or 99\% for a one unit 
-increase in cocaine use, holding the effects of all other independent variables 
-constant. For a one unit increase in amphetamine use, the odds of pain reliever 
-misuse and abuse (PRLMISAB) increases by 1.84 times or 84\%, holding all other 
-IVs constant. A one unit increase in tranquilizer use is associated with a 
-1.46 or 46\% increase in the odds of PRLMISAB, holding other IVs constant. 
-For a unit increase in mental health issues, the odds for PRLMISAB increased 
-by 1.15 or 15\%. For a one unit increase in age category, the odds of PRLMISAB 
-decreased by 1.24 times or 24\%, holding the effects of other IVs constant. 
-For a one unit increase in heroin use, the odds of PRLMISAB increases by 2.22 
-times or 22\%, holding other IVs constant. A one unit increase in employment 
-is associated with a 1.25 or 25\% increase in the odds of PRLMISAB, holding 
-other IVs constant. For a unit increase in substance treatment, the odds for 
-PRLMISAB increased by 1.22 or 22\%, holding other IVs constant. For a one unit 
-increase in sedative use, the odds of PRLMISAB increases by 1.32 times or 32\%, 
-holding all other IVs constant. For a one unit increase in health problems, 
-the odds for PRLMISAB increased by 1.11 or 11\%, holding other IVs constant. 
-For a one unit increase in education, the odds of PRLMISAB increased by 1.11 
-times or 11\%, holding other IVs constant. In terms of sex, the odds of 
-misusing or abusing pain relievers for females decreases by 1.20 times 
-compared to males, holding all other IVs constant. In other words, the odds
-of PRLMISAB for females was 20\% lower than for males. A unit increase in the 
-size of a respondents city or metropolitan area resulted in a 1.07 or 7\% 
-decrease in the odds of PRLMISAB, holding other IVs constant. For a unit 
-increase in marital status, the odds for PRLMISAB increases by 1.05 or 5\%, 
-holding other IVs constant. 
- 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \begin{table}
   \caption{Parameter Estimates for Logistic Regression Model and Log-odds 
   Ratios for Pain Reliever Misuse and Abuse (Training Set)}
@@ -836,30 +806,79 @@ holding other IVs constant.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+The results in Table 5 can be interpreted as follows: The odds of a respondent 
+misusing or abusing pain relievers increases by 1.99 times or 99\% for a one 
+unit increase in cocaine use, holding the effects of all other independent 
+variables constant. For a one unit increase in amphetamine use, the odds of 
+pain reliever misuse and abuse (PRLMISAB) increases by 1.84 times or 84\%, 
+holding all other IVs constant. A one unit increase in tranquilizer use is 
+associated with a 1.46 or 46\% increase in the odds of PRLMISAB, holding other 
+IVs constant. For a unit increase in mental health issues, the odds for 
+PRLMISAB increased by 1.15 or 15\%. For a one unit increase in age category, 
+the odds of PRLMISAB decreased by 1.24 times or 24\%, holding the effects of 
+other IVs constant. For a one unit increase in heroin use, the odds of 
+PRLMISAB increases by 2.22 times or 22\%, holding other IVs constant. A one 
+unit increase in employment is associated with a 1.25 or 25\% increase in the 
+odds of PRLMISAB, holding other IVs constant. For a unit increase in substance 
+treatment, the odds for PRLMISAB increased by 1.22 or 22\%, holding other IVs 
+constant. For a one unit increase in sedative use, the odds of PRLMISAB 
+increases by 1.32 times or 32\%, holding all other IVs constant. For a one 
+unit increase in health problems, the odds for PRLMISAB increased by 1.11 or
+11\%, holding other IVs constant. For a one unit increase in education, the 
+odds of PRLMISAB increased by 1.11 times or 11\%, holding other IVs constant. 
+In terms of sex, the odds of misusing or abusing pain relievers for females 
+decreases by 1.20 times compared to males, holding all other IVs constant. 
+In other words, the odds of PRLMISAB for females was 20\% lower than for males. 
+A unit increase in the size of a respondents city or metropolitan area 
+resulted in a 1.07 or 7\% decrease in the odds of PRLMISAB, holding other 
+IVs constant. For a unit increase in marital status, the odds for PRLMISAB 
+increases by 1.05 or 5\%, holding other IVs constant. 
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsubsection{Decision Trees} 
 
-The decision tree model was prepruned to a maximum depth of 4, which means
-the algorithm split on four consecutive features (see Figure 7). The algorithm 
-selected cocaine as the root node includes the 85528 observations in the 
-training set. One way to interpret a decision tree is by following the number
-of samples represented at the split for each node. The branch to the left 
-indicates 75562 samples (88\%) with no or low cocaine use, and on the branch
-to the right 9966 samples (12\%) had a score greater than 0.5. In other words, 
-of those samples with high cocaine use, 12 percent had also misused or abused 
-pain relievers. The second split was based on heroin use, with 8562 samples 
-(10\%) on the left branch reported no or low heroin use, and 1404 samples 
-(2\%) on the right branch had heroin a score greater than 0.5. The third 
-split in the decision tree was by tranquilizer use; the left branch had 6465 
-samples (8\%) with a score less than one, and the right branch had 2097 
-samples (2\%) with a score greater or equal to one. The fourth split was on 
-age category; the left branch represented 946 samples (8\%) age 36 and older 
-and the right branch represented 1162 samples (8\%) age 35 and younger who 
-also reported misuse and abuse of prescription pain relievers. 
+The decision tree model was prepruned to a maximum depth of 4, which means 
+the algorithm split on four consecutive features (see Figure 4). The  
+algorithm selected cocaine as the root node which includes the 85528 
+observations in the training set. With a classification tree, we predict 
+that each observation will belong to the class of training observations in 
+the region to which it belongs, and want to determine not only the class
+prediction belonging to a terminal node region, but also the class 
+proportions among the training observations in that region \cite{james13}. 
+One way to interpret a decision tree is by following the number of samples 
+represented at the split for each node. Another way to interpret the decision 
+tree in Figure 4 is by the examining the proportion of observations of 
+class A captured by that leaf over the entire number of observations captured 
+by the leaf during model training. Starting from the root node the branch 
+to the left represents 75562 observations with no or low cocaine use; 
+of those, 0.07 or 7\% reported misusing or abusing opioid pain relievers. 
+Following the right branch are 9966 observations positive for cocaine use, 
+of which 0.39 or 39\% reported pain reliever misuse or abuse. In other words, 
+the proportion of pain reliever misuse and abuse was more than five times as 
+large for individuals who reported using cocaine than those who had not. 
 
-Another way to interpret decision trees is in terms of the proportion or
-probability
-
-
+The second split was based on heroin use which included 9966 observation; 
+to the left branch were 8562 respondents who had not used heroin, of which
+0.34 or 34\% reported PRLMISAB. Following the right branch to the terminal 
+node (i.e., `leaf') were 1404 individuals positive for heroin use, of which
+0.70 or 70\% had misused or abuse pain relievers. Thus, the proportion of 
+PRLMISAB was twice as large for respondents who had used heroin than those 
+who had not (as seen in Figure 3). The third split in the decision tree was 
+based on tranquilizers, which included 8562 observations. On the left branch 
+were 6455 observation with no or low tranquilizer use; of these, the 
+proportion of PRLMISAB was 0.28 or 28\%. To the branch on the right were 
+2016 observations with higher tranquilizer use, of which 0.51 or 51\% 
+reported PRLMISAB. Similar to what was observed in the case of heroin, the 
+rate of pain reliever misuse and abuse for individuals with moderate to high
+tranquilizer use was almost twice as large than for those with no to low
+tranquilizer use. The fourth split was based on age category which included
+2107 observations; the branch to the left represented 946 individuals age 
+36 or older, of which 0.35 or 35\% reported PRLMISAB. The branch to the 
+right represented 1162 individuals age 35 and younger, of whom 0.64 or 64\% 
+reported PRLMISAB. The proportion of pain reliever misuse and abuse for
+respondents 35 or younger was almost twice that as individuals older 
+than 35 years of age. 
 
 \begin{figure}[!ht]
   \centering\includegraphics[width=\columnwidth]{images/Figure5.pdf}
@@ -871,10 +890,21 @@ probability
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Feature Importance for Random Forests}
 
-The random forest model was fit using 1000 trees and all of the features 
-were considered at each node to determine the randomness of each tree.
+The results of a single decision tree can greatly overfit the data used
+to train the model, and very different trees can be obtained from different
+samples of the training data. Random forests decreases overfitting by
+creating multiple trees and averaging the results. The random forest model 
+was fit using 1000 trees; all of the features were considered at each node 
+to determine the randomness of each tree. 
+
+
 Feature importance is a model summary that rates how important each feature is 
-for the classification decisions made in the algorithm. For random forests, 
+for the classification decisions made in the algorithm. 
+The Gini index provides a measure of node purity used to evaluate
+the quality of a particular split; a small value indicates that a node 
+predominantly contains observations from a single class. 
+
+For random forests, 
 feature importance was measured by the mean decrease in Gini coefficient 
 which indicates how each variable contributes to the homogeneity of the nodes 
 and leaves in the resulting random forest. For classification trees, the splits 
