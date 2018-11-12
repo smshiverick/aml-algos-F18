@@ -45,24 +45,24 @@ Over the past two decades the misuse and abuse of prescription opioids
 (MUPO) has become a major health crisis in the U.S. \cite{volkow14}. In 2015, 
 an estimated 2 million Americans suffered a substance use disorder related 
 to prescription opioid pain relievers such as oxycodone or hydrocodone 
-\cite{nida18}. Opioid dependence and addiction are chronic health conditions; 
-on average, more than 115 people die from an opioid overdose in the U.S. 
-each day, The number of opioid-related overdose deaths has more than 
-quadrupled from 1999 to 2016. \cite{cdc18, Rudd16}. Nonmedical use of 
-prescription opioids is a significant risk factor for heroin use \cite{Rudd16}; 
-four in five new heroin users started out misusing prescription painkillers 
-\cite{jones13}. Supply-based interventions to reduce the availability of 
-prescription opioids have produced a shift to the use of heroin and synthetic 
-opioids such as fentanyl \cite{jones15}. The risk of overdose death from 
-illicit and synthetic opioids is greatly increased because dosage levels and 
-drug potency are largely unknown. The sharp rise in prescription overdose 
-deaths (POD) and heroin overdose deaths (HOD) are correlated 
-\cite{muhuri13, unick13}. Predictive modeling approaches can help identify 
-individuals susceptible for opioid addiction and may provide insights that 
-inform policy decisions for addressing the opioid crisis. This study compares 
-different classification models of pain reliever misuse and abuse and identifies 
-several important features that contribute to the misuse and abuse of 
-prescription opioids. 
+\cite{nida18}. Opioid dependence and addiction are chronic health conditions. 
+On average, more than 115 people die from an opioid overdose in the U.S. 
+each day \cite{cdc18}, and the number of opioid-related overdose deaths has 
+more than quadrupled from 1999 to 2016. Nonmedical use of prescription opioids 
+is a significant risk factor for heroin use \cite{Rudd16}. Supply-based 
+interventions to reduce the availability of prescription opioids have produced 
+a shift to the use of heroin and synthetic opioids such as fentanyl 
+\cite{jones15}. Four in five new heroin users started out misusing prescription 
+painkillers \cite{jones13}. Because the dosage levels and potency of illicit 
+or synthetic opioids are largely unknown, the risk of overdose death is greatly 
+increased. The sharp rise in prescription overdose deaths (POD) and heroin 
+overdose deaths (HOD) are correlated \cite{muhuri13, unick13}. Predictive 
+modeling can be used to identify important features that contribute to the 
+opioid misuse and abuse help predict individuals susceptible to opioid 
+addiction. Data mining may provide insights to inform policy decisions for 
+addressing the opioid crisis. This study compares the performance of several 
+classification models to determine which approaches are best for
+modeling pain reliever misuse and abuse. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -86,7 +86,7 @@ predicted is continuous, or there is continuity between the outcome
 that predict the target variable. If the target is a class label, set of 
 categorical or binary outcomes (e.g., spam or ham emails, benign or malignant 
 cells), then classification is used to predict which class or category label 
-that new instances will be assigned to. The present study uses a supervised 
+that new instances will be assigned to. This study uses a supervised 
 learning approach to classify instances of pain reliever misuse and abuse
 as a binary outcome. 
 
@@ -142,9 +142,7 @@ likelihood function, and are interpreted as an indication of the log-odds
 change in the outcome variable that is associated with a one-unit increase 
 in the predictor variable, holding the effects of other predictor variables 
 constant. The intercept, $\beta_0$, is the log of the odds ratio when X is 
-0 \cite{gujarati09}. The logistic or logit function is represented below,
-where X = ($X_1$...$X_p$) predictors: 
-$ Pr(abuse=1) = F(\alpha+\sum_j(\beta_i*X_ij)) $
+0 \cite{gujarati09}. The logistic function is represented below, where X = ($X_1$...$X_p$) predictors: 
 
 \begin{equation}
   \ ln\frac{P_i}{1-P_i} = \beta_0 + \beta_1X_1 + \beta_1X_2 +... \beta_p*X_p \
@@ -494,24 +492,24 @@ reasonable solution for the data.
 \subsubsection{Imbalanced Classes}
 
 Previous research has analyzed the misuse and abuse of prescription opioids
-(MUPO) using logistic regression \cite{rice12, unick13, jones15, mccabe12} 
-and identified factors that influence MUPO. The goal of the present study is 
-to compare the performance of different classifier models of pain reliever 
-misuse and abuse and evaluate each model using common performance metrics. 
-
-When instances of one class in a dataset 
-greatly outnumber instances of the other class, traditional classification 
-algorithms tend to classify observations as belonging to the majority class, 
-although frequently it is the case that the class of interest (positive class)
-is represented by the minority of observations. The ensuing cost is an
-underestimation of positive cases which are misclassified as false negatives. 
-Various sampling methods have been proposed to address the issue of imbalanced 
-data (e.g., `boosting'). As described above, with imbalanced classes the 
-$f_1$-score is a better metric than than accuracy, as it takes into account 
-both sensitivity (i.e., recall) and precision. The $f_1$-score was used as the 
-preferred metric in evaluating model performance. A second goal was to identify 
-important features for predicting the misuse and abuse of prescription opioid. 
-The tradeoff between model performance and interpretability is discussed. 
+(MUPO) using logistic regression\cite{rice12, unick13, jones15, mccabe12} 
+and identified factors that influence MUPO. The present study compares the
+performance of ten classifier models of pain reliever misuse and abuse and 
+evaluates each model using common performance metrics. The sample data set
+has imbalanced classes in the target variable because instances of one class 
+greatly outnumber instances of the other class. A difficulty with traditional 
+classification algorithms is that they tend to classify observations as 
+belonging to the majority class when the class of interest (positive)
+is represented by the minority of observations. This can underestimate the
+occurence of positive cases which are misclassified as false negatives. 
+Efforts to address the issue of imbalanced data have included various sampling 
+methods (e.g., `boosting'). This study considered several metrics of 
+performance, including accuracy, sensitivity, precision, and $f_1$-score.
+As described above, the $f_1$-score provides a better measure of performance
+than accuracy With imbalanced classes, as it takes into account both 
+sensitivity (i.e., recall) and precision. The study also identifies features
+important for predicting MUPO. The tradeoff between model performance and 
+interpretability is discussed. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
