@@ -45,10 +45,10 @@ Over the past two decades the misuse and abuse of prescription opioids
 (MUPO) has become a major health crisis in the U.S. \cite{volkow14}. In 2015, 
 an estimated 2 million Americans suffered a substance use disorder related 
 to prescription opioid pain relievers such as oxycodone or hydrocodone 
-in 2015 \cite{nida18}. Opioid dependence and addiction are chronic health 
-conditions. The number of opioid-related overdose deaths has more than 
-quadrupled from 1999 to 2016. Each day, more than 115 people die, on average, 
-from an opioid overdose in the U.S. \cite{cdc18, Rudd16}. Nonmedical use of 
+\cite{nida18}. Opioid dependence and addiction are chronic health conditions; 
+on average, more than 115 people die from an opioid overdose in the U.S. 
+each day, The number of opioid-related overdose deaths has more than 
+quadrupled from 1999 to 2016. \cite{cdc18, Rudd16}. Nonmedical use of 
 prescription opioids is a significant risk factor for heroin use \cite{Rudd16}; 
 four in five new heroin users started out misusing prescription painkillers 
 \cite{jones13}. Supply-based interventions to reduce the availability of 
@@ -87,8 +87,8 @@ that predict the target variable. If the target is a class label, set of
 categorical or binary outcomes (e.g., spam or ham emails, benign or malignant 
 cells), then classification is used to predict which class or category label 
 that new instances will be assigned to. The present study uses a supervised 
-learning approach to classify instances of pain reliever misuse and abuse 
-using several classification models. 
+learning approach to classify instances of pain reliever misuse and abuse
+as a binary outcome. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -106,12 +106,12 @@ variables on a diverse array of questions related to the use, misuse, and
 abuse of substances including alcohol, tobacco, prescription medications, and 
 illicit drugs. In addition to typical demographic information, the survey
 includes self-reported measures on items related to physical health, mental 
-health (e.g., depression, anxiety, suicidal ideation), counseling, and drug 
-and alcohol treatment. Data from the NSDUH has been used for identifying 
-groups at high risk for substance use, and the co-occurrence of substance 
-use and mental health disorders. The target outcome for the study was any 
-misuse or abuse of prescription pain relievers and the predictor variables of 
-interest were demographic variables, medication usage, and use of illicit drugs. 
+health (e.g., depression, anxiety, suicide), counseling, drug and alcohol 
+treatment. Data from the NSDUH has been used for identifying groups at high 
+risk for substance use, and the co-occurrence of substance use and mental 
+health disorders. The target outcome for the study was any misuse or abuse 
+of prescription pain relievers and the predictor variables of interest were 
+demographic variables, medication usage, and use of illicit drugs. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -121,15 +121,15 @@ interest were demographic variables, medication usage, and use of illicit drugs.
 
 As the statistician George Box stated, "All models are wrong, but some models 
 are useful" \cite{box05}. There are advantages and limitations for selecting
-any model, but logistic regression is one of the most reliable models for 
-classification. Logistic regression models the conditional distribution of 
-probabilities for a binary response (e.g., $Pr(Y=k | X=x)$) as a combination 
-of a set of predictor variables \cite{james13, raschka17}. The decision 
-boundary for the logistic regression classifier is a linear function of the 
-input; a binary classifier separates two classes using a line, plane, or 
-hyperplane \cite{muller17}. Given that the probability values for the outcome 
-range between 0 and 1, predictions can be made based on a default value. 
-For example, a default value of `Yes` could be predicted for any individual 
+any model. Logistic regression is one of the most reliable and interpretable 
+models for classification. Logistic regression models the conditional 
+distribution of probabilities for a binary response (e.g., $Pr(Y=k|X=x)$) 
+as a combination of a set of predictor variables \cite{james13, raschka17}. 
+The decision boundary for the logistic regression classifier is a linear 
+function of the input; a binary classifier separates two classes using a line, 
+plane, or hyperplane \cite{muller17}. Given that the probability values for 
+the outcome range between 0 and 1, predictions can be made based on a default 
+value. A default value of `Yes` could be predicted for any individual 
 for whom the probability of pain reliever misuse and abuse is greater than 
 fifty-percent, $Pr(PRLMISAB) > 0.5$. Logistic regression uses a maximum 
 likelihood method to predict the coefficient estimates that correspond as 
@@ -142,22 +142,23 @@ likelihood function, and are interpreted as an indication of the log-odds
 change in the outcome variable that is associated with a one-unit increase 
 in the predictor variable, holding the effects of other predictor variables 
 constant. The intercept, $\beta_0$, is the log of the odds ratio when X is 
-0 \cite{gujarati09}. The log odds or logit function is represented below,
+0 \cite{gujarati09}. The logistic or logit function is represented below,
 where X = ($X_1$...$X_p$) predictors: 
+$ Pr(abuse=1) = F(\alpha+\sum_j(\beta_i*X_ij)) $
 
 \begin{equation}
   \ ln\frac{P_i}{1-P_i} = \beta_0 + \beta_1X_1 + \beta_1X_2 +... \beta_p*X_p \
 \end{equation}
 
 \emph{Linear discriminant analysis} (LDA) is an alternative approach to 
-estimating the probabilities which models the distribution of predictors 
+estimating probabilities that models the distribution of predictors 
 separately in each of the response classes and then uses the Bayes' theorem 
-to flip these into estimates for $Pr(Y=k | X=x)$ \cite{james13}. The term 
+to `flip' these into estimates for $Pr(Y=k | X=x)$ \cite{james13}. The term 
 linear in LDA refers to the the discriminant functions being linear functions 
 of the predictors. For distributions assumed to be normal (i.e., multivariate 
 Guassian), LDA provides a model that is similar in form to logistic regression, 
 but more stable. LDA is also preferred for outcomes with more than two response 
-classes. The important assumptions for LDA are, first, a common covariance 
+classes. The important assumptions for LDA are: first, a common covariance 
 matrix for all classes, and second, the class boundaries are linear functions 
 of the predictors. \emph{Quadratic Discriminant Analysis} (QDA) is an approach 
 that assumes each class has its own covariance matrix and the decision 
@@ -177,10 +178,10 @@ relationship between the predictors and target outcome. With training
 observations that can be separated by hyperplane, the maximal marginal 
 classifier provides the maximum distance (i.e., margin) from each observation
 to the hyperplane \cite{james13}. The test observations are classified based 
-on which side of the hyperplane they fall, but in many cases no separating 
+on which side of the hyperplane they fall; however, in many cases no separating 
 hyperplane exists. The \emph{support vector classifier} (SVC) extends the 
 maximal margin classifier by using a soft margin that allows a small number 
-of observations to be misclassified on the wrong side of hyperplane 
+of observations to be misclassified on the wrong side of the hyperplane 
 \cite{kuhn13, cortes95}. The observations that fall directly on the margin or 
 on the wrong side of the hyperplane are called `support vectors'. The parameter 
 `C' indicates the number of observations that can violate the margin; if $C>0$, 
@@ -192,9 +193,11 @@ polynomial) functions of the predictors.
 \begin{figure}[!ht]
   \centering\includegraphics[width=\columnwidth]{images/Figure1.pdf}
   \caption{Decision Boundary and Support Vectors for Support Vector Machine 
-  SVM Classifier with Nonlinear Kernel \cite{muller17}}
+  (SVM) with Nonlinear Kernel \cite{muller17}}
   \label{f:Figure1}
 \end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \emph{Support vector machines} (SVM) are an extension of SVC that use a 
 kernel trick to reduce computational load. The radial basis function (RBF) 
@@ -227,8 +230,8 @@ close to linear.
 The Bayes' rule was mentioned above in relation to LDA; in this section, the 
 \emph{naive Bayes classifier} is considered as a non-linear model.
 The Bayes theorem (equation 1) is represented by a set of probabilities to 
-represent the following question: Based on a given set of predictors, what
-is the probability than an outcome belongs to a particular class?
+represent the following question: ``Based on a given set of predictors, what
+is the probability than an outcome belongs to a particular class?''
 
 \begin{equation}
   \ P(Y=cl|X) = \frac{P(Y)*P(X|Y=cl)}{P(X)}\
@@ -238,11 +241,11 @@ The prior probability, P(Y), is the expected probability of a given class
 based on what is known (e.g., rate of disease in the population). P(X) 
 is the probability of the predictor variables. The conditional probability,
 $P(X=cl|Y)$, is the probability of observing the predictor variables for data 
-associated with a given class. The naive Bayes model is based on the 
-assumption that all the predictor variables are independent, although this 
-is not always realistic. The conditional probabilities are calculated based 
-on the probability densities for each individual predictor \cite{kuhn13}. 
-For categorical predictors, the observed frequencies in the training set data 
+associated with a given class. The naive Bayes model assumes that all of the 
+predictor variables are independent, although this assumption is not always 
+realistic. The conditional probabilities are calculated based on the 
+probability densities for each individual predictor \cite{kuhn13}. For 
+categorical predictors, the observed frequencies in the training set data 
 can be used to determine the probability distributions. The prior probability 
 allows us to tilt the final probability toward a particular class. Class 
 probabilities are created and the predicted class is one associated with the 
@@ -257,14 +260,14 @@ probabilities will become more extreme.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \emph{Neural Networks} are powerful models for classification and 
-regression based on theories about connectivity in the brain \cite{kuhn13}. 
-The pstudy considers a simple method called multilayer perceptrons 
+regression based on theories of connectivity in the brain \cite{kuhn13}. 
+The present study considers a simple method called multilayer perceptrons 
 (MLP) as a feed-forward neural network \cite{muller17, raschka17}. 
 The outcome is modeled by an intermediary set of unobserved variables called 
 hidden units, which are linear combinations of the original predictors. 
 Each hidden unit is a combination of some or all of the predictors which 
-are then transformed by a nonlinear function (e.g., sigmoidal). A neural 
-network usually has multiple hidden units used to model the outcome. 
+are then transformed by a nonlinear function (e.g., \emph{sigmoidal}). A 
+neural network usually has multiple hidden units used to model the outcome. 
 The MLP classifier computes weights between the inputs and the hidden layers, 
 and weights between the hidden layers and the output. After computing each 
 hidden unit, the output is modeled by a nonlinear combination of the hidden 
@@ -276,18 +279,18 @@ selecting the number of hidden layers, the number of units within each
 layer, and the regularization parameter (L2) which shrinks the weights 
 towards zero. The feature weights provide an estimate of feature importance.
 Although neural networks can capture information in large amounts of data 
-with very complex models, some limitations are that they tend to overfit 
-data used to train the model, and can be difficult to interpret. Neural
-networks may work best with homogenous datasets where the predictor variables
-all have similar meanings \cite{muhuri13}. For datasets with many different
-kinds of features, tree-based methods may provide a better approach.
+with very complex models, they tend to overfit data used to train the model, 
+and can be difficult to interpret. Neural networks may work best with 
+homogenous datasets where the predictor variables all have similar meanings 
+\cite{muhuri13}. For datasets with many different kinds of features, 
+tree-based methods offer a better approach.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Tree-based Models} Decision trees are based on a hierarchy of 
 \emph{`if-else'} questions starting from a root node and proceeding through a 
 series of binary decisions or choices. Each node in the tree represents either 
-a question or a terminal node (i.e.,leaf) that contains the outcome. Applied to 
+a question or a terminal node (i.e., leaf) that contains the outcome. Applied to 
 a binary classification task, the decision tree algorithm learns the sequence
 of if-else questions that arrives at the outcome most quickly. For continuous 
 features, questions are expressed in the form: ``Is feature x larger than 
@@ -354,16 +357,17 @@ illustrate classification decisions and errors. A person can be either
 diagnosed with an illness or not, and the person can actually have the 
 illness or not. In the present case, individuals were classified as having 
 previously misused and abused pain relievers or not, and the positive class
-represents self-reported pain reliever misuse and abuse ever (PRLMISEVR).
-The model predictions will be either correct or incorrect in relation to
+represents self-reported pain reliever misuse and abuse ever (PRLMISAB).
+The model predictions will be either correct or incorrect in relation to the
 observed outcomes. Model performance is typically evaluated using accuracy 
 which is the number of correct predictions divided by the total number of 
-all samples. Any model cannot make perfect predictions as mistakes are 
-always to be found. For example, a negative instance can be labeled 
-as positive: a person who has never misused or abused pain relievers may be 
-classified as having done so (i.e., 'false positive'). Conversely, a positive 
-instance may be classified as negative: a person who has misused and abused 
-pain relievers may be labeled as never having done so (i.e., 'false negative').
+all samples ( \(\frac{TP+TN}{TP+FP+TN+FN}\) ). Any model cannot make perfect 
+predictions as mistakes are always to be found. For example, a negative
+instance can be labeled as positive: a person who has never misused or abused 
+pain relievers may be classified as having done so (i.e., 'false positive'). 
+Conversely, a positive instance may be classified as negative: a person who 
+actually has misused and abused pain relievers may be labeled as never having 
+done so (i.e., 'false negative').
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -385,26 +389,27 @@ pain relievers may be labeled as never having done so (i.e., 'false negative').
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Classification errors and correct decisions can be represented in a 
+Correct decisions and classification errors are represented in a 
 \emph{confusion matrix} (Table 1) that indicates the correspondence between 
 predicted and actual outcomes. The confusion matrix is a two-by-two array in 
 which the columns correspond to the actual observed classes and the rows 
 correspond to the predicted classes. The main diagonal indicate the number of 
-correctly classified samples (\emph{true positive, true negative}, while the 
+correctly classified samples (\emph{true positive, true negative}), while the 
 other entries represent the number of samples in one class that were mistakenly 
 classified as another class. Classification models are evaluated using several 
-measures including recall, precision, and the $f_1$-score \cite{wiki18}. 
-\emph{Sensitivity} or  recall measures how many positive samples are 
-captured by the positive predictions ( \(\frac{TP}{TP+FN}\) ), and is used 
-when we want to identify all positive samples while avoiding false negatives. 
-\emph{Precision} or the ``positive predictive value'', measures how many of 
-the samples predicted as positive are actually positive  
-( \(\frac{TP}{TP+FP}\) ), and is used as a metric when the goal is to limit 
-the number of false positives. The \emph{$f_1$-score} or `f-measure' 
-(equation 2) provides the harmonic mean of recall and precision. The 
-$f_1$-score can be a better metric than accuracy in datasets with 
-imbalanced classes, where one class is much more frequent than the other 
-class, as it takes precision and recall into account \cite{muller17}.
+measures including accuracy, sensitivity (i.e., recall), specificity, precision, 
+and the $f_1$-score \cite{kuhn13, wiki18}. Sensitivity or \emph{recall} 
+measures how many positive samples are captured by the positive predictions 
+( \(\frac{TP}{TP+FN}\) ), and is used when we want to identify all positive 
+samples while avoiding false negatives. \emph{Precision} or the 
+``positive predictive value'', measures how many of the samples predicted 
+as positive are actually positive ( \(\frac{TP}{TP+FP}\) ), and is used as 
+a metric when the goal is to limit the number of false positives. The 
+\emph{$f_1$-score} or `f-measure' provides the harmonic mean of recall and 
+precision (equation 3). The $f_1$-score can be a better performance metric 
+than accuracy in datasets with imbalanced classes, where one class is much 
+more frequent than the other class, as it takes precision and recall into
+account \cite{muller17}.
 
 \begin{equation}
   \ f_1 score = 2*\frac{Precision*Recall}{Precision+Recall}\
@@ -415,29 +420,31 @@ class, as it takes precision and recall into account \cite{muller17}.
 \subsubsection{Training and Test Set Accuracy}
 
 In constructing and evaluating predictive models it is important to select 
-a model that performs well not only with data used to train the model, but 
-also with new observations. The sample data is divided into a 
-\emph{training set} and a \emph{testing set} of observations that is set aside 
-and used to evaluate model performance. By convention, approximately 70 to 80 
-percent of observations are used in the training set and the remaining 
+a model that performs well not only with the data used to train the model, 
+but also with new observations. A standard practice is to divide the sample 
+data into a \emph{training set} and a \emph{testing set} of observations that 
+is set aside and used to evaluate model performance. By convention, approximately 
+70 to 80 percent of observations are used in the training set and the remaining 
 portion is held in the testing set. Two main problems can occur in evaluating 
-model performance: overfitting and underfitting. A model can have high accuracy 
-on the training set but perform poorly with new data in the test set because 
-the model is `over-fit' to the training data. By contrast, a model can perform 
-poorly with the training data but have higher accuracy with the test set 
-because of `underfitting'. One of the simplest classification models, 
-K-Nearest neighbors is used as an example. KNN classifies observations by 
-assigning the label that is most frequent among the `k' number of nearest 
-training samples (selected by the user). The accuracy of the KNN classifier 
-for the training set and testing set is plotted as a function of the parameter 
-k-neighbors in Figure 1. The plot shows that increased accuracy on the testing 
-set is associated with decreased training set accuracy, and conversely, 
-increase accuracy on the training set is related to decreased test set accuracy. 
-The best model optimizes testing set accuracy and strikes a balance between 
-the problems of overfitting and underfitting. In the case of KNN, performance 
-on the test set increased only slightly between 2 and 4 neighbors, but did not 
-improve much beyond 5 neighbors. Therefore, a model with k=4 neighbors 
-provides a reasonable solution for the data. 
+model performance: overfitting and underfitting. In the case of 
+\emph{overfitting}, A model can have high accuracy on the training set 
+but perform poorly with new data in the test set because the model is 
+`over-fit' to the training data. By contrast, a model can attain high 
+accuracy with the test set, while performing poorly with the training data 
+because of \emph{underfitting}. One of the simplest classification models, 
+K-Nearest neighbors provides an illustrative example. KNN classifies 
+observations by assigning the label that is most frequent among the `k' 
+number of nearest training samples (k is a parameter selected by the user). 
+The accuracy of the KNN classifier for the training set and testing set is 
+plotted as a function of the parameter k-neighbors in Figure 2. The plot 
+shows that increased accuracy on the testing set is associated with 
+decreased training set accuracy, and conversely, increase accuracy on 
+the training set is related to decreased test set accuracy. The best model 
+optimizes test set accuracy while strikes a balance between the problems of 
+overfitting and underfitting. In the case of KNN, performance on the test set 
+increased only slightly between 2 and 4 neighbors, but did not improve much 
+beyond 5 neighbors. Therefore, a model with k=4 neighbors provides a 
+reasonable solution for the data. 
 
 \begin{figure}[!ht]
   \centering\includegraphics[width=\columnwidth]{images/Figure2.pdf}
@@ -455,24 +462,29 @@ provides a reasonable solution for the data.
     \toprule
     \textit{Target Outcome} & Label \\
     \midrule
-    Prescription Opioid Pain Reliever Misuse and Abuse (Likert scale: 0-12)& PRLMISAB  \\
+    Prescription Opioid Pain Reliever Misuse and Abuse 
+    (Likert scale: 0-12)& PRLMISAB  \\
     \midrule
     \textit{Predictor Variables}&   \\
     \midrule
-    Age Category (1=12-17 years, 2=18-25, 3=26-34, 4=35-49, 5=50 and older)& AGECAT \\
+    Age Category (1=12-17 years, 2=18-25, 3=26-35, 4=36-49, 5=50 and older)& AGECAT \\
     Biological Sex (0=Male, 1=Female)& SEX  \\
     Marital Status (0=Unmarried, 1=Divorced, 2=Widowed, 3=Married)& MARRIED  \\
     Education (1=H.S. or Less, 2=H.S. Grad., 3=Some College,  4=College Grad.)& EDUCAT  \\
     Size of City/Metropolitan Region (1=Rural, 2=Small, 3=Large)& CTYMETRO  \\
     Health Problems Aggregated  (Likert scale: 0-10)& HEALTH  \\
-    Mental Health, Aggregated: adult depression, emotional distress (Likert scale: 0-10)& MENTHLTH  \\
-    Treatment for Drugs and Alcohol in past year, Aggregated (Likert scale: 0-5)& TRTMENT  \\
+    Mental Health, Aggregated: adult depression, emotional distress 
+    (Likert scale: 0-10)& MENTHLTH  \\
+    Treatment for Drugs and Alcohol in past year, Aggregated 
+    (Likert scale: 0-5)& TRTMENT  \\
     Mental Health Treatment, Aggregated (Likert scale: 1-10)& MHTRTMT  \\
     Tranquilizer use, past year, Aggregated (Likert scale: 0-5)& TRQLZRS \\
     Sedative use, past year, Aggregated (Likert scale: 0-5)& SEDATVS  \\
     Heroin use, past year, Aggregated (Likert scale: 0-5)& HEROINUSE  \\
-    Cocaine and Crack Cocaine Use in past year, Aggregated  (Likert scale: 0-5)& COCAINE  \\
-    Amphetamine and Methamphetamine Use in past year, Aggregated (Likert scale: 0-5)& AMPHETMN  \\
+    Cocaine and Crack Cocaine Use in past year, Aggregated  
+    (Likert scale: 0-5)& COCAINE  \\
+    Amphetamine and Methamphetamine Use in past year, Aggregated 
+    (Likert scale: 0-5)& AMPHETMN  \\
     \bottomrule
   \end{tabular}
 \end{table*}
@@ -481,21 +493,25 @@ provides a reasonable solution for the data.
 
 \subsubsection{Imbalanced Classes}
 
-The main goal of the study was to compare the performance of ten different 
-classifier models and to evaluate which model is best for classifying pain 
-reliever misuse and abuse. When instances of one class in a dataset greatly 
-outnumber instances of the other class, traditional classification algorithms
-tend to classify observations as belonging to the majority class, although
-frequently it is the case that the class of interest (positive class)
+Previous research has analyzed the misuse and abuse of prescription opioids
+(MUPO) using logistic regression \cite{rice12, unick13, jones15, mccabe12} 
+and identified factors that influence MUPO. The goal of the present study is 
+to compare the performance of different classifier models of pain reliever 
+misuse and abuse and evaluate each model using common performance metrics. 
+
+When instances of one class in a dataset 
+greatly outnumber instances of the other class, traditional classification 
+algorithms tend to classify observations as belonging to the majority class, 
+although frequently it is the case that the class of interest (positive class)
 is represented by the minority of observations. The ensuing cost is an
 underestimation of positive cases which are misclassified as false negatives. 
 Various sampling methods have been proposed to address the issue of imbalanced 
-data, such as boosting. The present study used the $f_1$-score as the
-preferred performance metric, rather than accuracy, as it takes into account 
-both sensitivity (i.e., recall) and precision. A second goal was to identify 
+data (e.g., `boosting'). As described above, with imbalanced classes the 
+$f_1$-score is a better metric than than accuracy, as it takes into account 
+both sensitivity (i.e., recall) and precision. The $f_1$-score was used as the 
+preferred metric in evaluating model performance. A second goal was to identify 
 important features for predicting the misuse and abuse of prescription opioid. 
 The tradeoff between model performance and interpretability is discussed. 
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -858,6 +874,13 @@ of which 0.39 or 39\% reported pain reliever misuse or abuse. In other words,
 the proportion of pain reliever misuse and abuse was more than five times as 
 large for individuals who reported using cocaine than those who had not. 
 
+\begin{figure}[!ht]
+  \centering\includegraphics[width=\columnwidth]{images/Figure5.pdf}
+  \caption{Decision Tree Model of Pain Reliever Misuse and Abuse
+  fit to the Training Set}
+  \label{f:Figure5}
+\end{figure}
+
 The second split was based on heroin use which included 9966 observation; 
 to the left branch were 8562 respondents who had not used heroin, of which
 0.34 or 34\% reported PRLMISAB. Following the right branch to the terminal 
@@ -879,13 +902,6 @@ right represented 1162 individuals age 35 and younger, of whom 0.64 or 64\%
 reported PRLMISAB. The proportion of pain reliever misuse and abuse for
 respondents 35 or younger was almost twice that as individuals older 
 than 35 years of age. 
-
-\begin{figure}[!ht]
-  \centering\includegraphics[width=\columnwidth]{images/Figure5.pdf}
-  \caption{Decision Tree Model of Pain Reliever Misuse and Abuse
-  fit to the Training Set}
-  \label{f:Figure5}
-\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Feature Importance for Random Forests}
