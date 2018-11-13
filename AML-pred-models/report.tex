@@ -1,422 +1,121 @@
-\documentclass[sigconf]{acmart}
+Download
 
-\input{format/final}
 
-\begin{document}
-  \title{Comparing Predictive Models of Pain Reliever Misuse and Abuse}
-  \author{Sean M. Shiverick}
-  \affiliation{\institution{Indiana University-Bloomington}
-  }
-\renewcommand{\shortauthors}{S.M. Shiverick}
+Source
 
+PDF
+Actions
+
+   Copy Project
+   Word Count
+Sync
+
+   Dropbox
+   GitHub
+   Mendeley
+Settings
+
+Compiler
+
+Main document
+
+Spell check
+
+Auto-complete
+
+Auto-close Brackets
+
+Code check
+
+Editor theme
+
+Overall theme
+
+Keybindings
+
+Font Size
+
+Font Family
+
+Line Height
+
+PDF Viewer
+
+Hotkeys
+
+   Show Hotkeys
+Menu
+AML-pred-models
+Review
+Share
+Submit
+History
+Chat
+ format
+ images
+ Figure1.pdf
+ Figure2.pdf
+ Figure3.pdf
+ Figure4.pdf
+ Figure5.pdf
+ Figure6.pdf
+ Figure9.pdf
+ template
+ ACM-Reference-Format.bst
+ acmart.cls
+ bibtex-error.tex
+ bin.tex
+ issues.tex
+ Makefile
+ paper1.tex
+ paper2.tex
+ report.bib
+ report.tex
+Editor mode.SourceRich Text
+
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{abstract}
-
-The misuse and abuse of prescription opioids (MUPO) is a chronic health 
-condition associated with increased overdose deaths over the past two decades
-\cite{nida18}. Predictive modeling can identify factors related to MUPO and  
-predict individuals at risk for opioid addiction. The present study compares 
-ten classification models using four performance metrics: accuracy, sensitivity 
-(recall), precision, and $f_1$-score. With unbalanced classes, the $f_1$-score 
-is considered a better metric of performance than accuracy. The sample data 
-consisted of N = 114,038 respondents from the National Survey on Drug Use 
-and Health (NSDUH) for 2015-2016. Of the total sample, 27\% had used any 
-opioid pain reliever medications in the past year, 11\% of respondents had 
-previously misused or abused pain relievers; 2\% reported using heroin. The 
-classifier models were fit to a training set with fifteen features and pain 
-reliever misuse and abuse was the binary target variable. Model performance 
-was evaluated on the testing set in a confusion matrix. Neural networks (MLP) 
-and support vector classifier had the highest model accuracy; however, logistic 
-regression, decision trees, and random forests, had the highest $f_1$-score. 
-Advantages and limitation of the classification models are discussed. 
-\footnote{This project was completed in partial fulfillment of requirements 
-for the M.S. in Data Science from the School of Informatics and Computing at 
-IU-Bloomington in May, 2018. Address correspondence to \textit{smshiver@iu.edu}}
-
-\end{abstract}
-\keywords{Predictive Modeling, Supervised Learning, Classification Models}
-\maketitle
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Introduction}
-
-Over the past two decades the misuse and abuse of prescription opioids 
-(MUPO) has become a major health crisis in the U.S. \cite{volkow14}. In 2015, 
-an estimated 2 million Americans suffered a substance use disorder related 
-to prescription opioid pain relievers such as oxycodone or hydrocodone 
-\cite{nida18}. Opioid dependence and addiction are chronic health conditions. 
-On average, more than 115 people die from an opioid overdose in the U.S. 
-each day \cite{cdc18}, and the number of opioid-related overdose deaths has 
-more than quadrupled from 1999 to 2016. Nonmedical use of prescription opioids 
-is a significant risk factor for heroin use \cite{Rudd16}. Supply-based 
-interventions to reduce the availability of prescription opioids have produced 
-a shift to the use of heroin and synthetic opioids such as fentanyl 
-\cite{jones15}. Four in five new heroin users started out misusing prescription 
-painkillers \cite{jones13}. Because the dosage levels and potency of illicit 
-or synthetic opioids are largely unknown, the risk of overdose death is greatly 
-increased. The sharp rise in prescription overdose deaths (POD) and heroin 
-overdose deaths (HOD) are correlated \cite{muhuri13, unick13}. Predictive 
-modeling can be used to identify important features that contribute to the 
-opioid misuse and abuse help predict individuals susceptible to opioid 
-addiction. Data mining may provide insights to inform policy decisions for 
-addressing the opioid crisis. This study compares the performance of several 
-classification models to determine which approaches are best for
-modeling pain reliever misuse and abuse. 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Predictive Modeling}
-
-Predictive modeling, statistical learning, or machine learning describe a 
-set of procedures and automated processes for extracting knowledge from data 
-\cite{james13, kuhn13, muller17, raschka17}. The two main branches of 
-predictive modeling are supervised learning and unsupervised learning. 
-Supervised learning problems involve prediction about a specific target 
-variable or outcome. If a given dataset has no target outcome, unsupervised 
-learning methods can be used to discover underlying structure in unlabeled data 
-(e.g., clustering). Supervised learning is used to predict a certain outcome 
-from a given input, when examples of input/output pairs are available in the 
-data (e.g., logistic regression) \cite{muller17}. A statistical learning model 
-is constructed on a set of observation used to train the model set and can then 
-be used to predict new observations. Two major approaches to supervised learning 
-problems are regression and classification. When the target variable to be 
-predicted is continuous, or there is continuity between the outcome 
-(e.g., home values), a regression model is used to test the set of features 
-that predict the target variable. If the target is a class label, set of 
-categorical or binary outcomes (e.g., spam or ham emails, benign or malignant 
-cells), then classification is used to predict which class or category label 
-that new instances will be assigned to. This study uses a supervised 
-learning approach to classify instances of pain reliever misuse and abuse
-as a binary outcome. 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-In the era of ``big data'', large amounts of health information are being 
-generated from electronic medical records (EMRs), clinical research data, to 
-population-level health data \cite{herland14}. Although it can be difficult 
-to obtain reliable information about opioid use based on self-reports, surveys 
-provide data on a range of issues that people may be reluctant to disclose 
-such as illicit drug use and mental health problems. The data for the present 
-study was obtained from the National Survey on Drug Use and Health (NSDUH) 
-which is a major source of information for the use of illicit drugs and mental 
-health issues among the U.S. population aged 12 or older \cite{samhsa18}. 
-The NSDUH is a comprehensive public survey that includes more than 2600 
-variables on a diverse array of questions related to the use, misuse, and 
-abuse of substances including alcohol, tobacco, prescription medications, and 
-illicit drugs. In addition to typical demographic information, the survey
-includes self-reported measures on items related to physical health, mental 
-health (e.g., depression, anxiety, suicide), counseling, drug and alcohol 
-treatment. Data from the NSDUH has been used for identifying groups at high 
-risk for substance use, and the co-occurrence of substance use and mental 
-health disorders. The target outcome for the study was any misuse or abuse 
-of prescription pain relievers and the predictor variables of interest were 
-demographic variables, medication usage, and use of illicit drugs. 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Classification Models}
-
-\subsubsection{Linear Models}
-
-As the statistician George Box stated, "All models are wrong, but some models 
-are useful" \cite{box05}. There are advantages and limitations for selecting
-any model. Logistic regression is one of the most reliable and interpretable 
-models for classification. Logistic regression models the conditional 
-distribution of probabilities for a binary response (e.g., $Pr(Y=k|X=x)$) 
-as a combination of a set of predictor variables \cite{james13, raschka17}. 
-The decision boundary for the logistic regression classifier is a linear 
-function of the input; a binary classifier separates two classes using a line, 
-plane, or hyperplane \cite{muller17}. Given that the probability values for 
-the outcome range between 0 and 1, predictions can be made based on a default 
-value. A default value of `Yes` could be predicted for any individual 
-for whom the probability of pain reliever misuse and abuse is greater than 
-fifty-percent, $Pr(PRLMISAB) > 0.5$. Logistic regression uses a maximum 
-likelihood method to predict the coefficient estimates that correspond as 
-closely as possible to the default state. In other words, the model will 
-predict a number close to one for individuals who have misused or abused 
-pain relievers and a number close to zero for individuals who have not. 
-The distribution of conditional probabilities in the logit model has an 
-S-shaped curve. The coefficient estimates are selected to maximize the 
-likelihood function, and are interpreted as an indication of the log-odds 
-change in the outcome variable that is associated with a one-unit increase 
-in the predictor variable, holding the effects of other predictor variables 
-constant. The intercept, $\beta_0$, is the log of the odds ratio when X is 
-0 \cite{gujarati09}. The logistic function is represented below, where X = ($X_1$...$X_p$) predictors: 
-
-\begin{equation}
-  \ ln\frac{P_i}{1-P_i} = \beta_0 + \beta_1X_1 + \beta_1X_2 +... \beta_p*X_p \
-\end{equation}
-
-\emph{Linear discriminant analysis} (LDA) is an alternative approach to 
-estimating probabilities that models the distribution of predictors 
-separately in each of the response classes and then uses the Bayes' theorem 
-to `flip' these into estimates for $Pr(Y=k | X=x)$ \cite{james13}. The term 
-linear in LDA refers to the the discriminant functions being linear functions 
-of the predictors. For distributions assumed to be normal (i.e., multivariate 
-Guassian), LDA provides a model that is similar in form to logistic regression, 
-but more stable. LDA is also preferred for outcomes with more than two response 
-classes. The important assumptions for LDA are: first, a common covariance 
-matrix for all classes, and second, the class boundaries are linear functions 
-of the predictors. \emph{Quadratic Discriminant Analysis} (QDA) is an approach 
-that assumes each class has its own covariance matrix and the decision 
-boundaries are quadratically curvilinear in the predictor space \cite{kuhn13}. 
-LDA is less flexible as a classifier than QDA, but can perform better with 
-relatively few training observations or when the majority of predictors in the 
-data represent discrete categories. QDA is recommended over LDA with a very 
-large training set or when the decision boundary between two classes is 
-non-linear. 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsubsection{Non-linear Models}
-
-The performance of linear classifiers suffers when there is a non-linear 
-relationship between the predictors and target outcome. With training
-observations that can be separated by hyperplane, the maximal marginal 
-classifier provides the maximum distance (i.e., margin) from each observation
-to the hyperplane \cite{james13}. The test observations are classified based 
-on which side of the hyperplane they fall; however, in many cases no separating 
-hyperplane exists. The \emph{support vector classifier} (SVC) extends the 
-maximal margin classifier by using a soft margin that allows a small number 
-of observations to be misclassified on the wrong side of the hyperplane 
-\cite{kuhn13, cortes95}. The observations that fall directly on the margin or 
-on the wrong side of the hyperplane are called `support vectors'. The parameter 
-`C' indicates the number of observations that can violate the margin; if $C>0$, 
-no more than C observations can be on the wrong side of the hyperplane. 
-SVC addresses the problem of non-linear boundaries between classes by 
-enlarging the feature space with higher order (e.g., quadratic, cubic, 
-polynomial) functions of the predictors. 
-
-\begin{figure}[!ht]
-  \centering\includegraphics[width=\columnwidth]{images/Figure1.pdf}
-  \caption{Decision Boundary and Support Vectors for Support Vector Machine 
-  (SVM) with Nonlinear Kernel \cite{muller17}}
-  \label{f:Figure1}
-\end{figure}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\emph{Support vector machines} (SVM) are an extension of SVC that use a 
-kernel trick to reduce computational load. The radial basis function (RBF) 
-kernel (i.e., Guassian kernel) is one of the most commonly used approaches. 
-In training the model, only a subset of data points is used to construct the 
-decision boundary, namely the support vectors that lie on the border that 
-separates the two classes. In predicting classes for new observations, the 
-algorithm calculates the distance to each of the support vectors measured 
-by the Guassian kernel \cite{muller17}. Figure 1 shows an example of the 
-non-linear decision boundary obtained with SVM using the RBF kernel; the 
-decision boundary is a smooth curve and the support vectors are the large 
-points in bold outline. Even with the default settings, the RBF kernel 
-provides a decision boundary that is decidedly non-linear. The parameters 
-for SVM are `C', which regulates the importance of each data point, and 
-`gamma' which controls the width of the Guassian kernel. A small value of 
-C indicates a restricted model in which the influence of each data point is 
-limited and the algorithm adjusts to the majority of data points. With larger 
-values of C, more importance is given to each data point and the model tries 
-to correctly classify as many training observations as possible, which results 
-in more curvature in the decision boundary. Large values of gamma mean that 
-only close values are relevant for classification, resulting in a smooth 
-decision boundary. Small values of gamma mean that far points are similar. 
-If the values of both C and gamma are large, each point can have an large 
-influence in a small region, which produces a choppy decision boundary. 
-If the values of C and gamma are both small, the decision boundary becomes 
-close to linear.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-The Bayes' rule was mentioned above in relation to LDA; in this section, the 
-\emph{naive Bayes classifier} is considered as a non-linear model.
-The Bayes theorem (equation 1) is represented by a set of probabilities to 
-represent the following question: ``Based on a given set of predictors, what
-is the probability than an outcome belongs to a particular class?''
-
-\begin{equation}
-  \ P(Y=cl|X) = \frac{P(Y)*P(X|Y=cl)}{P(X)}\
-\end{equation}
-
-The prior probability, P(Y), is the expected probability of a given class 
-based on what is known (e.g., rate of disease in the population). P(X) 
-is the probability of the predictor variables. The conditional probability,
-$P(X=cl|Y)$, is the probability of observing the predictor variables for data 
-associated with a given class. The naive Bayes model assumes that all of the 
-predictor variables are independent, although this assumption is not always 
-realistic. The conditional probabilities are calculated based on the 
-probability densities for each individual predictor \cite{kuhn13}. For 
-categorical predictors, the observed frequencies in the training set data 
-can be used to determine the probability distributions. The prior probability 
-allows us to tilt the final probability toward a particular class. Class 
-probabilities are created and the predicted class is one associated with the 
-largest class probability. Despite the somewhat unrealistic assumption of 
-independence among predictors, the naive Bayes model is computationally quick, 
-even with large training sets, and performs competitively compared to other 
-models. The naive Bayes model encounters issues when dealing with frequencies 
-or probabilities equal to zero, especially for small sample sizes. In addition, 
-as the number of predictors increases relative to sample size, the posterior 
-probabilities will become more extreme.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\emph{Neural Networks} are powerful models for classification and 
-regression based on theories of connectivity in the brain \cite{kuhn13}. 
-The present study considers a simple method called multilayer perceptrons 
-(MLP) as a feed-forward neural network \cite{muller17, raschka17}. 
-The outcome is modeled by an intermediary set of unobserved variables called 
-hidden units, which are linear combinations of the original predictors. 
-Each hidden unit is a combination of some or all of the predictors which 
-are then transformed by a nonlinear function (e.g., \emph{sigmoidal}). A 
-neural network usually has multiple hidden units used to model the outcome. 
-The MLP classifier computes weights between the inputs and the hidden layers, 
-and weights between the hidden layers and the output. After computing each 
-hidden unit, the output is modeled by a nonlinear combination of the hidden 
-units. The nonlinear function allows the neural network to fit more 
-complicated functions than a linear model. Neural networks are sensitive to 
-the scaling of the features and can require extensive data preprocessing. 
-There are several ways to modify the complexity of a neural network: by 
-selecting the number of hidden layers, the number of units within each 
-layer, and the regularization parameter (L2) which shrinks the weights 
-towards zero. The feature weights provide an estimate of feature importance.
-Although neural networks can capture information in large amounts of data 
-with very complex models, they tend to overfit data used to train the model, 
-and can be difficult to interpret. Neural networks may work best with 
-homogenous datasets where the predictor variables all have similar meanings 
-\cite{muhuri13}. For datasets with many different kinds of features, 
-tree-based methods offer a better approach.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsubsection{Tree-based Models} Decision trees are based on a hierarchy of 
-\emph{`if-else'} questions starting from a root node and proceeding through a 
-series of binary decisions or choices. Each node in the tree represents either 
-a question or a terminal node (i.e., leaf) that contains the outcome. Applied to 
-a binary classification task, the decision tree algorithm learns the sequence
-of if-else questions that arrives at the outcome most quickly. For continuous 
-features, questions are expressed in the form: ``Is feature x larger than 
-value y?'' In constructing the tree, the algorithm searches through all 
-possible tests and finds a solution that is most informative about the target 
-outcome \cite{muller17}. The recursive branching process yields a binary tree 
-of decisions, with each node representing a test for a single feature. This 
-process of partitioning is repeated until each leaf in the decision tree 
-contains only a single target. Prediction for a new data point proceeds by 
-checking which region of the partition the point falls in, and predicting the 
-majority in that feature space. The main advantage of tree models is that they 
-require little adjustment and are easy to interpret. A drawback is that they 
-can lead to complex models which are highly overfit to the training data. 
-Prepruning`can help reduce overfitting by limiting the maximum depth of the 
-tree, or the maximum number of leaves. Another approach is to set the minimum 
-number of points in a node required for splitting. Decision trees work well 
-with features measured on different scales, or with data that has a mix of 
-binary and continuous features. 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\emph{Random Forests} is an ensemble approach that combines many simple trees 
-that each overfit the data in different ways. By building many trees and 
-averaging their results, random forests helps to reduce overfitting. In 
-constructing the forests, the user selects the number of trees to build 
-(e.g., 1000). Randomness is introduced using a bootstrapping method that 
-repeatedly draws random samples of size n from the data set (with replacement).  
-The decision trees are build on these random samples of the same size, with 
-some points missing and some data points repeated \cite{muller17,raschka17}.
-The algorithm makes a random selection of p- features, and uses a different 
-set of features at each node branch. These processes ensure that all of the 
-decision trees in the random forest are different. Random forests is one of 
-the most widely used supervised learning algorithms that works well without 
-very much parameter tuning or scaling of data. A limitation is that Random 
-forests do not perform well with high-dimensional data, or data that is 
-sparse (e.g., text).
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\emph{Gradient Boosted trees} is another ensemble method that combines 
-multiple decision trees in a serial fashion, where each tree tries to correct 
-for mistakes of the previous one \cite{muller17}. Gradient boosted regression 
-trees use strong pre-pruning, with shallow trees of a depth of one to five. 
-Each tree only provides a good estimate of part of the data; combining many 
-shallow trees (i.e., ``weak learners'') iteratively improves performance. 
-In addition to pre-pruning and the number of trees, an important parameter 
-for gradient boosting is the \emph{learning rate} which determines how 
-strongly each tree tries to correct for mistakes of previous trees. A high 
-learning rate produces stronger corrections, allowing for more complex models. 
-Adding more trees to the ensemble also increases model complexity. Gradient 
-boosting and random forests perform well on similar tasks and data. A common 
-approach is to first try random forests and then include gradient boosting 
-to improve model accuracy. 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Metrics for Evaluating Prediction Models}
-
-Evaluating the performance of learning algorithms is helpful for selecting 
-the best model for a problem given the available data. Binary classification 
-is assessed in terms of the successful assignment of observations to one of 
-two classes: positive or negative. Medical testing outcomes are often used to 
-illustrate classification decisions and errors. A person can be either 
-diagnosed with an illness or not, and the person can actually have the 
-illness or not. In the present case, individuals were classified as having 
-previously misused and abused pain relievers or not, and the positive class
-represents self-reported pain reliever misuse and abuse ever (PRLMISAB).
-The model predictions will be either correct or incorrect in relation to the
-observed outcomes. Model performance is typically evaluated using accuracy 
-which is the number of correct predictions divided by the total number of 
-all samples ( \(\frac{TP+TN}{TP+FP+TN+FN}\) ). Any model cannot make perfect 
-predictions as mistakes are always to be found. For example, a negative
-instance can be labeled as positive: a person who has never misused or abused 
-pain relievers may be classified as having done so (i.e., 'false positive'). 
-Conversely, a positive instance may be classified as negative: a person who 
-actually has misused and abused pain relievers may be labeled as never having 
-done so (i.e., 'false negative').
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{table}
-  \caption{Confusion Matrix for Evaluating Classification Model Performance}
-  \label{tab:freq}
-  \begin{tabular}{llll}
-    \toprule
-     & &  Actual Outcome & \\
-    \midrule
-    Predicted & Outcome & No Misuse & PRL Misuse \\
-    \midrule
-    & No Misuse & \textbf{True Negative} & False Positive \\
-    \midrule
-    & PRL Misuse & False Negative & \textbf{True Positive} \\
-    \bottomrule
-  \end{tabular}
-\end{table}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-Correct decisions and classification errors are represented in a 
-\emph{confusion matrix} (Table 1) that indicates the correspondence between 
-predicted and actual outcomes. The confusion matrix is a two-by-two array in 
-which the columns correspond to the actual observed classes and the rows 
-correspond to the predicted classes. The main diagonal indicate the number of 
-correctly classified samples (\emph{true positive, true negative}), while the 
-other entries represent the number of samples in one class that were mistakenly 
-classified as another class. Classification models are evaluated using several 
-measures including accuracy, sensitivity (i.e., recall), specificity, precision, 
-and the $f_1$-score \cite{kuhn13, wiki18}. Sensitivity or \emph{recall} 
-measures how many positive samples are captured by the positive predictions 
-( \(\frac{TP}{TP+FN}\) ), and is used when we want to identify all positive 
-samples while avoiding false negatives. \emph{Precision} or the 
-``positive predictive value'', measures how many of the samples predicted 
-as positive are actually positive ( \(\frac{TP}{TP+FP}\) ), and is used as 
-a metric when the goal is to limit the number of false positives. The 
-\emph{$f_1$-score} or `f-measure' provides the harmonic mean of recall and 
-precision (equation 3). The $f_1$-score can be a better performance metric 
-than accuracy in datasets with imbalanced classes, where one class is much 
-more frequent than the other class, as it takes precision and recall into
-account \cite{muller17}.
-
-\begin{equation}
-  \ f_1 score = 2*\frac{Precision*Recall}{Precision+Recall}\
-\end{equation}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \subsubsection{Training and Test Set Accuracy}
-
 In constructing and evaluating predictive models it is important to select 
 a model that performs well not only with the data used to train the model, 
 but also with new observations. A standard practice is to divide the sample 
@@ -443,694 +142,12 @@ overfitting and underfitting. In the case of KNN, performance on the test set
 increased only slightly between 2 and 4 neighbors, but did not improve much 
 beyond 5 neighbors. Therefore, a model with k=4 neighbors provides a 
 reasonable solution for the data. 
-
-\begin{figure}[!ht]
-  \centering\includegraphics[width=\columnwidth]{images/Figure2.pdf}
-  \caption{K-Nearest Neighbors Classifier Accuracy for Training Set and 
-  Testing Set as a function of Number of Neighbors}
-  \label{f:Figure2}
-\end{figure}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{table*}[ht]
-  \caption{Summary of Variables in the NSDUH 2015-16 Aggregated Data Set}
-  \label{tab:freq}
-  \begin{tabular}{ll}
-    \toprule
-    \textit{Target Outcome} & Label \\
-    \midrule
-    Prescription Opioid Pain Reliever Misuse and Abuse 
-    (Likert scale: 0-12)& PRLMISAB  \\
-    \midrule
-    \textit{Predictor Variables}&   \\
-    \midrule
-    Age Category (1=12-17 years, 2=18-25, 3=26-35, 4=36-49, 5=50 and older)& AGECAT \\
-    Biological Sex (0=Male, 1=Female)& SEX  \\
-    Marital Status (0=Unmarried, 1=Divorced, 2=Widowed, 3=Married)& MARRIED  \\
-    Education (1=H.S. or Less, 2=H.S. Grad., 3=Some College,  4=College Grad.)& EDUCAT  \\
-    Size of City/Metropolitan Region (1=Rural, 2=Small, 3=Large)& CTYMETRO  \\
-    Health Problems Aggregated  (Likert scale: 0-10)& HEALTH  \\
-    Mental Health, Aggregated: adult depression, emotional distress 
-    (Likert scale: 0-10)& MENTHLTH  \\
-    Treatment for Drugs and Alcohol in past year, Aggregated 
-    (Likert scale: 0-5)& TRTMENT  \\
-    Mental Health Treatment, Aggregated (Likert scale: 1-10)& MHTRTMT  \\
-    Tranquilizer use, past year, Aggregated (Likert scale: 0-5)& TRQLZRS \\
-    Sedative use, past year, Aggregated (Likert scale: 0-5)& SEDATVS  \\
-    Heroin use, past year, Aggregated (Likert scale: 0-5)& HEROINUSE  \\
-    Cocaine and Crack Cocaine Use in past year, Aggregated  
-    (Likert scale: 0-5)& COCAINE  \\
-    Amphetamine and Methamphetamine Use in past year, Aggregated 
-    (Likert scale: 0-5)& AMPHETMN  \\
-    \bottomrule
-  \end{tabular}
-\end{table*}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \subsubsection{Imbalanced Classes}
-
-Previous research has analyzed the misuse and abuse of prescription opioids
-(MUPO) using logistic regression\cite{rice12, unick13, jones15, mccabe12} 
-and identified factors that influence MUPO. The present study compares the
-performance of ten classifier models of pain reliever misuse and abuse and 
-evaluates each model using common performance metrics. The sample data set
-has imbalanced classes in the target variable because instances of one class 
-greatly outnumber instances of the other class. A difficulty with traditional 
-classification algorithms is that they tend to classify observations as 
-belonging to the majority class when the class of interest (positive)
-is represented by the minority of observations. This can underestimate the
-occurence of positive cases which are misclassified as false negatives. 
-Efforts to address the issue of imbalanced data have included various sampling 
-methods (e.g., `boosting'). This study considered several metrics of 
-performance, including accuracy, sensitivity, precision, and $f_1$-score.
-As described above, the $f_1$-score provides a better measure of performance
-than accuracy With imbalanced classes, as it takes into account both 
-sensitivity (i.e., recall) and precision. The study also identifies features
-important for predicting MUPO. The tradeoff between model performance and 
-interpretability is discussed. 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Method}
-
-\subsection{The Data}
-
-The NSDUH public data files for 2015 and 2016 were downloaded from the
-Substance Abuse and Mental Health Data Archive (SAMHDA) \cite{samhsa18}. 
-The data sets were extracted and saved as data frame objects in a python 
-interactive notebook \cite{mckinney17, vanderplas17}. The 2015 NSDUH data set 
-consisted of N=57146 respondents with 2667 variables and the 2016 data set had 
-N=57897 individuals and 2665 variables, resulting in a total sample of N=114043 
-observations (53873 male, 60165 female). As described in the NSHUD codebook, 
-the sampling design was weighted across states by population size, drawing more 
-heavily from eight states with the largest populations (CA, FL, IL, MI, NY, OH, 
-PA, TX), for a representative distribution that accounts for approximately 
-48 percent of the U.S. population. For 2015, the weighted survey screening 
-response rate  was 81.94\% and the weighted interview response rate was 71.2\% 
-\cite{samhsa18}. Identifying information in the public use files is collapsed 
-(e.g., age categories); variables related to ethnicity, immigration status, and 
-state identifiers are removed to ensure confidentiality. The data frames were 
-subset by column to select approximately 90 variables that included common 
-demographic characteristics, physical health, mental health, medication usage, 
-and illicit drug use. Inconsistencies in the data were detected and removed by
-the following steps: (a) Remove missing values (i.e., NaN); (b) Recode blanks, 
-non-responses, or legitimate skips (e.g., 99, 991, 993) to zero; (c) Recode 
-dichotomous responses (e.g., No=0, Yes=1); (d) Recode categorical variables 
-to be consistent with amount or degree  (e.g., 1=`Low', 2=`Med', 3=`High'). 
-(e) Outliers were identified and excluded from the data set (n=5).
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsubsection{Aggregated Variables}
-
-Related features were combined to created aggregated variables. For example, 
-responses for overall health (reverse scored), previous diagnosis of STDs, 
-hepatitis, HIV, cancer, or any hospitalizationa were combined into a single 
-`HEALTH` variable that indicated history of health problems. A mental health 
-variable (MENTHLTH) aggregated responses for adult depression, emotional 
-distress, suicidal thoughts or plans. Binary responses for ten of the most 
-commonly used prescription pain medications (e.g., Hydrocodone, Oxycodone, 
-Tramadol, Morphine, Fentanyl, Oxymorphone, Demerol, Hydromorphone) were
-aggregated into a variable for any prescription opioid pain reliever use 
-(ANYPRLUSE) in the past year. The majority of questions related to substance 
-use had dichotomous responses that were summed to create single measures for: 
-Tranquilizers, Sedatives, Heroin, Cocaine, and Amphetamines. Because 
-hallucinogens varied greatly in type and potency (e.g., marijuana, psilocybin, 
-MDMA, LSD), they were not included in the analysis. Variables for drug 
-treatment and mental health treatment combined responses for any inpatient 
-care, outpatient care, treatment at a clinic, emergency room visits, or 
-hospital stays. The target variable was a dichotomous measure of any previous 
-pain reliever misuse or abuse. The subset data frame consisted of 20 features 
-and 114038 observations and was exported to CSV file. Three variables (PRLANY, 
-PRLMISAB, HEROINEVR) were highly correlated with other variables and excluded 
-from the analysis . Table 2 shows the list of 15 predictor variables used for 
-constructing the classification models. 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsubsection{Model Construction and Evaluation}
-
-The dataset was divided using a 75 to 25 percent split to create the training 
-set ($n_1$=85538) and testing set ($n_2$=28510). The same general procedure 
-was used for constructing and evaluating each classification model: (i) The 
-model was fit to the training set; (ii) new values were predicted on the 
-holdout scores in the testing set; and (iii) model performance on the test 
-set was evaluated in a confusion matrix. The performance metrics of accuracy, 
-sensitivity or recall, precision and the $f_1-score$, were obtained or 
-derived from the confusion matrix. The logistic regression classifier, LDA, 
-QDA, decision trees classifier, random forests classifier, gradient boosted 
-trees were constructed using the caret package. The KNN classifier, support 
-vector classifier (SVC), naive Bayes classifier, and neural network 
-(multilayer perceptron) were constructed using scikit-learn. 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Results}
-
-\subsection{Exploratory Data Analysis}
-
-Of the total sample of N=114038 respondents from 2015-2016, 27\% (n=30790) 
-reported taking any pain relievers in the past year (13405 males, 17383 
-females). Table 3 provides the frequency and percent of respondents who 
-reported pain reliever misuse and abuse by demographic characteristics. 
-Approximately 11\% of the sample had misused or abused prescription pain 
-relievers at some point. This same rate of pain reliever misuse and abuse 
-was found in both the training set and test sets. Although, more females 
-reported using any prescription opioid pain relievers in the past year than 
-males, roughly equal proportions of males and females reported misusing or 
-abusing opioid pain relievers. The proportion of pain reliever misuse and 
-abuse was highest among individuals between the ages of 18 to 25, and 
-decreased among older age groups. Pain reliever misuse was more frequent
-among respondents with some college education, and more than half of
-individuals who reported misusing or abusing pain relievers were single. 
-Only 2\% of individuals (n=2266) disclosed ever using heroin (1320 males; 
-946 females); however, as shown in Figure 3, the proportion of pain 
-reliever misuse and abuse was more than twice as large among individuals
-who reporting using heroin than those who had not. This finding is
-consistent with past research indicating a connection between prescription
-opioid misuse and abuse and heroin use \cite{muhuri13, unick13}.
-
-\begin{table}
-  \caption{Frequency of Pain Reliever Misuse and Abuse
-  by Demographics Features for Sample Data (NSDUH 2015-2016)}
-  \label{tab:freq}
-  \begin{tabular}{llllll}
-    \toprule
-              & PRLMISAB & & & Non-PRLMISAB & \\
-              & N & \% &  & N & \% \\
-    \midrule
-    \textbf{Total}     & 12305 & 10.8\% & & 101733 & 89.2\% \\
-    Male      & 6239 & 50.7\% & & 47634 & 46.8\%  \\
-    Female    & 6066 & 49.3\% & & 54099 & 53.1\%  \\
-    \midrule
-    \textbf{Age Group} &  &  &  &  & \\
-    12-17     & 1567 & 12.7\% & & 26288 & 25.8\% \\
-    18-25     & 3830 & 31.1\% & & 24382 & 24.0\% \\
-    26-35     & 2942 & 23.9\% & & 14891 & 14.6\% \\
-    36-49     & 2733 & 22.2\% & & 19797 & 19.5\% \\
-    50+       & 1233 & 10.0\% & & 16375 & 16.1\% \\
-    \midrule
-    \textbf{Education} Level &  &  &  &  & \\
-    School Age & 1567 & 12.7\% & & 26288 & 25.8\% \\
-    Some H.S.  & 1279 & 10.4\% & & 10507 & 10.3\% \\
-    H.S. Grad  & 2797 & 22.7\% & & 20290 & 19.9\% \\
-    Some Coll. & 4017 & 32.6\% & & 24922 & 24.5\% \\
-    Coll. Grad & 2645 & 21.5\% & & 19726 & 19.4\% \\
-    \midrule
-    \textbf{Marital Status} &  &  &  &  & \\
-    Single    & 6564 & 53.3\% & & 57648 & 56.6\% \\
-    Divorced  & 3241 & 26.3\% & & 23068 & 22.7\% \\
-    Widowed   &  652 &  5.3\% & &  4101 &  4.0\% \\
-    Married   & 1848 & 15.0\% & & 16916 & 16.6\% \\
-    
-    \bottomrule
-  \end{tabular}
-\end{table}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{figure}[!ht]
-  \centering\includegraphics[width=\columnwidth]{images/Figure3.pdf}
-  \caption{Proportion of Individuals Reporting Pain Reliever Misuse and Abuse
-  as a function of Heroin Use Ever}
-  \label{f:Figure3}
-\end{figure}
- 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 
-\begin{table*}[ht]
-  \caption{Confusion Matrices and Performance Metrics for Predictive Models of 
-  Pain Reliever Misuse and Abuse}
-  \label{tab:freq}
-  \begin{tabular}{llllllll}
-    \toprule
-    Model& & Confusion Matrix & & Accuracy & Sensitivity & Precision & F1-Score \\
-    \midrule
-    K-Nearest Neighbors & & No Misuse & PRL Misuse &  &  &  & \\
-     & No Misuse & 25114 & 320 & 89.5\% & 0.900 & 0.870 & 0.870 \\
-     & PRL Misuse & 2609 & 467 &  &  &  & \\
-    \midrule
-    Logistic Regression & & No Misuse & PRL Misuse &  &  &  & \\
-     & No Misuse & 25002 & 2509 & 90\% & 0.986 & 0.909 & 0.946 \\
-     & PRL Misuse & 344 & 654 &  &  &  & \\
-    \midrule
-    Linear Discriminant Analysis (LDA) & & No Misuse & PRL Misuse &  &  &  & \\
-     & No Misuse & 24668 & 2239 & 89.8\% & 0.973 & 0.917 & 0.944 \\
-     & PRL Misuse & 678 & 924 &  &  &  & \\
-    \midrule
-    Quadratic Discriminant Analysis (QDA) & & No Misuse & PRL Misuse &  &  &  & \\
-     & No Misuse & 23165 & 1780 & 86.1\% & 0.914 & 0.9929 & 0.921 \\
-     & PRL Misuse & 2181 & 1383 &  &  &  & \\
-    \midrule
-    Support Vector Classifier (SVM) & & No Misuse & PRL Misuse &  &  &  & \\
-     & No Misuse & 25201 & 233 & 90.4\% & 0.900 & 0.890 & 0.880 \\
-     & PRL Misuse & 2514 & 562 &  &  &  & \\
-    \midrule
-    Naive Bayes & & No Misuse & PRL Misuse &  &  &  & \\
-     & No Misuse & 25345 & 3133 & 89\% & 0.999 & 0.890 & 0.941 \\
-     & PRL Misuse & 1 & 30 &  &  &  & \\
-    \midrule
-    Neural Network (MLP) & & No Misuse & PRL Misuse &  &  &  & \\
-     & No Misuse & 25088 & 346 & 90.6\% & 0.910 & 0.890 & 0.880 \\
-     & PRL Misuse & 2366 & 710 &  &  &  & \\
-    \midrule
-    Decision Trees & & No Misuse & PRL Misuse &  &  &  & \\
-     & No Misuse & 25042 & 2572 & 89.9\% & 0.988 & 0.907 & 0.946 \\
-     & PRL Misuse & 304 & 591 &  &  &  & \\
-    \midrule
-    Random Forests & & No Misuse & PRL Misuse &  &  &  & \\
-     & No Misuse & 25026 & 2298 & 90.1\% & 0.987 & 0.909 & 0.946 \\
-     & PRL Misuse & 320 & 665 &  &  &  & \\
-    \midrule
-    Gradient Boosted Trees & & No Misuse & PRL Misuse &  &  &  & \\
-     & No Misuse & 25398 & 36 & 89.9\% & 0.900 & 0.890 & 0.895 \\
-     & PRL Misuse & 2856 & 220 &  &  &  & \\
-    \bottomrule
-  \end{tabular}
-\end{table*}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{table}
-  \caption{Main Parameters for Non-linear Classification Models of 
-  Pain Reliever Misuse and Abuse}
-  \label{tab:freq}
-  \begin{tabular}{ll}
-    \toprule
-    Model & Main Parameter \\
-    \midrule
-    K-Nearest Neighbors & Number of Neighbors = 4 \\
-    Naive Bayes & Cost, \textit{C} = 0.01 \\
-    Neural Network & Hidden Layers = 1 \\
-    Decision Trees & Maximum Depth = 4 \\ 
-    Random Forests & Number of Trees = 1000 \\
-    Boosted Trees & Learning Rate = 0.01 \\ 
-    \bottomrule
-  \end{tabular}
-\end{table}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Classifier Model Performance}
-
-Performance of the classification models was evaluated in the confusion 
-matrices reported in Table 3, which includes model accuracy, sensitivity 
-(i.e., Recall), precision, and the $f_1$-score. The accuracy scores
-ranged form 86.1\% to 90.6\%. Because there was a clear indication of 
-unbalanced classes in the sample data | the proportion of respondents who 
-had never misused or abused pain relievers (89\%) was much greater than 
-the proportion who had | the $f_1$-score was used as the preferred metric 
-of performance rather than accuracy because it takes into account both 
-sensitivity and precision. The $f_1$-score ranged form 0.88\% to 0.946\%.
-Although the neural networks (MLP) model and support vector classifier 
-(SLC) had the highest accuracy (90.6\% and 90.4\%, respectively), they 
-both had very low $f_1$-scores compared to other models (0.88). In terms 
-of the $f_1$-score, logistic regression, decision trees, and random forests 
-performed better than the other classifiers and were tied for the highest 
-score (0.946). Examination of the confusion matrices reveals that the 
-random forests model identified more true positives than the decision 
-trees and had fewer misclassification errors than logistic regression. 
-The main parameter settings for the classification models are presented 
-in Table 4.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsubsection{Logistic Regression}
-
-Together, the independent variables significantly predicted pain reliever 
-misuse and abuse. The parameter estimates and odds ratios for the logistic 
-regression model are presented in Table 5, sorted by z-score. The estimates 
-for all of the features were statistically significant ($p<.001$) except for 
-mental health treatment. The coefficient estimates ($\beta_i$...$\beta_j$) 
-are interpreted as the change in the log of the odds of the dependent variable 
-(PRLMISAB) occurring given a one unit change in each independent variable
-($X_i$...$X_j$), holding constant the effects of other independent variables. 
-The parameters relate to the log of the odds ratio rather than to the dependent 
-variable directly. The odds are calculated as the probability of the event 
-occurring divided by the probability of the event not occurring 
-( \(\frac{P}{P-1}\) ). The odds ratios are obtained by taking the antilog of 
-the estimated coefficients, which are the exponentiated parameter estimates 
-($e^x$). For an interval scaled independent variable, the odds ratio 
-is interpreted as the multiplicative increase in the odds of the dependent 
-variable event happening given a one unit change in the value of the 
-independent variable, assuming the effects of all other independent variables 
-are held constant. For a dichotomous (dummy) independent variable, e.g., sex, 
-the multiplicative increase in the odds of the dependent variable event 
-happening if the event represented by the independent variable occurs, holding 
-constant the effects of all other independent variables. In general, if you 
-take the antilog of the coefficient estimate, subtract 1 from it, and multiply 
-the result by 100, you get the percent change in the odds for a unit increase 
-in the independent variable  \cite{gujarati09}.  The odds ratio indicates the 
-ratio of the positive event to negative event, but does not reveal the 
-probability of the positive outcome.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{table}
-  \caption{Parameter Estimates for Logistic Regression Model and Log-odds 
-  Ratios for Pain Reliever Misuse and Abuse (Training Set)}
-  \label{tab:freq}
-  \begin{tabular}{lllll}
-    \toprule
-    Predictor&  Estimate& Std. Err.& Z-Value & Odds Ratio \\    
-    \midrule
-    (Intercept)   & -2.960 &   0.048 & -61.10 *** &  \\
-    Cocaine       & 0.690  &   0.019 &  36.91 *** & 1.99  \\
-    Amphetamines  & 0.608  &   0.021 &  29.92 *** & 1.84  \\
-    Tranquilizers & 0.381  &   0.014 &  27.29 *** & 1.46  \\
-    Mental Health & 0.136  &   0.006 &  22.42 *** & 1.15  \\
-    Age Category  & -0.216 &   0.013 & -16.75 *** & 1.24  \\
-    Heroin use    & 0.798  &   0.052 &  15.47 *** & 2.22  \\  
-    Employment    & 0.222  &   0.016 &  13.72 *** & 1.25  \\
-    Treatment     & 0.195  &   0.019 &  10.47 *** & 1.22  \\
-    Sedatives     & 0.281  &   0.029 &   9.63 *** & 1.32  \\   
-    Health        & 0.103  &   0.012 &   8.27 *** & 1.11  \\
-    Education     & 0.104  &   0.013 &   8.22 *** & 1.11  \\   
-    Sex           & -0.186 &   0.026 &  -7.24 *** & 1.20  \\
-    City/Metro    & -0.068 &   0.013 &  -5.03 *** & 1.07  \\
-    Married       & 0.051  &   0.012 &   4.10 *** & 1.05  \\
-    MH Treatment  & -0.024 &   0.018 &  -1.32     & 1.02  \\
-    \bottomrule 
-    Note: p-value& $<$ 0.001.***  &  &  &   
-  \end{tabular}
-\end{table}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-The results in Table 5 can be interpreted as follows: The odds of a respondent 
-misusing or abusing pain relievers increases by 1.99 times or 99\% for a one 
-unit increase in cocaine use, holding the effects of all other independent 
-variables constant. For a one unit increase in amphetamine use, the odds of 
-pain reliever misuse and abuse (PRLMISAB) increases by 1.84 times or 84\%, 
-holding all other IVs constant. A one unit increase in tranquilizer use is 
-associated with a 1.46 or 46\% increase in the odds of PRLMISAB, holding other 
-IVs constant. For a unit increase in mental health issues, the odds for 
-PRLMISAB increased by 1.15 or 15\%. For a one unit increase in age category, 
-the odds of PRLMISAB decreased by 1.24 times or 24\%, holding the effects of 
-other IVs constant. For a one unit increase in heroin use, the odds of 
-PRLMISAB increases by 2.22 times or 22\%, holding other IVs constant. A one 
-unit increase in employment is associated with a 1.25 or 25\% increase in the 
-odds of PRLMISAB, holding other IVs constant. For a unit increase in substance 
-treatment, the odds for PRLMISAB increased by 1.22 or 22\%, holding other IVs 
-constant. For a one unit increase in sedative use, the odds of PRLMISAB 
-increases by 1.32 times or 32\%, holding all other IVs constant. For a one 
-unit increase in health problems, the odds for PRLMISAB increased by 1.11 or
-11\%, holding other IVs constant. For a one unit increase in education, the 
-odds of PRLMISAB increased by 1.11 times or 11\%, holding other IVs constant. 
-In terms of sex, the odds of misusing or abusing pain relievers for females 
-decreases by 1.20 times compared to males, holding all other IVs constant. 
-In other words, the odds of PRLMISAB for females was 20\% lower than for males. 
-A unit increase in the size of a respondents city or metropolitan area 
-resulted in a 1.07 or 7\% decrease in the odds of PRLMISAB, holding other 
-IVs constant. For a unit increase in marital status, the odds for PRLMISAB 
-increases by 1.05 or 5\%, holding other IVs constant. 
- 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsubsection{Decision Trees} 
-
-The decision tree model was prepruned to a maximum depth of 4, which means 
-the algorithm split on four consecutive features (see Figure 4). The  
-algorithm selected cocaine as the root node which includes the 85528 
-observations in the training set. With a classification tree, we predict 
-that each observation will belong to the class of training observations in 
-the region to which it belongs, and want to determine not only the class
-prediction belonging to a terminal node region, but also the class 
-proportions among the training observations in that region \cite{james13}. 
-One way to interpret a decision tree is by following the number of samples 
-represented at the split for each node. Another way to interpret the decision 
-tree in Figure 4 is by the examining the proportion of observations of 
-class A captured by that leaf over the entire number of observations captured 
-by the leaf during model training. Starting from the root node the branch 
-to the left represents 75562 observations with no or low cocaine use; 
-of those, 0.07 or 7\% reported misusing or abusing opioid pain relievers. 
-Following the right branch are 9966 observations positive for cocaine use, 
-of which 0.39 or 39\% reported pain reliever misuse or abuse. In other words, 
-the proportion of pain reliever misuse and abuse was more than five times as 
-large for individuals who reported using cocaine than those who had not. 
-
-\begin{figure}[!ht]
-  \centering\includegraphics[width=\columnwidth]{images/Figure5.pdf}
-  \caption{Decision Tree Model of Pain Reliever Misuse and Abuse
-  fit to the Training Set}
-  \label{f:Figure5}
-\end{figure}
-
-The second split was based on heroin use which included 9966 observation; 
-to the left branch were 8562 respondents who had not used heroin, of which
-0.34 or 34\% reported PRLMISAB. Following the right branch to the terminal 
-node (i.e., `leaf') were 1404 individuals positive for heroin use, of which
-0.70 or 70\% had misused or abuse pain relievers. Thus, the proportion of 
-PRLMISAB was twice as large for respondents who had used heroin than those 
-who had not (as seen in Figure 3). The third split in the decision tree was 
-based on tranquilizers, which included 8562 observations. On the left branch 
-were 6455 observation with no or low tranquilizer use; of these, the 
-proportion of PRLMISAB was 0.28 or 28\%. To the branch on the right were 
-2016 observations with higher tranquilizer use, of which 0.51 or 51\% 
-reported PRLMISAB. Similar to what was observed in the case of heroin, the 
-rate of pain reliever misuse and abuse for individuals with moderate to high
-tranquilizer use was almost twice as large than for those with no to low
-tranquilizer use. The fourth split was based on age category which included
-2107 observations; the branch to the left represented 946 individuals age 
-36 or older, of which 0.35 or 35\% reported PRLMISAB. The branch to the 
-right represented 1162 individuals age 35 and younger, of whom 0.64 or 64\% 
-reported PRLMISAB. The proportion of pain reliever misuse and abuse for
-respondents 35 or younger was almost twice that as individuals older 
-than 35 years of age. 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Feature Importance for Random Forests}
-
-The results of a single decision tree can greatly overfit the data used
-to train the model, and very different trees can be obtained from different
-samples of the training data. Random forests decreases overfitting by
-creating multiple trees and averaging the results. The random forest model 
-was fit using 1000 trees; all of the features were considered at each node 
-to determine the randomness of each tree. 
-
-
-Feature importance is a model summary that rates how important each feature is 
-for the classification decisions made in the algorithm. 
-The Gini index provides a measure of node purity used to evaluate
-the quality of a particular split; a small value indicates that a node 
-predominantly contains observations from a single class. 
-
-For random forests, 
-feature importance was measured by the mean decrease in Gini coefficient 
-which indicates how each variable contributes to the homogeneity of the nodes 
-and leaves in the resulting random forest. For classification trees, the splits 
-are chosen so as to minimize entropy or Gini impurity in the resulting subsets.
-For random forests, Variables that result in nodes with higher purity have a 
-higher decrease in Gini coefficient.feature importance is computed by 
-aggregating the feature importance over trees in the random forest, and gives 
-non-zero importance to more features than a single tree.  A feature may have 
-a low importance value because another feature encodes the same information. 
-Table  provides the feature importance for the random forests model or pain 
-reliever misuse and abuse sorted by the mean decrease in the Gini coefficient. 
-As with the decision tree model, the random forest model selected cocaine as
-the most informative feature for predicting pain reliever misuse and abuse; 
-in contrast, the random forest selected amphetamines and mental health as
-important features followed by tranquilizers, age category, and heroin use. 
-
-Gradient boosting typically improves test set accuracy by using many simple
-models iteratively; however, the accuracy and $f_1$-score for the gradient 
-boosting model was not better than random forests. This is because the 
-default parameter settings were used; additional tuning of the hyper-
-parameters may have improved the boosted model performance.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{table}
-  \caption{Feature Importance for Random Forest Model}
-  \label{tab:freq}
-  \begin{tabular}{ll}
-    \toprule
-    Predictor&  Mean Decrease in Gini Score  \\    
-    \midrule
-    Cocaine       & 1284.84 \\
-    Amphetamines  &  830.93 \\
-    Mental Health &  748.94 \\ 
-    Tranquilizers &  638.85 \\
-    Age Group     &  524,89 \\
-    Heroin Use    &  514.82 \\
-    Health        &  501.38 \\
-    Education     &  450.63 \\
-    City/Metro    &  329.09 \\
-    MH Treatment  &  327.66 \\
-    Married       &  293.53 \\
-    Employment    &  285.78 \\ 
-    Treatment     &  236.56 \\
-    Sex           &  197.71 \\
-    Sedatives   &  139.23 \\
-    \bottomrule
-  \end{tabular}
-\end{table}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsubsection{Model Interpretability}
-
-
-The advantage of decision trees is that they provide an interpretable model,
-but are prone to overfitting. 
-
-Although random forests models are more accurate than a single tree and can
-compensate for some of the shortcomings of overfitting, a limitation of this 
-is that it can be difficult to interpret an ensemble of trees apart from the 
-measure of feature importance provided in the output. Single trees are still 
-useful for visually representing the decision process.
-
-Simple models had lower accuracy but provide more interpretable solutions 
-than complex models which can yield higher accuracy but are often harder 
-to interpret. 
-
-One of the simplest classifier algorithms, K-Nearest Neighbors (KNN)
-classifies a new data point based on the Euclidean distance to its 
-nearest neighbors and provides a solution that is easy to understand. 
-However, KNN does not perform well with a large number of features 
-(100 or more) or sparse datasets.
-
-SVMs often perform well, but are sensitive to parameter settings 
-and scaling of the data. 
-
-\begin{figure}[!ht]
-  \centering\includegraphics[width=\columnwidth]{images/Figure6.pdf}
-  \caption{Neural Net Classifier: Multilayer Perceptron with Single Hidden Layer}
-  \label{f:Figur6}
-\end{figure}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{DISCUSSION}
-
-% Summarize main findings
-
-The dataset had imbalanced classes because the large majority of respondents 
-(88\$ percent) had not misused prescription opioid pain relievers. 
-
-
-Several classifier algorithms were used to identify relevant features for 
-predicting heroin use and prescription opioid misuse. Comparing the performance 
-of different algorithms is helpful for  selecting the best model. 
-
-The different models each have their advantages and limitations, 
-
-logistic regression provides the coefficients, but decision trees and 
-random forests identified important features.
-
-Without restricting their depth, decision trees can become complex and are 
-prone to overfitting. Random forests reduces overfitting by averaging the results of many different
-trees.
-
-Logistic Regression provided the feature coefficients. 
-The Decision Tree classifier provided a easy to use, interpretable visual of
-the decisions involved at each step of classification. Random forests provides
-a more reliable indication of features importance than a single tree. 
-
-Each classifier method provides a different level of analysis. 
-logistic regression showed that Treatment had the highest coefficient value, but 
-the tree based models each differed in selecting the most important features. 
-
-Decision trees indicated that Cocaine Use was most informative,
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Combine Limitations and Extensions}
-
-Survey data may be biased to some degree. People may under-report or minimize 
-their use of illicit or illegal substances, and may also be reluctant to 
-disclose mental health disorders or illnesses;b however, measures of 
-confidentiality and anonymity help to assure more accurate disclosure 
-of personal information. 
-
-A limitation of the study is that the aggregated features represent a subset
-of the entire list of features in the NSDUH-2015 dataset 
-
-
-was constructed as a subset of 
-features data. 
-Ninety attributes were selected out of 2666 features in the original dataset, 
-and many features were combined to create aggregated variables for health, 
-mental health, prescription opioid misuse and abuse, drug treatment, mental health
-treatment. 
-
-Future research could include a more comprehensive selection of
-features to identify the set of features relevant for predicting opioid
-dependency and addiction. 
-
-The study could be extended in the following ways: including a larger
-selection of features in model building, obtain a larger sample by including 
-data for additional years, and subset the data to focus on individuals who 
-reported any previous pain reliever use. 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Opioid Epidemic}
-
-Although drug addiction has many similar characteristics 
-to other chronic medical illnesses, but there are unique challenges to the 
-treatment of addiction \cite{marsch12, swendson16}. 
-Following treatment many addicted individuals are at high 
-risk for relapse and overdose death \cite{shaham03}.
-
-Of those individuals who reported misusing prescription opioid pain relievers, 
-almost twice as many had also used heroin, which is  consistent with past
-research showing that prescription opioid use is associated will use of illicit 
-opioids such as heroin. Recent statistics from the CDC show that heroin use has 
-increased among most demographics groups, with an average estimated rate  of 
-approximately 2.6 percent between 2011-2013 \cite{cdc16}. The rate of heroin use
-in the sample data from NSDUH for 2015 and 2016 was 1.6 percent. 
-
-If the crisis of opioid addiction were an epidemic like other illnesses caused 
-by biological contagion, its spreading or diffusion could be measured by the 
-proportion of infected in the population, those yet to be infected, and the 
-rate of transmission. 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Conclusion}
-
-This results of several classification models of 
-pain reliever misuse and abuse. A general conclusion is that 
-
-Several features were identified as important for classifying pain reliever
-misuse and abuse, including Cocaine Use, Amphetamine Use, tranquilizer use,
-age category, overall health,
-
-Prescription opioid misuse and abuse was associated with heroin use: of 
-the individuals who reported misusing prescription opioid medications, twice 
-as many reported having used heroin than those who said that they had not used 
-heroin. the importance of heroin use was a predictor of pain reliever misuse and
-abuse was limited, given the very small number of individuals who reported 
-using heroin.
-
-additional evidence is needed to address these question. 
-
-Predictive modeling is a useful approach for classifying individuals as 
-having misused or abuse opioid pain relievers and may help inform 
-efforts to address the opioid crisis and reduce risk of overdose deaths. 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{acks}
-
-Portions of this paper were completed as part of a course project in Big Data 
-Applications and Analytics taught by Professor Gregor von Laszewskin at 
-Indiana University in the Fall 2017. Thanks to the Teaching Assistants, 
-Juliette Zurick and Miao Jiang for helpful comments for helpful comments. 
-Thanks to Dallas J. Elgin for encouragement. 
-
-\end{acks}
-
-\bibliographystyle{unsrt} %%ACM-Reference-Format%%
-\bibliography{report} 
-
-%\input{issues}
-
-\end{document} 
+Previous studies have analyzed the misuse and abuse of prescription opioids
+(MUPO) using logistic regression and identified factors that influence MUPO 
+such as gender and mental illness \cite{rice12, unick13, jones15, mccabe12}. 
+The present study extends previous work by comparing the performance of ten 
+classifier models of pain reliever misuse and abuse and evaluating each model 
+  Recompile
+13
+Full screen
