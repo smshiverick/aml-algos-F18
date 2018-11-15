@@ -697,23 +697,23 @@ opioid misuse and abuse and heroin use \cite{muhuri13, unick13}.
 \subsection{Classifier Model Performance}
 
 Performance of the classification models was evaluated in the confusion 
-matrices reported in Table 6, which includes performance metrics of 
-accuracy, sensitivity (recall), precision, and $f_1$-score. The model
-accuracy scores ranged form 86.1\% to 90.6\%. Because of unbalanced 
-classes in the sample data | the proportion of respondents who had never 
-misused or abused pain relievers (89\%) was much greater than the 
-proportion who had | the $f_1$-score was used as the preferred metric 
-of performance rather than accuracy as it takes into account both 
-recall and precision. The $f_1$-score ranged form 0.88\% to 0.946\%.
-Although the neural networks (MLP) model and support vector classifier 
-(SLC) had the highest accuracy (90.6\% and 90.4\%, respectively), they 
-both had very low $f_1$-scores compared to other models (0.88). In terms 
-of the $f_1$-score, logistic regression, decision trees, and random forests 
-performed better than other classifiers and were tied for the highest 
-score (0.946). The random forests model identified more true positives than 
-the decision trees and had fewer misclassification errors than the logistic
-regression model. The main parameter settings for the classification models 
-are presented in Table 7.
+matrices reported in Table 6, which includes the metrics of accuracy, 
+sensitivity (recall), precision, and $f_1$-score. The model accuracy 
+scores ranged form 86.1\% to 90.6\%. Because of unbalanced classes in 
+the sample data | the proportion of respondents who had never misused or 
+abused pain relievers (89\%) was much greater than the proportion who had | 
+the $f_1$-score was used as the preferred metric of performance rather 
+than accuracy as it takes into account both recall and precision. The 
+$f_1$-scores ranged form 0.88\% to 0.946\%. Although the neural networks 
+(MLP) model and support vector classifier (SLC) had the highest accuracy 
+(90.6\% and 90.4\%, respectively), they both had very low $f_1$-scores 
+compared to other models (0.88). In terms of the $f_1$-score, logistic 
+regression, decision trees, and random forests performed better than 
+other classifiers and were tied for the highest score (0.946). The 
+random forests model identified more true positives than a single decision 
+tree and had fewer misclassification errors than the logistic regression 
+model. The main parameter settings for the classification models are 
+presented in Table 7.
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -949,27 +949,18 @@ coefficient (see Table 8), which indicates how each variable contributes to
 the homogeneity of the nodes and leaves in the resulting random forest. 
 For classification trees, the splits are chosen so as to minimize entropy 
 or Gini impurity in the resulting subsets. For random forests, variables 
-that result in nodes with higher purity have a higher decrease in Gini 
-coefficient.
-
-Feature importance is computed by aggregating the feature importance over 
-trees in the random forest, and gives non-zero importance to more features 
-than a single tree.  A feature may have a low importance value because another 
-feature encodes the same information. 
-
-Table  provides the feature importance for the random forests model or pain 
-reliever misuse and abuse sorted by the mean decrease in the Gini coefficient. 
-
-As with the decision tree model, the random forest model selected cocaine as
-the most informative feature for predicting pain reliever misuse and abuse; 
-in contrast, the random forest selected amphetamines and mental health as
-important features followed by tranquilizers, age category, and heroin use. 
-
-Gradient boosting typically improves test set accuracy by using many simple
-models iteratively; however, the accuracy and $f_1$-score for the gradient 
-boosting model was not better than random forests. This is because the 
-default parameter settings were used; additional tuning of the hyper-
-parameters may have improved the boosted model performance.
+that result in nodes with higher purity have a higher decrease in the Gini 
+coefficient. Feature importance is computed by aggregating the feature 
+importance over trees in the random forest, and gives non-zero importance
+to more features than a single tree. A feature may have a low importance 
+value because another feature encodes the same information. Table 8 provides 
+the feature importance for the random forests model sorted by the mean 
+decrease in the Gini coefficient. The random forest algorithm selected 
+cocaine as the most informative feature for predicting pain reliever misuse
+and abuse; however, in contrast to the single decision tree described above,
+amphetamines, mental health, and tranquilizers were selected among the
+top four most important features, followed in importance by age category, 
+and heroin use, which were ranked as more influential in the single tree. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1002,8 +993,104 @@ parameters may have improved the boosted model performance.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{Model Interpretability}
+\subsubsection{Neural Network}
 
+The multilayer perceptron (MLP) had the highest accuracy (90.6\%); however, 
+the $f_1$-score was 0.88, which indicates that it was not a good model for 
+data with imbalanced classes \cite{yun09}. Figure 5 shows the MLP model which 
+takes the features as the input to the model, a single hidden-layer is 
+comprised of the weighted combination of the input variables, and the output 
+layer represents a response probability. During model training, the weights 
+of the predictor variables are first randomly initialised and then iteratively 
+adjusted so as to minimize an error function (e.g., gradient descent)
+\cite{brown12}. With a limited number of predictor variables and single 
+hidden layer, the neural network is still somewhat interpretable. 
+
+\begin{figure}[!ht]
+  \centering\includegraphics[width=\columnwidth]{images/Figure6.pdf}
+  \caption{Neural Net Classifier: Multilayer Perceptron with Single Hidden Layer}
+  \label{f:Figur6}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{DISCUSSION}
+
+% Summarize main findings
+
+The results showed imbalanced classes in the sample data in that the 
+target class (positive) for misuse or abuse of prescription opioid pain 
+relievers represented only a small minority of observations (11\%). 
+Using the $f_1$-score as the preferred evaluation metric, logistic 
+regression, decision trees, and random forests performed best among the
+models for classifying pain reliever misuse and abuse. 
+
+
+% >>> Talk about performance metrics <<<
+
+\subsubsection{Feature Importance}
+
+All three models identified cocaine use and the most informative variable 
+for predicting PRLMISAB. The logistic regression indicated that the odds of 
+a respondent misusing or abusing prescription opioid pain relievers increased 
+by 1.99 times (99\%) for a one unit increase in cocaine use, holding constant 
+the effects of all other predictor variables. The decision tree model revealed 
+that the proportion of pain reliever misuse or abuse opioid pain relievers 
+among individuals who reported moderate to high cocaine use (39\%) was 
+five times larger than for individuals who reported no or low cocaine use 
+(7\%). These three models differed in the order of importance that they 
+gave to other predictor variables. Following cocaine, the most influential
+predictors in the logistic regression model were amphetamines, tranquilizers, 
+mental health, age, and heroin use (and others in decreasing importance). 
+The decision tree model was limited to a depth of four nodes, identified
+heoin, tranquilizers, and age category, as most influential, after cocaine. 
+
+The random forests model identified amphetamines, mental health, tranquilizers,
+age group, heroin use as inmportant featues, in addition to cocaine use. 
+
+
+as the most 
+
+informative variables 
+
+
+
+
+
+Although gradient boosting often improves performance over random forests, 
+in the present case, test set accuracydid not have better performance than the 
+random forests
+Gradient boosting is a typically improves test set accuracy by using many simple
+models iteratively; however, the accuracy and $f_1$-score for the gradient 
+boosting model was not better than random forests.
+
+This is because the default parameter settings were used; additional tuning of 
+the hyper-parameters may have improved performance of the boosted model.
+
+
+The different models each have their advantages and limitations, 
+
+logistic regression provides the coefficients, but decision trees and 
+random forests identified important features.
+
+Without restricting their depth, decision trees can become complex and are 
+prone to overfitting. Random forests reduces overfitting by averaging the results of many different
+trees.
+
+Logistic Regression provided the feature coefficients. 
+The Decision Tree classifier provided a easy to use, interpretable visual of
+the decisions involved at each step of classification. Random forests provides
+a more reliable indication of features importance than a single tree. 
+
+Each classifier method provides a different level of analysis. 
+logistic regression showed that Treatment had the highest coefficient value, but 
+the tree based models each differed in selecting the most important features. 
+
+Decision trees indicated that Cocaine Use was most informative,
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Model Interpretability}
 
 The advantage of decision trees is that they provide an interpretable model,
 but are prone to overfitting. The results of a single decision tree can greatly overfit the data used
@@ -1034,51 +1121,18 @@ However, KNN does not perform well with a large number of features
 SVMs often perform well, but are sensitive to parameter settings 
 and scaling of the data. 
 
-\begin{figure}[!ht]
-  \centering\includegraphics[width=\columnwidth]{images/Figure6.pdf}
-  \caption{Neural Net Classifier: Multilayer Perceptron with Single Hidden Layer}
-  \label{f:Figur6}
-\end{figure}
+The multilayer perceptron (MLP) is one of the most widely used neural network 
+model for classification 
 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{DISCUSSION}
-
-% Summarize main findings
-
-The dataset had imbalanced classes because the large majority of respondents 
-(88\$ percent) had not misused prescription opioid pain relievers. 
-
-
-Several classifier algorithms were used to identify relevant features for 
-predicting heroin use and prescription opioid misuse. Comparing the performance 
-of different algorithms is helpful for  selecting the best model. 
-
-The different models each have their advantages and limitations, 
-
-logistic regression provides the coefficients, but decision trees and 
-random forests identified important features.
-
-Without restricting their depth, decision trees can become complex and are 
-prone to overfitting. Random forests reduces overfitting by averaging the results of many different
-trees.
-
-Logistic Regression provided the feature coefficients. 
-The Decision Tree classifier provided a easy to use, interpretable visual of
-the decisions involved at each step of classification. Random forests provides
-a more reliable indication of features importance than a single tree. 
-
-Each classifier method provides a different level of analysis. 
-logistic regression showed that Treatment had the highest coefficient value, but 
-the tree based models each differed in selecting the most important features. 
-
-Decision trees indicated that Cocaine Use was most informative,
-
+With a limited number of predictor variables and single 
+hidden layer, the neural network is still somewhat interpretable. As the 
+number of predictors and hidden layers increases, the neural network becomes 
+uninterpretable and basically represents a ``black box'' model in that 
+the interal workings are not comprehensible at a human level. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection{Combine Limitations and Extensions}
 
 Survey data may be biased to some degree. People may under-report or minimize 
@@ -1136,6 +1190,10 @@ rate of transmission.
 
 This results of several classification models of 
 pain reliever misuse and abuse. A general conclusion is that 
+
+Several classifier algorithms were used to identify relevant features for 
+predicting heroin use and prescription opioid misuse. Comparing the performance 
+of different algorithms is helpful for  selecting the best model. 
 
 Several features were identified as important for classifying pain reliever
 misuse and abuse, including Cocaine Use, Amphetamine Use, tranquilizer use,
