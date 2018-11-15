@@ -18,18 +18,19 @@ condition associated with increased overdose deaths over the past two decades
 \cite{nida18}. Predictive modeling can identify factors related to MUPO and  
 predict individuals at risk for opioid addiction. The present study compares 
 ten classification models using four performance metrics: accuracy, sensitivity 
-(recall), precision, and $f_1$-score. With unbalanced classes, the $f_1$-score 
-is considered a better metric of performance than accuracy. The sample data 
-consisted of N = 114,038 respondents from the National Survey on Drug Use 
-and Health (NSDUH) for 2015-2016. Of the total sample, 27\% had used any 
-opioid pain reliever medications in the past year, 11\% of respondents had 
-previously misused or abused pain relievers; 2\% reported using heroin. The 
-classifier models were fit to a training set with fifteen features and pain 
-reliever misuse and abuse was the binary target variable. Model performance 
-was evaluated on the testing set in a confusion matrix. Neural networks (MLP) 
-and support vector classifier had the highest model accuracy; however, logistic 
-regression, decision trees, and random forests, had the highest $f_1$-score. 
-Advantages and limitation of the classification models are discussed. 
+(recall), precision, and $f_1$-score. The sample data consisted of N = 114,038 
+cases from the National Survey on Drug Use and Health (NSDUH) for 2015-2016.
+Of the total sample, 27\% had used any opioid pain reliever medications in the past 
+year, 11\% of respondents had previously misused or abused pain relievers; 2\% 
+reported using heroin. With data that has unbalanced classes, the $f_1$-score 
+is a better metric of performance than accuracy. The classifier models were fit 
+to the training set with fifteen features, including demographic variables, 
+medication use, and use of illicit drugs. The binary target variable was pain 
+reliever misuse and abuse. Model performance was evaluated on the testing set. 
+Logistic regression, decision trees, and random forests had the highest 
+$f_1$-scores. Neural networks (MLP) and support vector classifier both had 
+high accuracy, but low $f_1$-scores. Advantages and limitations of the 
+classification models are discussed. 
 \footnote{This project was completed in partial fulfillment of requirements 
 for the M.S. in Data Science from the School of Informatics and Computing at 
 IU-Bloomington in May, 2018. Address correspondence to \textit{smshiver@iu.edu}}
@@ -997,14 +998,15 @@ and heroin use, which were ranked as more influential in the single tree.
 \subsubsection{Neural Network}
 
 The multilayer perceptron (MLP) had the highest accuracy (90.6\%), but
-the $f_1$-score (0.88) was very low compared to other models, which indicates 
-that it was not a good model for data with imbalanced classes \cite{yun09}. 
-Figure 5 shows the MLP model which takes the features as the input to the model, 
-a single hidden-layer comprised of the weighted combination of the input 
-variables, and the output layer represents a response probability. During model 
-training, the weights of the predictor variables are first randomly initialized 
-and then iteratively adjusted to minimize an error function (e.g., gradient 
-descent) \cite{brown12}. With a limited number of predictor variables and single hidden layer, it is still possible to interpret the relations among weights
+low $f_1$-score (0.88) compared to other models, which indicates that it is 
+not a good model for data with imbalanced classes \cite{yun09}. Figure 5 shows 
+the MLP model which takes the features as the input to the model, a single
+hidden-layer comprised of the weighted combination of the input variables, and 
+the output layer represents a response probability. During model training, the 
+weights of the predictor variables are first randomly initialized and then 
+iteratively adjusted to minimize an error function (e.g., gradient descent)
+\cite{brown12}. With a limited number of predictor variables and single 
+hidden layer, it is still possible to interpret the relations among weights
 and nodes in the neural network. With a larger number of features and high
 number of hidden layers, complex neural networks are difficult to interpret.
 
