@@ -938,15 +938,16 @@ than 35 years of age.
 The random forest model was fit using 1000 trees, with all of the features 
 considered at each node to determine the randomness of each tree. After a 
 large number of trees is generated, each tree represents a vote for the
-most popular class. Although random forests perform well, they can be
-difficult to interpret. Feature importance is a model summary for random 
-forests that rates how important each feature is for classification 
-decisions made in the algorithm. The Gini index provides a measure of node 
-purity which is used to evaluate the quality of a particular split; a small 
-value indicates that a node predominantly contains observations from a single 
-class. Feature importance was measured by the mean decrease in Gini 
-coefficient (see Table 8), which indicates how each variable contributes to 
-the homogeneity of the nodes and leaves in the resulting random forest. 
+most popular class. Although random forests perform well with data that has
+imbalanced classes, it can be difficult to interpret the result of the 
+averaged trees. Feature importance is a model summary for random forests 
+that rates how important each feature is for classification decisions made 
+in the algorithm. The Gini index provides a measure of node purity which is 
+used to evaluate the quality of a particular split; a small value indicates 
+that a node predominantly contains observations from a single class. 
+Feature importance was measured by the mean decrease in Gini coefficient 
+(see Table 8), which indicates how each variable contributes to the 
+homogeneity of the nodes and leaves in the resulting random forest. 
 For classification trees, the splits are chosen so as to minimize entropy 
 or Gini impurity in the resulting subsets. For random forests, variables 
 that result in nodes with higher purity have a higher decrease in the Gini 
@@ -995,16 +996,17 @@ and heroin use, which were ranked as more influential in the single tree.
 
 \subsubsection{Neural Network}
 
-The multilayer perceptron (MLP) had the highest accuracy (90.6\%); however, 
-the $f_1$-score was 0.88, which indicates that it was not a good model for 
-data with imbalanced classes \cite{yun09}. Figure 5 shows the MLP model which 
-takes the features as the input to the model, a single hidden-layer is 
-comprised of the weighted combination of the input variables, and the output 
-layer represents a response probability. During model training, the weights 
-of the predictor variables are first randomly initialised and then iteratively 
-adjusted so as to minimize an error function (e.g., gradient descent)
-\cite{brown12}. With a limited number of predictor variables and single 
-hidden layer, the neural network is still somewhat interpretable. 
+The multilayer perceptron (MLP) had the highest accuracy (90.6\%), but
+the $f_1$-score (0.88) was very low compared to other models, which indicates 
+that it was not a good model for data with imbalanced classes \cite{yun09}. 
+Figure 5 shows the MLP model which takes the features as the input to the model, 
+a single hidden-layer comprised of the weighted combination of the input 
+variables, and the output layer represents a response probability. During model 
+training, the weights of the predictor variables are first randomly initialized 
+and then iteratively adjusted to minimize an error function (e.g., gradient 
+descent) \cite{brown12}. With a limited number of predictor variables and single hidden layer, it is still possible to interpret the relations among weights
+and nodes in the neural network. With a larger number of features and high
+number of hidden layers, complex neural networks are difficult to interpret.
 
 \begin{figure}[!ht]
   \centering\includegraphics[width=\columnwidth]{images/Figure6.pdf}
@@ -1018,15 +1020,26 @@ hidden layer, the neural network is still somewhat interpretable.
 
 % Summarize main findings
 
-The results showed imbalanced classes in the sample data in that the 
+The results showed that the sample data has imbalanced classes in that the 
 target class (positive) for misuse or abuse of prescription opioid pain 
 relievers represented only a small minority of observations (11\%). 
-Using the $f_1$-score as the preferred evaluation metric, logistic 
-regression, decision trees, and random forests performed best among the
-models for classifying pain reliever misuse and abuse. 
+Using the $f_1$-score as the preferred evaluation metric rather than
+accuracy, logistic regression, decision trees, and random forests performed 
+better the classification models for pain reliever misuse and abuse, and
+were tied for the highest $f_!$-score among the other classifiers. The 
+random forests model performed slightly better than other models as it 
+correctly predicted more true positive cases than the single decision tree 
+and had fewer misclassification errors than the logistic regression model. 
+The neural network (MLP) model and support vector classifier (SLC) 
+performed best in terms of accuracy, but both models had low $f_1$-scores 
+compared to other models, indicates that they did not perform well 
+with imbalanced classes. Complex models such as random forests and 
+neural networks yield high performance and generalize well to new data, 
+but the results of these models can be difficult to interpret. Logistic 
+regression and decision tree model are easier to understand and communicate
+to others. 
 
-
-% >>> Talk about performance metrics <<<
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Feature Importance}
 
@@ -1198,6 +1211,10 @@ of different algorithms is helpful for  selecting the best model.
 Several features were identified as important for classifying pain reliever
 misuse and abuse, including Cocaine Use, Amphetamine Use, tranquilizer use,
 age category, overall health,
+
+In addition to evaluating the performance using
+a standard metric it is also important to consider how their results 
+can be interpreted.
 
 Prescription opioid misuse and abuse was associated with heroin use: of 
 the individuals who reported misusing prescription opioid medications, twice 
