@@ -13,8 +13,8 @@
 
 \begin{abstract}
 
-The misuse and abuse of prescription opioids (MUPO) is a chronic health 
-condition associated with increased overdose deaths over the past two decades
+The misuse and abuse of prescription opioids (MUPO) has become a major health 
+crisis that has resulted in a dramatic increase in drug overdose deaths
 \cite{nida18}. Predictive modeling can identify factors related to MUPO and  
 predict individuals at risk for opioid addiction. The present study compares 
 ten classification models using four performance metrics: accuracy, sensitivity 
@@ -1022,106 +1022,93 @@ number of hidden layers, complex neural networks are difficult to interpret.
 
 % Summarize main findings
 
-The results showed that the sample data has imbalanced classes in that the 
-target class (positive) for misuse or abuse of prescription opioid pain 
-relievers represented only a small minority of observations (11\%). 
-Using the $f_1$-score as the preferred evaluation metric rather than
-accuracy, logistic regression, decision trees, and random forests performed 
-better the classification models for pain reliever misuse and abuse, and
-were tied for the highest $f_!$-score among the other classifiers. The 
-random forests model performed slightly better than other models as it 
-correctly predicted more true positive cases than the single decision tree 
-and had fewer misclassification errors than the logistic regression model. 
-The neural network (MLP) model and support vector classifier (SLC) 
-performed best in terms of accuracy, but both models had low $f_1$-scores 
-compared to other models, indicates that they did not perform well 
-with imbalanced classes. Complex models such as random forests and 
-neural networks yield high performance and generalize well to new data, 
-but the results of these models can be difficult to interpret. Logistic 
-regression and decision tree model are easier to understand and communicate
-to others. 
+The results showed that the sample data was imbalanced in that the target 
+class (positive) for misuse or abuse of prescription opioid pain relievers 
+represented only a small minority of observations (11\%). Using the $f_1$-
+score as the preferred evaluation metric rather than accuracy, logistic 
+regression, decision trees, and random forests were tied for the highest 
+$f_!$-score, and performed better than other models at classifying 
+pain reliever misuse and abuse. The random forests model performed slightly 
+better as it correctly predicted more true positive cases than the single 
+decision tree and had fewer misclassification errors than the logistic 
+regression. The neural network (MLP) model and support vector classifier (SLC) 
+performed best in terms of accuracy, but both models had low $f_1$-scores, 
+which indicates that they did not perform well with imbalanced classes. 
+Complex models such as random forests and neural networks yield high 
+performance and generalize well to new data, but these models can be difficult 
+to interpret compared to simpler models such as logistic regression and decision 
+trees model. The three top-performing models (logistic regression, decision tree, 
+random forests) all identified cocaine, amphetamines, tranquilizers, heroin use, 
+age category, and mental health as important features for predicting pain 
+reliever misuse and abuse (PRLMISAB); however, the models differed in the order 
+of importance that each assigned to these variables. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{Feature Importance}
-
-All three models identified cocaine use and the most informative variable 
-for predicting PRLMISAB. The logistic regression indicated that the odds of 
-a respondent misusing or abusing prescription opioid pain relievers increased 
-by 1.99 times (99\%) for a one unit increase in cocaine use, holding constant 
-the effects of all other predictor variables. The decision tree model revealed 
-that the proportion of pain reliever misuse or abuse opioid pain relievers 
-among individuals who reported moderate to high cocaine use (39\%) was 
-five times larger than for individuals who reported no or low cocaine use 
-(7\%). These three models differed in the order of importance that they 
-gave to other predictor variables. Following cocaine, the most influential
-predictors in the logistic regression model were amphetamines, tranquilizers, 
-mental health, age, and heroin use (and others in decreasing importance). 
-The decision tree model was limited to a depth of four nodes, identified
-heoin, tranquilizers, and age category, as most influential, after cocaine. 
-
-The random forests model identified amphetamines, mental health, tranquilizers,
-age group, heroin use as inmportant featues, in addition to cocaine use. 
-
-
-as the most 
-
-informative variables 
-
-
-
-
-
-Although gradient boosting often improves performance over random forests, 
-in the present case, test set accuracydid not have better performance than the 
-random forests
-Gradient boosting is a typically improves test set accuracy by using many simple
-models iteratively; however, the accuracy and $f_1$-score for the gradient 
-boosting model was not better than random forests.
-
-This is because the default parameter settings were used; additional tuning of 
-the hyper-parameters may have improved performance of the boosted model.
-
-
-The different models each have their advantages and limitations, 
-
-logistic regression provides the coefficients, but decision trees and 
-random forests identified important features.
-
-Without restricting their depth, decision trees can become complex and are 
-prone to overfitting. Random forests reduces overfitting by averaging the results of many different
-trees.
-
-Logistic Regression provided the feature coefficients. 
-The Decision Tree classifier provided a easy to use, interpretable visual of
-the decisions involved at each step of classification. Random forests provides
-a more reliable indication of features importance than a single tree. 
-
-Each classifier method provides a different level of analysis. 
-logistic regression showed that Treatment had the highest coefficient value, but 
-the tree based models each differed in selecting the most important features. 
-
-Decision trees indicated that Cocaine Use was most informative,
+All three models selected cocaine as the most informative variable for 
+predicting PRLMISAB. The logistic regression indicated that the odds of an 
+individual misusing or abusing opioid pain relievers increased by 1.99 times 
+for a one unit increase in cocaine use, holding constant the effects of other 
+independent variables. The decision tree model showed the proportion of 
+PRLMISAB among individuals who reported moderate to high cocaine use (39\%) 
+was more than five times larger than for individuals who reported no or low 
+cocaine use (7\%). The random forests model and logistic regression both 
+identified amphetamine use was as the second most influential variable. 
+The odds of PRLMISAB increased by 1.84 times (84\%) for a unit increase in 
+amphetamine use, holding other predictors constant. By contrast, the decision 
+tree identified heroin use as the second most important predictor of PRLMISAB. 
+Of the small number of respondents who reported using heroin, more than 
+two-thirds (70\%) had misused or abuse pain relievers. This was supported by 
+the exploratory analysis which revealed the proportion of PRLMISAB was twice 
+as large for respondents who had used heroin than those who had not. The 
+logistic regression and decision tree model both identified tranquilizer use 
+as the third most informative variable. The odds of PRLMISAB increased by 
+1.46 times (46\%) from a unit increase in tranquilizer use, holding other 
+variables constant. In the decision tree, the proportion of PRLMISAB was 
+nearly twice as large for individuals with moderate to high tranquilizer
+use (51\%) than for individuals with no to low tranquilizer use (28\%). 
+Despite selecting similar variables as important, the algorithms differed 
+somewhat in the order of importance they assigned to mental health, age 
+category, and heroin use. In the logistic regression model, the odds of 
+PRLMISAB increased by 1.15 (15\%) for a unit increases in mental health 
+issues (e.g., adult depression), and the odds of PRLMISAB increases by 2.22 
+times for a unit increase in heroin use, holding other variables constant. 
+In terms of the age effect, the odds of PRLMISAB decreased by 1.24 (24\%) 
+holding other variables constant. The decision tree model supported this
+decrease in PRLMISAB among older respondents, revealing that nearly 
+two-thirds (64\%) of individuals age 35 and younger reported PRLMISAB,
+whereas only one-third (35\%) of respondents 36 or older reported PRLMISAB.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Model Interpretability}
 
-The advantage of decision trees is that they provide an interpretable model,
-but are prone to overfitting. The results of a single decision tree can greatly overfit the data used
-to train the model, and very different trees can be obtained from different
-samples of the training data.
+Each classification model has its advantages and limitations. Logistic 
+regression provides the coefficient estimates and odds ratios, but is 
+restricted to cases where the outcome is modeled as a linear function of 
+the independent variables. Decision tree can model non-linear patterns in 
+the data, are easy to interpret and explain to others. The results of a 
+single decision tree can greatly overfit the data used to train the model, 
+and very different trees can be obtained from different samples of the 
+training data. Unpruned trees can also result in very complex models; 
+limiting the decision tree to a depth of four nodes improved the 
+interpretability, while perhaps reducing generalizability to new data. 
 
 Random forests decrease overfitting by building multiple trees trained on
 bootstrap samples of the training set using random feature selection in the
-process of tree generation \cite{brown12}. 
-and averaging the results.
+process of tree generation \cite{brown12}. Although random forests models are
+more accurate than a single tree and can compensate for overfitting, a 
+limitation is that it can be difficult to interpret an ensemble of trees apart 
+from the measure of feature importance provided in the output. Single trees 
+are still useful for visually representing the decision process.
 
-Although random forests models are more accurate than a single tree and can
-compensate for some of the shortcomings of overfitting, a limitation of this 
-is that it can be difficult to interpret an ensemble of trees apart from the 
-measure of feature importance provided in the output. Single trees are still 
-useful for visually representing the decision process.
+The forests provide a measure of features importance, but are not interpretable.
+
+Gradient boosting is an approach that typically improves test set accuracy by 
+using many simple models iteratively; however, the accuracy and $f_1$-score for 
+the gradient boosting model was not better than random forests. Additional 
+parameter tuning may have improved performance of the boosted model.
+
 
 Simple models had lower accuracy but provide more interpretable solutions 
 than complex models which can yield higher accuracy but are often harder 
