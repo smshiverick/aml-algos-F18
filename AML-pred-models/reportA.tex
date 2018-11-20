@@ -463,6 +463,7 @@ than the other class, as it takes into account both recall and precision
     Biological Sex (0=Male, 1=Female)& SEX  \\
     Marital Status (0=Unmarried, 1=Divorced, 2=Widowed, 3=Married)& MARRIED  \\
     Education (1=H.S. or Less, 2=H.S. Grad., 3=Some College,  4=College Grad.)& EDUCAT  \\
+    Employment Status (Over 18: 1=Not Employed, 2=Part-time, 3=Full-time) & EMPLOY18  \\
     Size of City/Metropolitan Region (1=Rural, 2=Small, 3=Large)& CTYMETRO  \\
     Health Problems Aggregated  (Likert scale: 0-10)& HEALTH  \\
     Mental Health, Aggregated: adult depression, emotional distress 
@@ -668,7 +669,7 @@ relievers in the past year (19558 males, 25038 females).
 Table 4 provides the frequency and percent of respondents who reported 
 pain reliever misuse and abuse by demographic characteristics. 
 Approximately 11\% of the sample had misused or abused prescription pain 
-relievers at some point. This same rate of pain reliever misuse and abuse 
+relievers at some point; this same rate of pain reliever misuse and abuse 
 was found in both the training set and test sets. Although a larger
 number of females reported using any prescription opioid pain relievers in 
 the past year than males, more males reported misusing or abusing opioid 
@@ -751,44 +752,44 @@ presented in Table 7.
     Model& & Confusion Matrix & & Accuracy & Sensitivity & Precision & F1-Score \\
     \midrule
     K-Nearest Neighbors & & No Misuse & PRL Misuse &  &  &  & \\
-     & No Misuse & 25114 & 320 & 89.5\% & 0.900 & 0.870 & 0.870 \\
-     & PRL Misuse & 2609 & 467 &  &  &  & \\
+     & No Misuse & 37595 & 426 & 89.8\% & 0.900 & 0.870 & 87\% \\
+     & PRL Misuse & 3909 & 650 &  &  &  & \\
     \midrule
     Logistic Regression & & No Misuse & PRL Misuse &  &  &  & \\
-     & No Misuse & 25002 & 2509 & 90\% & 0.986 & 0.909 & 0.946 \\
-     & PRL Misuse & 344 & 654 &  &  &  & \\
+     & No Misuse & 37618 & 3478 & 90.7\% & 0.987 & 0.915 & 95\% \\
+     & PRL Misuse &  495 &  988 &  &  &  & \\
     \midrule
     Linear Discriminant Analysis (LDA) & & No Misuse & PRL Misuse &  &  &  & \\
-     & No Misuse & 24668 & 2239 & 89.8\% & 0.973 & 0.917 & 0.944 \\
-     & PRL Misuse & 678 & 924 &  &  &  & \\
+     & No Misuse & 37063 & 3073 & 90.3\% & 0.973 & 0.923 & 94.7\% \\
+     & PRL Misuse & 1050 & 1393 &  &  &  & \\
     \midrule
     Quadratic Discriminant Analysis (QDA) & & No Misuse & PRL Misuse &  &  &  & \\
-     & No Misuse & 23165 & 1780 & 86.1\% & 0.914 & 0.9929 & 0.921 \\
-     & PRL Misuse & 2181 & 1383 &  &  &  & \\
+     & No Misuse & 34786 & 2426 & 86.5\% & 0.913 & 0.935 & 92.4\% \\
+     & PRL Misuse & 3327 & 2040 &  &  &  & \\
     \midrule
     Support Vector Classifier (SVM) & & No Misuse & PRL Misuse &  &  &  & \\
-     & No Misuse & 25201 & 233 & 90.4\% & 0.900 & 0.890 & 0.880 \\
-     & PRL Misuse & 2514 & 562 &  &  &  & \\
+     & No Misuse & 37681 & 340 & 90.3\% & 0.900 & 0.890 & 88\% \\
+     & PRL Misuse & 3787 & 772 &  &  &  & \\
     \midrule
     Naive Bayes & & No Misuse & PRL Misuse &  &  &  & \\
-     & No Misuse & 25345 & 3133 & 89\% & 0.999 & 0.890 & 0.941 \\
-     & PRL Misuse & 1 & 30 &  &  &  & \\
+     & No Misuse & 38110 & 4431 & 89.6\% & 0.999 & 0.896 & 94.5\% \\
+     & PRL Misuse & 3 & 35 &  &  &  & \\
     \midrule
     Neural Network (MLP) & & No Misuse & PRL Misuse &  &  &  & \\
-     & No Misuse & 25088 & 346 & 90.6\% & 0.910 & 0.890 & 0.880 \\
-     & PRL Misuse & 2366 & 710 &  &  &  & \\
+     & No Misuse & 37563 & 458 & 90.1\% & 0.90 & 0.88 & 88\% \\
+     & PRL Misuse & 3682 & 877 &  &  &  & \\
     \midrule
     Decision Trees & & No Misuse & PRL Misuse &  &  &  & \\
-     & No Misuse & 25042 & 2572 & 89.9\% & 0.988 & 0.907 & 0.946 \\
-     & PRL Misuse & 304 & 591 &  &  &  & \\
+     & No Misuse & 376552 & 3597 & 90.5\% & 0.988 & 0.913 & 94.9\% \\
+     & PRL Misuse &   458 &  869 &  &  &  & \\
     \midrule
     Random Forests & & No Misuse & PRL Misuse &  &  &  & \\
-     & No Misuse & 25026 & 2298 & 90.1\% & 0.987 & 0.909 & 0.946 \\
+     & No Misuse & 25026 & 2298 & 90.1\% & 0.987 & 0.909 & 95\% \\
      & PRL Misuse & 320 & 665 &  &  &  & \\
     \midrule
     Gradient Boosted Trees & & No Misuse & PRL Misuse &  &  &  & \\
-     & No Misuse & 25398 & 36 & 89.9\% & 0.900 & 0.890 & 0.895 \\
-     & PRL Misuse & 2856 & 220 &  &  &  & \\
+     & No Misuse & 37956 &  65 & 89.8\% & 0.90 & 0.89 & 89.5\% \\
+     & PRL Misuse & 4261 & 298 &  &  &  & \\
     \bottomrule
   \end{tabular}
 \end{table*}
@@ -845,10 +846,12 @@ probability of the positive outcome.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The odds ratios presented in Table 5 can be interpreted as, the odds of a 
+The odds ratios presented in Table 5 can be interpreted as the odds of a 
 respondent misusing or abusing pain relievers increases by 1.99 times or 99\% 
 for a one unit increase in cocaine use, holding the effects of all other 
-independent variables constant. For a one unit increase in amphetamine use, 
+independent variables constant. 
+
+For a one unit increase in amphetamine use, 
 the odds of pain reliever misuse and abuse (PRLMISAB) increases by 1.84 times
 or 84\%, holding all other IVs constant. A one unit increase in tranquilizer 
 use is associated with a 1.46 or 46\% increase in the odds of PRLMISAB, 
@@ -985,6 +988,25 @@ and heroin use, which were ranked as more influential in the single tree.
     \bottomrule
   \end{tabular}
 \end{table}
+
+          MeanDecreaseGini
+YEAR              472.6321
+AGECAT            899.4447
+SEX               392.4069
+MARRIED           565.0179
+EDUCAT            893.3943
+EMPLOY18          564.1124
+CTYMETRO          664.9872
+HEALTH           1015.2877
+MENTHLTH         1314.9159
+HEROINUSE         780.2676
+TRQLZRS           978.6918
+SEDATVS           223.4737
+COCAINE          1990.4489
+AMPHETMN         1340.1951
+TRTMENT           388.3028
+MHTRTMT           615.1742
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
