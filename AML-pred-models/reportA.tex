@@ -13,27 +13,26 @@
 
 \begin{abstract}
 
-The misuse and abuse of prescription opioids (MUPO) has become a major health 
-crisis that has resulted in a dramatic increase in drug overdose deaths
-\cite{nida18}. Predictive modeling can identify factors related to MUPO and  
-predict individuals at risk for opioid addiction. The present study compares 
-ten classification models using four performance metrics: accuracy, sensitivity 
-(recall), precision, and $f_1$-score. The sample data consisted of N = 114,038 
-cases from the National Survey on Drug Use and Health (NSDUH) for 2015-2016.
-Of the total sample, 27\% had used any opioid pain reliever medications in the past 
-year, 11\% of respondents had previously misused or abused pain relievers; 2\% 
-reported using heroin. With data that has unbalanced classes, the $f_1$-score 
-is a better metric of performance than accuracy. The classifier models were fit 
-to the training set with fifteen features, including demographic variables, 
-medication use, and use of illicit drugs. The binary target variable was pain 
-reliever misuse and abuse. Model performance was evaluated on the testing set. 
-Logistic regression, decision trees, and random forests had the highest 
-$f_1$-scores. Neural networks (MLP) and support vector classifier both had 
-high accuracy, but low $f_1$-scores. Advantages and limitations of the 
-classification models are discussed. 
-\footnote{This project was completed in partial fulfillment of requirements 
+The misuse and abuse of prescription opioids (MUPO) has become a major 
+health crisis resulting in increased overdose deaths \cite{nida18}. Predictive 
+modeling can identify factors related to MUPO and  predict individuals at risk 
+for opioid addiction. The present study compares ten classification models 
+using four performance metrics: accuracy, sensitivity (recall), precision, and 
+$f_1$-score. Three years of data from the National Survey on Drug Use and 
+Health (2015-2017) was combined to create a sample consisted of N = 170317
+observations. Twenty-six percent of respondents reported using prescription
+opioid medications in the past year, 11\% of respondents reported pain 
+reliever misused or abuse, and 2\% reported using heroin. With unbalanced 
+classes in the data, the $f_1$-score was used as the performance metric 
+rather than accuracy. The classifier models were fit to the training set with 
+fifteen features, including demographic variables, past medication use, and 
+illicit drug use. The binary target variable was pain reliever misuse and abuse. 
+Model performance was evaluated on the testing set. Logistic regression, 
+decision trees, and random forests had the highest $f_1$-scores. Neural networks 
+(MLP) and support vector classifier both had high accuracy, but low $f_1$-scores. Advantages and limitations of the classification models are discussed. 
+\footnote{This project was done in partial fulfillment of requirements 
 for the M.S. in Data Science from the School of Informatics and Computing at 
-IU-Bloomington in May, 2018. Address correspondence to \textit{smshiver@iu.edu}}
+IU-Bloomington completed in May, 2018. Address correspondence to \textit{smshiver@iu.edu}}
 
 \end{abstract}
 \keywords{Predictive Modeling, Supervised Learning, Classification Models}
@@ -348,7 +347,7 @@ to improve model accuracy.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{table}
-  \caption{Confusion Matrix for Binary Classification}
+  \caption{Confusion Matrix for Binary Classification.}
   \label{tab:freq}
   \begin{tabular}{llll}
     \toprule
@@ -418,7 +417,7 @@ than the other class, as it takes into account both recall and precision
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{table}
-  \caption{Performance Metrics for Classifier Models}
+  \caption{Performance Metrics for Classifier Models.}
   \label{tab:freq}
   \begin{tabular}{lc}
     \toprule
@@ -441,14 +440,14 @@ than the other class, as it takes into account both recall and precision
 \begin{figure}[!ht]
   \centering\includegraphics[width=\columnwidth]{images/Figure2.pdf}
   \caption{K-Nearest Neighbors Classifier Accuracy for Training Set and 
-  Testing Set as a function of Number of Neighbors}
+  Testing Set as a function of Number of Neighbors.}
   \label{f:Figure2}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{table*}[ht]
-  \caption{Summary of Variables in the NSDUH 2015-16 Aggregated Data Set}
+  \caption{Variables Included in the Sample Data for Model Construction.}
   \label{tab:freq}
   \begin{tabular}{ll}
     \toprule
@@ -570,7 +569,7 @@ outliers (n=2).
 
 \begin{table}
   \caption{Frequency of Pain Reliever Misuse and Abuse
-  by Demographics Features for Sample Data (NSDUH 2015-2017)}
+  by Demographics Features for NSDUH 2015-2017 Sample.}
   \label{tab:freq}
   \begin{tabular}{llllll}
     \toprule
@@ -653,8 +652,8 @@ vector classifier (SVC), naive Bayes classifier, and neural network
 
 \begin{figure}[!ht]
   \centering\includegraphics[width=\columnwidth]{images/Figure3.pdf}
-  \caption{Proportion of Individuals Reporting Pain Reliever Misuse and Abuse
-  as a function of Heroin Use Ever}
+  \caption{Proportion of Pain Reliever Misuse and Abuse
+  as a function of Heroin Use.}
   \label{f:Figure3}
 \end{figure}
 
@@ -664,26 +663,26 @@ vector classifier (SVC), naive Bayes classifier, and neural network
 
 \subsection{Exploratory Data Analysis}
 
-Of the total sample of N=170317 respondents, 26\% (n=44596) reported 
-taking any pain relievers in the past year (19558 males, 25038 females). 
+Twenty-six percent of the total sample (n=44596) reported taking any pain 
+relievers in the past year (19558 males, 25038 females). 
 Table 4 provides the frequency and percent of respondents who reported 
 pain reliever misuse and abuse by demographic characteristics. 
 Approximately 11\% of the sample had misused or abused prescription pain 
 relievers at some point. This same rate of pain reliever misuse and abuse 
-was found in both the training set and test sets. Although a greater
+was found in both the training set and test sets. Although a larger
 number of females reported using any prescription opioid pain relievers in 
-the past year than males, a slighly larger proportion of males reported 
-misusing or abusing opioid pain relievers. The proportion of pain reliever 
-misuse and abuse was highest among individuals between the ages of 18 to 25, 
-and decreased among older age groups. Pain reliever misuse was most frequent
-among individuals who described themeselves as single or divorced, with 
-some college education. Less than 2 percent of respondents (n=2806) 
-disclosed ever using heroin (1607 males; 1199 females). As shown in Figure 3, 
-among respondents who reported previous using pain relievers, the proportion 
-of pain reliever misuse and abuse was more than twice as large for 
-individuals who reported using heroin than those who had not, which is 
-consistent with previous findings that indicate a connection between the
-misuse of prescription opioids and heroin use \cite{muhuri13, unick13}.
+the past year than males, more males reported misusing or abusing opioid 
+pain relievers. Pain reliever misuse was most frequent among individuals who 
+described themselves as single, divorced, or with some college education. 
+The proportion of pain reliever misuse and abuse was highest among 
+individuals between 18 to 25 years of age and decreased among older age 
+groups. Two percent of respondents (n=3433) disclosed ever using heroin 
+(2019 males; 1414 females). As shown in Figure 3, among respondents who 
+reported using pain relievers in the past year, the rate of misuse and abuse 
+of pain relievers was twice as large for individuals who reported using 
+heroin than those who had not used heroin, which is consistent with 
+past findings that indicate a connection between MUPO and heroin use 
+\cite{muhuri13, unick13}.
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
@@ -712,32 +711,34 @@ presented in Table 7.
 
 \begin{table}
   \caption{Parameter Estimates for Logistic Regression Model and Log-odds 
-  Ratios for Pain Reliever Misuse and Abuse (Training Set)}
+  Ratios for Pain Reliever Misuse and Abuse (Training Set).}
   \label{tab:freq}
   \begin{tabular}{lllll}
     \toprule
     Predictor&  Estimate& Std. Err.& Z-Value & Odds Ratio \\    
     \midrule
-    (Intercept)   & -2.960 &   0.048 & -61.10 *** &  \\
-    Cocaine       & 0.690  &   0.019 &  36.91 *** & 1.99  \\
-    Amphetamines  & 0.608  &   0.021 &  29.92 *** & 1.84  \\
-    Tranquilizers & 0.381  &   0.014 &  27.29 *** & 1.46  \\
-    Mental Health & 0.136  &   0.006 &  22.42 *** & 1.15  \\
-    Age Category  & -0.216 &   0.013 & -16.75 *** & 1.24  \\
-    Heroin use    & 0.798  &   0.052 &  15.47 *** & 2.22  \\  
-    Employment    & 0.222  &   0.016 &  13.72 *** & 1.25  \\
-    Treatment     & 0.195  &   0.019 &  10.47 *** & 1.22  \\
-    Sedatives     & 0.281  &   0.029 &   9.63 *** & 1.32  \\   
-    Health        & 0.103  &   0.012 &   8.27 *** & 1.11  \\
-    Education     & 0.104  &   0.013 &   8.22 *** & 1.11  \\   
-    Sex           & -0.186 &   0.026 &  -7.24 *** & 1.20  \\
-    City/Metro    & -0.068 &   0.013 &  -5.03 *** & 1.07  \\
-    Married       & 0.051  &   0.012 &   4.10 *** & 1.05  \\
-    MH Treatment  & -0.024 &   0.018 &  -1.32     & 1.02  \\
+    (Intercept)   & -1.901 &  0.307 &  -6.19 *** &   \\
+    Cocaine       &  0.672 &  0.015 &  44.43 *** & 1.96  \\
+    Amphetamines  &  0.592 &  0.017 &  35.55 *** & 1.81  \\
+    Tranquilizers &  0.393 &  0.011 &  34.57 *** & 1.48  \\
+    Mental Health &  0.133 &  0.005 &  26.96 *** & 1.14  \\
+    Heroin use    &  0.750 &  0.041 &  18.25 *** & 2.12  \\
+    Age Category  & -0.185 &  0.011 & -17.28 *** & 1.20  \\
+    Employment    &  0.191 &  0.013 &  14.60 *** & 1.21  \\
+    Treatment     &  0.203 &  0.015 &  13.57 *** & 1.23  \\
+    Sedatives     &  0.264 &  0.024 &  10.98 *** & 1.30  \\
+    Education     &  0.105 &  0.010 &  10.12 *** & 1.11  \\
+    Health        &  0.093 &  0.010 &   9.15 *** & 1.10  \\
+    Sex           & -0.153 &  0.021 &  -7.28 *** & 1.17  \\
+    Married       &  0.052 &  0.010 &   5.42 *** & 1.05  \\
+    Year          & -0.071 &  0.020 &  -3.58 *** & 1.07  \\
+    City/Metro    & -0.040 &  0.013 &  -3.08 **  & 1.04  \\
+    MH Treatment  & -0.001 &  0.014 &  -0.07     & 1.00  \\
     \bottomrule 
-    Note: p-value& $<$ 0.001.***  &  &  &   
+    Note: p-value& $<$ 0.001***  & $<$ 0.01** &  &   
   \end{tabular}
 \end{table}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
