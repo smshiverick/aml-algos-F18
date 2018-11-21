@@ -429,7 +429,7 @@ than the other class, as it takes into account both recall and precision
     & \\
     Precision (PPV) & \(\frac{TP}{TP+FP}\)  \\
     & \\
-    f_1 score & 2*\(\frac{Precision*Recall}{Precision+Recall}\) 
+    f_1 score & 2*\(\frac{Precision*Recall}{Precision+Recall}\)
     & \\
     \bottomrule
   \end{tabular}
@@ -439,8 +439,8 @@ than the other class, as it takes into account both recall and precision
 
 \begin{figure}[!ht]
   \centering\includegraphics[width=\columnwidth]{images/Figure2.pdf}
-  \caption{K-Nearest Neighbors Classifier Accuracy for Training Set and 
-  Testing Set as a function of Number of Neighbors.}
+  \caption{Training Set Accuracy and Testing Set Accuracy for KNN Classifier
+  Model as a function of Number of Neighbors.}
   \label{f:Figure2}
 \end{figure}
 
@@ -883,7 +883,7 @@ decrease in the odds of PRLMISAB, holding other IVs constant.
 
 The decision tree model was prepruned to a maximum depth of 4, which means 
 the algorithm split on four consecutive features (see Figure 4). The  
-algorithm selected cocaine as the root node which includes the 85528 
+algorithm selected cocaine as the root node which includes the n=127738 
 observations in the training set. With a classification tree, we predict 
 that each observation will belong to the class of training observations in 
 the region to which it belongs, and want to determine not only the class
@@ -893,42 +893,38 @@ One way to interpret a decision tree is by following the number of samples
 represented at the split for each node. Another way to interpret the decision 
 tree in Figure 4 is by the examining the proportion of observations of 
 class A captured by that leaf over the entire number of observations captured 
-by the leaf during model training. Starting from the root node the branch 
-to the left represents 75562 observations with no or low cocaine use; 
+by the leaf during model training. Starting from the root node, the branch 
+to the left represents n=112730 observations with no or low cocaine use; 
 of those, 0.07 or 7\% reported misusing or abusing opioid pain relievers. 
-Following the right branch are 9966 observations positive for cocaine use, 
-of which 0.39 or 39\% reported pain reliever misuse or abuse. In other words, 
+Following the right branch are n=15008 observations positive for cocaine use, 
+of which 0.39 or 39\% reported pain reliever misuse or abuse. This means that 
 the proportion of pain reliever misuse and abuse was more than five times as 
 large for individuals who reported using cocaine than those who had not. 
 
 \begin{figure}[!ht]
-  \centering\includegraphics[width=\columnwidth]{images/Figure5.pdf}
+  \centering\includegraphics[width=\columnwidth]{images/Figure4.pdf}
   \caption{Decision Tree Model of Pain Reliever Misuse and Abuse
-  fit to the Training Set}
-  \label{f:Figure5}
+  fit to the Training Set.}
+  \label{f:Figure4}
 \end{figure}
 
-The second split was based on heroin use which included 9966 observation; 
-to the left branch were 8562 respondents who had not used heroin, of which
-0.34 or 34\% reported PRLMISAB. Following the right branch to the terminal 
-node (i.e., `leaf') were 1404 individuals positive for heroin use, of which
-0.70 or 70\% had misused or abuse pain relievers. Thus, the proportion of 
-PRLMISAB was twice as large for respondents who had used heroin than those 
-who had not (as seen in Figure 3). The third split in the decision tree was 
-based on tranquilizers, which included 8562 observations. On the left branch 
-were 6455 observation with no or low tranquilizer use; of these, the 
-proportion of PRLMISAB was 0.28 or 28\%. To the branch on the right were 
-2016 observations with higher tranquilizer use, of which 0.51 or 51\% 
-reported PRLMISAB. Similar to what was observed in the case of heroin, the 
-rate of pain reliever misuse and abuse for individuals with moderate to high
-tranquilizer use was almost twice as large than for those with no to low
-tranquilizer use. The fourth split was based on age category which included
-2107 observations; the branch to the left represented 946 individuals age 
-36 or older, of which 0.35 or 35\% reported PRLMISAB. The branch to the 
-right represented 1162 individuals age 35 and younger, of whom 0.64 or 64\% 
-reported PRLMISAB. The proportion of pain reliever misuse and abuse for
-respondents 35 or younger was almost twice that as individuals older 
-than 35 years of age. 
+The second split was based on heroin use; the left branch included n=12876 respondents who had not used heroin, of which 0.34 or 34\% reported pain
+reliever misuse or abuse. Following the right branch to the terminal node 
+(i.e., `leaf'), n=2132 individuals reported heroin use, of which 0.70 or 
+70\% had misused or abused pain relievers. Thus, the proportion of PRLMISAB 
+was twice as large for respondents who had used heroin than those who had 
+not used heroin (as seen in Figure 3). The third split in the decision tree
+was based on tranquilizers. The left branch represented n=9757 individuals 
+who reported no or low tranquilizer use; of these, the proportion of 
+PRLMISAB was 0.28 or 28\%. The branch to the right represented n=3119 
+observations with moderate to high tranquilizer use, of which 0.52 or 52\% 
+reported PRLMISAB. The rate of pain reliever misuse and abuse for individuals 
+with moderate to high tranquilizer use was almost twice as large than for 
+those reporting no to low tranquilizer use. The fourth split was based on age category; the branch to the left represented n=1394 individuals age 36 or older, 
+of which 0.38 or 38\% reported PRLMISAB. The branch to the right represented 
+n=1725 individuals age 35 and younger, of whom 0.63 or 63\% reported PRLMISAB. 
+This findings shows that pain reliever misuse and abuse was much more likely
+among respondents age 35 or younger than older individuals older than 35 years. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Feature Importance for Random Forests}
@@ -964,7 +960,7 @@ and heroin use, which were ranked as more influential in the single tree.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{table}
-  \caption{Feature Importance for Random Forest Model}
+  \caption{Feature Importance for the Random Forest Model.}
   \label{tab:freq}
   \begin{tabular}{lll}
     \toprule
@@ -979,12 +975,11 @@ and heroin use, which were ranked as more influential in the single tree.
     Age Group     &  &   899.45 \\
     Education     &  &   893.39 \\
     Heroin Use    &  &   780.27 \\
-
     City/Metro    &  &   664.99 \\
     MH Treatment  &  &   615.17 \\
     Married       &  &   565.02 \\
     Employment    &  &   564.11 \\ 
-    Year          &  &   472.63
+    Year          &  &   472.63 \\
     Sex           &  &   392.41 \\
     Treatment     &  &   388.30 \\
     Sedatives     &  &   223.47 \\
@@ -996,18 +991,14 @@ and heroin use, which were ranked as more influential in the single tree.
 
 \subsubsection{Neural Network}
 
-The multilayer perceptron (MLP) had the highest accuracy (90.6\%), but
-low $f_1$-score (0.88) compared to other models, which indicates that it is 
-not a good model for data with imbalanced classes \cite{yun09}. Figure 5 shows 
-the MLP model which takes the features as the input to the model, a single
-hidden-layer comprised of the weighted combination of the input variables, and 
-the output layer represents a response probability. During model training, the 
-weights of the predictor variables are first randomly initialized and then 
-iteratively adjusted to minimize an error function (e.g., gradient descent)
-\cite{brown12}. With a limited number of predictor variables and single 
-hidden layer, it is still possible to interpret the relations among weights
-and nodes in the neural network. With a larger number of features and high
-number of hidden layers, complex neural networks are difficult to interpret.
+The multilayer perceptron (MLP) did not perform as well as other models, 
+which indicates that it is not a good model for data with imbalanced classes \cite{yun09}. The neural network with a single hidden layer is presented in 
+Figure 5 for comparison and discussion. The MLP model takes the features as 
+the input to the model, a single hidden-layer comprises the weighted 
+combination of the input variables, and the output layer represents a 
+response probability. During model training, the weights of the predictor 
+variables are first randomly initialized and then iteratively adjusted to 
+minimize an error function (e.g., gradient descent) \cite{brown12}. 
 
 \begin{figure}[!ht]
   \centering\includegraphics[width=\columnwidth]{images/Figure5.pdf}
@@ -1019,39 +1010,51 @@ number of hidden layers, complex neural networks are difficult to interpret.
 
 \section{DISCUSSION}
 
-% Summarize main findings
-
-The results showed that the sample data was imbalanced in that the target 
-class (positive) for misuse or abuse of prescription opioid pain relievers 
-represented only a small minority of observations (11\%). Using the $f_1$-
-score as the preferred evaluation metric rather than accuracy, logistic 
-regression, decision trees, and random forests were tied for the highest 
-$f_!$-score, and performed better than other models at classifying 
-pain reliever misuse and abuse. The random forests model performed slightly 
+The results showed that logistic regression, random forests, and decision 
+trees performed better than other models for classifying pain reliever misuse 
+and abuse. The $f_1$-score was selected as the appropriate metric to evaluate 
+model performance, rather than accuracy, because of imbalanced classes in 
+the target outcome; namely, the positive instances of pain reliever misuse 
+and abuse represented only a small proportion of observations (11\%) compared
+to instances of the negative class. Traditional algorithms tend to classify 
+new observations based on the majority class, as observed with the naive Bayes 
+model, which had a relatively high $f_1$-score despite correctly classifying 
+only 35 true positive instances. The random forests model performed slightly 
 better as it correctly predicted more true positive cases than the single 
-decision tree and had fewer misclassification errors than the logistic 
-regression. The neural network (MLP) model and support vector classifier (SLC) 
-performed best in terms of accuracy, but both models had low $f_1$-scores, 
-which indicates that they did not perform well with imbalanced classes. 
-Complex models such as random forests and neural networks yield high 
-performance and generalize well to new data, but these models can be difficult 
-to interpret compared to simpler models such as logistic regression and decision 
-trees model. The three top-performing models (logistic regression, decision tree, 
-random forests) all identified cocaine, amphetamines, tranquilizers, heroin use, 
-age category, and mental health as important features for predicting pain 
-reliever misuse and abuse (PRLMISAB); however, the models differed in the order 
-of importance that each assigned to these variables. 
+decision tree and had fewer false positive classification errors than the 
+logistic regression. The QDA and LDA models both identified the largest 
+number of true positives, but each correctly labeled fewer true negatives
+compared to the logistic regression model, which had higher $f_1$-score
+and accuracy, overall. This finding indicates that the decision boundary 
+for classifying pain reliever misuse and abuse can be modeled as a linear 
+function of the predictor variables \cite{james13, raschka17}. The decision 
+tree and random forests models are preferred for modeling the predictors as 
+non-linear functions. The main advantage of logistic regression is that 
+the coefficient estimates can be interpreted in terms of odds ratios. 
+With pre-pruning, decision trees provide an interpretable model, but are
+prone to overfit data used to train the model. The random forests model
+corrects for overfitting in single decision trees and generalizes well 
+to new data, but can be difficult to interpret. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-All three models selected cocaine as the most informative variable for 
-predicting PRLMISAB. The logistic regression indicated that the odds of an 
-individual misusing or abusing opioid pain relievers increased by 1.99 times 
-for a one unit increase in cocaine use, holding constant the effects of other 
-independent variables. The decision tree model showed the proportion of 
-PRLMISAB among individuals who reported moderate to high cocaine use (39\%) 
-was more than five times larger than for individuals who reported no or low 
-cocaine use (7\%). The random forests model and logistic regression both 
+The top three model all identified cocaine use as the most informative feature 
+for predicting pain reliever misuse and abuse (PRLMISAB). The models differed, however, in the importance that each assigned to the remaining predictor 
+variables. For a one unit increase in cocaine use, the odds of PRLMISAB 
+increased by 1.99 times (holding the effects of other variables constant). 
+The proportion of PRLMISAB among individuals who reported moderate to high
+cocaine use (39\%) was more than five times larger than for individuals who 
+reported no or low cocaine use (7\%), in the decision tree model.
+
+
+ 
+
+
+amphetamines, tranquilizers, heroin use, age category, and mental health as 
+important features for predicting .
+The models differed 
+
+All three models selected cocaine  PRLMISAB.  The random forests model and logistic regression both 
 identified amphetamine use was as the second most influential variable. 
 The odds of PRLMISAB increased by 1.84 times for a unit increase in 
 amphetamine use, holding other predictors constant. By contrast, the decision 
@@ -1130,6 +1133,25 @@ hidden layer, the neural network is still somewhat interpretable. As the
 number of predictors and hidden layers increases, the neural network becomes 
 uninterpretable and basically represents a ``black box'' model in that 
 the interal workings are not comprehensible at a human level. 
+
+With a limited number of predictor variables and single hidden layer, 
+it is possible to interpret the relations among weights
+and nodes in the neural network. With a larger number of features and high
+number of hidden layers, complex neural networks are difficult to interpret.
+
+Although each model identified
+cocaine use as the most informative feature for predicting pain reliever
+misuse an dabuse, the models differed in the order and importance each 
+assigned to different features.
+
+
+The neural network (MLP) model and support vector classifier (SLC) 
+performed best in terms of accuracy, but both models had low $f_1$-scores, 
+which indicates that they did not perform well with imbalanced classes. 
+Complex models such as random forests and neural networks yield high 
+performance and generalize well to new data, but these models can be difficult 
+to interpret compared to simpler models such as logistic regression and decision 
+trees model. The three top-performing models 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
