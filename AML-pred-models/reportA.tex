@@ -692,21 +692,18 @@ past findings that indicate a connection between MUPO and heroin use
 Performance of the classification models was evaluated in the confusion 
 matrices reported in Table 6, which includes the metrics of accuracy, 
 sensitivity (recall), precision, and $f_1$-score. The model accuracy 
-scores ranged form 86.1\% to 90.6\%. Because of unbalanced classes in 
+scores ranged form 86.5\% to 90.7\%. Because of the unbalanced classes in 
 the sample data | the proportion of respondents who had never misused or 
 abused pain relievers (89\%) was much greater than the proportion who had | 
 the $f_1$-score was used as the preferred metric of performance rather 
-than accuracy as it takes into account both recall and precision. The 
-$f_1$-scores ranged form 0.88\% to 0.946\%. Although the neural networks 
-(MLP) model and support vector classifier (SLC) had the highest accuracy 
-(90.6\% and 90.4\%, respectively), they both had very low $f_1$-scores 
-compared to other models (0.88). In terms of the $f_1$-score, logistic 
-regression, decision trees, and random forests performed better than 
-other classifiers and were tied for the highest score (0.946). The 
-random forests model identified more true positives than a single decision 
-tree and had fewer misclassification errors than the logistic regression 
-model. The main parameter settings for the classification models are 
-presented in Table 7.
+than accuracy. The $f_1$-scores ranged from 0.87 to 0.95. Logistic 
+regression and the random forest model were tied for the highest 
+$f_1$-score (0.95) followed by the decision tree model (0.949). The 
+random forests model identified more true positives (TP) than a single 
+decision tree and fewer false positives (FP) than logistic regression. 
+In general, default parameter setting were used for most models; the main 
+parameter settings for the classification models are presented in Table 7.
+The result of these three top performing models are described further below.  
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -752,43 +749,43 @@ presented in Table 7.
     Model& & Confusion Matrix & & Accuracy & Sensitivity & Precision & F1-Score \\
     \midrule
     K-Nearest Neighbors & & No Misuse & PRL Misuse &  &  &  & \\
-     & No Misuse & 37595 & 426 & 89.8\% & 0.900 & 0.870 & 87\% \\
+     & No Misuse & 37595 & 426 & 89.8\% & 0.900 & 0.870 & 0.870 \\
      & PRL Misuse & 3909 & 650 &  &  &  & \\
     \midrule
     Logistic Regression & & No Misuse & PRL Misuse &  &  &  & \\
-     & No Misuse & 37618 & 3478 & 90.7\% & 0.987 & 0.915 & 95\% \\
+     & No Misuse & 37618 & 3478 & 90.7\% & 0.987 & 0.915 & 0.950 \\
      & PRL Misuse &  495 &  988 &  &  &  & \\
     \midrule
     Linear Discriminant Analysis (LDA) & & No Misuse & PRL Misuse &  &  &  & \\
-     & No Misuse & 37063 & 3073 & 90.3\% & 0.973 & 0.923 & 94.7\% \\
+     & No Misuse & 37063 & 3073 & 90.3\% & 0.973 & 0.923 & 0.947 \\
      & PRL Misuse & 1050 & 1393 &  &  &  & \\
     \midrule
     Quadratic Discriminant Analysis (QDA) & & No Misuse & PRL Misuse &  &  &  & \\
-     & No Misuse & 34786 & 2426 & 86.5\% & 0.913 & 0.935 & 92.4\% \\
+     & No Misuse & 34786 & 2426 & 86.5\% & 0.913 & 0.935 & 0.924 \\
      & PRL Misuse & 3327 & 2040 &  &  &  & \\
     \midrule
-    Support Vector Classifier (SVM) & & No Misuse & PRL Misuse &  &  &  & \\
-     & No Misuse & 37681 & 340 & 90.3\% & 0.900 & 0.890 & 88\% \\
+    Support Vector Machines (SVM) & & No Misuse & PRL Misuse &  &  &  & \\
+     & No Misuse & 37681 & 340 & 90.3\% & 0.900 & 0.890 & 0.880 \\
      & PRL Misuse & 3787 & 772 &  &  &  & \\
     \midrule
     Naive Bayes & & No Misuse & PRL Misuse &  &  &  & \\
-     & No Misuse & 38110 & 4431 & 89.6\% & 0.999 & 0.896 & 94.5\% \\
+     & No Misuse & 38110 & 4431 & 89.6\% & 0.999 & 0.896 & 0.945 \\
      & PRL Misuse & 3 & 35 &  &  &  & \\
     \midrule
     Neural Network (MLP) & & No Misuse & PRL Misuse &  &  &  & \\
-     & No Misuse & 37563 & 458 & 90.1\% & 0.90 & 0.88 & 88\% \\
+     & No Misuse & 37563 & 458 & 90.1\% & 0.90 & 0.88 & 0.880 \\
      & PRL Misuse & 3682 & 877 &  &  &  & \\
     \midrule
     Decision Trees & & No Misuse & PRL Misuse &  &  &  & \\
-     & No Misuse & 376552 & 3597 & 90.5\% & 0.988 & 0.913 & 94.9\% \\
-     & PRL Misuse &   458 &  869 &  &  &  & \\
+     & No Misuse & 37655 & 3597 & 90.5\% & 0.988 & 0.913 & 0.949 \\
+     & PRL Misuse &  458 &  869 &  &  &  & \\
     \midrule
     Random Forests & & No Misuse & PRL Misuse &  &  &  & \\
-     & No Misuse & 25026 & 2298 & 90.1\% & 0.987 & 0.909 & 95\% \\
-     & PRL Misuse & 320 & 665 &  &  &  & \\
+     & No Misuse & 37556 & 3397 & 90.1\% & 0.987 & 0.909 & 0.950 \\
+     & PRL Misuse &  557 & 1069 &  &  &  & \\
     \midrule
     Gradient Boosted Trees & & No Misuse & PRL Misuse &  &  &  & \\
-     & No Misuse & 37956 &  65 & 89.8\% & 0.90 & 0.89 & 89.5\% \\
+     & No Misuse & 37956 &  65 & 89.8\% & 0.90 & 0.89 & 0.895 \\
      & PRL Misuse & 4261 & 298 &  &  &  & \\
     \bottomrule
   \end{tabular}
@@ -798,14 +795,15 @@ presented in Table 7.
  
 \begin{table}
   \caption{Main Parameters for Non-linear Classification Models of 
-  Pain Reliever Misuse and Abuse}
+  Pain Reliever Misuse and Abuse.}
   \label{tab:freq}
   \begin{tabular}{ll}
     \toprule
-    Model & Main Parameter \\
+    Model & Main Parameters \\
     \midrule
     K-Nearest Neighbors & Number of Neighbors = 4 \\
-    Naive Bayes & Cost, \textit{C} = 0.01 \\
+    Support Vector Machines (RBF) & C = 10, gamma = 0.1 \\
+    Naive Bayes & Cost = 0.01 \\
     Neural Network & Hidden Layers = 1 \\
     Decision Trees & Maximum Depth = 4 \\ 
     Random Forests & Number of Trees = 1000 \\
@@ -818,63 +816,66 @@ presented in Table 7.
 
 \subsubsection{Logistic Regression}
 
-The parameter estimates and odds ratios for the logistic regression model are 
-presented in Table 5, sorted by z-score. The ceofficient estimates for all of 
-the features were statistically significant ($p<.001$), with the exception of 
-mental health treatment. The coefficient estimates ($\beta_i$...$\beta_j$) 
-are interpreted as the change in the log of the odds of the dependent variable 
-(PRLMISAB) occurring given a one unit change in each independent variable
-($X_i$...$X_j$), holding constant the effects of other independent variables. 
-The parameters relate to the log of the odds ratio rather than to the dependent 
-variable directly. The odds are calculated as the probability of the event 
-occurring divided by the probability of the event not occurring 
-( \(\frac{P}{P-1}\) ). The odds ratios are obtained by taking the antilog of 
-the estimated coefficients, which are the exponentiated parameter estimates 
-($e^x$). For an interval scaled independent variable, the odds ratio 
-is interpreted as the multiplicative increase in the odds of the dependent 
-variable event happening given a one unit change in the value of the 
-independent variable, assuming the effects of all other independent variables 
-are held constant. For a dichotomous (dummy) independent variable, e.g., sex, 
-the multiplicative increase in the odds of the dependent variable event 
-happening if the event represented by the independent variable occurs, holding 
-constant the effects of all other independent variables. In general, if you 
-take the antilog of the coefficient estimate, subtract 1 from it, and multiply 
-the result by 100, you get the percent change in the odds for a unit increase 
-in the independent variable  \cite{gujarati09}.  The odds ratio indicates the 
+The parameter estimates and odds ratios for the logistic regression model 
+are presented in Table 5, sorted by z-score. The ceofficient estimates for
+all of the features were statistically significant, with the exception of 
+mental health treatment. The model was re-run leaving out the non-significant 
+variable, but the performance metrics did not change and the model with 
+the full set of features was retained. The coefficient estimates 
+($\beta_i$...$\beta_j$) are interpreted as the change in the log of the 
+odds of the dependent variable (PRLMISAB) occurring given a one unit 
+change in each independent variable ($X_i$...$X_j$), holding constant 
+the effects of other independent variables. The parameters relate to the 
+log of the odds ratio rather than to the dependent variable directly. 
+The odds are calculated as the probability of the event occurring divided 
+by the probability of the event not occurring ( \(\frac{P}{P-1}\) ). The 
+odds ratio is obtained by taking the antilog of the estimated coefficient, 
+which is the exponentiated parameter estimate ($e^x$). For an interval scaled 
+independent variable, the odds ratio is interpreted as the multiplicative 
+increase in the odds of the dependent variable event happening given a 
+one unit change in the value of the independent variable, assuming the 
+effects of all other independent variables are held constant. For a 
+dichotomous (dummy) independent variable, e.g., sex, the multiplicative 
+increase in the odds of the dependent variable event happening if the event
+represented by the independent variable occurs, holding constant the effects 
+of all other independent variables. In general, taking the antilog of the 
+coefficient estimate, subtracting 1 from it, and multiplying the result 
+by 100, provides the percent change in the odds for a unit increase in the 
+independent variable  \cite{gujarati09}.  The odds ratio indicates the 
 ratio of the positive event to negative event, but does not reveal the 
 probability of the positive outcome.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The odds ratios presented in Table 5 can be interpreted as the odds of a 
-respondent misusing or abusing pain relievers increases by 1.99 times or 99\% 
+respondent misusing or abusing pain relievers increases by 1.96 times or 96\% 
 for a one unit increase in cocaine use, holding the effects of all other 
-independent variables constant. 
-
-For a one unit increase in amphetamine use, 
-the odds of pain reliever misuse and abuse (PRLMISAB) increases by 1.84 times
-or 84\%, holding all other IVs constant. A one unit increase in tranquilizer 
-use is associated with a 1.46 or 46\% increase in the odds of PRLMISAB, 
-holding other IVs constant. For a unit increase in mental health issues, the
-odds for PRLMISAB increased by 1.15 or 15\%. For a one unit increase in age 
-category, the odds of PRLMISAB decreased by 1.24 times or 24\%, holding the 
-effects of other IVs constant. For a one unit increase in heroin use, the odds 
-of PRLMISAB increases by 2.22 times or 22\%, holding other IVs constant. A one 
-unit increase in employment is associated with a 1.25 or 25\% increase in the 
-odds of PRLMISAB, holding other IVs constant. For a unit increase in substance 
-treatment, the odds for PRLMISAB increased by 1.22 or 22\%, holding other IVs 
-constant. For a one unit increase in sedative use, the odds of PRLMISAB 
-increases by 1.32 times or 32\%, holding all other IVs constant. For a one 
-unit increase in health problems, the odds for PRLMISAB increased by 1.11 or
-11\%, holding other IVs constant. For a one unit increase in education, the 
-odds of PRLMISAB increased by 1.11 times or 11\%, holding other IVs constant. 
-In terms of sex, the odds of misusing or abusing pain relievers for females 
-decreases by 1.20 times compared to males, holding all other IVs constant. 
-In other words, the odds of PRLMISAB for females was 20\% lower than for males. 
-A unit increase in the size of a respondents city or metropolitan area 
-resulted in a 1.07 or 7\% decrease in the odds of PRLMISAB, holding other 
-IVs constant. For a unit increase in marital status, the odds for PRLMISAB 
-increases by 1.05 or 5\%, holding other IVs constant. 
+independent variables constant. For a one unit increase in amphetamine use, 
+the odds of pain reliever misuse and abuse (PRLMISAB) increases by 1.81 times
+or 81\%, holding all other IVs constant. A one unit increase in tranquilizer 
+use is associated with a 1.48 or 48\% increase in the odds of PRLMISAB, 
+holding other IVs constant. For a unit increase in mental health issues, 
+the odds for PRLMISAB increased by 1.14 or 14\%. For a one unit increase in 
+heroin use, the odds of PRLMISAB increases by 2.12 times or 112\%, holding 
+other IVs constant. For a one unit increase in age category, the odds of 
+PRLMISAB decreased by 1.20 times or 20\%, holding the effects of other IVs 
+constant. A one unit increase in employment is associated with a 1.21 or 21\% 
+increase in the odds of PRLMISAB, holding other IVs constant. For a unit 
+increase in substance treatment, the odds for PRLMISAB increased by 1.23 or 
+23\%, holding other IVs constant. For a one unit increase in sedative use, 
+the odds of PRLMISAB increases by 1.30 times or 30\%, holding all other IVs 
+constant. For a one unit increase in education level, the odds for PRLMISAB 
+increased by 1.11 or 11\%, holding other IVs constant. For a unit increase 
+in health problems, the odds for PRLMISAB increase by 1.10 or 10\%, holding
+other IVs constant. In terms of sex, the odds of misusing or abusing pain 
+relievers for females decreases by 1.17 times compared to males; in other 
+words, the odds of PRLMISAB for females was 17\% lower than for males, 
+holding all other IVs constant. For a unit increase in marital status, 
+the odds for PRLMISAB increases by 1.05 or 5\%, holding other IVs constant. 
+The odds for PRLMISAB decreased by 1.07 or 7\% for a unit increase in year
+of the survey, holding other IVs constant. A unit increase in the size of 
+a respondent's city or metropolitan area resulted in a 1.04 or 4\% 
+decrease in the odds of PRLMISAB, holding other IVs constant. 
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -970,43 +971,26 @@ and heroin use, which were ranked as more influential in the single tree.
     Predictor&  & Mean Decrease  \\    
              &  & in Gini Score  \\
     \midrule
-    Cocaine       &  &  1284.84 \\
-    Amphetamines  &  &   830.93 \\
-    Mental Health &  &   748.94 \\ 
-    Tranquilizers &  &   638.85 \\
-    Age Group     &  &   524,89 \\
-    Heroin Use    &  &   514.82 \\
-    Health        &  &   501.38 \\
-    Education     &  &   450.63 \\
-    City/Metro    &  &   329.09 \\
-    MH Treatment  &  &   327.66 \\
-    Married       &  &   293.53 \\
-    Employment    &  &   285.78 \\ 
-    Treatment     &  &   236.56 \\
-    Sex           &  &   197.71 \\
-    Sedatives   &  &   139.23 \\
+    Cocaine       &  &  1990.45 \\
+    Amphetamines  &  &  1340.20 \\
+    Mental Health &  &  1314.92 \\ 
+    Health        &  &  1015.29 \\
+    Tranquilizers &  &   978.70 \\
+    Age Group     &  &   899.45 \\
+    Education     &  &   893.39 \\
+    Heroin Use    &  &   780.27 \\
+
+    City/Metro    &  &   664.99 \\
+    MH Treatment  &  &   615.17 \\
+    Married       &  &   565.02 \\
+    Employment    &  &   564.11 \\ 
+    Year          &  &   472.63
+    Sex           &  &   392.41 \\
+    Treatment     &  &   388.30 \\
+    Sedatives     &  &   223.47 \\
     \bottomrule
   \end{tabular}
 \end{table}
-
-          MeanDecreaseGini
-YEAR              472.6321
-AGECAT            899.4447
-SEX               392.4069
-MARRIED           565.0179
-EDUCAT            893.3943
-EMPLOY18          564.1124
-CTYMETRO          664.9872
-HEALTH           1015.2877
-MENTHLTH         1314.9159
-HEROINUSE         780.2676
-TRQLZRS           978.6918
-SEDATVS           223.4737
-COCAINE          1990.4489
-AMPHETMN         1340.1951
-TRTMENT           388.3028
-MHTRTMT           615.1742
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1026,9 +1010,9 @@ and nodes in the neural network. With a larger number of features and high
 number of hidden layers, complex neural networks are difficult to interpret.
 
 \begin{figure}[!ht]
-  \centering\includegraphics[width=\columnwidth]{images/Figure6.pdf}
-  \caption{Neural Net Classifier: Multilayer Perceptron with Single Hidden Layer}
-  \label{f:Figur6}
+  \centering\includegraphics[width=\columnwidth]{images/Figure5.pdf}
+  \caption{Neural Net Classifier: Multilayer Perceptron with Single Hidden Layer.}
+  \label{f:Figure5}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
