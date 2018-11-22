@@ -987,24 +987,6 @@ and heroin use, which were ranked as more influential in the single tree.
   \end{tabular}
 \end{table}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsubsection{Neural Network}
-
-The multilayer perceptron (MLP) did not perform as well as other models, 
-which indicates that it is not a good model for data with imbalanced classes \cite{yun09}. The neural network with a single hidden layer is presented in 
-Figure 5 for comparison and discussion. The MLP model takes the features as 
-the input to the model, a single hidden-layer comprises the weighted 
-combination of the input variables, and the output layer represents a 
-response probability. During model training, the weights of the predictor 
-variables are first randomly initialized and then iteratively adjusted to 
-minimize an error function (e.g., gradient descent) \cite{brown12}. 
-
-\begin{figure}[!ht]
-  \centering\includegraphics[width=\columnwidth]{images/Figure5.pdf}
-  \caption{Neural Net Classifier: Multilayer Perceptron with Single Hidden Layer.}
-  \label{f:Figure5}
-\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1035,34 +1017,35 @@ the decision tree and random forests models would be preferred.
 
 The three top performing models all selected cocaine use as the most 
 informative feature for predicting pain reliever misuse and abuse (PRLMISAB). 
-For a one unit increase in cocaine use, the logistic regression idicated 
-that the odds of PRLMISAB increased by 1.99 times, holding constant the 
-effects of other variables constant. In the decision tree, the proportion 
+For a one unit increase in cocaine use, the odds of PRLMISAB increased by 1.99 
+times, holding constant the effects of other variables constant. The proportion 
 of PRLMISAB among individuals who reported moderate to high cocaine use (39\%) 
 was more than five times larger than for individuals who reported no or 
-low cocaine use (7\%). The random forest model provides the mean decrease
-in the Gini score, which is a measure of node purity at each split and is
-difficult to interpret in terms of the outcome. Both logistic regression and 
-the random forests model identified amphetamine use as the second most 
-influential feature for predicting PRLMISAB. The odds of PRLMISAB increased 
-by 1.84 times for a unit increase in amphetamine use (holding other variables 
-constant). By contrast, the decision tree identified heroin use as the second 
-most important predictor of PRLMISAB. Of the few respondents who disclosed 
-heroin use, more than two-thirds (70\%) reported misusing or abusing pain 
-relievers. Furthermore, the proportion of PRLMISAB was twice as large for 
-respondents who had used heroin than those who had not. In the logistic 
-regression model, the odds of PRLMISAB increased by 2.12 times given previous
-heroin use. Tranquilizer use was identified as the third most important variable 
-in both the decision tree and logistic regression models. For a one unit 
-increase in tranquilizer use, the odds of PRLMISAB increased 1.46 times,  
-all else being equal. Similar to the finding for heroin use, the proportion 
-of PRLMISAB was nearly twice as large for individuals with moderate to high tranquilizer use (51\%) than for individuals with no to low tranquilizer use 
-(28\%). The algorithms also selected age category, mental health, health
-issues, education level, and previous substance treatment as important
-features for predicting PRLMISAB. The models differed, however, in the order 
-and importance that each assigned to these predictor variables. A general
-finding related to age category is that pain reliever misuse and abuse was
-more prevalent among respondents age 35 and younger than older individuals. 
+low cocaine use (7\%), as seen in the decision tree. The random forest model 
+provides the mean decrease in the Gini score, which is a measure of node purity 
+at each split but is difficult to interpret in terms of the outcome. Both 
+logistic regression and random forests identified amphetamine use as the 
+second most influential feature for predicting PRLMISAB. The odds of PRLMISAB 
+increased by 1.84 times for a unit increase in amphetamine use (holding other 
+variables constant). By contrast, the decision tree identified heroin use as 
+the second most important predictor of PRLMISAB. Of the few respondents who 
+disclosed heroin use, more than two-thirds (70\%) reported misusing or abusing 
+pain relievers. In the logistic regression model, the odds of PRLMISAB 
+increased by 2.12 times given previous heroin use. Furthermore, the 
+proportion of PRLMISAB was twice as large for respondents who had used heroin 
+than those who had not, which reinforces the hypothesized link between pain 
+reliever misuse and abuse and heroin use. Tranquilizer use was identified as 
+the third most important variable in both the decision tree and logistic 
+regression models. For a one unit increase in tranquilizer use, the odds of 
+PRLMISAB increased 1.46 times, all else being equal. Similar to the finding 
+for heroin use, the proportion of PRLMISAB was nearly twice as large for 
+individuals with moderate to high tranquilizer use (51\%) than for individuals 
+with no to low tranquilizer use (28\%). The algorithms also selected age 
+category, mental health, health issues, education level, and previous 
+substance treatment as important features for predicting PRLMISAB. The models
+differed, however, in the order and importance that each assigned to these 
+predictor variables. A general finding is that pain reliever misuse and abuse 
+was more prevalent among respondents age 35 and younger than older individuals. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
