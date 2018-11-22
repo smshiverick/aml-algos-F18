@@ -1027,65 +1027,58 @@ number of true positives, but each correctly labeled fewer true negatives
 compared to the logistic regression model, which had higher $f_1$-score
 and accuracy, overall. This finding indicates that the decision boundary 
 for classifying pain reliever misuse and abuse can be modeled as a linear 
-function of the predictor variables \cite{james13, raschka17}. The decision 
-tree and random forests models are preferred for modeling the predictors as 
-non-linear functions. The main advantage of logistic regression is that 
-the coefficient estimates can be interpreted in terms of odds ratios. 
-With pre-pruning, decision trees provide an interpretable model, but are
-prone to overfit data used to train the model. The random forests model
-corrects for overfitting in single decision trees and generalizes well 
-to new data, but can be difficult to interpret. 
+function of the predictor variables \cite{james13, raschka17}. If pain 
+reliever misuse and abuse is a non-linear function of the predictors,
+the decision tree and random forests models would be preferred.  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The top three model all identified cocaine use as the most informative feature 
-for predicting pain reliever misuse and abuse (PRLMISAB). The models differed, however, in the importance that each assigned to the remaining predictor 
-variables. For a one unit increase in cocaine use, the odds of PRLMISAB 
-increased by 1.99 times (holding the effects of other variables constant). 
-The proportion of PRLMISAB among individuals who reported moderate to high
-cocaine use (39\%) was more than five times larger than for individuals who 
-reported no or low cocaine use (7\%), in the decision tree model.
-
-
- 
-
-
-amphetamines, tranquilizers, heroin use, age category, and mental health as 
-important features for predicting .
-The models differed 
-
-All three models selected cocaine  PRLMISAB.  The random forests model and logistic regression both 
-identified amphetamine use was as the second most influential variable. 
-The odds of PRLMISAB increased by 1.84 times for a unit increase in 
-amphetamine use, holding other predictors constant. By contrast, the decision 
-tree identified heroin use as the second most important predictor of PRLMISAB. 
-Of the small number of respondents who reported using heroin, more than 
-two-thirds (70\%) had misused or abuse pain relievers. This was supported by 
-the exploratory analysis which revealed the proportion of PRLMISAB was twice 
-as large for respondents who had used heroin than those who had not. The 
-logistic regression and decision tree model both identified tranquilizer use 
-as the third most informative variable. The odds of PRLMISAB increased by 
-1.46 times from a unit increase in tranquilizer use, holding other 
-variables constant. In the decision tree, the proportion of PRLMISAB was 
-nearly twice as large for individuals with moderate to high tranquilizer
-use (51\%) than for individuals with no to low tranquilizer use (28\%). 
-Despite selecting similar variables as important, the algorithms differed 
-somewhat in the order of importance they assigned to mental health, age 
-category, and heroin use. In the logistic regression model, the odds of 
-PRLMISAB increased by 1.15 for a unit increases in mental health issues 
-(e.g., adult depression), and the odds of PRLMISAB increases by 2.22 
-times for a unit increase in heroin use, holding other variables constant. 
-In terms of the age effect, the odds of PRLMISAB decreased by 1.24 (24\%) 
-holding other variables constant. The decision tree model supported this
-decrease in PRLMISAB among older respondents, revealing that nearly 
-two-thirds (64\%) of individuals age 35 and younger reported PRLMISAB,
-whereas only one-third (35\%) of respondents 36 or older reported PRLMISAB.
+The three top performing models all selected cocaine use as the most 
+informative feature for predicting pain reliever misuse and abuse (PRLMISAB). 
+For a one unit increase in cocaine use, the logistic regression idicated 
+that the odds of PRLMISAB increased by 1.99 times, holding constant the 
+effects of other variables constant. In the decision tree, the proportion 
+of PRLMISAB among individuals who reported moderate to high cocaine use (39\%) 
+was more than five times larger than for individuals who reported no or 
+low cocaine use (7\%). The random forest model provides the mean decrease
+in the Gini score, which is a measure of node purity at each split and is
+difficult to interpret in terms of the outcome. Both logistic regression and 
+the random forests model identified amphetamine use as the second most 
+influential feature for predicting PRLMISAB. The odds of PRLMISAB increased 
+by 1.84 times for a unit increase in amphetamine use (holding other variables 
+constant). By contrast, the decision tree identified heroin use as the second 
+most important predictor of PRLMISAB. Of the few respondents who disclosed 
+heroin use, more than two-thirds (70\%) reported misusing or abusing pain 
+relievers. Furthermore, the proportion of PRLMISAB was twice as large for 
+respondents who had used heroin than those who had not. In the logistic 
+regression model, the odds of PRLMISAB increased by 2.12 times given previous
+heroin use. Tranquilizer use was identified as the third most important variable 
+in both the decision tree and logistic regression models. For a one unit 
+increase in tranquilizer use, the odds of PRLMISAB increased 1.46 times,  
+all else being equal. Similar to the finding for heroin use, the proportion 
+of PRLMISAB was nearly twice as large for individuals with moderate to high tranquilizer use (51\%) than for individuals with no to low tranquilizer use 
+(28\%). The algorithms also selected age category, mental health, health
+issues, education level, and previous substance treatment as important
+features for predicting PRLMISAB. The models differed, however, in the order 
+and importance that each assigned to these predictor variables. A general
+finding related to age category is that pain reliever misuse and abuse was
+more prevalent among respondents age 35 and younger than older individuals. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Model Interpretability}
 
-Each classification model has its advantages and limitations. Logistic 
+Each classification model has its advantages and limitations. 
+
+The main advantage of logistic regression is that 
+the coefficient estimates can be interpreted in terms of odds ratios. 
+Decision trees provide an interpretable model based on the frequency
+and proportion of observations along branches according to features splits, 
+but are prone to overfit training data. Random forests corrects for 
+overfitting of single decision trees and generalizes well to new data, 
+but can be difficult to interpret. 
+
+Logistic 
 regression provides the coefficient estimates and odds ratios, but is 
 restricted to cases where the outcome is modeled as a linear function of 
 the independent variables. Decision tree can model non-linear patterns in 
