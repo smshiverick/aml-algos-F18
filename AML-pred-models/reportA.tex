@@ -29,10 +29,12 @@ fifteen features, including demographic variables, past medication use, and
 illicit drug use. The binary target variable was pain reliever misuse and abuse. 
 Model performance was evaluated on the testing set. Logistic regression, 
 decision trees, and random forests had the highest $f_1$-scores. Neural networks 
-(MLP) and support vector classifier both had high accuracy, but low $f_1$-scores. Advantages and limitations of the classification models are discussed. 
+(MLP) and support vector classifier both had high accuracy, but low $f_1$-scores. 
+Advantages and limitations of the classification models are discussed. 
 \footnote{This project was done in partial fulfillment of requirements 
 for the M.S. in Data Science from the School of Informatics and Computing at 
-IU-Bloomington completed in May, 2018. Address correspondence to \textit{smshiver@iu.edu}}
+IU-Bloomington completed in May, 2018. Address correspondence to 
+\textit{smshiver@iu.edu}}
 
 \end{abstract}
 \keywords{Predictive Modeling, Supervised Learning, Classification Models}
@@ -137,13 +139,14 @@ closely as possible to the default state. In other words, the model will
 predict a number close to one for individuals who have misused or abused 
 pain relievers and a number close to zero for individuals who have not. 
 The distribution of conditional probabilities in the logit model has an 
-S-shaped curve. The coefficient estimates are selected to maximize the 
-likelihood function, and are interpreted as an indication of the log-odds 
-change in the outcome variable that is associated with a one-unit increase 
-in the predictor variable, holding the effects of other predictor variables 
-constant. The intercept, $\beta_0$, is the log of the odds ratio when X 
-is 0 \cite{gujarati09}. The logistic function is represented below, 
-where X = ($X_1$...$X_p$) predictors: 
+S-shaped curve. By taking the natural log of the left side of the equation,
+we obtain the logit function (equation 2) which is linear in the parameters, 
+where X = ($X_1$...$X_p$) predictor variables. The coefficient estimates are 
+selected to maximize the likelihood function, and are interpreted as an indication of 
+the log-odds change in the outcome variable that is associated with a 
+one-unit increase in the predictor variable, holding the effects of other 
+predictor variables constant. The intercept, $\beta_0$, is the log of the 
+odds ratio when X is 0 \cite{gujarati09}.
 
 \begin{equation}
   \ ln\frac{P_i}{1-P_i} = \beta_0 + \beta_1X_1 + \beta_1X_2 +... \beta_p*X_p \
@@ -1015,151 +1018,97 @@ the decision tree and random forests models would be preferred.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The three top performing models all selected cocaine use as the most 
-informative feature for predicting pain reliever misuse and abuse (PRLMISAB). 
-For a one unit increase in cocaine use, the odds of PRLMISAB increased by 1.99 
-times, holding constant the effects of other variables constant. The proportion 
-of PRLMISAB among individuals who reported moderate to high cocaine use (39\%) 
-was more than five times larger than for individuals who reported no or 
-low cocaine use (7\%), as seen in the decision tree. The random forest model 
-provides the mean decrease in the Gini score, which is a measure of node purity 
-at each split but is difficult to interpret in terms of the outcome. Both 
-logistic regression and random forests identified amphetamine use as the 
-second most influential feature for predicting PRLMISAB. The odds of PRLMISAB 
-increased by 1.84 times for a unit increase in amphetamine use (holding other 
-variables constant). By contrast, the decision tree identified heroin use as 
-the second most important predictor of PRLMISAB. Of the few respondents who 
-disclosed heroin use, more than two-thirds (70\%) reported misusing or abusing 
-pain relievers. In the logistic regression model, the odds of PRLMISAB 
-increased by 2.12 times given previous heroin use. Furthermore, the 
-proportion of PRLMISAB was twice as large for respondents who had used heroin 
-than those who had not, which reinforces the hypothesized link between pain 
-reliever misuse and abuse and heroin use. Tranquilizer use was identified as 
-the third most important variable in both the decision tree and logistic 
-regression models. For a one unit increase in tranquilizer use, the odds of 
-PRLMISAB increased 1.46 times, all else being equal. Similar to the finding 
-for heroin use, the proportion of PRLMISAB was nearly twice as large for 
-individuals with moderate to high tranquilizer use (51\%) than for individuals 
+Cocaine use was selected by these three models as the most informative 
+predictor of pain reliever misuse and abuse (PRLMISAB). The odds of PRLMISAB
+increased by 1.99 times given a one unit increase in cocaine use. In terms of
+frequencies, the proportion of PRLMISAB among individuals who reported moderate 
+to high cocaine use (39\%) was more than five times larger than for individuals 
+who reported no or low cocaine use (7\%). The random forest model provides the 
+mean decrease in the Gini score, a measure of node purity at each split, which 
+is difficult to interpret in terms of the outcome. Both logistic regression and 
+random forests identified amphetamine use as the second most influential 
+feature for predicting PRLMISAB. The odds of PRLMISAB increased by 1.84 times 
+for a unit increase in amphetamine use. By contrast, the decision tree 
+identified heroin use as the second most important predictor of PRLMISAB.
+Of the few respondents who disclosed heroin use, more than two-thirds (70\%) 
+reported misusing or abusing pain relievers. In the logit model, the odds of 
+PRLMISAB increased by 2.12 times given previous heroin use (all else being 
+equal). Furthermore, the proportion of PRLMISAB was twice as large for 
+respondents who had used heroin than those who had not, which supports
+previous findings of a connection between pain reliever misuse and abuse and 
+heroin use. Tranquilizers were identified as the third most important variable 
+by both the decision tree and logistic regression models. The odds of PRLMISAB
+increased 1.46 times for a one unit increase in tranquilizer use. Similar to 
+the pattern for heroin, the proportion of PRLMISAB was nearly twice as large 
+for respondents with moderate to high tranquilizer use (51\%) than individuals
 with no to low tranquilizer use (28\%). The algorithms also selected age 
-category, mental health, health issues, education level, and previous 
-substance treatment as important features for predicting PRLMISAB. The models
-differed, however, in the order and importance that each assigned to these 
-predictor variables. A general finding is that pain reliever misuse and abuse 
-was more prevalent among respondents age 35 and younger than older individuals. 
+category, mental health, health issues, education level, and previous substance 
+treatment as important features for predicting PRLMISAB. The models differed, 
+however, in the order and importance they assigned to these variables. A 
+general finding related to age is that pain reliever misuse and abuse was more 
+prevalent among respondents age 35 and younger than older individuals. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Model Interpretability}
 
-Each classification model has its advantages and limitations. 
+Every classification model has advantages and limitations. In general simpler 
+models provide interpretable solutions but tend to have lower accuracy,
+where more complex models yield higher performance but are often more 
+difficult to interpret. The advantage of logistic regression is that it 
+provides coefficient estimates for individual parameters that can be 
+interpreted as odds ratios, but the predicted outcome (Y-hat) is modeled as 
+the weighted combination of all the independent variable. The logit function
+is linear in the parameters, but the probability of the expected outcome are
+non-linear. The terms in the logistic regression equation can be rearranged 
+to obtain the function of the event probability (equation 3). 
 
-The main advantage of logistic regression is that 
-the coefficient estimates can be interpreted in terms of odds ratios. 
-Decision trees provide an interpretable model based on the frequency
-and proportion of observations along branches according to features splits, 
-but are prone to overfit training data. Random forests corrects for 
-overfitting of single decision trees and generalizes well to new data, 
-but can be difficult to interpret. 
+\begin{equation}
+  \ \textit{P} = \frac{1}{1+exp[-(\beta_0 + \beta_1X_1 + \beta_1X_2 +... \beta_p*X_p)]} \
+\end{equation}
 
-Logistic 
-regression provides the coefficient estimates and odds ratios, but is 
-restricted to cases where the outcome is modeled as a linear function of 
-the independent variables. Decision tree can model non-linear patterns in 
-the data, are easy to interpret and explain to others. The results of a 
-single decision tree can greatly overfit the data used to train the model, 
-and very different trees can be obtained from different samples of the 
-training data. Unpruned trees can also result in very complex models; 
-limiting the decision tree to a depth of four nodes improved the 
-interpretability, while perhaps reducing generalizability to new data. 
-
-Random forests decrease overfitting by building multiple trees trained on
-bootstrap samples of the training set using random feature selection in the
-process of tree generation \cite{brown12}. Although random forests models are
-more accurate than a single tree and can compensate for overfitting, a 
-limitation is that it can be difficult to interpret an ensemble of trees apart 
-from the measure of feature importance provided in the output. Single trees 
-are still useful for visually representing the decision process.
-
-The forests provide a measure of features importance, but are not interpretable.
-
-Gradient boosting is an approach that typically improves test set accuracy by 
-using many simple models iteratively; however, the accuracy and $f_1$-score for 
-the gradient boosting model was not better than random forests. Additional 
-parameter tuning may have improved performance of the boosted model.
-
-
-Simple models had lower accuracy but provide more interpretable solutions 
-than complex models which can yield higher accuracy but are often harder 
-to interpret. 
-
-One of the simplest classifier algorithms, K-Nearest Neighbors (KNN)
-classifies a new data point based on the Euclidean distance to its 
-nearest neighbors and provides a solution that is easy to understand. 
-However, KNN does not perform well with a large number of features 
-(100 or more) or sparse datasets.
-
-SVMs often perform well, but are sensitive to parameter settings 
-and scaling of the data. 
-
-The multilayer perceptron (MLP) is one of the most widely used neural network 
-model for classification 
-
-With a limited number of predictor variables and single 
-hidden layer, the neural network is still somewhat interpretable. As the 
-number of predictors and hidden layers increases, the neural network becomes 
-uninterpretable and basically represents a ``black box'' model in that 
-the interal workings are not comprehensible at a human level. 
-
-With a limited number of predictor variables and single hidden layer, 
-it is possible to interpret the relations among weights
-and nodes in the neural network. With a larger number of features and high
-number of hidden layers, complex neural networks are difficult to interpret.
-
-Although each model identified
-cocaine use as the most informative feature for predicting pain reliever
-misuse an dabuse, the models differed in the order and importance each 
-assigned to different features.
-
-
-The neural network (MLP) model and support vector classifier (SLC) 
-performed best in terms of accuracy, but both models had low $f_1$-scores, 
-which indicates that they did not perform well with imbalanced classes. 
-Complex models such as random forests and neural networks yield high 
-performance and generalize well to new data, but these models can be difficult 
-to interpret compared to simpler models such as logistic regression and decision 
-trees model. The three top-performing models 
-
+The drawbacks of logistic regression are that it does not perform well for
+modeling non-linear relationships in the data, or with high dimensional data 
+(P \> N). Decision trees are useful for modeling non-linear data and can be 
+interpreted in terms of the frequency or proportion of observations selected 
+at each branch. A single tree visually represents the decision process in a 
+manner that is effective for communicating results to non-technical audiences. 
+A disadvantage is that, without pruning, decision can become very complex, 
+especially as the number of predictors increases. Limiting the decision tree 
+to a depth of four nodes improved the interpretability, but reduced the generalizability to new data. Random forests correct for overfitting by 
+building multiple different trees and averaging them to identify class 
+membership. In general, random forests yield high performance and generalize 
+well to new data, but can be difficult to interpret. Gradient boosting is
+a model that typically improves accuracy using many simple models iteratively 
+and correcting for individual trees, but it did not perform better than 
+random forests in this study. The multilayer perceptron (MLP) is one of the 
+most widely used neural network model for classification. With a limited 
+number of predictor variables and single hidden layer (see Appendix A), it 
+is possible to interpret the relations among weights and nodes in hidden 
+layers of a simple neural network. As the number of predictors and hidden 
+layers increases, the neural network becomes opaque to interpretation and 
+represents a ``black box'' model, which is not comprehensible at a human level. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Combine Limitations and Extensions}
+\subsubsection{Limitations}
 
-Survey data may be biased to some degree. People may under-report or minimize 
-their use of illicit or illegal substances, and may also be reluctant to 
-disclose mental health disorders or illnesses;b however, measures of 
-confidentiality and anonymity help to assure more accurate disclosure 
-of personal information. 
-
-A limitation of the study is that the aggregated features represent a subset
-of the entire list of features in the NSDUH-2015 dataset 
-
-
-was constructed as a subset of 
-features data. 
-Ninety attributes were selected out of 2666 features in the original dataset, 
-and many features were combined to create aggregated variables for health, 
-mental health, prescription opioid misuse and abuse, drug treatment, mental health
-treatment. 
-
-Future research could include a more comprehensive selection of
-features to identify the set of features relevant for predicting opioid
-dependency and addiction. 
-
-The study could be extended in the following ways: including a larger
-selection of features in model building, obtain a larger sample by including 
-data for additional years, and subset the data to focus on individuals who 
-reported any previous pain reliever use. 
-
+A surprising finding is that several models that typically perform well for 
+binary classification tasks (gradient boosting, SVM, neural network) did not 
+perform better than was observed here. This may be due in part to imbalanced 
+classes in the sample data. A limitation of the study is that the default 
+setting were used in model construction. Many complex models are sensitive 
+to parameter settings and scaling of the data. Additional parameter tuning 
+may have improved performance of complex models. A future study could use 
+cross-validation to select hyperparameters that optimize model performance.
+Another limitation is that the aggregated features represent a subset
+of the entire range of features in the NSDUH datasets. In future, it may
+be useful to include a more comprehensive range of features to identify 
+additional variables for predicting opioid dependency and addiction. 
+Given the large proportion of the sample that had not previously used any
+prescription opioid pain relievers, it may be more effective to classify 
+pain reliever misuse and abuse with a sample of individuals who had used 
+pain medications in the past.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1187,34 +1136,21 @@ rate of transmission.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
 
-This results of several classification models of 
-pain reliever misuse and abuse. A general conclusion is that 
-
-Several classifier algorithms were used to identify relevant features for 
-predicting heroin use and prescription opioid misuse. Comparing the performance 
-of different algorithms is helpful for  selecting the best model. 
-
-Several features were identified as important for classifying pain reliever
-misuse and abuse, including Cocaine Use, Amphetamine Use, tranquilizer use,
-age category, overall health,
-
-In addition to evaluating the performance using
-a standard metric it is also important to consider how their results 
-can be interpreted.
-
-Prescription opioid misuse and abuse was associated with heroin use: of 
-the individuals who reported misusing prescription opioid medications, twice 
-as many reported having used heroin than those who said that they had not used 
-heroin. the importance of heroin use was a predictor of pain reliever misuse and
-abuse was limited, given the very small number of individuals who reported 
-using heroin.
-
-additional evidence is needed to address these question. 
-
-Predictive modeling is a useful approach for classifying individuals as 
-having misused or abuse opioid pain relievers and may help inform 
-efforts to address the opioid crisis and reduce risk of overdose deaths. 
-
+This study compared several classification models to select the best model for 
+a data set with imbalanced. Using the $f_1$-score as the preferred performance 
+metric, logistic regression, decision trees, and random forests performed better 
+other classifier models. All the models indicated that use of illicit drugs 
+such as cocaine, amphetamines, and heroin was an important predictor of pain 
+reliever misuse and abuse. Use of prescription tranquilizers was also an 
+important predictor, as were demographic variables such as age, mental health,
+and health problems. A general conclusion is that there are tradeoffs between 
+model complexity, accuracy, and interpretality. Simple models provide 
+interpretable solutions and tend to have lower accuracy than more complex models
+which yield higher performance, but are difficult to interpret. Additional 
+evidence is needed to understand the relationships among these variables. 
+Predictive modeling is a useful approach for classifying individuals at risk 
+for opioid abuse and addiction and may help inform efforts to address the opioid 
+crisis by reducing the risk of overdose death. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{acks}
@@ -1230,6 +1166,30 @@ Thanks to Dallas J. Elgin for encouragement.
 \bibliographystyle{unsrt} %%ACM-Reference-Format%%
 \bibliography{report} 
 
-%\input{issues}
+\appendix
+
+\section{Appendix}
+
+\subsection{Supplemental Figure}
+
+\subsubsection{Neural Network} The multilayer perceptron (MLP), a 
+back-propogation neural network, did not perform as well as other models 
+for classifying pain reliever misuse and abuse, which indicates that it is 
+not a good model for data with imbalanced classes \cite{yun09}. 
+With a single hidden layer, the neural network presented in Figure 5 is 
+interpretable at a human level. The MLP model  takes the features as input
+to the model, a single hidden-layer comprises the weighted combination of
+the input variables, and the output layer represents a response probability. 
+During model training, the weights of the predictor variables are first 
+randomly initialized and then iteratively adjusted to minimize an error 
+function (e.g., gradient descent) \cite{brown12}. As the number of features
+becomes very large and hidden layers increases, the neural network 
+represents a ``black box'' model that is opaque to interpretation. 
+
+\begin{figure}[!ht]
+  \centering\includegraphics[width=\columnwidth]{images/Figure5.pdf}
+  \caption{Neural Net Classifier: Multilayer Perceptron with Single Hidden Layer.}
+  \label{f:Figure5}
+\end{figure}
 
 \end{document} 
