@@ -1069,7 +1069,7 @@ to obtain the function of the event probability (equation 3).
 
 The drawbacks of logistic regression are that it does not perform well for
 modeling non-linear relationships in the data, or with high dimensional data 
-(P \> N). Decision trees are useful for modeling non-linear data and can be 
+(e.g., $p>n$). Decision trees are useful for modeling nonlinear data and can be 
 interpreted in terms of the frequency or proportion of observations selected 
 at each branch. A single tree visually represents the decision process in a 
 manner that is effective for communicating results to non-technical audiences. 
@@ -1138,21 +1138,23 @@ networks and the rate of transmission.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
 
-This study compared several classification models to select the best model for 
-a data set with imbalanced. Using the $f_1$-score as the preferred performance 
-metric, logistic regression, decision trees, and random forests performed better 
-other classifier models. All the models indicated that use of illicit drugs 
-such as cocaine, amphetamines, and heroin was an important predictor of pain 
-reliever misuse and abuse. Use of prescription tranquilizers was also an 
-important predictor, as were demographic variables such as age, mental health,
-and health problems. A general conclusion is that there are tradeoffs between 
-model complexity, accuracy, and interpretality. Simple models provide 
-interpretable solutions and tend to have lower accuracy than more complex models
-which yield higher performance, but are difficult to interpret. Additional 
-evidence is needed to understand the relationships among these variables. 
-Predictive modeling is a useful approach for classifying individuals at risk 
-for opioid abuse and addiction and may help inform efforts to address the opioid 
-crisis by reducing the risk of overdose death. 
+This study compared several supervised learning procedures to select the best 
+model for classifying pain reliever misuse and abuse. The $f_1$-score was used 
+to evaluate model performance given the unbalanced classes in the data. 
+Logistic regression, decision trees, and random forests performed better than
+other classifier models. All three models selected cocaine as the most 
+informative variable for predicting pain reliever misuse and abuse. The
+model assigned different levels and orders of importance to the use of
+amphetamines, heroin, and tranquilizers. Demographic variables such as age, 
+mental health, and health problems were also influential predictors. 
+A general conclusion is that there are tradeoffs between model complexity, 
+accuracy, and interpretality. Simple models provide interpretable solutions 
+and have lower accuracy than more complex models which yield higher performance, 
+but are difficult to interpret. Predictive modeling is a useful approach 
+for classifying individuals at risk for opioid abuse and addiction. Additional 
+research is needed to understand the relationships among these variables.
+The findings may inform efforts to address the opioid crisis and help 
+reduce the risk of overdose death. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{acks}
@@ -1174,19 +1176,13 @@ Thanks to Dallas J. Elgin for encouragement.
 
 \subsection{Supplemental Figure}
 
-\subsubsection{Neural Network} The multilayer perceptron (MLP), a 
-back-propogation neural network, did not perform as well as other models 
-for classifying pain reliever misuse and abuse, which indicates that it is 
-not a good model for data with imbalanced classes \cite{yun09}. 
-With a single hidden layer, the neural network presented in Figure 5 is 
-interpretable at a human level. The MLP model  takes the features as input
-to the model, a single hidden-layer comprises the weighted combination of
-the input variables, and the output layer represents a response probability. 
+\subsubsection{Neural Network} The multilayer perceptron (MLP) is a 
+back-propogation neural network that takes the features as input; a 
+single hidden-layer comprises the weighted combination of the input 
+variables, and the output layer represents a response probability. 
 During model training, the weights of the predictor variables are first 
-randomly initialized and then iteratively adjusted to minimize an error 
-function (e.g., gradient descent) \cite{brown12}. As the number of features
-becomes very large and hidden layers increases, the neural network 
-represents a ``black box'' model that is opaque to interpretation. 
+randomly initialized and then iteratively adjusted to minimize an 
+error function (e.g., gradient descent) \cite{brown12}.
 
 \begin{figure}[!ht]
   \centering\includegraphics[width=\columnwidth]{images/Figure5.pdf}
