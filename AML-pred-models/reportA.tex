@@ -14,33 +14,34 @@
 \begin{abstract}
 
 The misuse and abuse of prescription opioids (MUPO) has become a major 
-health crisis in the U.S. Predictive modeling can identify factors related to 
-MUPO and predict individuals at risk for opioid addiction. The present study 
-compares ten classification models using four performance metrics: accuracy, 
-sensitivity (recall), precision, and $f_1$-score. Data from the National 
-Survey on Drug Use and Health for three years (2015-2017) was combined to 
-create a sample of N = 170317 observations. Twenty-six percent of respondents 
-reported using prescription opioid medications in the past year, 11\% of
-respondents reported pain reliever misuse or abuse, and 2\% reported heroin
-use. The classifier models were fit to the training set with sixteen features, 
+health crisis in the U.S. resulting in increased drug overdose deaths
+\cite{nida18}. Predictive modeling can identify important factors that 
+contribute to MUPO and predict individuals at risk for opioid addiction. 
+The present study compared ten classification models using four performance 
+metrics: accuracy, sensitivity (recall), precision, and $f_1$-score. Data 
+from three years of the National Survey on Drug Use and Health (2015-2017) 
+was combined to create a sample of N = 170317 observations. Twenty-six percent 
+of respondents reported using prescription opioid medications in the past year,
+11\% reported misusing or abusing pain relievers, and 2\% reported heroin use. 
+The classifier models were fit to the training set with sixteen features, 
 including demographic variables, medications, and illicit drugs. The binary 
 target variable was pain reliever misuse and abuse. Model performance was 
 evaluated on the testing set. The $f_1$-score was used as the performance 
-metric, rather than accuracy, due to unbalanced classes in the data. Logistic
-regression, decision trees, and random forests had the highest $f_1$-scores
-compared to other models. All three models identified cocaine use as the most 
-informative feature for predicting pain reliever misuse and abuse. Amphetamine 
-use was selected by logistic regression and random forests as the second most 
-important variable, but the decision tree selected heroin use as the second 
-most important feature. The models differed in the importance that they 
-assigned to tranquilizer use, age category, and mental health as predictors 
-of pain reliever misuse and abuse. There was a tradeoff observed in model 
-complexity and interpretability. Advantages and limitations of the 
-classification models are discussed. 
+metric due to unbalanced classes in the data. Logistic regression, decision 
+trees, and random forests had the highest $f_1$-scores compared to other models.
+All three models identified cocaine use as the most informative feature for 
+predicting pain reliever misuse and abuse. Amphetamine use was selected by 
+logistic regression and random forests as the second most important variable, 
+but the decision tree selected heroin use as the second most important feature. 
+The models differed in the importance that they assigned to heroin use, 
+tranquilizer use, age category, and mental health as predictors of pain 
+reliever misuse and abuse. There is a tradeoff between model complexity and 
+interpretability. Advantages and limitations of the classifier models are 
+discussed. 
 \footnote{This project was completed in partial fulfillment of requirements 
 for the M.S. in Data Science from the School of Informatics and Computing at 
 IU-Bloomington completed in May, 2018. Manuscript completed November 23, 2018. 
-Manuscript submitted December 2018. Address correspondence to 
+Manuscript submitted December 15, 2018. Address correspondence to 
 \textit{smshiver@iu.edu}}
 
 \end{abstract}
@@ -57,21 +58,21 @@ to prescription opioid pain relievers such as oxycodone or hydrocodone
 \cite{nida18}. Opioid dependence and addiction are chronic health conditions. 
 On average, more than 115 people die from an opioid overdose in the U.S. 
 each day \cite{cdc18}, and the number of opioid-related overdose deaths has 
-more than quadrupled from 1999 to 2016. Nonmedical use of prescription opioids 
-is a significant risk factor for heroin use \cite{Rudd16}. Supply-based 
-interventions to reduce the availability of prescription opioids have produced 
-a shift to the use of heroin and synthetic opioids such as fentanyl 
-\cite{jones15}. Four in five new heroin users started out misusing prescription 
-painkillers \cite{jones13}. Because the dosage levels and potency of illicit 
-or synthetic opioids are largely unknown, the risk of overdose death is greatly 
-increased. The sharp rise in prescription overdose deaths (POD) and heroin 
-overdose deaths (HOD) are correlated \cite{muhuri13, unick13}. Predictive 
-modeling can be used to identify important features that contribute to the 
-opioid misuse and abuse help predict individuals susceptible to opioid 
-addiction. Data mining may provide insights to inform policy decisions for 
-addressing the opioid crisis. This study compares the performance of several 
-classification models to determine which approaches are best for
-modeling pain reliever misuse and abuse. 
+more than quadrupled from 1999 to 2016. In addition, non-medical use of
+prescription opioids is a significant risk factor for heroin use \cite{Rudd16}. 
+Supply-based interventions to reduce the availability of prescription opioids 
+have produced a shift to the use of heroin and synthetic opioids such as 
+fentanyl \cite{jones15}. Four in five new heroin users started out misusing 
+prescription painkillers \cite{jones13}. Given that the potency and dosage 
+levels of illicit or synthetic opioids is largely unknown, the risk of overdose
+death is greatly increased. The sharp rise in prescription overdose deaths 
+(POD) and heroin overdose deaths (HOD) are correlated \cite{muhuri13, unick13}. 
+Predictive modeling can be used to identify important features that contribute 
+to MUPO and help predict individuals susceptible to opioid addiction. Data 
+mining may provide insights to inform policy decisions for addressing the 
+opioid crisis. This study compares the performance of several classification 
+models to determine which approaches are best for modeling pain reliever 
+misuse and abuse. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -82,45 +83,46 @@ set of procedures and automated processes for extracting knowledge from data
 \cite{james13, kuhn13, muller17, raschka17}. The two main branches of 
 predictive modeling are supervised learning and unsupervised learning. 
 Supervised learning problems involve prediction about a specific target 
-variable or outcome. If a dataset has no target outcome, unsupervised learning 
+or outcome variable. If a dataset has no target outcome, unsupervised learning 
 methods (e.g., clustering) can be used to discover underlying structure 
-in unlabeled data. Supervised learning is used to predict a certain outcome 
-from a given input, when examples of input/output pairs are available in the 
-data (e.g., logistic regression) \cite{muller17}. A statistical learning model 
-is constructed on a set of observations used to train the model set and then 
-used to predict new observations. Two main approaches for supervised learning 
-problems are regression and classification. When the target variable
-to be predicted is continuous, or there is continuity between the outcome 
-(e.g., home values), a regression model is used to test the set of features 
-that predict the target variable. If the target is a class label, set of 
-categorical or binary outcomes (e.g., spam or ham emails, benign or malignant 
-cells), then classification can be used to predict which class or category 
-label that new instances will be assigned to. This study uses a supervised 
-learning approach to classify instances of pain reliever misuse and abuse
-as a binary outcome. 
+in unlabeled data. Supervised learning is used to predict an outcome based
+on input provided to a model, when examples of input/output pairs are available 
+in the data (e.g., logistic regression) \cite{muller17}. A statistical learning 
+model is constructed on a set of observations used to train the model set and 
+then used to predict new observations. Two main approaches for supervised 
+learning problems are regression and classification. When the target variable
+is continuous or there is continuity in the outcome (e.g., home prices), a
+regression model tests how a given set of features predicts the target variable. 
+If the target is a class label, set of categories, or binary variable (e.g., 
+spam or ham emails, benign or malignant cells), a classification model is used 
+to predict which class or category label that new instances will be assigned to. 
+This study used a supervised learning approach to classify instances of pain 
+reliever misuse and abuse as a binary outcome. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In the era of ``big data'', large amounts of health information are being 
+In the era of `big data', large amounts of health information are being 
 generated from electronic medical records (EMRs), clinical research data, to 
 population-level health data \cite{herland14}. Although it can be difficult 
 to obtain reliable information about opioid use based on self-reports, surveys 
-provide data on a range of issues that people may be reluctant to disclose 
+provide data on a range of issues that people may be reluctant to disclose, 
 such as illicit drug use and mental health problems. The data for the present 
 study was obtained from the National Survey on Drug Use and Health (NSDUH) 
 which is a major source of information for the use of illicit drugs and mental 
 health issues among the U.S. population aged 12 or older \cite{samhsa18}. 
-The NSDUH is a comprehensive public survey that includes more than 2600 
-variables on a diverse array of questions related to the use, misuse, and 
-abuse of substances including alcohol, tobacco, prescription medications, and 
-illicit drugs. In addition to typical demographic information, the survey
-includes self-reported measures on items related to physical health, mental 
-health (e.g., depression, anxiety, suicide), counseling, drug and alcohol 
-treatment. Data from the NSDUH has been used for identifying groups at high 
-risk for substance use, and the co-occurrence of substance use and mental 
-health disorders. The target outcome for the study was any misuse or abuse 
-of prescription pain relievers and the predictor variables of interest were 
-demographic variables, medication usage, and use of illicit drugs. 
+The NSDUH is a comprehensive public survey that includes a diverse array 
+of questions and variables related to the use, misuse, and abuse of substances 
+including alcohol, tobacco, prescription medications, and illicit drugs. In 
+addition to typical demographic information, the survey includes self-reported
+measures on items related to physical health, mental health (e.g., depression, 
+anxiety, suicide), as well as counseling, and drug or alcohol treatment. Data 
+from the NSDUH has been used for identifying groups at high risk for substance 
+use and the co-occurrence of substance use and mental health disorders. The 
+target variable for the study was any previous misuse or abuse of prescription 
+opioid pain relievers (e.g., oxycodone, hydrocodone). The predictor variables 
+were demographic features (e.g., age, sex, education), use of medications 
+(e.g., tranquilizers, sedatives), and illicit drugs (e.g., cocaine, 
+amphetamines, heroin). 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
