@@ -14,27 +14,33 @@
 \begin{abstract}
 
 The misuse and abuse of prescription opioids (MUPO) has become a major 
-health crisis resulting in increased overdose deaths \cite{nida18}. Predictive 
-modeling can identify factors related to MUPO and  predict individuals at risk 
-for opioid addiction. The present study compares ten classification models 
-using four performance metrics: accuracy, sensitivity (recall), precision, and 
-$f_1$-score. Three years of data from the National Survey on Drug Use and 
-Health (2015-2017) was combined to create a sample consisted of N = 170317
-observations. Twenty-six percent of respondents reported using prescription
-opioid medications in the past year, 11\% of respondents reported pain 
-reliever misused or abuse, and 2\% reported using heroin. With unbalanced 
-classes in the data, the $f_1$-score was used as the performance metric 
-rather than accuracy. The classifier models were fit to the training set with 
-fifteen features, including demographic variables, past medication use, and 
-illicit drug use. The binary target variable was pain reliever misuse and abuse. 
-Model performance was evaluated on the testing set. Logistic regression, 
-decision trees, and random forests had the highest $f_1$-scores. Neural networks 
-(MLP) and support vector classifier both had high accuracy, but low $f_1$-scores. 
-Advantages and limitations of the classification models are discussed. 
-\footnote{This project was done in partial fulfillment of requirements 
+health crisis in the U.S. Predictive modeling can identify factors related to 
+MUPO and predict individuals at risk for opioid addiction. The present study 
+compares ten classification models using four performance metrics: accuracy, 
+sensitivity (recall), precision, and $f_1$-score. Data from the National 
+Survey on Drug Use and Health for three years (2015-2017) was combined to 
+create a sample of N = 170317 observations. Twenty-six percent of respondents 
+reported using prescription opioid medications in the past year, 11\% of
+respondents reported pain reliever misuse or abuse, and 2\% reported heroin
+use. The classifier models were fit to the training set with sixteen features, 
+including demographic variables, medications, and illicit drugs. The binary 
+target variable was pain reliever misuse and abuse. Model performance was 
+evaluated on the testing set. The $f_1$-score was used as the performance 
+metric, rather than accuracy, due to unbalanced classes in the data. Logistic
+regression, decision trees, and random forests had the highest $f_1$-scores
+compared to other models. All three models identified cocaine use as the most 
+informative feature for predicting pain reliever misuse and abuse. Amphetamine 
+use was selected by logistic regression and random forests as the second most 
+important variable, but the decision tree selected heroin use as the second 
+most important feature. The models differed in the importance that they 
+assigned to tranquilizer use, age category, and mental health as predictors 
+of pain reliever misuse and abuse. There was a tradeoff observed in model 
+complexity and interpretability. Advantages and limitations of the 
+classification models are discussed. 
+\footnote{This project was completed in partial fulfillment of requirements 
 for the M.S. in Data Science from the School of Informatics and Computing at 
 IU-Bloomington completed in May, 2018. Manuscript completed November 23, 2018. 
-Submitted for publication December 2018. Address correspondence to 
+Manuscript submitted December 2018. Address correspondence to 
 \textit{smshiver@iu.edu}}
 
 \end{abstract}
@@ -1140,12 +1146,12 @@ networks and the rate of transmission.
 \section{Conclusion}
 
 This study compared several supervised learning procedures to select the best 
-model for classifying pain reliever misuse and abuse. The $f_1$-score was used 
+models for classifying pain reliever misuse and abuse. The $f_1$-score was used 
 to evaluate model performance given the unbalanced classes in the data. 
 Logistic regression, decision trees, and random forests performed better than
 other classifier models. All three models selected cocaine as the most 
 informative variable for predicting pain reliever misuse and abuse. The
-model assigned different levels and orders of importance to the use of
+models assigned different levels and orders of importance to the use of
 amphetamines, heroin, and tranquilizers. Demographic variables such as age, 
 mental health, and health problems were also influential predictors. 
 A general conclusion is that there are tradeoffs between model complexity, 
@@ -1162,9 +1168,8 @@ reduce the risk of overdose death.
 
 Portions of this paper were completed as part of a course project in Big Data 
 Applications and Analytics taught by Professor Gregor von Laszewskin at 
-Indiana University in the Fall 2017. Thanks to the Teaching Assistants, 
-Juliette Zurick and Miao Jiang for helpful comments for helpful comments. 
-Thanks to Dallas J. Elgin for encouragement. 
+Indiana University in Fall 2017. Thanks to Juliette Zurick and Miao Jiang 
+for helpful comments. Thanks also to Dallas J. Elgin for encouragement. 
 
 \end{acks}
 
