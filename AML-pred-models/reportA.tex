@@ -41,7 +41,7 @@ discussed.
 \footnote{This project was completed in partial fulfillment of requirements 
 for the M.S. in Data Science from the School of Informatics and Computing at 
 IU-Bloomington completed in May, 2018. Manuscript completed November 23, 2018. 
-Manuscript submitted December 15, 2018. Address correspondence to 
+Manuscript submitted December 14, 2018. Address correspondence to 
 \textit{smshiver@iu.edu}}
 
 \end{abstract}
@@ -68,8 +68,8 @@ levels of illicit or synthetic opioids is largely unknown, the risk of overdose
 death is greatly increased. The sharp rise in prescription overdose deaths 
 (POD) and heroin overdose deaths (HOD) are correlated \cite{muhuri13, unick13}. 
 Predictive modeling can be used to identify important features that contribute 
-to MUPO and help predict individuals susceptible to opioid addiction. Data 
-mining may provide insights to inform policy decisions for addressing the 
+to MUPO and predict individuals that may be susceptible to opioid addiction. 
+Data mining can provide insights to inform policy decisions for addressing the 
 opioid crisis. This study compares the performance of several classification 
 models to determine which approaches are best for modeling pain reliever 
 misuse and abuse. 
@@ -130,11 +130,13 @@ amphetamines, heroin).
 
 \subsubsection{Linear Models}
 
-As the statistician George Box stated, "All models are wrong, but some models 
-are useful" \cite{box05}. There are advantages and limitations for selecting
-any model. Logistic regression is one of the most reliable and interpretable 
-models for classification. Logistic regression models the conditional 
-distribution of probabilities for a binary response (e.g., $Pr(Y=k|X=x)$) 
+As stated by the statistician George Box, "All models are wrong, but some 
+models are useful" \cite{box05}. There are advantages and limitations for 
+selecting any model. Logistic regression is one of the most reliable and 
+interpretable models for classification. Logistic regression models the 
+conditional distribution of probabilities for a binary response (e.g., 
+$Pr(Y=k|X=x)$) 
+
 as a combination of a set of predictor variables \cite{james13, raschka17}. 
 The decision boundary for the logistic regression classifier is a linear 
 function of the input; a binary classifier separates two classes using a line, 
@@ -151,11 +153,11 @@ The distribution of conditional probabilities in the logit model has an
 S-shaped curve. By taking the natural log of the left side of the equation,
 we obtain the logit function (equation 2) which is linear in the parameters, 
 where X = ($X_1$...$X_p$) predictor variables. The coefficient estimates are 
-selected to maximize the likelihood function, and are interpreted as an indication of 
-the log-odds change in the outcome variable that is associated with a 
-one-unit increase in the predictor variable, holding the effects of other 
-predictor variables constant. The intercept, $\beta_0$, is the log of the 
-odds ratio when X is 0 \cite{gujarati09}.
+selected to maximize the likelihood function, and are interpreted as an 
+indication of the log-odds change in the outcome variable that is associated 
+with a one-unit increase in the predictor variable, holding the effects of 
+other predictor variables constant. The intercept, $\beta_0$, is the log of 
+the odds ratio when X is 0 \cite{gujarati09}.
 
 \begin{equation}
   \ ln\frac{P_i}{1-P_i} = \beta_0 + \beta_1X_1 + \beta_1X_2 +... \beta_p*X_p \
@@ -602,10 +604,10 @@ outliers (n=2).
     \midrule
     \textbf{Education} Level &  &  &  &  & \\
     School Age & 2262 & 12.4\% & & 39315 & 25.9\% \\
-    Some H.S.  & 1849 & 10.1\% & & 10507 & 10.1\% \\
-    H.S. Grad  & 4134 & 22.7\% & & 20290 & 19.9\% \\
-    Some Coll. & 5997 & 32.9\% & & 24922 & 24.5\% \\
-    Coll. Grad & 3995 & 21.9\% & & 19726 & 19.7\% \\
+    Some H.S.  & 1849 & 10.1\% & & 15334 & 10.1\% \\
+    H.S. Grad  & 4134 & 22.7\% & & 30223 & 19.9\% \\
+    Some Coll. & 5997 & 32.9\% & & 37230 & 24.5\% \\
+    Coll. Grad & 3995 & 21.9\% & & 29978 & 19.7\% \\
     \midrule
     \textbf{Marital Status} &  &  &  &  & \\
     Single    & 6777 & 37.2\% & & 64022 & 42.1\% \\
