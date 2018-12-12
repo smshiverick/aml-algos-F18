@@ -57,9 +57,9 @@ an estimated 2 million Americans suffered a substance use disorder related
 to prescription opioid pain relievers such as oxycodone or hydrocodone 
 \cite{nida18}. Opioid dependence and addiction are chronic health conditions. 
 On average, more than 115 people die from an opioid overdose in the U.S. 
-each day \cite{cdc18}, and the number of opioid-related overdose deaths has 
-more than quadrupled from 1999 to 2016. In addition, non-medical use of
-prescription opioids is a significant risk factor for heroin use \cite{Rudd16}. 
+each day \cite{cdc18}, and opioid-related overdose deaths have more than 
+quadrupled from 1999 to 2016. In addition, non-medical use of prescription 
+opioids is a significant risk factor for heroin use \cite{Rudd16}. 
 Supply-based interventions to reduce the availability of prescription opioids 
 have produced a shift to the use of heroin and synthetic opioids such as 
 fentanyl \cite{jones15}. Four in five new heroin users started out misusing 
@@ -95,14 +95,14 @@ is continuous or there is continuity in the outcome (e.g., home prices), a
 regression model tests how a given set of features predicts the target variable. 
 If the target is a class label, set of categories, or binary variable (e.g., 
 spam or ham emails, benign or malignant cells), a classification model is used 
-to predict which class or category label that new instances are assigned to. 
+to predict which class or category label new instances are assigned to. 
 This study used a supervised learning approach to classify prescription pain 
 reliever misuse and abuse as a binary outcome. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 In the era of `big data', large amounts of health information are being 
-generated from electronic medical records (EMRs), clinical research data, to 
+generated from electronic medical records (EMRs), clinical research data, and 
 population-level health data \cite{herland14}. Although it can be difficult 
 to obtain reliable information about opioid use based on self-reports, surveys 
 provide data on a range of issues that people may be reluctant to disclose 
@@ -130,9 +130,9 @@ amphetamines, heroin).
 
 \subsubsection{Linear Models}
 
-As stated by the statistician George Box, "All models are wrong, but some 
-models are useful" \cite{box05}. There are advantages and limitations for 
-selecting any model. Logistic regression is one of the most reliable 
+As stated by the statistician George E. P. Box, "All models are wrong, but 
+some models are useful" \cite{box05}. There are advantages and limitations 
+for selecting any model. Logistic regression is one of the most reliable 
 and interpretable models for classification. Logistic regression models 
 the conditional distribution of probabilities for a binary response 
 (e.g., $Pr(Y=k|X=x)$) as a combination of a set of predictor variables 
@@ -705,17 +705,16 @@ Performance of the classification models was evaluated in the confusion
 matrices reported in Table 6, which includes the metrics of accuracy, 
 sensitivity (recall), precision, and $f_1$-score. The model accuracy 
 scores ranged form 86.5\% to 90.7\%. Because of the unbalanced classes in 
-the sample data | the proportion of respondents who had never misused or 
-abused pain relievers (89\%) was much greater than the proportion who had | 
-the $f_1$-score was used as the preferred metric of performance rather 
+the sample data|the proportion of respondents who had never misused or 
+abused pain relievers (89\%) was much greater than the proportion who had|the $f_1$-score was used as the preferred metric of performance rather 
 than accuracy. The $f_1$-scores ranged from 0.87 to 0.95. Logistic 
 regression and the random forest model were tied for the highest 
 $f_1$-score (0.95) followed by the decision tree model (0.949). The 
 random forests model identified more true positives (TP) than a single 
-decision tree and fewer false positives (FP) than logistic regression. 
+decision tree and had fewer false positives (FP) than logistic regression. 
 In general, default parameter setting were used for most models; the main 
 parameter settings for the classification models are presented in Table 7.
-The result of these three top performing models are described further below.  
+The result of these three top performing models are described below.  
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
