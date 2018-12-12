@@ -35,9 +35,9 @@ logistic regression and random forests as the second most important variable,
 but the decision tree selected heroin use as the second most important feature. 
 The models differed in the importance that they assigned to heroin use, 
 tranquilizer use, age category, and mental health as predictors of pain 
-reliever misuse and abuse. There is a tradeoff between model complexity and 
-interpretability. Advantages and limitations of the classifier models are 
-discussed. 
+reliever misuse and abuse. Advantages and limitations of the classifier models 
+are considered and the tradeoff between model complexity and interpretability  
+is discussed. 
 \footnote{This project was completed in partial fulfillment of requirements 
 for the M.S. in Data Science from the School of Informatics and Computing at 
 IU-Bloomington completed in May, 2018. Manuscript completed November 23, 2018. 
@@ -132,7 +132,7 @@ amphetamines, heroin).
 
 As stated by the statistician George E. P. Box, "All models are wrong, but 
 some models are useful" \cite{box05}. There are advantages and limitations 
-for selecting any model. Logistic regression is one of the most reliable 
+to selecting any model. Logistic regression is one of the most reliable 
 and interpretable models for classification. Logistic regression models 
 the conditional distribution of probabilities for a binary response 
 (e.g., $Pr(Y=k|X=x)$) as a combination of a set of predictor variables 
@@ -140,7 +140,7 @@ the conditional distribution of probabilities for a binary response
 classifier is a linear function of the input; a binary classifier separates 
 two classes using a line, plane, or hyperplane \cite{muller17}. Given that 
 the probability values for the outcome range between 0 and 1, predictions 
-can be made based on a default value. For example, a default value of `Yes` 
+can be made based on a default value. For example, a default value of `Yes' 
 could be predicted for any individual for whom the probability of pain reliever
 misuse and abuse is greater than fifty-percent: $Pr(PRLMISAB) > 0.5$. 
 Logistic regression uses a maximum likelihood method to predict the coefficient
@@ -149,8 +149,8 @@ In other words, the model will predict a number close to one for individuals
 who have misused or abused pain relievers and a number close to  zero for 
 individuals who have not. The distribution of conditional probabilities in 
 the logit model has an S-shaped curve. By taking the natural log of the left 
-side of the equation, we obtain the logit function (equation 2) which is 
-linear in the parameters, where X = ($X_1$...$X_p$) predictor variables. 
+side of the equation, we obtain the logit function which is linear in the
+parameters, where X = ($X_1$...$X_p$) predictor variables (equation 1). 
 The coefficient estimates are selected to maximize the likelihood function, 
 and are interpreted as an indication of the log-odds change in the outcome 
 variable that is associated with a one-unit increase in the predictor variable, 
@@ -163,13 +163,13 @@ $\beta_0$, is the log of the odds ratio when X is 0 \cite{gujarati09}.
 
 \emph{Linear discriminant analysis} (LDA) is an alternative approach to 
 estimating probabilities that models the distribution of predictors 
-separately in each of the response classes and then uses the Bayes' theorem 
+separately in each of the response classes and then uses Bayes' theorem 
 to `flip' these into estimates for, $Pr(Y=k | X=x)$ \cite{james13}. The term 
 linear in LDA refers to the the discriminant functions being linear functions 
 of the predictors. For distributions assumed to be normal (i.e., multivariate 
-Guassian), LDA provides a model that is similar in form to logistic regression, 
+Gaussian), LDA provides a model that is similar in form to logistic regression, 
 but more stable. LDA is also preferred for outcomes with more than two response 
-classes. The important assumptions for LDA are: first, a common covariance 
+classes. The important assumptions for LDA are, first, a common covariance 
 matrix for all classes, and second, the class boundaries are linear functions 
 of the predictors. \emph{Quadratic Discriminant Analysis} (QDA) is an approach 
 that assumes each class has its own covariance matrix and the decision 
@@ -212,7 +212,7 @@ polynomial) functions of the predictors.
 
 \emph{Support vector machines} (SVM) are an extension of SVC that use a 
 kernel trick to reduce computational load. The radial basis function (RBF) 
-kernel (i.e., Guassian kernel) is one of the most commonly used approaches. 
+kernel (i.e., Gaussian kernel) is one of the most commonly used approaches. 
 In training the model, only a subset of data points is used to construct the 
 decision boundary, namely the support vectors that lie on the border that 
 separates the two classes. In predicting classes for new observations, the 
@@ -238,11 +238,11 @@ close to linear.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The Bayes' rule was mentioned above in relation to LDA; in this section, the 
+Bayes' rule was mentioned above in relation to LDA; in this section, the 
 \emph{naive Bayes classifier} is considered as a non-linear model.
-The Bayes theorem (equation 1) is represented by a set of probabilities to 
-represent the following question: ``Based on a given set of predictors, what
-is the probability than an outcome belongs to a particular class?''
+The Bayes theorem (equation 2) is represented by a set of probabilities 
+to answer the following question: ``Based on a given set of predictors, 
+what is the probability than an outcome belongs to a particular class?''
 
 \begin{equation}
   \ P(Y=cl|X) = \frac{P(Y)*P(X|Y=cl)}{P(X)}\
@@ -265,13 +265,13 @@ the naive Bayes model is computationally quick, even with large training sets,
 and performs competitively compared to other models. The naive Bayes model 
 encounters issues when dealing with frequencies or probabilities equal to zero,
 especially for small sample sizes. In addition, as the number of predictors 
-increases relative to the size of the sample, the posterior probabilities will 
+increases relative to the size of the sample, the posterior probabilities 
 become more extreme.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \emph{Neural Networks} are powerful models for classification and regression 
-that are based on patterns of connectivity in the brain \cite{kuhn13}. 
+that are based on theories of connectivity in the brain \cite{kuhn13}. 
 The present study considers a simple method called a multilayer perceptron 
 (MLP) which is a feed-forward neural network \cite{muller17, raschka17}. 
 The outcome is modeled by an intermediary set of unobserved variables called 
@@ -280,8 +280,8 @@ hidden units, which are linear combinations of the original predictors
 predictors which are then transformed by a nonlinear function (e.g., 
 \emph{sigmoidal}). A neural network usually has multiple hidden units used 
 to model the outcome. The MLP classifier computes weights between the inputs 
-and the hidden layers, and weights between the hidden layers and the output. 
-After computing each hidden unit, the output is modeled by a nonlinear 
+and hidden units, and weights between the layers of hidden units and the 
+output. After computing each hidden unit, the output is modeled by a nonlinear 
 combination of the hidden units. The nonlinear function allows the neural 
 network to fit more complicated functions than a linear model. Neural networks 
 are sensitive to the scaling of the features and can require extensive data 
@@ -315,7 +315,7 @@ checking which region of the partition the point falls in, and predicting the
 majority in that feature space. The main advantage of tree models is that they 
 require little adjustment and are easy to interpret. A drawback is that they 
 can lead to complex models which are highly overfit to the training data. 
-Prepruning`can help reduce overfitting by limiting the maximum depth of the 
+`Prepruning' can help reduce overfitting by limiting the maximum depth of the 
 tree, or the maximum number of leaves. Another approach is to set the minimum 
 number of points in a node required for splitting. Decision trees work well 
 with features measured on different scales, or with data that has a mix of 
@@ -325,18 +325,17 @@ binary and continuous features.
 
 \emph{Random Forests} is an ensemble approach that combines many simple trees 
 that each overfit the data in different ways. By building many trees and 
-averaging their results, random forests helps to reduce overfitting. In 
+averaging their results, random forests help to reduce overfitting. In 
 constructing the forests, the user selects the number of trees to build 
 (e.g., 1000). Randomness is introduced using a bootstrapping method that 
-repeatedly draws random samples of size \textit{n} from the data set 
-(with replacement). The decision trees are build on these random samples 
+repeatedly draws random samples of size \textit{n} from the data set, with replacement. The decision trees are built on these random samples 
 of the same size, with some points missing and some data points repeated 
 \cite{muller17,raschka17}. The algorithm makes a random selection of 
-\textit{p}- features, and uses a different set of features at each node branch. 
+\textit{p}-features, and uses a different set of features at each node branch. 
 These processes ensure that all of the decision trees in the random forest are 
 different. Random forests is one of the most widely used supervised learning 
 algorithms and works well without very much parameter tuning or scaling of data. 
-A limitation is that Random forests do not perform well with high-dimensional 
+A limitation is that random forests do not perform well with high-dimensional 
 data, or data that is sparse (e.g., text).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -344,7 +343,7 @@ data, or data that is sparse (e.g., text).
 \emph{Gradient Boosting} is another ensemble method that combines multiple 
 decision trees in a serial fashion, where each tree tries to correct for 
 mistakes of the previous one \cite{muller17}. Gradient boosted regression 
-trees use strong pre-pruning, with shallow trees of a depth of one to five. 
+trees use strong prepruning, with shallow trees of a depth of one to five. 
 Each tree only provides a good estimate of part of the data; combining many 
 shallow trees (i.e., ``weak learners'') iteratively improves performance. 
 In addition to pre-pruning and the number of trees, an important parameter 
@@ -383,46 +382,45 @@ to improve model accuracy.
 To identify which model is best for a given problem, with the data available, 
 it is necessary to evaluate the performance of different learning algorithms. 
 Binary classification is assessed in terms of the successful assignment of 
-observations to one of two classes: positive or negative. No model can make 
-perfect predictions as there are always mistakes to be found. Medical testing 
-and diagnosis is often used as an example to illustrate classification decisions 
-and errors. In the actual state of the world, a patient can either have an 
-illness, or not, and the person can be either diagnosed as having the illness, 
-or not. In the present case, the positive class represents self-reported pain 
-reliever misuse and abuse (PRLMISAB), and predictions based on the classifier 
-models will be either correct or incorrect in relation to the observed outcomes. 
-For example, a person who has never misused or abused pain relievers may be 
-misclassified as having done so (i.e., 'false positive'), or conversely, a 
-a person who actually has misused and abused pain relievers may be mislabeled 
-as never having done so (i.e., 'false negative').
+observations to one of two classes: positive or negative. No classification 
+model can make perfect predictions, errors are always to be found. Medical 
+testing is often used as an example to illustrate classification decisions 
+and errors. For example, in the actual state of the world, a patient can either 
+have an illness, or not, and the person can be either diagnosed as having the 
+illness, or not. In the present case, the positive class represents self-
+reported pain reliever misuse and abuse (PRL Misuse), and predictions based on 
+the classifier models will be either correct or incorrect in relation to the 
+observed outcomes. For example, a person who has never misused or abused pain 
+relievers may be misclassified as having done so (i.e., 'false positive'), or conversely, a person who actually has misused and abused pain relievers may 
+be mislabeled as never having done so (i.e., 'false negative').
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Correct decisions and classification errors are represented in a 
-\emph{confusion matrix} that indicates the correspondence between predicted and 
-actual outcomes (Table 1). The confusion matrix is a two-by-two array in 
+\emph{confusion matrix} that indicates the correspondence between predicted 
+and actual outcomes (Table 1). The confusion matrix is a two-by-two array in 
 which the columns correspond to the actual observed classes and the rows 
-correspond to the predicted classes. The main diagonal indicate the number of 
-correctly classified samples (\emph{true positive, true negative}), while the 
-other entries represent the number of samples in one class that were mistakenly 
-classified as another class. Several performance metrics can be obtained
-from the confusion matrix, including accuracy, sensitivity (i.e., recall), 
-specificity, precision, and the $f_1$-score, presented in Table 2 
+correspond to the predicted classes. The main diagonal indicates the number 
+of correctly classified samples (\emph{true negative, true positive}), while 
+the other entries represent the number of samples in one class that were 
+mistakenly classified as another class. Several performance metrics can be 
+obtained from the confusion matrix, including accuracy, sensitivity (i.e., 
+recall), specificity, precision, and the $f_1$-score, presented in Table 2 
 \cite{kuhn13, wiki18}. Model performance is most commonly evaluated using 
-\emph{Accuracy} which is assessed by the number of correct predictions divided 
-by the total observations. Sensitivity or \emph{Recall} provides the 
+\emph{Accuracy} which is assessed by the number of correct predictions 
+divided by the total observations. Sensitivity or \emph{Recall} provides the 
 ``True Positive Rate'' (TPR), measured as the number of positive samples that 
-are correctly identified by the prediction (number of sick patients correctly 
-diagnosed). Recall is used when the goal is to avoid false negatives. The True 
-Negative Rate (TNR) is described as Specificity, which indicates the proportion 
-of negative cases correctly identified (healthy people not misdiagnosed). 
-\emph{Precision} provides the ``Positive Predictive Value'' (PPV), which 
-measures how many of the samples predicted as positive are actually positive. 
-Precision is used as a metric when the goal is to limit the number of false 
-positives. The \emph{$f_1$-score} or `f-measure' represents a harmonic mean 
-between recall and precision (\(\frac{2}{ \frac{1}{R} + \frac{1}{P} }\) ).
-The $f_1$-score can be a better measure of performance than accuracy 
-in datasets with imbalanced classes, where one class is much more frequent 
+are correctly identified by the prediction (number of sick patients correctly
+diagnosed). Recall is used when the goal is to avoid false negatives. The 
+True Negative Rate (TNR) is described as Specificity, which indicates the 
+proportion of negative cases correctly identified (healthy people not 
+misdiagnosed). \emph{Precision} provides the ``Positive Predictive Value'' 
+(PPV), which measures how many of the samples predicted as positive are 
+actually positive. Precision is used as a metric when the goal is to limit
+the number of false positives. The \emph{$f_1$-score} represents a harmonic 
+mean between recall and precision (\(\frac{2}{ \frac{1}{R} + \frac{1}{P} }\)). 
+The $f_1$-score can be a better measure of performance than accuracy in 
+datasets with imbalanced classes, where one class is much more frequent 
 than the other class, as it takes into account both recall and precision 
 \cite{muller17, yun09}.
 
@@ -452,7 +450,7 @@ than the other class, as it takes into account both recall and precision
 \begin{figure}[!ht]
   \centering\includegraphics[width=\columnwidth]{images/Figure2.pdf}
   \caption{Training Set Accuracy and Testing Set Accuracy for KNN Classifier
-  Model as a function of Number of Neighbors.}
+  Model as a function of K-Neighbors.}
   \label{f:Figure2}
 \end{figure}
 
@@ -504,26 +502,27 @@ but also with new observations. A standard practice is to divide the sample
 data into a \emph{training set} and a \emph{testing set} of observations 
 that is set aside and used to evaluate model performance. By convention, 
 approximately 70 to 80 percent of observations are used in the training set 
-and the remaining portion is held in the test set. Two main problems can 
-occur in evaluating model performance: \emph{overfitting} and 
+and the remaining portion is held in the test set. The two main problems 
+that occur in evaluating model performance are \emph{overfitting} and 
 \emph{underfitting}. In the case of overfitting, a model can have high 
 accuracy on the training set but perform poorly with new data in the test set 
-because the model is `over-fit' to the training data. By contrast, a model 
-can attain high accuracy with the testing set, while performing poorly with 
-the training data due to underfitting. One of the simplest classification 
-models, K-Nearest neighbors provides an illustrative example. KNN classifies 
-observations by assigning the label that is most frequent among the 
-\textit{'k'}-number of nearest training samples (k is a parameter selected 
-by the user). The accuracy of the KNN classifier for the training set and 
-testing set is plotted in Figure 2, as a function of the parameter k-neighbors. 
-The plot shows that increased accuracy on the testing set is associated with 
-decreased training set accuracy; conversely, increased accuracy on the 
-training set is related to decreased test set accuracy. The best model is one 
-that optimizes test set accuracy while striking a balance between the 
-problems of overfitting and underfitting. In the case of KNN, performance on 
-the test set increased only slightly between 2 and 4 neighbors, but did not 
-improve much beyond 5 neighbors. Therefore, a model with k=4 neighbors 
-provides a reasonable solution for the data. 
+because the model is overly fit to the training data. By contrast, a 
+simple model may not generalize well to new observations as it does not
+include all of the features relevant for predicting the target outcome 
+as seen in the case of underfitting. One of the simplest classification 
+models, K-Nearest Neighbors (KNN) provides an illustrative example. KNN 
+classifies observations by assigning the label that is most frequent among 
+the \textit{'k'}-number of nearest training samples (k is a parameter 
+selected by the user). The accuracy of the KNN classifier for the training 
+set and testing set is plotted in Figure 2 as a function of the parameter 
+k-neighbors. The plot shows that increased accuracy on the training set is 
+associated with decreased testing set accuracy; conversely, increased 
+accuracy on the testing set is related to a decrease in training set 
+accuracy. The best model is one that optimizes test set accuracy while 
+striking a balance between the problems of overfitting and underfitting. 
+In the case of KNN, testing set increases only slightly between 2 and 4 
+neighbors, but does not improve much beyond 5 neighbors. Therefore, a model 
+with k=4 neighbors provides a reasonable solution for the data. 
 
 \subsubsection{Imbalanced Classes}
 
@@ -543,9 +542,9 @@ that underestimates the occurrence of positive cases which are misclassified as
 false negatives. Efforts to address the issue of imbalanced data have included 
 sampling methods such as `boosting'. As described above, the $f_1$-score is 
 considered a better measure of performance than accuracy with data that have 
-imbalanced classes as it takes into account both sensitivity (i.e., recall) and
-precision. The study also identified features important for predicting MUPO. 
-The tradeoffs between model performance and interpretability are discussed. 
+imbalanced classes as it takes into account both recall and precision. The 
+study also identified features important for predicting MUPO. Tradeoffs 
+between model complexity and interpretability are discussed. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
