@@ -883,6 +883,7 @@ PRLMISAB increases by 1.05 or 5\%. The odds for PRLMISAB decrease by 1.07
 or 7\% for a unit increase in year of the survey. A unit increase in the size 
 of a respondent's city or metropolitan area resulted in a 1.04 or 4\% 
 decrease in the odds of PRLMISAB. 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Decision Trees} 
@@ -1038,35 +1039,35 @@ who had not, Similarly, logistic regression model revealed that the odds of
 PRLMISAB increased by 112 percent given previous heroin use, holding other 
 variables constant. These findings are consistent with past studies that
 indicate a connection between pain reliever misuse and abuse and heroin use
-. 
-
-Tranquilizers were
-identified as the third most important variable by both the decision tree and 
-logistic regression models. The odds of PRLMISAB increased 1.46 times for a 
-one unit increase in tranquilizer use. Similar to the pattern for heroin, the 
+\cite{jones13, jones15, muhuri13, unick13}. Tranquilizers were identified as 
+the third most important variable by both the decision tree and logistic 
+regression models. The odds of PRLMISAB increased 1.46 times for a one unit 
+increase in tranquilizer use. Similar to the pattern observed for heroin, the 
 proportion of PRLMISAB was nearly twice as large for respondents with moderate 
-to high tranquilizer use (51\%) as for individuals with no to low tranquilizer
-use (28\%). The algorithms also selected age category, mental health, health 
-issues, education level, and previous substance treatment as important 
-features for predicting PRLMISAB. The models differed in the order and 
-importance they assigned to these variables. A general finding related to age 
-is that pain reliever misuse and abuse was more prevalent among respondents 
-age 35 and younger than for older individuals. 
+to high tranquilizer use as for individuals with no to low tranquilizer use. 
+Age category, mental health, health issues, education level, and previous 
+drug or alcohol treatment were also identified as important features for 
+predicting PRLMISAB; however, the models differed in the importance they 
+assigned to these variables. A general finding related to age is that pain 
+reliever misuse and abuse was more prevalent among respondents between
+18 to 25 years of age and decreased among older individuals. Although more 
+females reported using pain relievers than males, overall, more males reported 
+misusing or abusing pain relievers than females, and the odds of pain 
+reliever misuse or abuse for females was 17 percent lower than for males. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{Model Interpretability}
-
-Every classification model has advantages and limitations. In general, 
-simpler models provide interpretable solutions but tend to have lower accuracy, 
-whereas more complex models which yield higher performance but are more 
-difficult to interpret. The advantage of logistic regression is that it 
-provides coefficient estimates for individual parameters that can be
-interpreted as odds ratios. The the predicted outcome (Y-hat) is represented 
-by the weighted combination of all the independent variables. The logit 
-function is linear in the parameters, but the probabilities of the expected 
-outcome are non-linear. The terms in the logistic regression equation can be 
-rearranged to obtain the function of the event probability (equation 3). 
+Every classification model has advantages and limitations. In general there
+was a tradeoff between model complexity and interpretability. simple models 
+provide interpretable solutions but tend to have lower accuracy, whereas
+complex models yield improved performance but are more difficult to interpret. 
+The advantage of logistic regression is that it provides coefficient estimates 
+for individual features that can be interpreted in terms of odds ratios. The
+predicted outcome (Y-hat) is represented by the weighted combination of all 
+the independent variables. The logit function is linear in the parameters, 
+but the probabilities of the expected outcome are non-linear. And the terms 
+in the logistic regression equation can be rearranged to obtain the function 
+of the event probability (equation 3). 
 
 \begin{equation}
   \ \textit{P} = \frac{1}{1+exp[-(\beta_0 + \beta_1X_1 + \beta_1X_2 +... \beta_p*X_p)]} \
@@ -1081,21 +1082,16 @@ manner that is effective for communicating results to non-technical audiences.
 A disadvantage is that, without pruning, decision can become very complex, 
 especially as the number of predictors increases. Limiting the decision tree 
 to a depth of four nodes improves the interpretability, but reduces the 
-generalizability to new data. 
-
-Feature importance for the random 
-forests model was given as the mean decrease in the Gini score, a measure of 
-node purity at each split, which is difficult to interpret in terms of the 
-outcome. 
-
-Random forests correct for overfitting by 
-building multiple different trees and averaging them to identify class 
-membership. In general, random forests yield high performance and generalize 
-well to new data, but can be difficult to interpret. Gradient boosting is
-a model that typically improves accuracy using many simple models iteratively 
-and correcting for individual trees, but it did not perform better than 
-random forests in this study. The multilayer perceptron (MLP) is one of the 
-most widely used neural network models for classification. With a limited 
+generalizability of the model to new observations. Random forests correct for 
+overfitting by building multiple different trees and averaging them to identify 
+class membership, thus improving performance and generalizing well to new data,
+Feature importance for the random forests model is provided by the mean 
+decrease in the Gini score, a measure of node purity at each split, which can
+be difficult to interpret in terms of the outcome. Gradient boosting is a model
+that typically improves accuracy using many simple models iteratively and 
+correcting for individual trees, but in the present case boosting did not 
+perform better than random forests. The multilayer perceptron (MLP) is one of 
+the most widely used neural network models for classification. With a limited 
 number of predictor variables and single hidden layer (see Appendix A), it 
 is possible to interpret the relations among weights and nodes in hidden 
 layers of a simple neural network. As the number of predictors and hidden 
@@ -1104,28 +1100,24 @@ represents a ``black box'' model, which is not comprehensible at a human level.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{Limitations}
-
-A surprising finding is that several models that typically perform well for 
-binary classification tasks (gradient boosting, SVM, neural network) did not 
-perform better than was observed here. This may be due in part to imbalanced 
+A surprising finding is that several models which typically perform well for 
+binary classification tasks (gradient boosting, SVM, neural networks) did not 
+perform better than was observed in this study. This may be due to imbalanced 
 classes in the sample data. A limitation of the study is that the default 
 settings were used in constructing the classifier models. Many complex models 
 are sensitive to parameter settings and scaling of the data. Additional 
 parameter tuning may have improved performance of complex models. Cross-
-validation can be used to select hyperparameters to optimize model 
+validation can be used to select hyperparameters that optimize model 
 performance. Another limitation is that the aggregated features represent a 
-subset of the entire set of features in the NSDUH datasets. In a future study, 
-it may be useful to include a more complete set of features to identify 
+subset of the entire range of features in the NSDUH datasets. In a future study, 
+it may be useful to include a more comprehensive set of features to identify 
 additional variables for predicting opioid dependence and addiction. 
 Given the large proportion of the sample that had not previously used any
 prescription opioid pain relievers, it may be more effective to classify 
-pain reliever misuse and abuse with a sample of individuals who have used 
-pain medications in the past.
+pain reliever misuse and abuse using a subset of individuals who have used 
+pain medications in the past, though this would result in a smaller sample.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Opioid Epidemic}
 
 Although drug addiction has many similar characteristics to other chronic 
 medical illnesses, there are unique challenges to the treatment of addiction. 
