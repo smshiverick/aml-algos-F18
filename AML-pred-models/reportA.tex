@@ -914,7 +914,8 @@ large for individuals who reported using cocaine than those who had not.
   \label{f:Figure4}
 \end{figure}
 
-The second split was based on heroin use; the left branch included n=12876 respondents who had not used heroin, of which 0.34 or 34\% reported pain
+The second split was based on heroin use; the left branch included n=12876 
+respondents who had not used heroin, of which 0.34 or 34\% reported pain
 reliever misuse or abuse. Following the right branch to the terminal node 
 (i.e., `leaf'), n=2132 individuals reported heroin use, of which 0.70 or 
 70\% had misused or abused pain relievers. Thus, the proportion of PRLMISAB 
@@ -925,12 +926,12 @@ who reported no or low tranquilizer use; of these, the proportion of
 PRLMISAB was 0.28 or 28\%. The branch to the right represented n=3119 
 observations with moderate to high tranquilizer use, of which 0.52 or 52\% 
 reported PRLMISAB. The rate of pain reliever misuse and abuse for individuals 
-with moderate to high tranquilizer use was almost twice as large than for 
+with moderate to high tranquilizer use was almost twice as large as for 
 those reporting no to low tranquilizer use. The fourth split was based on age category; the branch to the left represented n=1394 individuals age 36 or older, 
 of which 0.38 or 38\% reported PRLMISAB. The branch to the right represented 
 n=1725 individuals age 35 and younger, of whom 0.63 or 63\% reported PRLMISAB. 
 This findings shows that pain reliever misuse and abuse was much more likely
-among respondents age 35 or younger than older individuals older than 35 years. 
+among respondents age 35 or younger than among individuals older than 35 years. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Feature Importance for Random Forests}
@@ -959,9 +960,10 @@ the feature importance for the random forests model sorted by the mean
 decrease in the Gini coefficient. The random forest algorithm selected 
 cocaine as the most informative feature for predicting pain reliever misuse
 and abuse; however, in contrast to the single decision tree described above,
-amphetamines, mental health, and tranquilizers were selected among the
-top four most important features, followed in importance by age category, 
-and heroin use, which were ranked as more influential in the single tree. 
+amphetamines, mental health, and health were selected among the top four most
+important features, followed in importance by tranquilizers, age category, 
+and heroin use, which were ranked as more influential in the single 
+decision tree in Figure 4. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1000,71 +1002,69 @@ and heroin use, which were ranked as more influential in the single tree.
 
 The results showed that logistic regression, random forests, and decision 
 trees performed better than other models for classifying pain reliever misuse 
-and abuse. The $f_1$-score was selected as the appropriate metric to evaluate 
-model performance, rather than accuracy, because of imbalanced classes in 
-the target outcome; namely, the positive instances of pain reliever misuse 
-and abuse represented only a small proportion of observations (11\%) compared
-to instances of the negative class. Traditional algorithms tend to classify 
-new observations based on the majority class, as observed with the naive Bayes 
-model, which had a relatively high $f_1$-score despite correctly classifying 
-only 35 true positive instances. The random forests model performed slightly 
-better as it correctly predicted more true positive cases than the single 
-decision tree and had fewer false positive classification errors than the 
-logistic regression. The QDA and LDA models both identified the largest 
-number of true positives, but each correctly labeled fewer true negatives
-compared to the logistic regression model, which had higher $f_1$-score
-and accuracy, overall. This finding indicates that the decision boundary 
-for classifying pain reliever misuse and abuse can be modeled as a linear 
-function of the predictor variables \cite{james13, raschka17}. If pain 
-reliever misuse and abuse is a non-linear function of the predictors,
-the decision tree and random forests models would be preferred.  
+and abuse. The $f_1$-score was used as the appropriate performance metric due 
+to imbalanced classes in the dataset, with only 11\% of respondents reporting 
+pain reliever misuse and abuse. Traditional algorithms tend to classify new 
+observations based on the majority class, as seen with the naive Bayes model, 
+which had a relatively high $f_1$-score despite only 35 true positive instances
+and a high number of false negatives. The random forests model performed 
+slightly better than the other models as it correctly predicted more true 
+positives cases than the logistic regression and had fewer false negative 
+errors than the single decision tree. The QDA and LDA models both identified 
+the largest number of true positives, but each correctly labeled fewer true 
+negatives compared to the logistic regression model, which had higher 
+$f_1$-score and accuracy overall. This finding indicates that the decision 
+boundary for classifying pain reliever misuse and abuse can be modeled as a 
+linear function of the predictor variables \cite{james13, raschka17}. 
+the decision tree and random forests models would be preferred if pain reliever 
+misuse and abuse were modeled as a non-linear function of the predictors,
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Cocaine use was selected by these three models as the most informative 
+Cocaine use was selected by these top three models as the most informative 
 predictor of pain reliever misuse and abuse (PRLMISAB). The odds of PRLMISAB
 increased by 1.99 times given a one unit increase in cocaine use. In terms of
 frequencies, the proportion of PRLMISAB among individuals who reported moderate 
 to high cocaine use (39\%) was more than five times larger than for individuals 
-who reported no or low cocaine use (7\%). The random forest model provides the 
-mean decrease in the Gini score, a measure of node purity at each split, which 
-is difficult to interpret in terms of the outcome. Both logistic regression and 
-random forests identified amphetamine use as the second most influential 
-feature for predicting PRLMISAB. The odds of PRLMISAB increased by 1.84 times 
-for a unit increase in amphetamine use. By contrast, the decision tree 
-identified heroin use as the second most important predictor of PRLMISAB.
-Of the few respondents who disclosed heroin use, more than two-thirds (70\%) 
-reported misusing or abusing pain relievers. In the logit model, the odds of 
-PRLMISAB increased by 2.12 times given previous heroin use (all else being 
-equal). Furthermore, the proportion of PRLMISAB was twice as large for 
-respondents who had used heroin than those who had not, which supports
-previous findings of a connection between pain reliever misuse and abuse and 
-heroin use. Tranquilizers were identified as the third most important variable 
-by both the decision tree and logistic regression models. The odds of PRLMISAB
-increased 1.46 times for a one unit increase in tranquilizer use. Similar to 
-the pattern for heroin, the proportion of PRLMISAB was nearly twice as large 
-for respondents with moderate to high tranquilizer use (51\%) than individuals
-with no to low tranquilizer use (28\%). The algorithms also selected age 
-category, mental health, health issues, education level, and previous substance 
-treatment as important features for predicting PRLMISAB. The models differed, 
-however, in the order and importance they assigned to these variables. A 
-general finding related to age is that pain reliever misuse and abuse was more 
-prevalent among respondents age 35 and younger than older individuals. 
+who reported no or low cocaine use (7\%). Feature importance for the random 
+forests model was given as the mean decrease in the Gini score, a measure of 
+node purity at each split, which is difficult to interpret in terms of the 
+outcome. Both logistic regression and random forests identified amphetamine use 
+as the second most influential feature for predicting PRLMISAB. The odds of 
+PRLMISAB increased by 1.84 times for a unit increase in amphetamine use. 
+In contrast, the single decision tree identified heroin use as the second most
+important predictor of PRLMISAB. Of the few respondents who disclosed heroin 
+use, more than two-thirds (70\%) reported misusing or abusing pain relievers. 
+In the logit model, the odds of PRLMISAB increased by 2.12 times given previous 
+heroin use, holding other variables constant. Furthermore, the proportion of 
+PRLMISAB was twice as large for respondents who had used heroin as for those 
+who had not, which is consistent with previous findings of a connection 
+between pain reliever misuse and abuse and heroin use. Tranquilizers were
+identified as the third most important variable by both the decision tree and 
+logistic regression models. The odds of PRLMISAB increased 1.46 times for a 
+one unit increase in tranquilizer use. Similar to the pattern for heroin, the 
+proportion of PRLMISAB was nearly twice as large for respondents with moderate 
+to high tranquilizer use (51\%) as for individuals with no to low tranquilizer
+use (28\%). The algorithms also selected age category, mental health, health 
+issues, education level, and previous substance treatment as important 
+features for predicting PRLMISAB. The models differed in the order and 
+importance they assigned to these variables. A general finding related to age 
+is that pain reliever misuse and abuse was more prevalent among respondents 
+age 35 and younger than for older individuals. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Model Interpretability}
 
-Every classification model has advantages and limitations. In general simpler 
-models provide interpretable solutions but tend to have lower accuracy,
-where more complex models yield higher performance but are often more 
+Every classification model has advantages and limitations. In general, 
+simpler models provide interpretable solutions but tend to have lower accuracy, 
+whereas more complex models which yield higher performance but are more 
 difficult to interpret. The advantage of logistic regression is that it 
-provides coefficient estimates for individual parameters that can be 
-interpreted as odds ratios, but the predicted outcome (Y-hat) is modeled as 
-the weighted combination of all the independent variable. The logit function
-is linear in the parameters, but the probability of the expected outcome are
-non-linear. The terms in the logistic regression equation can be rearranged 
-to obtain the function of the event probability (equation 3). 
+provides coefficient estimates for individual parameters that can be
+interpreted as odds ratios. The the predicted outcome (Y-hat) is represented 
+by the weighted combination of all the independent variables. The logit 
+function is linear in the parameters, but the probabilities of the expected 
+outcome are non-linear. The terms in the logistic regression equation can be rearranged to obtain the function of the event probability (equation 3). 
 
 \begin{equation}
   \ \textit{P} = \frac{1}{1+exp[-(\beta_0 + \beta_1X_1 + \beta_1X_2 +... \beta_p*X_p)]} \
@@ -1078,14 +1078,15 @@ at each branch. A single tree visually represents the decision process in a
 manner that is effective for communicating results to non-technical audiences. 
 A disadvantage is that, without pruning, decision can become very complex, 
 especially as the number of predictors increases. Limiting the decision tree 
-to a depth of four nodes improved the interpretability, but reduced the generalizability to new data. Random forests correct for overfitting by 
+to a depth of four nodes improves the interpretability, but reduces the 
+generalizability to new data. Random forests correct for overfitting by 
 building multiple different trees and averaging them to identify class 
 membership. In general, random forests yield high performance and generalize 
 well to new data, but can be difficult to interpret. Gradient boosting is
 a model that typically improves accuracy using many simple models iteratively 
 and correcting for individual trees, but it did not perform better than 
 random forests in this study. The multilayer perceptron (MLP) is one of the 
-most widely used neural network model for classification. With a limited 
+most widely used neural network models for classification. With a limited 
 number of predictor variables and single hidden layer (see Appendix A), it 
 is possible to interpret the relations among weights and nodes in hidden 
 layers of a simple neural network. As the number of predictors and hidden 
@@ -1100,17 +1101,17 @@ A surprising finding is that several models that typically perform well for
 binary classification tasks (gradient boosting, SVM, neural network) did not 
 perform better than was observed here. This may be due in part to imbalanced 
 classes in the sample data. A limitation of the study is that the default 
-setting were used in model construction. Many complex models are sensitive 
-to parameter settings and scaling of the data. Additional parameter tuning 
-may have improved performance of complex models. A future study could use 
-cross-validation to select hyperparameters that optimize model performance.
-Another limitation is that the aggregated features represent a subset
-of the entire range of features in the NSDUH datasets. In future, it may
-be useful to include a more comprehensive range of features to identify 
-additional variables for predicting opioid dependency and addiction. 
+settings were used in constructing the classifier models. Many complex models 
+are sensitive to parameter settings and scaling of the data. Additional 
+parameter tuning may have improved performance of complex models. Cross-
+validation can be used to select hyperparameters to optimize model 
+performance. Another limitation is that the aggregated features represent a 
+subset of the entire set of features in the NSDUH datasets. In a future study, 
+it may be useful to include a more complete set of features to identify 
+additional variables for predicting opioid dependence and addiction. 
 Given the large proportion of the sample that had not previously used any
 prescription opioid pain relievers, it may be more effective to classify 
-pain reliever misuse and abuse with a sample of individuals who had used 
+pain reliever misuse and abuse with a sample of individuals who have used 
 pain medications in the past.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1118,54 +1119,54 @@ pain medications in the past.
 \subsection{Opioid Epidemic}
 
 Although drug addiction has many similar characteristics to other chronic 
-medical illnesses, but there are unique challenges to the treatment of 
-addiction \cite{marsch12, swendson16}. According to a classical conditioning 
-theory of addiction, situational cues or events can elicit a motivational 
-state underlying the relapse to drug use. Following treatment, many addicted individuals return to the same environments associated with their drug use. 
-Addictive behavior can be reinstated by exposure to drug-related cues or 
-stressors in the environment \cite{shaham03}, putting individuals in 
-recovery at risk for relapse and possible overdose \cite{johnson11}. In the 
-case of prescription opioids, anyone is potentially at risk for misusing 
-opioids and becoming addicted. Rather than labeling people as addicted or 
-not addicted, it may be useful to consider people as more or less susceptible 
-to misusing or abusing opioid pain medication. This study also provides 
-evidence of the connection between pain reliever misuse and heroin use. The
-rate of pain relievers was twice as great for repondents who reported using
-heroin than those who had not. Recent statistics from the CDC show that the
-use of illicit and synthetic opioids is increasing which has contributed 
-greatly to the rise in opioid overdose deaths \cite{cdc18}. If the crisis of 
-opioid addiction is a true epidemic, network analysis may be useful for
-describing spreading or diffusion of drug use and addiction within social 
-networks and the rate of transmission. 
+medical illnesses, there are unique challenges to the treatment of addiction. 
+According to a classical conditioning theory of addiction, situational cues or 
+events can elicit a motivational state underlying the relapse to drug use
+\cite{shaham03}. Following treatment, many addicted individuals return to the 
+same environments associated with their drug use. Addictive behavior can be 
+reinstated by exposure to drug-related cues or stressors in the environment,
+putting individuals in recovery at risk for relapse and possible overdose. 
+In the case of prescription opioids, anyone is potentially at risk for misusing 
+opioids and becoming addicted to pain relievers. Rather than labeling people 
+as `addicted' or `not addicted', it may be useful to consider people as more or 
+less susceptible to misusing or abusing opioid pain medication. This study also 
+provides further support for the connection between pain reliever misuse and 
+heroin use. The rate of pain reliever misuse and abuse was twice as great for
+respondents who reported using heroin than for those who had not. Recent 
+statistics from the CDC show that the use of illicit and synthetic opioids is
+a major contributing factor in the increase of opioid overdose deaths 
+\cite{cdc18}. If the crisis in opioid addiction is a true epidemic, network 
+analysis may be useful for describing the spread or diffusion of drug use and 
+addictive behavior within social networks and the rate of transmission. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
 
 This study compared several supervised learning procedures to select the best 
-models for classifying pain reliever misuse and abuse. The $f_1$-score was used 
-to evaluate model performance given the unbalanced classes in the data. 
+models for classifying pain reliever misuse and abuse. The $f_1$-score was 
+used to evaluate model performance given the unbalanced classes in the data. 
 Logistic regression, decision trees, and random forests performed better than
 other classifier models. All three models selected cocaine as the most 
 informative variable for predicting pain reliever misuse and abuse. The
-models assigned different levels and orders of importance to the use of
-amphetamines, heroin, and tranquilizers. Demographic variables such as age, 
-mental health, and health problems were also influential predictors. 
-A general conclusion is that there are tradeoffs between model complexity, 
-accuracy, and interpretality. Simple models provide interpretable solutions 
-and have lower accuracy than more complex models which yield higher performance, 
-but are difficult to interpret. Predictive modeling is a useful approach 
-for classifying individuals at risk for opioid abuse and addiction. Additional 
-research is needed to understand the relationships among these variables.
-The findings may inform efforts to address the opioid crisis and help 
-reduce the risk of overdose death. 
+models assigned different levels of importance to the use of amphetamines, 
+heroin, and tranquilizers. Demographic variables such as age, mental health, 
+and health problems were also influential predictors. A general conclusion is 
+that there are tradeoffs in model complexity and interpretability. Simple
+models provide interpretable solutions but are often less accurate than more 
+complex models which yield higher performance, but are difficult to interpret. 
+Predictive modeling is a useful approach for classifying individuals at risk 
+for opioid abuse and addiction. Additional research is needed to understand 
+the relationships among these variables. The findings may inform efforts to 
+address the opioid crisis and help reduce the risk of overdose death. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{acks}
 
 Portions of this paper were completed as part of a course project in Big Data 
 Applications and Analytics taught by Professor Gregor von Laszewskin at 
-Indiana University in Fall 2017. Thanks to Juliette Zurick and Miao Jiang 
-for helpful comments. Thanks also to Dallas J. Elgin for encouragement. 
+Indiana University in Fall 2017. Thanks to the teaching assistants, Juliette 
+Zurick and Miao Jiang. Thanks to Dallas J. Elgin for encouragement and also
+to Ed Miles whose helpful comments improved the manuscript. 
 
 \end{acks}
 
