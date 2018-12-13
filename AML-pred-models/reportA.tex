@@ -461,32 +461,32 @@ than the other class, as it takes into account both recall and precision
   \label{tab:freq}
   \begin{tabular}{ll}
     \toprule
-    \textit{Target Outcome} & Label \\
+    \textit{Target Variable} & Label \\
     \midrule
-    Prescription Opioid Pain Reliever Misuse and Abuse 
+    Prescription opioid pain reliever misuse and abuse 
     (Likert scale: 0-12)& PRLMISAB  \\
     \midrule
     \textit{Predictor Variables}&   \\
     \midrule
-    Year of NSDUH Survey (15=2015, 16=2016, 17=2017) & YEAR  \\
-    Age Category (1=12-17 years, 2=18-25, 3=26-35, 4=36-49, 5=50 and older)& AGECAT \\
-    Biological Sex (0=Male, 1=Female)& SEX  \\
-    Marital Status (0=Unmarried, 1=Divorced, 2=Widowed, 3=Married)& MARRIED  \\
-    Education (1=H.S. or Less, 2=H.S. Grad., 3=Some College,  4=College Grad.)& EDUCAT  \\
-    Employment Status (Over 18: 1=Not Employed, 2=Part-time, 3=Full-time) & EMPLOY18  \\
-    Size of City/Metropolitan Region (1=Rural, 2=Small, 3=Large)& CTYMETRO  \\
-    Health Problems Aggregated  (Likert scale: 0-10)& HEALTH  \\
-    Mental Health, Aggregated: adult depression, emotional distress 
+    Year of NSDUH survey (15=2015, 16=2016, 17=2017) & YEAR  \\
+    Age category (1=12-17 years, 2=18-25, 3=26-35, 4=36-49, 5=50 and older)& AGECAT \\
+    Sex (0=Male, 1=Female)& SEX  \\
+    Marital status (0=unmarried, 1=divorced, 2=widowed, 3=married)& MARRIED  \\
+    Education Level (1=h.s. or Less, 2=h.s. grad., 3=some college,  4=college grad.)& EDUCAT  \\
+    Employment status, over age 18 (1=not employed, 2=part-time, 3=full-time) & EMPLOY18  \\
+    Size of city/metropolitan region (1=rural, 2=small, 3=large)& CTYMETRO  \\
+    Health problems, aggregated  (Likert scale: 0-10)& HEALTH  \\
+    Mental health, aggregated: adult depression, emotional distress 
     (Likert scale: 0-10)& MENTHLTH  \\
-    Treatment for Drugs and Alcohol in past year, Aggregated 
+    Treatment for drugs or alcohol in past year, Aggregated 
     (Likert scale: 0-5)& TRTMENT  \\
-    Mental Health Treatment, Aggregated (Likert scale: 1-10)& MHTRTMT  \\
-    Tranquilizer use, past year, Aggregated (Likert scale: 0-5)& TRQLZRS \\
-    Sedative use, past year, Aggregated (Likert scale: 0-5)& SEDATVS  \\
-    Heroin use, past year, Aggregated (Likert scale: 0-5)& HEROINUSE  \\
-    Cocaine and Crack Cocaine Use in past year, Aggregated  
+    Mental health treatment, aggregated (Likert scale: 1-10)& MHTRTMT  \\
+    Tranquilizer use, past year, aggregated (Likert scale: 0-5)& TRQLZRS \\
+    Sedative use, past year, aggregated (Likert scale: 0-5)& SEDATVS  \\
+    Heroin use, past year, aggregated (Likert scale: 0-5)& HEROINUSE  \\
+    Cocaine and crack cocaine use in past year, Aggregated  
     (Likert scale: 0-5)& COCAINE  \\
-    Amphetamine and Methamphetamine Use in past year, Aggregated 
+    Amphetamine and methamphetamine Use in past year, Aggregated 
     (Likert scale: 0-5)& AMPHETMN  \\
     \bottomrule
   \end{tabular}
@@ -556,26 +556,26 @@ The NSDUH public data files for 2015, 2016, and 2017 were downloaded from
 the Substance Abuse and Mental Health Data Archive (SAMHDA) \cite{samhsa18}. 
 The data sets were extracted and saved as data frame objects in a python 
 interactive notebook \cite{mckinney17, vanderplas17}. Data from the three
-years ($n_1$=57146, $n_2$=57897, $n_3$=56276) were combined to create a 
-total sample consisted of N=170317 observations (80913 male, 89404 female). 
+years ($n_1$=57146, $n_2$=56897, $n_3$=56276) were combined to create a 
+single data set. Two outliers were identified and removed, resulting in a
+total sample of N=170317 observations (80913 male, 89404 female). 
 According to the NSHUD codebook, the sampling design is weighted across 
 states by population size, drawing more heavily from eight states with 
-the largest populations (e.g., CA, FL, IL, MI, NY, OH, PA, TX), for a 
+the largest populations (i.e., CA, FL, IL, MI, NY, OH, PA, TX), for a 
 representative distribution that accounts for approximately 48 percent 
 of the U.S. population. For 2015, the weighted survey screening response 
 rate was 81.94\% and the weighted interview response rate was 71.2\% 
-\cite{samhsa18}. Identifying information in the public use files is 
+\cite{samhsa18}. Identifying information in the NSDUH public use files is 
 collapsed (e.g., age categories); variables related to ethnicity, immigration 
 status, and state identifiers are removed to ensure confidentiality. The data 
 frames were subset by column to select approximately 90 variables that 
 included common demographic characteristics, physical health, mental health, 
 medication usage, and illicit drug use. Inconsistencies in the data were 
-detected and removed by the following steps: (a) Remove missing values 
+detected and removed with the following steps: (a) Remove missing values 
 (i.e., NaN); (b) Recode blanks, non-responses, or legitimate skips 
 (e.g., 99, 991, 993) to zero; (c) Recode dichotomous responses (e.g., No=0, 
 Yes=1); (d) Recode categorical variables to be consistent with amount or 
-degree  (e.g., 1=`Low', 2=`Med', 3=`High'). (e) Identify and remove 
-outliers (n=2).
+degree (e.g., 1=`Low', 2=`Med', 3=`High'). 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -625,8 +625,8 @@ a single variable indicating overall history of health problems (`HEALTH`)
 was created by combining responses for overall health (reverse scored), any
 previous diagnosis of STDs, hepatitis, HIV, cancer, and any hospitalization. 
 A mental health variable (`MENTHLTH') aggregated responses for adult depression, 
-emotional distress, suicidal thoughts or plans. Binary responses for ten of 
-the most commonly used prescription pain medications (e.g., Hydrocodone, 
+emotional distress, and suicidal thoughts or plans. Binary responses for ten 
+of the most commonly used prescription pain medications (e.g., Hydrocodone, 
 Oxycodone, Tramadol, Morphine, Fentanyl, Oxymorphone, Demerol, Hydromorphone) 
 were aggregated into a variable for any prescription opioid pain reliever use 
 (ANYPRLUSE) in the past year. The majority of questions related to substance 
@@ -638,7 +638,7 @@ treatment and mental health treatment combined responses for any inpatient
 care, outpatient care, treatment at a clinic, emergency room visits, or 
 hospital stays. The target variable was any prescription opioid pain reliever 
 misuse or abuse (PRLMISEVR). The subset data frame consisted of 19 features 
-and 170317 observations was exported to CSV file. Four variables were highly 
+and 170317 observations was exported to a CSV file. Four variables were highly 
 correlated with other variables and excluded from the analysis (PRLANY, PRLMISAB, 
 HEROINUSE, HEROINFQY). Table 2 shows the list of predictor variables used for 
 constructing the classification models. 
@@ -653,7 +653,7 @@ was used for constructing and evaluating each classification model: (i) The
 model was fit to the training set; (ii) New values were predicted on the 
 holdout scores in the testing set; and (iii) Model performance on the test 
 set was evaluated in a confusion matrix. The performance metrics of accuracy, 
-sensitivity or recall, precision, and $f_1-score$ were obtained or derived 
+sensitivity or recall, precision, and $f_1$-score were obtained or derived 
 from the confusion matrix. The logistic regression classifier, LDA, QDA, 
 decision trees classifier, random forests classifier, gradient boosted trees 
 were constructed using the caret package. The KNN classifier, support 
@@ -705,7 +705,8 @@ matrices reported in Table 6, which includes the metrics of accuracy,
 sensitivity (recall), precision, and $f_1$-score. The model accuracy 
 scores ranged form 86.5\% to 90.7\%. Because of the unbalanced classes in 
 the sample data|the proportion of respondents who had never misused or 
-abused pain relievers (89\%) was much greater than the proportion who had|the $f_1$-score was used as the preferred metric of performance rather 
+abused pain relievers (89\%) was much greater than the proportion who had|
+the $f_1$-score was used as the preferred metric of performance rather 
 than accuracy. The $f_1$-scores ranged from 0.87 to 0.95. Logistic 
 regression and the random forest model were tied for the highest 
 $f_1$-score (0.95) followed by the decision tree model (0.949). The 
