@@ -934,7 +934,7 @@ This findings shows that pain reliever misuse and abuse was much more likely
 among respondents age 35 or younger than among individuals older than 35 years. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Feature Importance for Random Forests}
+\subsubsection{Feature Importance for the Random Forests Model}
 
 The random forest model was fit using 1000 trees, with all of the features 
 considered at each node to determine the randomness of each tree. After a 
@@ -947,23 +947,22 @@ in the algorithm. The Gini index provides a measure of node purity which is
 used to evaluate the quality of a particular split; a small value indicates 
 that a node predominantly contains observations from a single class. 
 Feature importance was measured by the mean decrease in Gini coefficient 
-(see Table 8), which indicates how each variable contributes to the 
-homogeneity of the nodes and leaves in the resulting random forest. 
-For classification trees, the splits are chosen so as to minimize entropy 
-or Gini impurity in the resulting subsets. For random forests, variables 
-that result in nodes with higher purity have a higher decrease in the Gini 
-coefficient. Feature importance is computed by aggregating the feature 
-importance over trees in the random forest, and gives non-zero importance
-to more features than a single tree. A feature may have a low importance 
-value because another feature encodes the same information. Table 8 provides 
-the feature importance for the random forests model sorted by the mean 
-decrease in the Gini coefficient. The random forest algorithm selected 
-cocaine as the most informative feature for predicting pain reliever misuse
-and abuse; however, in contrast to the single decision tree described above,
-amphetamines, mental health, and health were selected among the top four most
-important features, followed in importance by tranquilizers, age category, 
-and heroin use, which were ranked as more influential in the single 
-decision tree in Figure 4. 
+(Table 8), which indicates how each variable contributes to the homogeneity 
+of the nodes and leaves in the resulting random forest. For classification 
+trees, the splits are chosen so as to minimize entropy or Gini impurity in 
+the resulting subsets. For random forests, variables that result in nodes 
+with higher purity have a higher decrease in the Gini coefficient. Feature 
+importance is computed by aggregating the feature importance over trees in 
+the random forest, and gives non-zero importance to more features than a 
+single tree. A feature may have a low importance value because another feature 
+encodes the same information. Table 8 provides the feature importance for 
+the random forests model sorted by the mean decrease in the Gini coefficient. 
+The algorithm selected cocaine as the most informative feature for predicting 
+pain reliever misuse and abuse. In contrast to the single decision tree, 
+amphetamines, mental health, and health were selected among the top four most 
+important features in the random forests model, followed by tranquilizers, 
+age category, and heroin use, which were ranked as more influential in the 
+single tree (Figure 4). 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1000,46 +999,48 @@ decision tree in Figure 4.
 
 \section{DISCUSSION}
 
-The results showed that logistic regression, random forests, and decision 
-trees performed better than other models for classifying pain reliever misuse 
-and abuse. The $f_1$-score was used as the appropriate performance metric due 
-to imbalanced classes in the dataset, with only 11\% of respondents reporting 
-pain reliever misuse and abuse. Traditional algorithms tend to classify new 
-observations based on the majority class, as seen with the naive Bayes model, 
-which had a relatively high $f_1$-score despite only 35 true positive instances
-and a high number of false negatives. The random forests model performed 
-slightly better than the other models as it correctly predicted more true 
-positives cases than the logistic regression and had fewer false negative 
-errors than the single decision tree. The QDA and LDA models both identified 
-the largest number of true positives, but each correctly labeled fewer true 
-negatives compared to the logistic regression model, which had higher 
-$f_1$-score and accuracy overall. This finding indicates that the decision 
-boundary for classifying pain reliever misuse and abuse can be modeled as a 
-linear function of the predictor variables \cite{james13, raschka17}. 
-the decision tree and random forests models would be preferred if pain reliever 
+The results show that there were imbalanced classes in the sample data given 
+that the proportion respondents who had not misused or abused prescription 
+opioid pain reliever was much larger than the 11\% who reported that they had. 
+Logistic regression, random forests, and decision trees performed better than 
+other models for classifying pain reliever misuse and abuse using the 
+$f_1$-score as the appropriate performance metric. Traditional algorithms 
+tend to classify new observations based on the majority class, as seen with 
+the naive Bayes model, which had a relatively high $f_1$-score despite only 
+35 true positive instances and a high number of false negatives. The random 
+forests model performed slightly better than the other models as it correctly 
+predicted more true positives instances than the logistic regression and 
+had fewer false negative errors than the single decision tree. The QDA and LDA 
+models both identified the largest number of true positives, but each correctly 
+labeled fewer true negatives compared to the logistic regression model, which 
+had higher $f_1$-score and accuracy overall. This finding indicates that the 
+decision boundary for classifying pain reliever misuse and abuse can be modeled 
+as a linear function of the predictor variables \cite{james13, raschka17}. 
+The decision tree and random forests models would be preferred if pain reliever 
 misuse and abuse were modeled as a non-linear function of the predictors,
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Cocaine use was selected by these top three models as the most informative 
-predictor of pain reliever misuse and abuse (PRLMISAB). The odds of PRLMISAB
-increased by 1.99 times given a one unit increase in cocaine use. In terms of
-frequencies, the proportion of PRLMISAB among individuals who reported moderate 
-to high cocaine use (39\%) was more than five times larger than for individuals 
-who reported no or low cocaine use (7\%). Feature importance for the random 
-forests model was given as the mean decrease in the Gini score, a measure of 
-node purity at each split, which is difficult to interpret in terms of the 
-outcome. Both logistic regression and random forests identified amphetamine use 
-as the second most influential feature for predicting PRLMISAB. The odds of 
-PRLMISAB increased by 1.84 times for a unit increase in amphetamine use. 
-In contrast, the single decision tree identified heroin use as the second most
-important predictor of PRLMISAB. Of the few respondents who disclosed heroin 
-use, more than two-thirds (70\%) reported misusing or abusing pain relievers. 
-In the logit model, the odds of PRLMISAB increased by 2.12 times given previous 
-heroin use, holding other variables constant. Furthermore, the proportion of 
+Cocaine use was selected by all three models as the most informative predictor 
+of pain reliever misuse and abuse (PRLMISAB). The odds of PRLMISAB increased 
+99 percent given a one unit increase in cocaine use, holding other independent
+variables constant. In terms of frequency, the proportion of PRLMISAB among 
+individuals who reported moderate to high cocaine use was more than five times 
+as large as for individuals who reported no or low cocaine use. Logistic 
+regression and random forests both identified amphetamine use as the second 
+most important feature for predicting PRLMISAB. The odds of PRLMISAB
+increased by 84 percent for a unit increase in amphetamine use. In contrast, 
+the single decision tree identified heroin use as the second most important 
+predictor. Of those respondents who disclosed heroin use, more than two-thirds 
+reported misusing or abusing pain relievers. In other words, the proportion of 
 PRLMISAB was twice as large for respondents who had used heroin as for those 
-who had not, which is consistent with previous findings of a connection 
-between pain reliever misuse and abuse and heroin use. Tranquilizers were
+who had not, Similarly, logistic regression model revealed that the odds of 
+PRLMISAB increased by 112 percent given previous heroin use, holding other 
+variables constant. These findings are consistent with past studies that
+indicate a connection between pain reliever misuse and abuse and heroin use
+. 
+
+Tranquilizers were
 identified as the third most important variable by both the decision tree and 
 logistic regression models. The odds of PRLMISAB increased 1.46 times for a 
 one unit increase in tranquilizer use. Similar to the pattern for heroin, the 
@@ -1064,7 +1065,8 @@ provides coefficient estimates for individual parameters that can be
 interpreted as odds ratios. The the predicted outcome (Y-hat) is represented 
 by the weighted combination of all the independent variables. The logit 
 function is linear in the parameters, but the probabilities of the expected 
-outcome are non-linear. The terms in the logistic regression equation can be rearranged to obtain the function of the event probability (equation 3). 
+outcome are non-linear. The terms in the logistic regression equation can be 
+rearranged to obtain the function of the event probability (equation 3). 
 
 \begin{equation}
   \ \textit{P} = \frac{1}{1+exp[-(\beta_0 + \beta_1X_1 + \beta_1X_2 +... \beta_p*X_p)]} \
@@ -1079,7 +1081,14 @@ manner that is effective for communicating results to non-technical audiences.
 A disadvantage is that, without pruning, decision can become very complex, 
 especially as the number of predictors increases. Limiting the decision tree 
 to a depth of four nodes improves the interpretability, but reduces the 
-generalizability to new data. Random forests correct for overfitting by 
+generalizability to new data. 
+
+Feature importance for the random 
+forests model was given as the mean decrease in the Gini score, a measure of 
+node purity at each split, which is difficult to interpret in terms of the 
+outcome. 
+
+Random forests correct for overfitting by 
 building multiple different trees and averaging them to identify class 
 membership. In general, random forests yield high performance and generalize 
 well to new data, but can be difficult to interpret. Gradient boosting is
@@ -1181,11 +1190,11 @@ to Ed Miles whose helpful comments improved the manuscript.
 
 \subsubsection{Neural Network} The multilayer perceptron (MLP) is a 
 back-propogation neural network that takes the features as input; a 
-single hidden-layer comprises the weighted combination of the input 
+single hidden layer comprises the weighted combination of the input 
 variables, and the output layer represents a response probability. 
 During model training, the weights of the predictor variables are first 
 randomly initialized and then iteratively adjusted to minimize an 
-error function (e.g., gradient descent) \cite{brown12}.
+error function (e.g. gradient descent) \cite{brown12}.
 
 \begin{figure}[!ht]
   \centering\includegraphics[width=\columnwidth]{images/Figure5.pdf}
