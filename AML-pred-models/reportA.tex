@@ -328,7 +328,8 @@ that each overfit the data in different ways. By building many trees and
 averaging their results, random forests help to reduce overfitting. In 
 constructing the forests, the user selects the number of trees to build 
 (e.g., 1000). Randomness is introduced using a bootstrapping method that 
-repeatedly draws random samples of size \textit{n} from the data set, with replacement. The decision trees are built on these random samples 
+repeatedly draws random samples of size \textit{n} from the data set, with 
+replacement. The decision trees are built on these random samples 
 of the same size, with some points missing and some data points repeated 
 \cite{muller17,raschka17}. The algorithm makes a random selection of 
 \textit{p}-features, and uses a different set of features at each node branch. 
@@ -704,17 +705,17 @@ Performance of the classification models was evaluated in the confusion
 matrices reported in Table 6, which includes the metrics of accuracy, 
 sensitivity (recall), precision, and $f_1$-score. The model accuracy 
 scores ranged form 86.5\% to 90.7\%. Because of the unbalanced classes in 
-the sample data|the proportion of respondents who had never misused or 
-abused pain relievers (89\%) was much greater than the proportion who had|
-the $f_1$-score was used as the preferred metric of performance rather 
-than accuracy. The $f_1$-scores ranged from 0.87 to 0.95. Logistic 
-regression and the random forest model were tied for the highest 
-$f_1$-score (0.95) followed by the decision tree model (0.949). The 
-random forests model identified more true positives (TP) than a single 
-decision tree and had fewer false positives (FP) than logistic regression. 
-In general, default parameter setting were used for most models; the main 
-parameter settings for the classification models are presented in Table 7.
-The result of these three top performing models are described below.  
+the sample data|the proportion of respondents who had not misused or abused 
+pain relievers (89\%) was much greater than the proportion who had|the 
+$f_1$-score was used as the preferred performance metric rather than 
+accuracy. The $f_1$-scores ranged from 0.87 to 0.95. Logistic regression 
+and the random forest model were tied for the highest $f_1$-score (0.95) 
+followed by the decision tree model (0.949). The random forests model 
+identified more true positives (TP) than a single decision tree and had 
+fewer false positives (FP) than logistic regression. In general, default 
+parameter setting were used for most models; the main parameter settings 
+for the classification models are presented in Table 7. The results for 
+these three top performing models are described below.  
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -828,7 +829,7 @@ The result of these three top performing models are described below.
 \subsubsection{Logistic Regression}
 
 The parameter estimates and odds ratios for the logistic regression model 
-are presented in Table 5, sorted by z-score. The ceofficient estimates for
+are presented in Table 5, sorted by z-score. The coefficient estimates for
 all of the features were statistically significant, with the exception of 
 mental health treatment. The model was re-run leaving out the non-significant 
 variable, but the performance metrics did not change and the model with 
@@ -846,14 +847,14 @@ independent variable, the odds ratio is interpreted as the multiplicative
 increase in the odds of the dependent variable event happening given a 
 one unit change in the value of the independent variable, assuming the 
 effects of all other independent variables are held constant. For a 
-dichotomous (dummy) independent variable, e.g., sex, the multiplicative 
+dichotomous (dummy) variable (i.e., sex), it represents the multiplicative 
 increase in the odds of the dependent variable event happening if the event
 represented by the independent variable occurs, holding constant the effects 
 of all other independent variables. In general, taking the antilog of the 
 coefficient estimate, subtracting 1 from it, and multiplying the result 
 by 100, provides the percent change in the odds for a unit increase in the 
 independent variable  \cite{gujarati09}.  The odds ratio indicates the 
-ratio of the positive event to negative event, but does not reveal the 
+ratio of the positive event to the negative event, but does not reveal the 
 probability of the positive outcome.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -863,31 +864,25 @@ respondent misusing or abusing pain relievers increases by 1.96 times or 96\%
 for a one unit increase in cocaine use, holding the effects of all other 
 independent variables constant. For a one unit increase in amphetamine use, 
 the odds of pain reliever misuse and abuse (PRLMISAB) increases by 1.81 times
-or 81\%, holding all other IVs constant. A one unit increase in tranquilizer 
-use is associated with a 1.48 or 48\% increase in the odds of PRLMISAB, 
-holding other IVs constant. For a unit increase in mental health issues, 
-the odds for PRLMISAB increased by 1.14 or 14\%. For a one unit increase in 
-heroin use, the odds of PRLMISAB increases by 2.12 times or 112\%, holding 
-other IVs constant. For a one unit increase in age category, the odds of 
-PRLMISAB decreased by 1.20 times or 20\%, holding the effects of other IVs 
-constant. A one unit increase in employment is associated with a 1.21 or 21\% 
-increase in the odds of PRLMISAB, holding other IVs constant. For a unit 
-increase in substance treatment, the odds for PRLMISAB increased by 1.23 or 
-23\%, holding other IVs constant. For a one unit increase in sedative use, 
-the odds of PRLMISAB increases by 1.30 times or 30\%, holding all other IVs 
-constant. For a one unit increase in education level, the odds for PRLMISAB 
-increased by 1.11 or 11\%, holding other IVs constant. For a unit increase 
-in health problems, the odds for PRLMISAB increase by 1.10 or 10\%, holding
-other IVs constant. In terms of sex, the odds of misusing or abusing pain 
-relievers for females decreases by 1.17 times compared to males; in other 
-words, the odds of PRLMISAB for females was 17\% lower than for males, 
-holding all other IVs constant. For a unit increase in marital status, 
-the odds for PRLMISAB increases by 1.05 or 5\%, holding other IVs constant. 
-The odds for PRLMISAB decreased by 1.07 or 7\% for a unit increase in year
-of the survey, holding other IVs constant. A unit increase in the size of 
-a respondent's city or metropolitan area resulted in a 1.04 or 4\% 
-decrease in the odds of PRLMISAB, holding other IVs constant. 
- 
+or 81\%. A one unit increase in tranquilizer use is associated with a 1.48 or 
+48\% increase in the odds of PRLMISAB. For a unit increase in mental health 
+issues, the odds for PRLMISAB increased by 1.14 or 14\%. For a one unit 
+increase in heroin use, the odds of PRLMISAB increases by 2.12 times or 112\%. 
+For a one unit increase in age category, the odds of PRLMISAB decreased by 
+1.20 times or 20\%. A one unit increase in employment is associated with a 
+1.21 or 21\% increase in the odds of PRLMISAB. For a unit increase in 
+substance treatment, the odds for PRLMISAB increased by 1.23 or 23\%. 
+For a one unit increase in sedative use, the odds of PRLMISAB increases by 
+1.30 times or 30\%. For a one unit increase in education level, the odds for 
+PRLMISAB increased by 1.11 or 11\%. For a unit increase in health problems, 
+the odds of PRLMISAB increase by 1.10 or 10\%. In terms of sex, the odds of
+misusing or abusing pain relievers for females decreases by 1.17 times 
+compared to males; in other words, the odds of PRLMISAB for females was 17\%
+lower than for males. For a unit increase in marital status, the odds for 
+PRLMISAB increases by 1.05 or 5\%. The odds for PRLMISAB decrease by 1.07 
+or 7\% for a unit increase in year of the survey. A unit increase in the size 
+of a respondent's city or metropolitan area resulted in a 1.04 or 4\% 
+decrease in the odds of PRLMISAB. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Decision Trees} 
