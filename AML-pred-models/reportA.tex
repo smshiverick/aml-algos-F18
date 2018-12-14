@@ -14,35 +14,30 @@
 \begin{abstract}
 
 The misuse and abuse of prescription opioids (MUPO) has become a major 
-health crisis in the U.S. resulting in increased drug overdose deaths
-\cite{nida18}. Predictive modeling can identify important factors that 
-contribute to MUPO and predict individuals at risk for opioid addiction. 
-The present study compared ten classification models using four performance 
-metrics: accuracy, sensitivity (recall), precision, and $f_1$-score. Data 
-from three years of the National Survey on Drug Use and Health (2015-2017) 
-was combined to create a sample of N = 170317 observations. Twenty-six percent 
-of respondents reported using prescription opioid medications in the past year,
-11\% reported misusing or abusing pain relievers, and 2\% reported heroin use. 
-The classifier models were fit to the training set with sixteen features, 
-including demographic variables, medications, and illicit drugs. The binary 
-target variable was pain reliever misuse and abuse. Model performance was 
-evaluated on the testing set. The $f_1$-score was used as the performance 
-metric due to unbalanced classes in the data. Logistic regression, decision 
-trees, and random forests had the highest $f_1$-scores compared to other models.
-All three models identified cocaine use as the most informative feature for 
-predicting pain reliever misuse and abuse. Amphetamine use was selected by 
-logistic regression and random forests as the second most important variable, 
-but the decision tree selected heroin use as the second most important feature. 
-The models differed in the importance that they assigned to heroin use, 
-tranquilizer use, age category, and mental health as predictors of pain 
-reliever misuse and abuse. Advantages and limitations of the classifier models 
-are considered and the tradeoff between model complexity and interpretability  
-is discussed. 
+health crisis in the U.S. Predictive modeling provides several useful
+approaches for classifying pain reliever misuse and abuse and identifying
+factors that contribute to MUPO. This study compared ten classification 
+models using four performance metrics: accuracy, sensitivity (i.e. recall), 
+precision, and $f_1$-score. Data from three years of the National Survey 
+on Drug Use and Health (2015-2017) was combined into a sample of N = 170317 
+observations. Twenty-six percent of respondents reported using prescription 
+opioid medications in the past year, 11\% reported misusing or abusing pain 
+relievers, and 2\% reported heroin use. The classifier models were fit to the 
+training set with sixteen features, including demographic variables, 
+medications, and illicit drugs. The binary target variable was pain reliever
+misuse and abuse. Model performance was evaluated on the testing set. The
+$f_1$-score was used as the performance metric due to unbalanced classes in
+the data. Logistic regression, decision trees, and random forests had the 
+highest $f_1$-scores compared to other models. All three models identified 
+cocaine use as the most informative feature for predicting pain reliever 
+misuse and abuse. Amphetamine use was selected by logistic regression and 
+random forests as the second most important variable. The models differed in 
+the importance they assigned to heroin use, tranquilizer use, age category, 
+and mental health as predictors of pain reliever misuse and abuse. 
+Advantages and limitations of the classifier models are considered and the tradeoff between model complexity and interpretability is discussed. 
 \footnote{This project was completed in partial fulfillment of requirements 
-for the M.S. in Data Science from the School of Informatics and Computing at 
-IU-Bloomington completed in May, 2018. Manuscript completed November 23, 2018. 
-Manuscript submitted December 14, 2018. Address correspondence to 
-\textit{smshiver@iu.edu}}
+for the M.S. in Data Science from the School of Informatics and Computing at IU-Bloomington completed in May, 2018. Manuscript completed November 23, 2018; submitted for publication December 14, 2018. Address correspondence to 
+\textit{smshiver@iu.edu}.}
 
 \end{abstract}
 \keywords{Predictive Modeling, Supervised Learning, Classification Models}
@@ -67,36 +62,36 @@ prescription painkillers \cite{jones13}. Given that the potency and dosage
 levels of illicit or synthetic opioids is largely unknown, the risk of overdose
 death is greatly increased. The sharp rise in prescription overdose deaths 
 (POD) and heroin overdose deaths (HOD) are correlated \cite{muhuri13, unick13}. 
-Predictive modeling can be used to identify important features that contribute 
-to MUPO and predict individuals that may be susceptible to opioid addiction. 
-Data mining can provide insights to inform policy decisions for addressing the 
-opioid crisis. This study compares the performance of several classification 
-models to determine which approaches are best for modeling pain reliever 
-misuse and abuse. 
+Predictive modeling provides useful approaches for analyzing the misuse of
+prescription opioids and identifying features that contribute to MUPO. 
+Data mining can predict individuals who may be susceptible to opioid addiction 
+and provide insights to inform policy decisions for addressing the opioid 
+crisis. This study compares the performance of several classification models 
+to determine the best approaches for modeling pain reliever misuse and abuse. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Predictive Modeling}
 
 Predictive modeling, statistical learning, or machine learning describe a 
-set of procedures and automated processes for extracting knowledge from data 
-\cite{james13, kuhn13, muller17, raschka17}. The two main branches of 
-predictive modeling are supervised learning and unsupervised learning. 
+set of procedures and automated processes for extracting knowledge from 
+data \cite{james13, kuhn13, muller17, raschka17}. The two main branches 
+of predictive modeling are supervised learning and unsupervised learning. 
 Supervised learning problems involve prediction about a specific target 
-or outcome variable. If a dataset has no target outcome, unsupervised learning 
-methods (e.g., clustering) can be used to discover underlying structure 
-in unlabeled data. Supervised learning is used to predict an outcome based
-on input provided to a model, when examples of input/output pairs are available 
-in the data (e.g., logistic regression) \cite{muller17}. A statistical learning 
-model is constructed on a set of observations used to train the model and 
-then used to predict new observations. Two main approaches for supervised 
-learning problems are regression and classification. When the target variable
-is continuous or there is continuity in the outcome (e.g., home prices), a
-regression model tests how a given set of features predicts the target variable. 
-If the target is a class label, set of categories, or binary variable (e.g., 
-spam or ham emails, benign or malignant cells), a classification model is used 
-to predict which class or category label new instances are assigned to. 
-This study used a supervised learning approach to classify prescription pain 
+or outcome variable. If a dataset has no target outcome, unsupervised 
+learning methods can be used to discover underlying structure in the data 
+(e.g. clustering). Supervised learning is used to predict an outcome based 
+on input provided to a model, when examples of input/output pairs are 
+available in the data \cite{muller17}. A statistical learning model is 
+constructed using a set of observations to train the model and then make
+predictions with new observations. Two main approaches for supervised learning 
+problems are regression and classification. When the target variable
+is continuous or there is continuity in the outcome (e.g. home prices), a 
+regression model tests how a set of features predicts the target variable. 
+If the target is a class label, binary variable, or set of categories 
+(e.g., spam or ham emails, benign or malignant cells), a classification model 
+will predict which class or category label new instances are assigned to. 
+This study used a supervised learning approach to classify prescription pain
 reliever misuse and abuse as a binary outcome. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -149,8 +144,8 @@ In other words, the model will predict a number close to one for individuals
 who have misused or abused pain relievers and a number close to  zero for 
 individuals who have not. The distribution of conditional probabilities in 
 the logit model has an S-shaped curve. By taking the natural log of the left 
-side of the equation, we obtain the logit function which is linear in the
-parameters, where X = ($X_1$...$X_p$) predictor variables (equation 1). 
+side of the regression equation, we obtain the logit function which is linear 
+in the parameters, where X = ($X_1$...$X_p$) predictor variables (equation 1). 
 The coefficient estimates are selected to maximize the likelihood function, 
 and are interpreted as an indication of the log-odds change in the outcome 
 variable that is associated with a one-unit increase in the predictor variable, 
@@ -239,9 +234,9 @@ close to linear.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Bayes' rule was mentioned above in relation to LDA; in this section, the 
-\emph{naive Bayes classifier} is considered as a non-linear model.
+\emph{Naive Bayes Classifier} is considered as a non-linear model.
 The Bayes theorem (equation 2) is represented by a set of probabilities 
-to answer the following question: ``Based on a given set of predictors, 
+that answer the question, ``Based on a given set of predictors, 
 what is the probability than an outcome belongs to a particular class?''
 
 \begin{equation}
@@ -249,7 +244,7 @@ what is the probability than an outcome belongs to a particular class?''
 \end{equation}
 
 The prior probability, P(Y), is the expected probability of a given class 
-based on what is known (e.g., rate of disease in the population). P(X) 
+based on what is known (e.g. rate of disease in the population). P(X) 
 is the probability of the predictor variables. The conditional probability,
 $P(X=cl|Y)$, is the probability of observing the predictor variables for data 
 associated with a given class. The naive Bayes model assumes that all of the 
@@ -259,14 +254,14 @@ for each individual predictor \cite{kuhn13}. For categorical predictors, the
 observed frequencies in the training set data can be used to determine the 
 probability distributions. The prior probability allows us to tilt the final 
 probability toward a particular class. Class probabilities are created and 
-the predicted class is one associated with the largest class probability. 
-Despite the somewhat unrealistic assumption of independence among predictors, 
-the naive Bayes model is computationally quick, even with large training sets, 
-and performs competitively compared to other models. The naive Bayes model 
-encounters issues when dealing with frequencies or probabilities equal to zero,
-especially for small sample sizes. In addition, as the number of predictors 
-increases relative to the size of the sample, the posterior probabilities 
-become more extreme.
+the predicted class is the one that is associated with the largest class
+probability. Despite the somewhat unrealistic assumption of independence among
+predictors, the naive Bayes model is computationally quick, even with large 
+training sets, and performs competitively compared to other models. The naive 
+Bayes model encounters issues when dealing with frequencies or probabilities 
+equal to zero, especially for small sample sizes. In addition, as the number 
+of predictors increases relative to the size of the sample, the posterior 
+probabilities will become more extreme.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -277,21 +272,21 @@ The present study considers a simple method called a multilayer perceptron
 The outcome is modeled by an intermediary set of unobserved variables called 
 hidden units, which are linear combinations of the original predictors
 (see Appendix). Each hidden unit is a combination of some or all of the 
-predictors which are then transformed by a nonlinear function (e.g., 
-\emph{sigmoidal}). A neural network usually has multiple hidden units used 
+predictors which are then transformed by a nonlinear function (e.g. 
+sigmoidal). A neural network usually has multiple hidden units used 
 to model the outcome. The MLP classifier computes weights between the inputs 
 and hidden units, and weights between the layers of hidden units and the 
 output. After computing each hidden unit, the output is modeled by a nonlinear 
 combination of the hidden units. The nonlinear function allows the neural 
-network to fit more complicated functions than a linear model. Neural networks 
-are sensitive to the scaling of the features and can require extensive data 
-preprocessing. There are several ways to modify the complexity of a neural 
-network: by selecting the number of hidden layers, the number of units within 
-each layer, and the regularization parameter (L2) which shrinks the weights 
-towards zero. The feature weights provide an estimate of feature importance.
-Although neural networks can capture information in large amounts of data 
-with very complex models, they tend to overfit data used to train the model 
-and can be difficult to interpret. Neural networks may work best with 
+network to fit more complicated functions than a linear model; however, 
+neural networks are sensitive to the scaling of the features and can require
+extensive data preprocessing. There are several ways to modify the complexity 
+of a neural network: by selecting the number of hidden layers, the number of 
+units within each layer, and the regularization parameter (L2) which shrinks 
+the weights towards zero. The feature weights provide an estimate of feature 
+importance. Although neural networks can capture information in large amounts 
+of data with very complex models, they tend to overfit data used to train the 
+model and can be difficult to interpret. Neural networks may work best with 
 homogenous datasets where the predictor variables all have similar meanings 
 \cite{muhuri13}. For datasets with many different kinds of features, 
 tree-based methods offer a better approach.
@@ -754,8 +749,8 @@ these three top performing models are described below.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
 \begin{table*}[ht]
-  \caption{Confusion Matrices and Performance Metrics for Predictive Models of 
-  Pain Reliever Misuse and Abuse}
+  \caption{Confusion Matrices and Performance Metrics for Classification 
+  Models of Pain Reliever Misuse and Abuse}
   \label{tab:freq}
   \begin{tabular}{llllllll}
     \toprule
@@ -875,7 +870,7 @@ words, the odds of PRLMISAB for females was 17\% lower than for males. The
 odds ratio indicates the ratio of the positive event to the negative event, 
 but does not reveal the probability of the positive outcome. The terms in the 
 logistic regression equation can be rearranged to obtain the function of the 
-event probability, as presented below in equation 3: 
+event probability, as presented in equation 3: 
 
 \begin{equation}
   \ \textit{P} = \frac{1}{1+exp[-(\beta_0 + \beta_1X_1 + \beta_1X_2 +... \beta_p*X_p)]} \
@@ -1054,6 +1049,8 @@ reliever misuse or abuse for females was 17 percent lower than for males.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\subsection{Model Interpretability}
+
 Every classification model has advantages and limitations. In general there
 was a tradeoff between model complexity and interpretability. simple models 
 provide interpretable solutions but tend to have lower accuracy, whereas
@@ -1069,27 +1066,30 @@ relationships in the data, or with high dimensional data (e.g., $p>n$).
 Decision trees are useful for modeling nonlinear data and can be 
 interpreted in terms of the frequency or proportion of observations selected 
 at each branch. A single tree visually represents the decision process in a 
-manner that is effective for communicating results to non-technical audiences. 
-A disadvantage is that, without pruning, decision can become very complex, 
-especially as the number of predictors increases. Limiting the decision tree 
-to a depth of four nodes improves the interpretability, but reduces the 
-generalizability of the model to new observations. Random forests correct for 
-overfitting by building multiple different trees and averaging them to identify 
-class membership, thus improving performance and generalizing well to new data,
-Feature importance for the random forests model is provided by the mean 
-decrease in the Gini score, a measure of node purity at each split, which can
-be difficult to interpret in terms of the outcome. Gradient boosting is a model
-that typically improves accuracy using many simple models iteratively and 
-correcting for individual trees, but in the present case boosting did not 
-perform better than random forests. The multilayer perceptron (MLP) is one of 
-the most widely used neural network models for classification. With a limited 
-number of predictor variables and single hidden layer (see Appendix A), it 
-is possible to interpret the relations among weights and nodes in hidden 
-layers of a simple neural network. As the number of predictors and hidden 
-layers increases, the neural network becomes opaque to interpretation and 
-represents a ``black box'' model, which is not comprehensible at a human level. 
+manner that is effective for communicating results; however, a disadvantage 
+is that decision can become very complex without pruning, especially as the 
+number of predictors increases. Limiting the decision tree to a depth of four 
+nodes improves the interpretability, but reduces the generalizability of the 
+model to new observations. Random forests reduce overfitting by averaging
+multiple different trees to identify class membership, which improves 
+generalizability to new data. A limitation of random forests is that feature 
+importance is determined by the mean decrease in Gini score, a measure of node
+purity that is difficult to interpret in terms of the outcome. Gradient 
+boosting is a method that typically improves accuracy using many simple 
+models iteratively and correcting for individual trees. In the present study, 
+boosting did not perform better than random forests. As the complexity of the
+model increases, interpretation becomes more of an issue as seen with 
+neural networks. The multilayer perceptron (MLP) is one of the most widely 
+used neural network models for classification. With a limited number of 
+predictor variables and single hidden layer (see Appendix A), it is possible 
+to interpret the relations among weights and nodes in the hidden layer. As 
+the number of predictors and hidden layers increases, the neural network 
+becomes opaque to interpretation and basically represents a ``black box'' 
+model, which is not comprehensible at a human level. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Limitations}
 
 A surprising finding is that several models which typically perform well for 
 binary classification tasks (gradient boosting, SVM, neural networks) did not 
@@ -1110,6 +1110,8 @@ pain medications in the past, though this would result in a smaller sample.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\subsection{Opioid Addiction}
+
 Although drug addiction has many similar characteristics to other chronic 
 medical illnesses, there are unique challenges to the treatment of addiction. 
 According to a classical conditioning theory of addiction, situational cues or 
@@ -1124,41 +1126,46 @@ as `addicted' or `not addicted', it may be useful to consider people as more or
 less susceptible to misusing or abusing opioid pain medication. This study also 
 provides further support for the connection between pain reliever misuse and 
 heroin use. The rate of pain reliever misuse and abuse was twice as great for
-respondents who reported using heroin than for those who had not. Recent 
-statistics from the CDC show that the use of illicit and synthetic opioids is
-a major contributing factor in the increase of opioid overdose deaths 
+respondents who reported using heroin as for those who had not. Recent 
+statistics from the CDC show that the use of illicit and synthetic opioids 
+is a major contributing factor in the increase of opioid overdose deaths 
 \cite{cdc18}. If the crisis in opioid addiction is a true epidemic, network 
 analysis may be useful for describing the spread or diffusion of drug use and 
 addictive behavior within social networks and the rate of transmission. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Conclusion}
 
-This study compared several supervised learning procedures to select the best 
-models for classifying pain reliever misuse and abuse. The $f_1$-score was 
-used to evaluate model performance given the unbalanced classes in the data. 
-Logistic regression, decision trees, and random forests performed better than
-other classifier models. All three models selected cocaine as the most 
-informative variable for predicting pain reliever misuse and abuse. The
-models assigned different levels of importance to the use of amphetamines, 
-heroin, and tranquilizers. Demographic variables such as age, mental health, 
-and health problems were also influential predictors. A general conclusion is 
-that there are tradeoffs in model complexity and interpretability. Simple
-models provide interpretable solutions but are often less accurate than more 
-complex models which yield higher performance, but are difficult to interpret. 
-Predictive modeling is a useful approach for classifying individuals at risk 
-for opioid abuse and addiction. Additional research is needed to understand 
-the relationships among these variables. The findings may inform efforts to 
-address the opioid crisis and help reduce the risk of overdose death. 
+Predictive modeling offers several useful approaches for analyzing the misuse
+and abuse of prescription opioids and identifying factors that contribute to 
+MUPO. This study compared ten classification models of pain reliever misuse 
+and abuse using the $f_1$-score to evaluate model performance with unbalanced 
+classes in the data. Logistic regression, random forests, and decision trees 
+had the best performance compared to other models. Cocaine use was selected 
+as the most informative variable by all three models, followed by amphetamine 
+use which was selected as the second most important feature by the logistic
+regression and random forests models. The models differed in  the importance 
+they assigned to heroin use, tranquilizers, and demographic features such as 
+age group, mental health, and health problems. A general conclusion is that 
+there are tradeoffs between model complexity, performance, and 
+interpretability. A simple decision tree provides an interpretable model 
+that is prone to overfitting. Random forests reduce overfitting and improve 
+generalizability, but are difficult to interpret. Logistic regression strikes 
+a balance between complexity and interpretability, but does not perform well
+with non-linear relationships or high-dimensional data. Additional research 
+is needed to understand the relationships among the variables identified by 
+predictive models. The findings may inform decision making and policy efforts 
+to address the opioid crisis and reduce the risk of overdose death. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{acks}
 
-Portions of this paper were completed as part of a course project in Big Data 
-Applications and Analytics taught by Professor Gregor von Laszewskin at 
-Indiana University in Fall 2017. Thanks to the teaching assistants, Juliette 
-Zurick and Miao Jiang. Thanks to Dallas J. Elgin for encouragement and also
-to Ed Miles whose helpful comments improved the manuscript. 
+Portions of this paper were completed as part of a course project for
+`Big Data Applications and Analytics' taught by Professor Gregor von Laszewski 
+at Indiana University in Fall 2017. Thanks to the teaching assistants Juliette 
+Zurick and Miao Jiang. Thanks also to Dallas J. Elgin for encouragement and 
+Ed Miles for helpful comments on the manuscript. 
 
 \end{acks}
 
