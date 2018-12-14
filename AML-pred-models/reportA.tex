@@ -392,7 +392,8 @@ illness, or not. In the present case, the positive class represents self-
 reported pain reliever misuse and abuse (PRL Misuse), and predictions based on 
 the classifier models will be either correct or incorrect in relation to the 
 observed outcomes. For example, a person who has never misused or abused pain 
-relievers may be misclassified as having done so (i.e., 'false positive'), or conversely, a person who actually has misused and abused pain relievers may 
+relievers may be misclassified as having done so (i.e., 'false positive'), or 
+conversely, a person who actually has misused and abused pain relievers may 
 be mislabeled as never having done so (i.e., 'false negative').
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -829,16 +830,15 @@ these three top performing models are described below.
 \subsubsection{Logistic Regression}
 
 The parameter estimates and odds ratios for the logistic regression model 
-are presented in Table 5, sorted by z-score. The coefficient estimates for
-all of the features were statistically significant, with the exception of 
-mental health treatment. The model was re-run leaving out the non-significant 
-variable, but the performance metrics did not change and the model with 
-the full set of features was retained. The coefficient estimates 
-($\beta_i$...$\beta_j$) are interpreted as the change in the log of the 
-odds of the dependent variable (PRLMISAB) occurring given a one unit 
-change in each independent variable ($X_i$...$X_j$), holding constant 
-the effects of other independent variables. The parameters relate to the 
-log of the odds ratio rather than to the dependent variable directly. 
+are presented in Table 5. The coefficient estimates were all statistically 
+significant with the exception of mental health treatment. The model was 
+re-run leaving out the non-significant variable, but the performance metrics 
+did not change and the full model was retained that included all predictors. 
+The coefficient estimates ($\beta_i$...$\beta_j$) are interpreted as the 
+change in the log of the odds of the dependent variable (PRLMISAB) occurring 
+given a one unit change in each independent variable ($X_i$...$X_j$), holding
+constant the effects of other independent variables. The parameters relate to 
+the log of the odds ratio rather than to the dependent variable directly. 
 The odds are calculated as the probability of the event occurring divided 
 by the probability of the event not occurring ( \(\frac{P}{P-1}\) ). The 
 odds ratio is obtained by taking the antilog of the estimated coefficient, 
@@ -847,42 +847,39 @@ independent variable, the odds ratio is interpreted as the multiplicative
 increase in the odds of the dependent variable event happening given a 
 one unit change in the value of the independent variable, assuming the 
 effects of all other independent variables are held constant. For a 
-dichotomous (dummy) variable (i.e., sex), it represents the multiplicative 
-increase in the odds of the dependent variable event happening if the event
-represented by the independent variable occurs, holding constant the effects 
-of all other independent variables. In general, taking the antilog of the 
-coefficient estimate, subtracting 1 from it, and multiplying the result 
-by 100, provides the percent change in the odds for a unit increase in the 
-independent variable  \cite{gujarati09}.  The odds ratio indicates the 
-ratio of the positive event to the negative event, but does not reveal the 
-probability of the positive outcome.
+dichotomous variable (i.e., sex), it represents the multiplicative increase 
+in the odds of the dependent variable event happening if the event
+represented by the independent variable occurs. In general, taking the 
+antilog of the coefficient estimate, subtracting 1 from it, and multiplying 
+the result by 100, provides the percent change in the odds for a unit 
+increase in the independent variable  \cite{gujarati09}.  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The odds ratios presented in Table 5 can be interpreted as the odds of a 
-respondent misusing or abusing pain relievers increases by 1.96 times or 96\% 
-for a one unit increase in cocaine use, holding the effects of all other 
-independent variables constant. For a one unit increase in amphetamine use, 
-the odds of pain reliever misuse and abuse (PRLMISAB) increases by 1.81 times
-or 81\%. A one unit increase in tranquilizer use is associated with a 1.48 or 
-48\% increase in the odds of PRLMISAB. For a unit increase in mental health 
-issues, the odds for PRLMISAB increased by 1.14 or 14\%. For a one unit 
-increase in heroin use, the odds of PRLMISAB increases by 2.12 times or 112\%. 
+For a one unit increase in cocaine use, the odds of misusing or abusing pain 
+relievers increased by 1.96 times or 96\% , holding the effects of all other
+variables constant. For a one unit increase in amphetamine use, the odds of 
+pain reliever misuse and abuse (PRLMISAB) increase by 1.81 times or 81\%. 
+A one unit increase in tranquilizer use was associated with a 1.48 or 48\% 
+increase in the odds of PRLMISAB. For a unit increase in mental health issues, 
+the odds for PRLMISAB increased by 1.14 or 14\%. For a one unit increase in 
+heroin use, the odds of PRLMISAB increases by 2.12 times or 112\%. 
 For a one unit increase in age category, the odds of PRLMISAB decreased by 
 1.20 times or 20\%. A one unit increase in employment is associated with a 
 1.21 or 21\% increase in the odds of PRLMISAB. For a unit increase in 
 substance treatment, the odds for PRLMISAB increased by 1.23 or 23\%. 
 For a one unit increase in sedative use, the odds of PRLMISAB increases by 
-1.30 times or 30\%. For a one unit increase in education level, the odds for 
-PRLMISAB increased by 1.11 or 11\%. For a unit increase in health problems, 
-the odds of PRLMISAB increase by 1.10 or 10\%. In terms of sex, the odds of
-misusing or abusing pain relievers for females decreases by 1.17 times 
-compared to males; in other words, the odds of PRLMISAB for females was 17\%
-lower than for males. For a unit increase in marital status, the odds for 
-PRLMISAB increases by 1.05 or 5\%. The odds for PRLMISAB decrease by 1.07 
-or 7\% for a unit increase in year of the survey. A unit increase in the size 
-of a respondent's city or metropolitan area resulted in a 1.04 or 4\% 
-decrease in the odds of PRLMISAB. 
+1.30 times or 30\%. In terms of sex, the odds of misusing or abusing pain 
+relievers for females decreased by 1.17 times compared to males; in other 
+words, the odds of PRLMISAB for females was 17\% lower than for males. The 
+odds ratio indicates the ratio of the positive event to the negative event, 
+but does not reveal the probability of the positive outcome. The terms in the 
+logistic regression equation can be rearranged to obtain the function of the 
+event probability, as presented below in equation 3: 
+
+\begin{equation}
+  \ \textit{P} = \frac{1}{1+exp[-(\beta_0 + \beta_1X_1 + \beta_1X_2 +... \beta_p*X_p)]} \
+\end{equation}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1007,15 +1004,15 @@ misuse and abuse. Logistic regression, random forests, and decision trees
 performed better than other classifier models using the $f_1$-score as the 
 appropriate performance metric. Traditional algorithms tend to classify new 
 observations based on the majority class, as seen with the naive Bayes model, 
-which had a relatively high $f_1$-score despite only 35 true positive instances 
-and a high number of false negatives. The random forests model performed 
-slightly better than the other models as it correctly predicted more true 
-positive instances than the logistic regression and had fewer false negative 
-errors than the single decision tree. The QDA and LDA models both identified 
-the largest number of true positives, but each correctly labeled fewer true 
-negatives compared to the logistic regression model, which had higher 
-$f_1$-score and accuracy overall. This finding indicates that the decision 
-boundary for classifying pain reliever misuse and abuse can be modeled 
+which had a relatively high $f_1$-score despite identifying only 35 true 
+positive instances and having a high number of false negatives. The random 
+forests model performed slightly better than the other models as it correctly 
+predicted more true positive instances than the logistic regression and had 
+fewer false negative errors than the single decision tree. The QDA and LDA 
+models both identified the largest number of true positives, but each correctly 
+labeled fewer true negatives compared to the logistic regression model, which 
+had higher $f_1$-score and accuracy overall. This finding indicates that the 
+decision boundary for classifying pain reliever misuse and abuse can be modeled 
 as a linear function of the predictor variables \cite{james13, raschka17}. 
 The decision tree and random forests models would be preferred if pain reliever 
 misuse and abuse were modeled as a non-linear function of the predictors,
@@ -1065,17 +1062,11 @@ The advantage of logistic regression is that it provides coefficient estimates
 for individual features that can be interpreted in terms of odds ratios. The
 predicted outcome (Y-hat) is represented by the weighted combination of all 
 the independent variables. The logit function is linear in the parameters, 
-but the probabilities of the expected outcome are non-linear. And the terms 
-in the logistic regression equation can be rearranged to obtain the function 
-of the event probability (equation 3). 
+but the probabilities of the expected outcome are non-linear. The drawbacks of 
+logistic regression are that it does not perform well for modeling non-linear 
+relationships in the data, or with high dimensional data (e.g., $p>n$). 
 
-\begin{equation}
-  \ \textit{P} = \frac{1}{1+exp[-(\beta_0 + \beta_1X_1 + \beta_1X_2 +... \beta_p*X_p)]} \
-\end{equation}
-
-The drawbacks of logistic regression are that it does not perform well for
-modeling non-linear relationships in the data, or with high dimensional data 
-(e.g., $p>n$). Decision trees are useful for modeling nonlinear data and can be 
+Decision trees are useful for modeling nonlinear data and can be 
 interpreted in terms of the frequency or proportion of observations selected 
 at each branch. A single tree visually represents the decision process in a 
 manner that is effective for communicating results to non-technical audiences. 
@@ -1180,17 +1171,17 @@ to Ed Miles whose helpful comments improved the manuscript.
 
 \subsection{Supplemental Figure}
 
-\subsubsection{Neural Network} The multilayer perceptron (MLP) is a 
-back-propogation neural network that takes the features as input; a 
-single hidden layer comprises the weighted combination of the input 
-variables, and the output layer represents a response probability. 
-During model training, the weights of the predictor variables are first 
-randomly initialized and then iteratively adjusted to minimize an 
-error function (e.g. gradient descent) \cite{brown12}.
+\subsubsection{Neural Network} The multilayer perceptron (MLP) is a simple
+back-propogation neural network that takes the features as input; a single 
+hidden layer comprises the weighted combination of the input variables, and 
+the output layer represents a response probability. During model training, 
+the weights of the predictor variables are first randomly initialized and 
+then iteratively adjusted to minimize an error function (e.g. gradient 
+descent) \cite{brown12}.
 
 \begin{figure}[!ht]
   \centering\includegraphics[width=\columnwidth]{images/Figure5.pdf}
-  \caption{Neural Net Classifier: Multilayer Perceptron with Single Hidden Layer.}
+  \caption{Neural Net Classifier: Multilayer Perceptron with a Single Hidden Layer.}
   \label{f:Figure5}
 \end{figure}
 
