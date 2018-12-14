@@ -379,11 +379,11 @@ To identify which model is best for a given problem, with the data available,
 it is necessary to evaluate the performance of different learning algorithms. 
 Binary classification is assessed in terms of the successful assignment of 
 observations to one of two classes: positive or negative. No classification 
-model can make perfect predictions, errors are always to be found. Medical 
+model can make perfect predictions, as errors are always to be found. Medical 
 testing is often used as an example to illustrate classification decisions 
-and errors. For example, in the actual state of the world, a patient can either 
-have an illness, or not, and the person can be either diagnosed as having the 
-illness, or not. In the present case, the positive class represents self-
+and errors. For example, in the actual state of the world, a patient either 
+has an illness or not, and the person is either diagnosed as having the 
+illness or not. In the present case, the positive class represents self-
 reported pain reliever misuse and abuse (PRL Misuse), and predictions based on 
 the classifier models will be either correct or incorrect in relation to the 
 observed outcomes. For example, a person who has never misused or abused pain 
@@ -398,7 +398,7 @@ Correct decisions and classification errors are represented in a
 and actual outcomes (Table 1). The confusion matrix is a two-by-two array in 
 which the columns correspond to the actual observed classes and the rows 
 correspond to the predicted classes. The main diagonal indicates the number 
-of correctly classified samples (\emph{true negative, true positive}), while 
+of correctly classified samples (i.e., true negative, true positive), while 
 the other entries represent the number of samples in one class that were 
 mistakenly classified as another class. Several performance metrics can be 
 obtained from the confusion matrix, including accuracy, sensitivity (i.e., 
@@ -469,21 +469,21 @@ than the other class, as it takes into account both recall and precision
     Age category (1=12-17 years, 2=18-25, 3=26-35, 4=36-49, 5=50 and older)& AGECAT \\
     Sex (0=Male, 1=Female)& SEX  \\
     Marital status (0=unmarried, 1=divorced, 2=widowed, 3=married)& MARRIED  \\
-    Education Level (1=h.s. or Less, 2=h.s. grad., 3=some college,  4=college grad.)& EDUCAT  \\
+    Education level (1=h.s. or Less, 2=h.s. grad., 3=some college,  4=college grad.)& EDUCAT  \\
     Employment status, over age 18 (1=not employed, 2=part-time, 3=full-time) & EMPLOY18  \\
     Size of city/metropolitan region (1=rural, 2=small, 3=large)& CTYMETRO  \\
     Health problems, aggregated  (Likert scale: 0-10)& HEALTH  \\
     Mental health, aggregated: adult depression, emotional distress 
     (Likert scale: 0-10)& MENTHLTH  \\
-    Treatment for drugs or alcohol in past year, Aggregated 
+    Treatment for drugs or alcohol in past year, aggregated 
     (Likert scale: 0-5)& TRTMENT  \\
     Mental health treatment, aggregated (Likert scale: 1-10)& MHTRTMT  \\
-    Tranquilizer use, past year, aggregated (Likert scale: 0-5)& TRQLZRS \\
-    Sedative use, past year, aggregated (Likert scale: 0-5)& SEDATVS  \\
-    Heroin use, past year, aggregated (Likert scale: 0-5)& HEROINUSE  \\
-    Cocaine and crack cocaine use in past year, Aggregated  
+    Tranquilizer use in past year, aggregated (Likert scale: 0-5)& TRQLZRS \\
+    Sedative use in past year, aggregated (Likert scale: 0-5)& SEDATVS  \\
+    Heroin use in past year, aggregated (Likert scale: 0-5)& HEROINUSE  \\
+    Cocaine and crack cocaine use in past year, aggregated  
     (Likert scale: 0-5)& COCAINE  \\
-    Amphetamine and methamphetamine Use in past year, Aggregated 
+    Amphetamine and methamphetamine use in past year, aggregated 
     (Likert scale: 0-5)& AMPHETMN  \\
     \bottomrule
   \end{tabular}
@@ -491,7 +491,7 @@ than the other class, as it takes into account both recall and precision
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{Training Set and Test Set Accuracy}
+\subsubsection{Training Accuracy and Test Set Accuracy}
 
 In constructing and evaluating predictive models it is important to select 
 a model that performs well not only with the data used to train the model, 
@@ -502,24 +502,25 @@ approximately 70 to 80 percent of observations are used in the training set
 and the remaining portion is held in the test set. The two main problems 
 that occur in evaluating model performance are \emph{overfitting} and 
 \emph{underfitting}. In the case of overfitting, a model can have high 
-accuracy on the training set but perform poorly with new data in the test set 
-because the model is overly fit to the training data. By contrast, a 
-simple model may not generalize well to new observations as it does not
-include all of the features relevant for predicting the target outcome 
-as seen in the case of underfitting. One of the simplest classification 
-models, K-Nearest Neighbors (KNN) provides an illustrative example. KNN 
-classifies observations by assigning the label that is most frequent among 
-the \textit{'k'}-number of nearest training samples (k is a parameter 
-selected by the user). The accuracy of the KNN classifier for the training 
-set and testing set is plotted in Figure 2 as a function of the parameter 
-k-neighbors. The plot shows that increased accuracy on the training set is 
-associated with decreased testing set accuracy; conversely, increased 
-accuracy on the testing set is related to a decrease in training set 
-accuracy. The best model is one that optimizes test set accuracy while 
-striking a balance between the problems of overfitting and underfitting. 
-In the case of KNN, testing set increases only slightly between 2 and 4 
-neighbors, but does not improve much beyond 5 neighbors. Therefore, a model 
-with k=4 neighbors provides a reasonable solution for the data. 
+accuracy on the training set but perform poorly with new data in the test 
+set because the model is overly fit to the training data. By contrast, in 
+the case of underfitting, a simple model may not generalize well to new 
+observations as it does not include all of the features relevant for 
+predicting the target outcome. One of the simplest classification models, 
+K-Nearest Neighbors (KNN) provides an example of the tradeoff between 
+training accuracy and test set accuracy. KNN classifies observations by 
+assigning the label that is most frequent among the \textit{'k'}-number 
+of nearest training samples (k is a parameter selected by the user). 
+The accuracy of the KNN classifier for the training set and testing set 
+is plotted in Figure 2 as a function of the parameter k-neighbors. The 
+plot shows that increased accuracy on the training set is associated 
+with decreased testing set accuracy; conversely, increased accuracy on the 
+testing set is related to a decrease in training set accuracy. The best 
+model is one that optimizes test set accuracy while striking a balance 
+between the problems of overfitting and underfitting. In the case of KNN, 
+testing set increases only slightly between 2 and 4 neighbors, but does 
+not improve much beyond 5 neighbors. Therefore, a model with k=4 neighbors
+provides a reasonable solution for the data. 
 
 \subsubsection{Imbalanced Classes}
 
@@ -1051,17 +1052,20 @@ reliever misuse or abuse for females was 17 percent lower than for males.
 
 \subsection{Model Interpretability}
 
-Every classification model has advantages and limitations. In general there
-was a tradeoff between model complexity and interpretability. simple models 
-provide interpretable solutions but tend to have lower accuracy, whereas
-complex models yield improved performance but are more difficult to interpret. 
-The advantage of logistic regression is that it provides coefficient estimates 
-for individual features that can be interpreted in terms of odds ratios. The
-predicted outcome (Y-hat) is represented by the weighted combination of all 
-the independent variables. The logit function is linear in the parameters, 
-but the probabilities of the expected outcome are non-linear. The drawbacks of 
-logistic regression are that it does not perform well for modeling non-linear 
-relationships in the data, or with high dimensional data (e.g., $p>n$). 
+Every classification model has advantages and limitations. There is a 
+tradeoff between model complexity, performance, and interpretability.
+Simple models provide interpretable solutions but have lower accuracy, 
+whereas complex models yield improved performance but are more difficult 
+to interpret. In general, supervised learning algorithms sacrifice 
+interpretability for the sake of greater model accuracy \cite{elgin18}. 
+The advantage of logistic regression is that it provides coefficient 
+estimates for individual features that can be interpreted in terms of odds 
+ratios. The predicted outcome (Y-hat) is represented by the weighted 
+combination of all the independent variables. The logit function is linear 
+in the parameters, but the probabilities of the expected outcome are 
+non-linear. The drawbacks of logistic regression are that it does not 
+perform well for modeling non-linear relationships between the target
+outcome and predictor variables, or with high dimensional data (e.g., $p>n$). 
 
 Decision trees are useful for modeling nonlinear data and can be 
 interpreted in terms of the frequency or proportion of observations selected 
@@ -1075,10 +1079,10 @@ multiple different trees to identify class membership, which improves
 generalizability to new data. A limitation of random forests is that feature 
 importance is determined by the mean decrease in Gini score, a measure of node
 purity that is difficult to interpret in terms of the outcome. Gradient 
-boosting is a method that typically improves accuracy using many simple 
-models iteratively and correcting for individual trees. In the present study, 
-boosting did not perform better than random forests. As the complexity of the
-model increases, interpretation becomes more of an issue as seen with 
+boosting typically improves accuracy using many simple models iteratively and 
+correcting for individual trees; however, in the present study, the boosting 
+model did not perform better than random forests. As the complexity of the
+model increases, interpretation becomes more of an issue as in the case of 
 neural networks. The multilayer perceptron (MLP) is one of the most widely 
 used neural network models for classification. With a limited number of 
 predictor variables and single hidden layer (see Appendix A), it is possible 
