@@ -62,7 +62,7 @@ prescription painkillers \cite{jones13}. Given that the potency and dosage
 levels of illicit or synthetic opioids is largely unknown, the risk of overdose
 death is greatly increased. The sharp rise in prescription overdose deaths 
 (POD) and heroin overdose deaths (HOD) are correlated \cite{muhuri13, unick13}. 
-Predictive modeling provides useful approaches for analyzing the misuse of
+Predictive modeling provides useful methods for analyzing the misuse of 
 prescription opioids and identifying features that contribute to MUPO. 
 Data mining can predict individuals who may be susceptible to opioid addiction 
 and provide insights to inform policy decisions for addressing the opioid 
@@ -436,7 +436,7 @@ than the other class, as it takes into account both recall and precision
     & \\
     Precision (PPV) & \(\frac{TP}{TP+FP}\)  \\
     & \\
-    f_1 score & 2*\(\frac{Precision*Recall}{Precision+Recall}\)
+    f_1 score & 2*\(\frac{Precision*Recall}{Precision+Recall}\) \\
     & \\
     \bottomrule
   \end{tabular}
@@ -1055,14 +1055,12 @@ Every classification model has advantages and limitations. There is a
 tradeoff between model complexity, performance, and interpretability.
 Simple models provide interpretable solutions but have lower accuracy, 
 whereas complex models yield improved performance but are more difficult 
-to interpret. In general, supervised learning algorithms sacrifice 
-interpretability for the sake of greater model accuracy \cite{elgin18}. 
-The advantage of logistic regression is that it provides coefficient 
-estimates for individual features that can be interpreted in terms of odds 
-ratios. The predicted outcome (Y-hat) is represented by the weighted 
-combination of all the independent variables. The logit function is linear 
-in the parameters, but the probabilities of the expected outcome are 
-non-linear. The drawbacks of logistic regression are that it does not 
+to interpret. The advantage of logistic regression is that it provides 
+coefficient estimates for individual features that can be interpreted in 
+terms of odds ratios. The predicted outcome (Y-hat) is represented by the
+weighted combination of all the independent variables. The logit function 
+is linear in the parameters, but the probabilities of the expected outcome 
+are non-linear. The drawbacks of logistic regression are that it does not 
 perform well for modeling non-linear relationships between the target
 outcome and predictor variables, or with high dimensional data (e.g., $p>n$). 
 
@@ -1080,15 +1078,18 @@ importance is determined by the mean decrease in Gini score, a measure of node
 purity that is difficult to interpret in terms of the outcome. Gradient 
 boosting typically improves accuracy using many simple models iteratively and 
 correcting for individual trees; however, in the present study, the boosting 
-model did not perform better than random forests. As the complexity of the
-model increases, interpretation becomes more of an issue as in the case of 
-neural networks. The multilayer perceptron (MLP) is one of the most widely 
-used neural network models for classification. With a limited number of 
-predictor variables and single hidden layer (see Appendix A), it is possible 
-to interpret the relations among weights and nodes in the hidden layer. As 
-the number of predictors and hidden layers increases, the neural network 
-becomes opaque to interpretation and basically represents a ``black box'' 
-model, which is not comprehensible at a human level. 
+model did not perform better than random forests. 
+
+As the complexity of a model increases, interpretation becomes more of an 
+issue, as seen with neural networks. The multilayer perceptron (MLP) is 
+one of the most widely used neural network models for classification. With a
+limited number of predictor variables and single hidden layer, it is possible 
+to interpret the relations among weights and nodes in the hidden layer 
+(see Appendix). As the number of predictors and hidden layers increases, 
+complex neural network become opaque to interpretation and represent a 
+``black box'' model that is not comprehensible at a human level. A general 
+trend in applying sophisticated algorithms in predictive modeling is to 
+sacrifice interpretability for greater model accuracy \cite{elgin18}. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1103,9 +1104,9 @@ are sensitive to parameter settings and scaling of the data. Additional
 parameter tuning may have improved performance of complex models. Cross-
 validation can be used to select hyperparameters that optimize model 
 performance. Another limitation is that the aggregated features represent a 
-subset of the entire range of features in the NSDUH datasets. In a future study, 
-it may be useful to include a more comprehensive set of features to identify 
-additional variables for predicting opioid dependence and addiction. 
+subset of the entire range of features in the NSDUH datasets. In a future 
+study, it may be useful to include a more comprehensive set of features to 
+identify additional variables for predicting opioid dependence and addiction. 
 Given the large proportion of the sample that had not previously used any
 prescription opioid pain relievers, it may be more effective to classify 
 pain reliever misuse and abuse using a subset of individuals who have used 
@@ -1117,24 +1118,24 @@ pain medications in the past, though this would result in a smaller sample.
 
 Although drug addiction has many similar characteristics to other chronic 
 medical illnesses, there are unique challenges to the treatment of addiction. 
-According to a classical conditioning theory of addiction, situational cues or 
-events can elicit a motivational state underlying the relapse to drug use
+According to a classical conditioning theory of addiction, situational cues 
+or events can elicit a motivational state underlying the relapse to drug use
 \cite{shaham03}. Following treatment, many addicted individuals return to the 
 same environments associated with their drug use. Addictive behavior can be 
 reinstated by exposure to drug-related cues or stressors in the environment,
 putting individuals in recovery at risk for relapse and possible overdose. 
-In the case of prescription opioids, anyone is potentially at risk for misusing 
-opioids and becoming addicted to pain relievers. Rather than labeling people 
-as `addicted' or `not addicted', it may be useful to consider people as more or 
-less susceptible to misusing or abusing opioid pain medication. This study also 
-provides further support for the connection between pain reliever misuse and 
-heroin use. The rate of pain reliever misuse and abuse was twice as great for
-respondents who reported using heroin as for those who had not. Recent 
-statistics from the CDC show that the use of illicit and synthetic opioids 
-is a major contributing factor in the increase of opioid overdose deaths 
-\cite{cdc18}. If the crisis in opioid addiction is a true epidemic, network 
-analysis may be useful for describing the spread or diffusion of drug use and 
-addictive behavior within social networks and the rate of transmission. 
+In the case of prescription opioids, anyone is potentially at risk for 
+misusing opioids and becoming addicted to pain relievers. Rather than labeling 
+people as `addicted' or `not addicted', it may be useful to consider people as 
+more or less susceptible to misusing or abusing opioid pain medication. This 
+study also provides further support for the connection between pain reliever 
+misuse and heroin use. The rate of pain reliever misuse and abuse was twice 
+as great for respondents who reported using heroin as for those who had not. 
+Recent statistics from the CDC show that the use of illicit and synthetic 
+opioids is a major contributing factor in the increase of opioid overdose 
+deaths \cite{cdc18}. If the crisis in opioid addiction is a true epidemic, 
+network analysis may be useful for describing the spread or diffusion of drug 
+use and addictive behavior within social networks. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
