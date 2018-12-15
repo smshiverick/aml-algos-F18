@@ -14,29 +14,30 @@
 \begin{abstract}
 
 The misuse and abuse of prescription opioids (MUPO) has become a major 
-health crisis in the U.S. Predictive modeling provides several useful
-approaches for classifying pain reliever misuse and abuse and identifying
-factors that contribute to MUPO. This study compared ten classification 
-models using four performance metrics: accuracy, sensitivity (i.e. recall), 
+health crisis in the U.S. Predictive modeling provides a useful approach 
+for analyzing pain reliever misuse and abuse and identifying features 
+that contribute to MUPO. This study compared ten classification models 
+using four performance metrics: accuracy, sensitivity (i.e. recall), 
 precision, and $f_1$-score. Data from three years of the National Survey 
 on Drug Use and Health (2015-2017) was combined into a sample of N = 170317 
 observations. Twenty-six percent of respondents reported using prescription 
 opioid medications in the past year, 11\% reported misusing or abusing pain 
-relievers, and 2\% reported heroin use. The classifier models were fit to the 
-training set with sixteen features, including demographic variables, 
+relievers, and 2\% reported heroin use. The classifier models were fit to 
+a training set using sixteen features that included demographic variables, 
 medications, and illicit drugs. The binary target variable was pain reliever
 misuse and abuse. Model performance was evaluated on the testing set. The
 $f_1$-score was used as the performance metric due to unbalanced classes in
-the data. Logistic regression, decision trees, and random forests had the 
+the data. Logistic regression, random forests, and decision trees had the 
 highest $f_1$-scores compared to other models. All three models identified 
 cocaine use as the most informative feature for predicting pain reliever 
-misuse and abuse. Amphetamine use was selected by logistic regression and 
-random forests as the second most important variable. The models differed in 
+misuse and abuse. Amphetamine use was selected as the second most important 
+variable by logistic regression and random forests. The models differed in 
 the importance they assigned to heroin use, tranquilizer use, age category, 
 and mental health as predictors of pain reliever misuse and abuse. 
 Advantages and limitations of the classifier models are considered and the tradeoff between model complexity and interpretability is discussed. 
 \footnote{This project was completed in partial fulfillment of requirements 
-for the M.S. in Data Science from the School of Informatics and Computing at IU-Bloomington completed in May, 2018. Manuscript completed November 23, 2018; submitted on December 15, 2018. Address correspondence to 
+for the M.S. in Data Science from the School of Informatics and Computing at IU-Bloomington completed in May, 2018. The manuscript was completed November 
+23, 2018 and submitted December 15, 2018. Address correspondence to 
 \textit{smshiver@iu.edu}.}
 
 \end{abstract}
@@ -1080,11 +1081,11 @@ boosting typically improves accuracy using many simple models iteratively and
 correcting for individual trees; however, in the present study, the boosting 
 model did not perform better than random forests. 
 
-As the complexity of a model increases, interpretation becomes more of an 
-issue, as seen with neural networks. The multilayer perceptron (MLP) is 
-one of the most widely used neural network models for classification. With a
-limited number of predictor variables and single hidden layer, it is possible 
-to interpret the relations among weights and nodes in the hidden layer 
+As the complexity of a model increases, interpretation becomes more difficult, 
+as seen with neural networks. The multilayer perceptron (MLP) is one of the 
+most widely used neural network models for classification. With a limited 
+number of predictor variables and single hidden layer, it is possible to 
+interpret the relations among weights and nodes in the hidden layer 
 (see Appendix). As the number of predictors and hidden layers increases, 
 complex neural network become opaque to interpretation and represent a 
 ``black box'' model that is not comprehensible at a human level. A general 
@@ -1101,16 +1102,17 @@ perform better than was observed in this study. This may be due to imbalanced
 classes in the sample data. A limitation of the study is that the default 
 settings were used in constructing the classifier models. Many complex models 
 are sensitive to parameter settings and scaling of the data. Additional 
-parameter tuning may have improved performance of complex models. Cross-
+parameter tuning could have improved performance of complex models. Cross-
 validation can be used to select hyperparameters that optimize model 
 performance. Another limitation is that the aggregated features represent a 
 subset of the entire range of features in the NSDUH datasets. In a future 
 study, it may be useful to include a more comprehensive set of features to 
 identify additional variables for predicting opioid dependence and addiction. 
 Given the large proportion of the sample that had not previously used any
-prescription opioid pain relievers, it may be more effective to classify 
-pain reliever misuse and abuse using a subset of individuals who have used 
-pain medications in the past, though this would result in a smaller sample.
+prescription opioid pain relievers, it may be useful to classify pain reliever 
+misuse and abuse using a subset of individuals who have previously used pain 
+medications, although this would result in a reduced sample. It is a widely
+accepted truism in predictive analatics that, ``more data is always better''. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1168,8 +1170,8 @@ to address the opioid crisis and reduce the risk of overdose death.
 Portions of this paper were completed as part of a course project for
 `Big Data Applications and Analytics' taught by Professor Gregor von Laszewski 
 at Indiana University in Fall 2017. Thanks to the teaching assistants Juliette 
-Zurick and Miao Jiang. Thanks also to Dallas J. Elgin for encouragement and 
-Ed Miles for helpful comments on the manuscript. 
+Zurick and Miao Jiang. Thanks to Dallas J. Elgin for encouragement and 
+Ed Miles for helpful comments. 
 
 \end{acks}
 
