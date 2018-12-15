@@ -499,28 +499,29 @@ but also with new observations. A standard practice is to divide the sample
 data into a \emph{training set} and a \emph{testing set} of observations 
 that is set aside and used to evaluate model performance. By convention, 
 approximately 70 to 80 percent of observations are used in the training set 
-and the remaining portion is held in the test set. The two main problems 
-that occur in evaluating model performance are \emph{overfitting} and 
-\emph{underfitting}. In the case of overfitting, a model can have high 
-accuracy on the training set but perform poorly with new data in the test 
-set because the model is overly fit to the training data. By contrast, in 
-the case of underfitting, a simple model may not generalize well to new 
-observations as it does not include all of the features relevant for 
-predicting the target outcome. One of the simplest classification models, 
-K-Nearest Neighbors (KNN) provides an example of the tradeoff between 
-training accuracy and test set accuracy. KNN classifies observations by 
-assigning the label that is most frequent among the \textit{'k'}-number 
-of nearest training samples (k is a parameter selected by the user). 
-The accuracy of the KNN classifier for the training set and testing set 
-is plotted in Figure 2 as a function of the parameter k-neighbors. The 
-plot shows that increased accuracy on the training set is associated 
-with decreased testing set accuracy; conversely, increased accuracy on the 
-testing set is related to a decrease in training set accuracy. The best 
-model is one that optimizes test set accuracy while striking a balance 
-between the problems of overfitting and underfitting. In the case of KNN, 
-testing set increases only slightly between 2 and 4 neighbors, but does 
-not improve much beyond 5 neighbors. Therefore, a model with k=4 neighbors
-provides a reasonable solution for the data. 
+and the remaining portion is held in the test set. Two main problems in 
+evaluating model performance are \emph{overfitting} and \emph{underfitting}. 
+In the case of overfitting, a model can have high accuracy on the training 
+set but perform poorly with new data in the test set because the model is 
+overly fit to the training data. By contrast, in the case of underfitting, 
+a simple model may not generalize well to new observations as it does not 
+include all of the features relevant for predicting the target outcome. 
+One of the simplest classification models, K-Nearest Neighbors (KNN) 
+provides an example of the tradeoff between training accuracy and test 
+set accuracy. KNN classifies observations by assigning the label that 
+is most frequent among the \textit{'k'}-number of nearest training samples 
+(k is a parameter selected by the user). The accuracy of the KNN classifier 
+for the training set and testing set is plotted in Figure 2 as a function
+of the parameter k-neighbors. The plot shows that increased accuracy on 
+the training set is associated with lower testing set accuracy; conversely, 
+increased accuracy on the testing set is related to a decrease in training 
+set accuracy. The ideal model is one that optimizes test set accuracy while 
+striking a balance between the problems of overfitting and underfitting. 
+In the case of KNN, testing set increases slightly between 2 and 4 neighbors, 
+but does not improve much beyond 5 neighbors. Therefore, a model with k=4 
+neighbors provides a reasonable solution for the data. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Imbalanced Classes}
 
@@ -531,18 +532,19 @@ The present study extends previous work by comparing the performance of ten
 classifier models of pain reliever misuse and abuse and evaluating each model 
 using four performance metrics (accuracy, sensitivity, precision, $f_1$-score). 
 The sample data set has imbalanced classes in the target variable as the 
-number of instances of the negative class greatly outnumber instances of the 
-the positive class. A difficulty of using traditional classification algorithms
-with imbalanced data is that they tend to classify observations as belonging 
-to the majority class when the class of interest (positive) is represented by
-the minority of observations \cite{brown12, yun09}. This can produce a result 
-that underestimates the occurrence of positive cases which are misclassified as 
-false negatives. Efforts to address the issue of imbalanced data have included 
-sampling methods such as `boosting'. As described above, the $f_1$-score is 
-considered a better measure of performance than accuracy with data that have 
-imbalanced classes as it takes into account both recall and precision. The 
-study also identified features important for predicting MUPO. Tradeoffs 
-between model complexity and interpretability are discussed. 
+number of instances of the negative class greatly outnumber instances of 
+the positive class. A difficulty of using traditional classification 
+algorithms with imbalanced data is that they tend to classify observations
+as belonging to the majority class when the class of interest (positive) is 
+represented by the minority of observations \cite{brown12, yun09}. This can 
+produce a result that underestimates the occurrence of positive cases which 
+are misclassified as false negatives. Efforts to address the issue of 
+imbalanced data have included sampling methods such as `boosting'. 
+As described above, the $f_1$-score is considered a better measure of 
+performance than accuracy with data that have imbalanced classes as it 
+takes into account both recall and precision. The study also identified 
+features important for predicting MUPO. Tradeoffs between model complexity,
+performance, and interpretability are discussed. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -570,10 +572,10 @@ frames were subset by column to select approximately 90 variables that
 included common demographic characteristics, physical health, mental health, 
 medication usage, and illicit drug use. Inconsistencies in the data were 
 detected and removed with the following steps: (a) Remove missing values 
-(i.e., NaN); (b) Recode blanks, non-responses, or legitimate skips 
-(e.g., 99, 991, 993) to zero; (c) Recode dichotomous responses (e.g., No=0, 
-Yes=1); (d) Recode categorical variables to be consistent with amount or 
-degree (e.g., 1=`Low', 2=`Med', 3=`High'). 
+(i.e. NaN); (b) Recode blanks, non-responses, or legitimate skips 
+(e.g., 99, 991, 993) to zero; (c) Recode dichotomous responses (e.g., 0=No, 
+1=Yes); (d) Recode ordinal variables to be consistent with amount or 
+degree (e.g., 1=low, 2=medium, 3=high). 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -619,10 +621,10 @@ degree (e.g., 1=`Low', 2=`Med', 3=`High').
 \subsubsection{Aggregated Variables}
 
 Related features were combined to created aggregated variables. For example, 
-a single variable indicating overall history of health problems (`HEALTH`) 
+a single variable indicating overall history of health problems (HEALTH) 
 was created by combining responses for overall health (reverse scored), any
 previous diagnosis of STDs, hepatitis, HIV, cancer, and any hospitalization. 
-A mental health variable (`MENTHLTH') aggregated responses for adult depression, 
+A mental health variable (MENTHLTH) aggregated responses for adult depression, 
 emotional distress, and suicidal thoughts or plans. Binary responses for ten 
 of the most commonly used prescription pain medications (e.g., Hydrocodone, 
 Oxycodone, Tramadol, Morphine, Fentanyl, Oxymorphone, Demerol, Hydromorphone) 
@@ -637,15 +639,15 @@ care, outpatient care, treatment at a clinic, emergency room visits, or
 hospital stays. The target variable was any prescription opioid pain reliever 
 misuse or abuse (PRLMISEVR). The subset data frame consisted of 19 features 
 and 170317 observations was exported to a CSV file. Four variables were highly 
-correlated with other variables and excluded from the analysis (PRLANY, PRLMISAB, 
-HEROINUSE, HEROINFQY). Table 2 shows the list of predictor variables used for 
-constructing the classification models. 
+correlated with other variables and excluded (PRLANY, PRLMISAB, HEROINUSE, 
+HEROINFQY). Table 2 shows the list of predictor variables used for 
+constructing the classifier models. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Model Construction and Evaluation}
 
-The dataset was divided using a 75 to 25 percent split to create the training 
+The dataset was divided using a 75 to 25 percent split to create the training
 set ($n_1$=127738) and testing set ($n_2$=42579). The same general procedure 
 was used for constructing and evaluating each classification model: (i) The 
 model was fit to the training set; (ii) New values were predicted on the 
@@ -679,19 +681,19 @@ Table 4 provides the frequency and percent of respondents who reported
 pain reliever misuse and abuse by demographic characteristics. 
 Approximately 11\% of the sample had misused or abused prescription pain 
 relievers at some point; this same rate of pain reliever misuse and abuse 
-was found in both the training set and test sets. Although a larger
-number of females reported using any prescription opioid pain relievers in 
-the past year than males, more males reported misusing or abusing opioid 
-pain relievers. Pain reliever misuse was most frequent among individuals who 
-described themselves as single, divorced, or with some college education. 
-The proportion of pain reliever misuse and abuse was highest among 
-individuals between 18 to 25 years of age and decreased among older age 
-groups. Two percent of respondents (n=3433) disclosed ever using heroin 
-(2019 males; 1414 females). As shown in Figure 3, among respondents who 
-reported using pain relievers in the past year, the rate of misuse and abuse 
-of pain relievers was twice as large for individuals who reported using 
-heroin than those who had not used heroin, which is consistent with 
-past findings that indicate a connection between MUPO and heroin use 
+was found in both the training set and test sets. A larger number of females 
+reported using any prescription opioid pain relievers in the past year than 
+males, though more males reported misusing or abusing opioid pain relievers. 
+Pain reliever misuse was most frequent among individuals who described 
+themselves as single, divorced, or with some college education. The 
+proportion of pain reliever misuse and abuse was highest among individuals 
+between 18 to 25 years of age and decreased among older age groups. Two 
+percent of respondents (n=3433) disclosed ever using heroin (2019 males; 
+1414 females). Among respondents who reported using pain relievers in the 
+past year, the rate of misuse and abuse of pain relievers was twice as 
+large for individuals who reported using heroin than those who had not 
+used heroin (shown in Figure 3), which is consistent with past findings 
+that indicate a connection between MUPO and heroin use 
 \cite{muhuri13, unick13}.
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -708,11 +710,13 @@ $f_1$-score was used as the preferred performance metric rather than
 accuracy. The $f_1$-scores ranged from 0.87 to 0.95. Logistic regression 
 and the random forest model were tied for the highest $f_1$-score (0.95) 
 followed by the decision tree model (0.949). The random forests model 
-identified more true positives (TP) than a single decision tree and had 
-fewer false positives (FP) than logistic regression. In general, default 
-parameter setting were used for most models; the main parameter settings 
-for the classification models are presented in Table 7. The results for 
-these three top performing models are described below.  
+identified more true positives (1069) and fewer false negatives (3397) 
+than the single decision tree or logistic regression. QDA identified 
+the highest number of true positives, but far fewer true negative cases
+than logistic regression or LDA. In general, default parameter setting 
+were used for most models; the main parameter settings for the 
+classification models are presented in Table 7. The results for the 
+three top performing models are described below.  
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -828,8 +832,8 @@ these three top performing models are described below.
 The parameter estimates and odds ratios for the logistic regression model 
 are presented in Table 5. The coefficient estimates were all statistically 
 significant with the exception of mental health treatment. The model was 
-re-run leaving out the non-significant variable, but the performance metrics 
-did not change and the full model was retained that included all predictors. 
+rerun leaving out the non-significant variable, but the performance metrics 
+did not change. The full model with all of the predictors was retained. 
 The coefficient estimates ($\beta_i$...$\beta_j$) are interpreted as the 
 change in the log of the odds of the dependent variable (PRLMISAB) occurring 
 given a one unit change in each independent variable ($X_i$...$X_j$), holding
