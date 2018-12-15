@@ -36,7 +36,7 @@ the importance they assigned to heroin use, tranquilizer use, age category,
 and mental health as predictors of pain reliever misuse and abuse. 
 Advantages and limitations of the classifier models are considered and the tradeoff between model complexity and interpretability is discussed. 
 \footnote{This project was completed in partial fulfillment of requirements 
-for the M.S. in Data Science from the School of Informatics and Computing at IU-Bloomington completed in May, 2018. Manuscript completed November 23, 2018; submitted for publication December 14, 2018. Address correspondence to 
+for the M.S. in Data Science from the School of Informatics and Computing at IU-Bloomington completed in May, 2018. Manuscript completed November 23, 2018; submitted on December 15, 2018. Address correspondence to 
 \textit{smshiver@iu.edu}.}
 
 \end{abstract}
@@ -563,10 +563,8 @@ According to the NSHUD codebook, the sampling design is weighted across
 states by population size, drawing more heavily from eight states with 
 the largest populations (i.e., CA, FL, IL, MI, NY, OH, PA, TX), for a 
 representative distribution that accounts for approximately 48 percent 
-of the U.S. population. For 2015, the weighted survey screening response 
-rate was 81.94\% and the weighted interview response rate was 71.2\% 
-\cite{samhsa18}. Identifying information in the NSDUH public use files is 
-collapsed (e.g., age categories); variables related to ethnicity, immigration 
+of the U.S. population. Identifying information in the NSDUH public use files 
+is collapsed (e.g. age categories); variables related to ethnicity, immigration 
 status, and state identifiers are removed to ensure confidentiality. The data 
 frames were subset by column to select approximately 90 variables that 
 included common demographic characteristics, physical health, mental health, 
@@ -576,45 +574,6 @@ detected and removed with the following steps: (a) Remove missing values
 (e.g., 99, 991, 993) to zero; (c) Recode dichotomous responses (e.g., 0=No, 
 1=Yes); (d) Recode ordinal variables to be consistent with amount or 
 degree (e.g., 1=low, 2=medium, 3=high). 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{table}
-  \caption{Frequency of Pain Reliever Misuse and Abuse
-  by Demographics Features for NSDUH 2015-2017 Sample.}
-  \label{tab:freq}
-  \begin{tabular}{llllll}
-    \toprule
-              & PRL Misuse & & & No Misuse & \\
-              & N & \% &  & N & \% \\
-    \midrule
-    \textbf{Total}     & 18237 & 10.7\% & & 152080 & 89.3\% \\
-    Male      & 9279 & 50.9\% & & 71634 & 47.1\%  \\
-    Female    & 8958 & 49.1\% & & 80446 & 52.9\%  \\
-    \midrule
-    \textbf{Age Group} &  &  &  &  & \\
-    12-17     & 2262 & 12.4\% & & 39315 & 25.9\% \\
-    18-25     & 5577 & 30.6\% & & 36476 & 24.0\% \\
-    26-35     & 4370 & 24.0\% & & 22251 & 14.6\% \\
-    36-49     & 4173 & 22.0\% & & 29571 & 19.4\% \\
-    50+       & 1855 & 10.2\% & & 24467 & 16.1\% \\
-    \midrule
-    \textbf{Education} Level &  &  &  &  & \\
-    School Age & 2262 & 12.4\% & & 39315 & 25.9\% \\
-    Some H.S.  & 1849 & 10.1\% & & 15334 & 10.1\% \\
-    H.S. Grad  & 4134 & 22.7\% & & 30223 & 19.9\% \\
-    Some Coll. & 5997 & 32.9\% & & 37230 & 24.5\% \\
-    Coll. Grad & 3995 & 21.9\% & & 29978 & 19.7\% \\
-    \midrule
-    \textbf{Marital Status} &  &  &  &  & \\
-    Single    & 6777 & 37.2\% & & 64022 & 42.1\% \\
-    Divorced  & 6497 & 35.6\% & & 46183 & 30.4\% \\
-    Widowed   & 1225 &  6.7\% & &  7995 &  5.3\% \\
-    Married   & 3738 & 20.5\% & & 33880 & 22.3\% \\
-    
-    \bottomrule
-  \end{tabular}
-\end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -660,6 +619,42 @@ were constructed using the caret package. The KNN classifier, support
 vector classifier (SVC), naive Bayes classifier, and neural network 
 (multilayer perceptron) were built using scikit-learn. 
 
+\begin{table}
+  \caption{Frequency of Pain Reliever Misuse and Abuse
+  by Demographics Features for NSDUH 2015-2017 Sample.}
+  \label{tab:freq}
+  \begin{tabular}{llllll}
+    \toprule
+              & PRL Misuse & & & No Misuse & \\
+              & N & \% &  & N & \% \\
+    \midrule
+    \textbf{Total}     & 18237 & 10.7\% & & 152080 & 89.3\% \\
+    Male      & 9279 & 50.9\% & & 71634 & 47.1\%  \\
+    Female    & 8958 & 49.1\% & & 80446 & 52.9\%  \\
+    \midrule
+    \textbf{Age Group} &  &  &  &  & \\
+    12-17     & 2262 & 12.4\% & & 39315 & 25.9\% \\
+    18-25     & 5577 & 30.6\% & & 36476 & 24.0\% \\
+    26-35     & 4370 & 24.0\% & & 22251 & 14.6\% \\
+    36-49     & 4173 & 22.0\% & & 29571 & 19.4\% \\
+    50+       & 1855 & 10.2\% & & 24467 & 16.1\% \\
+    \midrule
+    \textbf{Education} Level &  &  &  &  & \\
+    School Age & 2262 & 12.4\% & & 39315 & 25.9\% \\
+    Some H.S.  & 1849 & 10.1\% & & 15334 & 10.1\% \\
+    H.S. Grad  & 4134 & 22.7\% & & 30223 & 19.9\% \\
+    Some Coll. & 5997 & 32.9\% & & 37230 & 24.5\% \\
+    Coll. Grad & 3995 & 21.9\% & & 29978 & 19.7\% \\
+    \midrule
+    \textbf{Marital Status} &  &  &  &  & \\
+    Single    & 6777 & 37.2\% & & 64022 & 42.1\% \\
+    Divorced  & 6497 & 35.6\% & & 46183 & 30.4\% \\
+    Widowed   & 1225 &  6.7\% & &  7995 &  5.3\% \\
+    Married   & 3738 & 20.5\% & & 33880 & 22.3\% \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{figure}[!ht]
@@ -668,88 +663,6 @@ vector classifier (SVC), naive Bayes classifier, and neural network
   as a function of Heroin Use.}
   \label{f:Figure3}
 \end{figure}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Results}
-
-\subsection{Exploratory Data Analysis}
-
-Twenty-six percent of the total sample (n=44596) reported taking any pain 
-relievers in the past year (19558 males, 25038 females). 
-Table 4 provides the frequency and percent of respondents who reported 
-pain reliever misuse and abuse by demographic characteristics. 
-Approximately 11\% of the sample had misused or abused prescription pain 
-relievers at some point; this same rate of pain reliever misuse and abuse 
-was found in both the training set and test sets. A larger number of females 
-reported using any prescription opioid pain relievers in the past year than 
-males, though more males reported misusing or abusing opioid pain relievers. 
-Pain reliever misuse was most frequent among individuals who described 
-themselves as single, divorced, or with some college education. The 
-proportion of pain reliever misuse and abuse was highest among individuals 
-between 18 to 25 years of age and decreased among older age groups. Two 
-percent of respondents (n=3433) disclosed ever using heroin (2019 males; 
-1414 females). Among respondents who reported using pain relievers in the 
-past year, the rate of misuse and abuse of pain relievers was twice as 
-large for individuals who reported using heroin than those who had not 
-used heroin (shown in Figure 3), which is consistent with past findings 
-that indicate a connection between MUPO and heroin use 
-\cite{muhuri13, unick13}.
- 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 
-\subsection{Classifier Model Performance}
-
-Performance of the classification models was evaluated in the confusion 
-matrices reported in Table 6, which includes the metrics of accuracy, 
-sensitivity (recall), precision, and $f_1$-score. The model accuracy 
-scores ranged form 86.5\% to 90.7\%. Because of the unbalanced classes in 
-the sample data|the proportion of respondents who had not misused or abused 
-pain relievers (89\%) was much greater than the proportion who had|the 
-$f_1$-score was used as the preferred performance metric rather than 
-accuracy. The $f_1$-scores ranged from 0.87 to 0.95. Logistic regression 
-and the random forest model were tied for the highest $f_1$-score (0.95) 
-followed by the decision tree model (0.949). The random forests model 
-identified more true positives (1069) and fewer false negatives (3397) 
-than the single decision tree or logistic regression. QDA identified 
-the highest number of true positives, but far fewer true negative cases
-than logistic regression or LDA. In general, default parameter setting 
-were used for most models; the main parameter settings for the 
-classification models are presented in Table 7. The results for the 
-three top performing models are described below.  
- 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{table}
-  \caption{Parameter Estimates for Logistic Regression Model and Log-odds 
-  Ratios for Pain Reliever Misuse and Abuse (Training Set).}
-  \label{tab:freq}
-  \begin{tabular}{lllll}
-    \toprule
-    Predictor&  Estimate& Std. Err.& Z-Value & Odds Ratio \\    
-    \midrule
-    (Intercept)   & -1.901 &  0.307 &  -6.19 *** &   \\
-    Cocaine       &  0.672 &  0.015 &  44.43 *** & 1.96  \\
-    Amphetamines  &  0.592 &  0.017 &  35.55 *** & 1.81  \\
-    Tranquilizers &  0.393 &  0.011 &  34.57 *** & 1.48  \\
-    Mental Health &  0.133 &  0.005 &  26.96 *** & 1.14  \\
-    Heroin use    &  0.750 &  0.041 &  18.25 *** & 2.12  \\
-    Age Category  & -0.185 &  0.011 & -17.28 *** & 1.20  \\
-    Employment    &  0.191 &  0.013 &  14.60 *** & 1.21  \\
-    Treatment     &  0.203 &  0.015 &  13.57 *** & 1.23  \\
-    Sedatives     &  0.264 &  0.024 &  10.98 *** & 1.30  \\
-    Education     &  0.105 &  0.010 &  10.12 *** & 1.11  \\
-    Health        &  0.093 &  0.010 &   9.15 *** & 1.10  \\
-    Sex           & -0.153 &  0.021 &  -7.28 *** & 1.17  \\
-    Married       &  0.052 &  0.010 &   5.42 *** & 1.05  \\
-    Year          & -0.071 &  0.020 &  -3.58 *** & 1.07  \\
-    City/Metro    & -0.040 &  0.013 &  -3.08 **  & 1.04  \\
-    MH Treatment  & -0.001 &  0.014 &  -0.07     & 1.00  \\
-    \bottomrule 
-    Note: p-value& $<$ 0.001***  & $<$ 0.01** &  &   
-  \end{tabular}
-\end{table}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
@@ -825,15 +738,64 @@ three top performing models are described below.
   \end{tabular}
 \end{table}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+ 
+\section{Results}
+
+\subsection{Exploratory Data Analysis}
+
+Twenty-six percent of the total sample (n=44596) reported taking any pain 
+relievers in the past year (19558 males, 25038 females). 
+Table 4 provides the frequency and percent of respondents who reported 
+pain reliever misuse and abuse by demographic characteristics. 
+Approximately 11\% of the sample had misused or abused prescription pain 
+relievers at some point; this same rate of pain reliever misuse and abuse 
+was found in both the training set and test sets. A larger number of females 
+reported using any prescription opioid pain relievers in the past year than 
+males, though more males reported misusing or abusing opioid pain relievers. 
+Pain reliever misuse was most frequent among individuals who described 
+themselves as single, divorced, or with some college education. The 
+proportion of pain reliever misuse and abuse was highest among individuals 
+between 18 to 25 years of age and decreased among older age groups. Two 
+percent of respondents (n=3433) disclosed ever using heroin (2019 males; 
+1414 females). Among respondents who reported using pain relievers in the 
+past year, the rate of misuse and abuse of pain relievers was twice as 
+large for individuals who reported using heroin than those who had not 
+used heroin (shown in Figure 3), which is consistent with past findings 
+that indicate a connection between MUPO and heroin use 
+\cite{muhuri13, unick13}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Classifier Model Performance}
+
+Performance of the classification models was evaluated in the confusion 
+matrices reported in Table 5, which includes the metrics of accuracy, 
+sensitivity (recall), precision, and $f_1$-score. The model accuracy 
+scores ranged form 86.5\% to 90.7\%. Because of the unbalanced classes in 
+the sample data|the proportion of respondents who had not misused or abused 
+pain relievers (89\%) was much greater than the proportion who had|the 
+$f_1$-score was used as the preferred performance metric rather than 
+accuracy. The $f_1$-scores ranged from 0.87 to 0.95. Logistic regression 
+and the random forest model were tied for the highest $f_1$-score (0.95) 
+followed by the decision tree model (0.949). The random forests model 
+identified more true positives (1069) and fewer false negatives (3397) 
+than the single decision tree or logistic regression. QDA identified 
+the highest number of true positives, but far fewer true negative cases
+than logistic regression or LDA. In general, default parameter setting 
+were used for most models; the main parameter settings for the 
+classification models are presented in Table 6. The results for the 
+three top performing models are described below.  
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Logistic Regression}
 
 The parameter estimates and odds ratios for the logistic regression model 
-are presented in Table 5. The coefficient estimates were all statistically 
+are presented in Table 7. The coefficient estimates were all statistically 
 significant with the exception of mental health treatment. The model was 
 rerun leaving out the non-significant variable, but the performance metrics 
-did not change. The full model with all of the predictors was retained. 
+did not change and the full model with all of the predictors was retained. 
 The coefficient estimates ($\beta_i$...$\beta_j$) are interpreted as the 
 change in the log of the odds of the dependent variable (PRLMISAB) occurring 
 given a one unit change in each independent variable ($X_i$...$X_j$), holding
@@ -856,19 +818,51 @@ increase in the independent variable  \cite{gujarati09}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\begin{table}
+  \caption{Parameter Estimates for Logistic Regression Model and Log-odds 
+  Ratios for Pain Reliever Misuse and Abuse (Training Set).}
+  \label{tab:freq}
+  \begin{tabular}{lllll}
+    \toprule
+    Predictor&  Estimate& Std. Err.& Z-Value & Odds Ratio \\    
+    \midrule
+    (Intercept)   & -1.901 &  0.307 &  -6.19 *** &   \\
+    Cocaine       &  0.672 &  0.015 &  44.43 *** & 1.96  \\
+    Amphetamines  &  0.592 &  0.017 &  35.55 *** & 1.81  \\
+    Tranquilizers &  0.393 &  0.011 &  34.57 *** & 1.48  \\
+    Mental Health &  0.133 &  0.005 &  26.96 *** & 1.14  \\
+    Heroin use    &  0.750 &  0.041 &  18.25 *** & 2.12  \\
+    Age Category  & -0.185 &  0.011 & -17.28 *** & 1.20  \\
+    Employment    &  0.191 &  0.013 &  14.60 *** & 1.21  \\
+    Treatment     &  0.203 &  0.015 &  13.57 *** & 1.23  \\
+    Sedatives     &  0.264 &  0.024 &  10.98 *** & 1.30  \\
+    Education     &  0.105 &  0.010 &  10.12 *** & 1.11  \\
+    Health        &  0.093 &  0.010 &   9.15 *** & 1.10  \\
+    Sex           & -0.153 &  0.021 &  -7.28 *** & 1.17  \\
+    Married       &  0.052 &  0.010 &   5.42 *** & 1.05  \\
+    Year          & -0.071 &  0.020 &  -3.58 *** & 1.07  \\
+    City/Metro    & -0.040 &  0.013 &  -3.08 **  & 1.04  \\
+    MH Treatment  & -0.001 &  0.014 &  -0.07     & 1.00  \\
+    \bottomrule 
+    Note: p-value& $<$ 0.001***  & $<$ 0.01** &  &   
+  \end{tabular}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 For a one unit increase in cocaine use, the odds of misusing or abusing pain 
 relievers increased by 1.96 times or 96\% , holding the effects of all other
 variables constant. For a one unit increase in amphetamine use, the odds of 
-pain reliever misuse and abuse (PRLMISAB) increase by 1.81 times or 81\%. 
+pain reliever misuse and abuse (PRLMISAB) increased by 1.81 times or 81\%. 
 A one unit increase in tranquilizer use was associated with a 1.48 or 48\% 
 increase in the odds of PRLMISAB. For a unit increase in mental health issues, 
 the odds for PRLMISAB increased by 1.14 or 14\%. For a one unit increase in 
-heroin use, the odds of PRLMISAB increases by 2.12 times or 112\%. 
+heroin use, the odds of PRLMISAB increased by 2.12 times or 112\%. 
 For a one unit increase in age category, the odds of PRLMISAB decreased by 
 1.20 times or 20\%. A one unit increase in employment is associated with a 
 1.21 or 21\% increase in the odds of PRLMISAB. For a unit increase in 
 substance treatment, the odds for PRLMISAB increased by 1.23 or 23\%. 
-For a one unit increase in sedative use, the odds of PRLMISAB increases by 
+For a one unit increase in sedative use, the odds of PRLMISAB increased by 
 1.30 times or 30\%. In terms of sex, the odds of misusing or abusing pain 
 relievers for females decreased by 1.17 times compared to males; in other 
 words, the odds of PRLMISAB for females was 17\% lower than for males. The 
@@ -1042,19 +1036,20 @@ regression models. The odds of PRLMISAB increased 1.46 times for a one unit
 increase in tranquilizer use. Similar to the pattern observed for heroin, the 
 proportion of PRLMISAB was nearly twice as large for respondents with moderate 
 to high tranquilizer use as for individuals with no to low tranquilizer use. 
+
 Age category, mental health, health issues, education level, and previous 
 drug or alcohol treatment were also identified as important features for 
 predicting PRLMISAB; however, the models differed in the importance they 
 assigned to these variables. A general finding related to age is that pain 
 reliever misuse and abuse was more prevalent among respondents between
 18 to 25 years of age and decreased among older individuals. Although more 
-females reported using pain relievers than males, overall, more males reported 
-misusing or abusing pain relievers than females, and the odds of pain 
-reliever misuse or abuse for females was 17 percent lower than for males. 
+females reported using pain relievers than males, more males reported 
+misusing or abusing pain relievers than females, and the odds of pain reliever 
+misuse or abuse was 17 percent lower for females as for males. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Model Interpretability}
+\subsection{Model Complexity and Interpretability}
 
 Every classification model has advantages and limitations. There is a 
 tradeoff between model complexity, performance, and interpretability.
